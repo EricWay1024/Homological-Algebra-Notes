@@ -15,7 +15,8 @@
   date: "October 24, 2023",
 )
 
-
+#pagebreak()
+#include "module.typ"
 // #outline(indent: true)
 
 
@@ -441,6 +442,7 @@ Left adjunction preserves colimits and right adjunction preserves limits. In par
 #proposition[
   In an Ab-enriched category, a finite product is also a coproduct. This also includes the case of the empty product and coprodut, namely any final object is initial and thus zero. 
 ]
+[See 3.4.9, Li]
 
 
 We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
@@ -480,7 +482,7 @@ $ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
   An additive category $cC$ is pre-abelian if any morphism has a kernel and a cokernel. 
 ]
 
-Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory).
+Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts [Corollary 2.8.4, Li]).
 
 #definition[
   If $cC$ is pre-abelian we get: 
@@ -503,6 +505,7 @@ Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, 
 
 where we define $coim (f) = coker(ker(f))$ and $im(f) = ker(coker(f))$.
 // #image("imgs/17.png")
+[See Definition 1.2.4, Li-2]
 
 We call $f$ strict if the map $coim (f) -> im f$ is an isomorphism. 
 ]
@@ -640,20 +643,103 @@ Remark. We can embed an abstract category in a concrete one. We can prove any re
 Proof. Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?)
 
 #lemma(name: "Snake Lemma")[
- Suppose we have a commutative diagram of objects in abelian category or $RMod$ 
-#image("imgs/23.png")
+ Suppose we have a commutative diagram of objects in an abelian category or $RMod$ 
+
+ // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohABhOXyWCiZAAzitU3ewDkhhf2VDkoi5sk6Q0+zyMCVFHV3CW02PV95RQCXABZSEKsvMwdo5yIzDVDrEBSucRgoAHN4IlAAMwAnCABbJHUQHAgkTOyvcocq2qR4xubEMja2Is7qusQAVmompFEh3QALUe7EBpnEXqS2LEiKsZ7p-qn5hV2QLvHj9YA2P3P9xAB2Q5a7i5aXgY8w3Sxl8cG6zmW10aBA1AYWDAXjgEEhUG4FC4QA
+#align(center, commutative-diagram(
+  node((1, 1), [$A$]),
+  node((1, 2), [$B$]),
+  node((1, 3), [$C$]),
+  node((0, 1), [$A'$]),
+  node((0, 2), [$B'$]),
+  node((0, 3), [$C'$]),
+  node((0, 4), [$0$]),
+  node((1, 0), [$0$]),
+  arr((0, 1), (1, 1), [$f$]),
+  arr((0, 2), (1, 2), [$g$]),
+  arr((0, 3), (1, 3), [$h$]),
+  arr((0, 1), (0, 2), [$i'$]),
+  arr((0, 2), (0, 3), [$p'$]),
+  arr((0, 3), (0, 4), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), [$i$]),
+  arr((1, 2), (1, 3), [$p$]),
+))
+// #image("imgs/23.png")
+
 such that the rows are exact, then there is an exact sequence 
 $ ker f -> ker g -> ker h attach(->, t: diff)  coker f -> coker g -> coker h $
 
 Further, if $A' -> B'$ is monic, so is $ker f -> ker g$.
 If $B -> C$ is epic, so is $coker g -> coker h$.
 ]
-
 #proof[
-  All arrows except $diff$, the connecting homomorphism, are clear. (?) Pick any $c' in ker h$, we "define" $ diff(c') = i^(-1) g p'^(-1) (c') $
-where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on. Then show that this is well defined in $coker f$. 
+  [See https://faculty.etsu.edu/gardnerr/5410/notes/Snake-Lemma.pdf.]
+We have the following commutative diagram: 
+#v(20pt)
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQBBEAX1PU1z5CKchWp0mrdgCEefEBmx4CRAMxiaDFm0QgAwnP5KhRMsXFapujgHJDCgcuHJR5zZJ0hpd3kcEqUdTcJbXY9H3lFf2cyAAYLD3YAaxgAJwACADN7KKciUXj3UN0UjIBzHMcTQNJCkKsQUvSAC0rjAJJSVQTikABjCCbs3wd251FuooaBpoqR3OrkdUn6zxm0lrboogAWUmDLT1itvJRYjVX2Y+5xGCgy+CJQTNSIAFskADYaHAgkVRGL3e-x+f0Q50uumG8iBH3BoKQAE5Aa84QB2BGIHYo4FYzFkSEgOYw1FIAm-MmxHFwgAcmIArNSkPTMaJCa0mYg2RTEMRiJz1CAeXtCVgIs9SXihWCWYS0OKQLDmfjyJziIKeVSSbiITyCYd2Fh7Ereaypp40CAaIwsGBPFB6HBmndjZK6dKkdbbfbHc6oFaQAAjGBgf2IAC0aP52rhiPxWoluOIurBfM53w9iDRnIxmZpN24QA
+#align(center, commutative-diagram(
+  node((2, 1), [$A$]),
+  node((2, 2), [$B$]),
+  node((2, 3), [$C$]),
+  node((1, 1), [$A'$]),
+  node((1, 2), [$B'$]),
+  node((1, 3), [$C'$]),
+  node((0, 1), [$ker f$]),
+  node((0, 2), [$ker g$]),
+  node((0, 3), [$ker h$]),
+  node((3, 1), [$coker f$]),
+  node((3, 2), [$coker g$]),
+  node((3, 3), [$coker h$]),
+  node((1, 4), [$0$]),
+  node((2, 0), [$0$]),
+  arr((0, 1), (1, 1), []),
+  arr((1, 1), (2, 1), [$f$]),
+  arr((2, 1), (3, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (2, 2), [$g$]),
+  arr((2, 2), (3, 2), []),
+  arr((0, 3), (1, 3), []),
+  arr((1, 3), (2, 3), [$h$]),
+  arr((2, 3), (3, 3), []),
+  arr((1, 1), (1, 2), [$i'$]),
+  arr((1, 2), (1, 3), [$p'$]),
+  arr((1, 3), (1, 4), []),
+  arr((2, 0), (2, 1), []),
+  arr((2, 1), (2, 2), [$i$]),
+  arr((2, 2), (2, 3), [$p$]),
+  arr((0, 3), (3, 1), [$diff$], curve: -68deg, "dashed"),
+  arr((3, 1), (3, 2), [$j$]),
+  arr((3, 2), (3, 3), [$q$]),
+  arr((0, 1), (0, 2), [$j'$]),
+  arr((0, 2), (0, 3), [$q'$]),
+))
 
- TODO
+  In the first row, consider map $j' := i'|_(ker f) : ker f -> B'$. We claim that $j' : ker f -> ker g$. Indeed, take any $a' in ker f subset.eq A'$, we have 
+  $ g(j'(a')) = g(i'(a')) = i(f(a')) = i(0) = 0 $
+  Then $j'(a') in ker g$ and thus $j' : ker f -> ker g$. Similarly, $q' := p'|_(ker g) : ker g -> ker h$. We then see the first row is exact because of the exactness of $A' -> B' -> C'$.
+
+  In the last row, define $j : coker(f) -> coker(g)$ as $a + im(f) |-> i(a) + im(g)$ for any $a in A$. We claim that this map is well-defined. If $a_1, a_2 in A$ such that $a_1 + im(f) = a_2 + im(f)$, then $a_1 - a_2 in im(f)$, thus there exists $a' in A'$ so that $a_1 - a_2 = f(a')$. Then 
+
+  $ i(a_1 - a_2) = i(f(a')) = g(i'(a')) in im(g) $
+
+  Then 
+  $ j(a_1 + im(f)) = i(a_1) + im(g) = i(a_2) + im(g) = j(a_2 + im(f)) $
+
+  So $j$ is well-defined. Similarly, we can define $q : coker g -> coker h$ and show the exactness of the last row.
+
+  Now all arrows except $diff$, which we call the *connecting homomorphism*, are clear. 
+  Pick any $c' in ker h subset.eq C'$. 
+  Since $p'$ is surjective, there exists $b' in B'$ so that $p'(b') = c'$. 
+  Now $ 0 = h(c') = h(p'(b')) = p(g(b')) $ so $g(b') in ker p = im i$, and there exists unique $a in A$ such that $i(a) = g(b')$. 
+  We thus define $diff: ker h -> coker f$ as $ diff(c') = a + im(f) $ 
+  We claim this is a well-defined function. 
+  Then it suffices to show for any two choices $b'_1, b'_2$ of $b'$ and corresponding choices $a_1, a_2$ of $a$, $diff (c')$ gives the same value. Since $p'(b'_1) = p'(b'_2) = c'$, we have $b'_1 - b'_2 in ker(p') = im(i')$. Thus we can write $b'_1 - b'_2 = i'(a')$ for some $a' in A'$. Then 
+  $ i(a_1 - a_2) = g(b'_1 - b'_2) = g(i'(a')) = i (f (a'))  $
+  but $i$ is injective, and hence $a_1 - a_2 = f(a') in im f$. In other words, we could define $ diff(c') = i^(-1) g p'^(-1) (c') + im(f) $
+  where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on. 
+
+  We still need to verify this is exact. TODO [See 6.8.6, Li]
 ]
 
 == Calculating tensor products
@@ -708,7 +794,7 @@ $ Hom_S (A tpr B, C) bij Hom_R (A, Hom_S (B, C)) $
 ]
 
 #remark[
-  We can define $ M tpr N := Coeq (M tp_ZZ R tp_ZZ N arrows M tpr_ZZ N ) $
+  We can define $ M tpr N := Coeq (M tp_ZZ R tp_ZZ N arrows M tp_ZZ N ) $
   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 ]
 

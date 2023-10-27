@@ -3,6 +3,7 @@
 #let bd(term) = [ $bold(#term)$]
 #let veck = [$bold("Vec")_k$]
 #let homk = [$op("Hom")_k$]
+
 #let hom = [$op("Hom")$]
 #let Hom = [$op("Hom")$]
 #let Hom(c) = [$op("Hom")_cal(#c)$]
@@ -22,6 +23,9 @@
 #let Set = [$bd("Set")$]
 #let Cat = [$bd("Cat")$]
 #let RMod = [$R hyph bd("Mod")$]
+#let ModR = [$bd("Mod") hyph R$]
+#let homr = [$op("Hom")_RMod$]
+#let endr = [$op("End")_RMod$]
 #let Mod = [$bd("Mod")$]
 #let Ab = [$bd("Ab")$]
 #let Grp = [$bd("Grp")$]
@@ -37,6 +41,11 @@
 #let ses(A, B, C) = [$0 -> #A -> #B -> #C -> 0$]
 #let rgt(A) = [$attach(->, t: #A)$]
 #let over = [$\/$]
+
+#let lrm = [left $R$-module]
+#let rrm = [right $R$-module]
+#let lrms = [left $R$-modules]
+#let rrms = [right $R$-modules]
 
 #let theorem = thmbox(
   "theorem",
