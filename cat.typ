@@ -87,7 +87,19 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 
     Since $e$ is a natrual transformation, we have the commutative diagram (in $cC$): 
 
-    #image("imgs/2023-10-28-13-37-45.png", width: 30%)
+    // #image("imgs/2023-10-28-13-37-45.png", width: 30%)
+
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA8QBfU9TXfIRQBGclVqMWbAOIAKAJ4BKbrxAZseAkTLDx9Zq0QhpAAgBis9sp58NgoqN3V9Uo6bMm5S7uJhQA5vBEoABmAE4QALZIZCA4EEiiEgZs-iqhEdGISfFIAMzOkoYgMAD6sl6K1qrhUTHUuYgATIUpRmWcNiC1WS1xCYgFya7G5iay-tYUXEA
+#align(center, commutative-diagram(
+  node((0, 0), [$x$]),
+  node((0, 1), [$G(y)$]),
+  node((1, 0), [$G F(x)$]),
+  node((1, 1), [$G F G(y)$]),
+  arr((0, 0), (0, 1), [$g$]),
+  arr((0, 1), (1, 1), [$e_(G(y))$]),
+  arr((0, 0), (1, 0), [$e_x$]),
+  arr((1, 0), (1, 1), [$G F (g)$]),
+))
 
     Hence $ phi psi (g) = G(epsilon_y) oo G F(g) oo e_x = G(epsilon_y) oo e_(G(y)) oo g $
 
@@ -113,7 +125,23 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 
     Claim: $phi(alpha oo f) = G(alpha) oo phi(f)$.
 
-    #align(center,image("imgs/2023-10-28-13-53-09.png",width:50%))
+    #v(30pt)
+
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA8QBfU9TXfIRQBGclVqMWbAOIACAGIAKdgEpuvEBmx4CRAExjq9Zq0QhpigJ5qefbYP2lh441LMXLAchviYUAObwRKAAZgBOEAC2SGQgOBBIohImbDAA+py2IOFRidTxSAbJbuaKITYaOdGIRQWIAMxGkqaljGgAFnQVoRHVSXWNxS0WbZ2yEBCy5eo9uYixdUUARjBgUEgALACcTSlmHVhlatQMWGAtUHRw7X4z2b0x+QkN1CtrSAC09bGn52yX11uuxKB0Uozo40m0y4FC4QA
+#align(center, commutative-diagram(
+  node((0, 0), [$x$]),
+  node((0, 1), [$G F(x)$]),
+  node((0, 2), [$G(y)$]),
+  node((1, 2), [$G(y')$]),
+  arr((0, 0), (0, 1), [$e_x$]),
+  arr((0, 1), (0, 2), [$G(f)$]),
+  arr((0, 2), (1, 2), [$G(alpha)$]),
+  arr((0, 1), (1, 2), [$G(alpha oo f)$]),
+  arr((0, 0), (0, 2), [$phi(f)$], curve: 30deg, "dashed"),
+  arr((0, 0), (1, 2), [$phi(alpha oo f)$], curve: 0deg, "dashed"),
+))
+
+    // #align(center,image("imgs/2023-10-28-13-53-09.png",width:50%))
 
     The right hand side triangle commutes simply because $G$ is a functor. 
 ]
@@ -158,7 +186,18 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 
     Is $e$ a natural transformation? Does this commute for any $beta: x -> x'$?
 
-    #align(center,image("imgs/2023-10-28-14-09-02.png",width:30%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA8QBfU9TXfIRQBGclVqMWbdgHJuvEBmx4CRUcPH1mrRCADiAAgBiAClkBKeX2WCiZDdS1Tdh0+0tdxMKAHN4RUAAzACcIAFskMhAcCCRRCW02ACMYHDorEBDwuOoYpAAmR0kdEBgAfTMZDwUsiMQovMQAZiLE3XLOHiDQupbo2MRChOd9YxMUtI8KLiA
+#align(center, commutative-diagram(
+  node((0, 0), [$x$]),
+  node((0, 1), [$x'$]),
+  node((1, 1), [$G F(x')$]),
+  node((1, 0), [$G F(x)$]),
+  arr((0, 0), (0, 1), [$beta$]),
+  arr((0, 1), (1, 1), [$e_(x')$]),
+  arr((0, 0), (1, 0), [$e_x$]),
+  arr((1, 0), (1, 1), [$G F(beta)$]),
+))
+    // #align(center,image("imgs/2023-10-28-14-09-02.png",width:30%))
 
     We have the following: 
 
