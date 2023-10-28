@@ -1,6 +1,6 @@
-#import "template.typ": *
-#import "var.typ": *
-#import "commute.typ": node, arr, commutative-diagram
+#import "libs/template.typ": *
+#import "libs/var.typ": *
+#import "libs/commute.typ": node, arr, commutative-diagram
 
 #set heading(numbering: "1.a.")
 
