@@ -21,11 +21,167 @@
     $ G attach(arrow.double.long, t: e compose id_G ) G F G attach(arrow.double.long, t: id_G compose epsilon) G $
     is $id_G$.
 
-    In this case we denote $F tack.l G$ and we say that $F$ is adjoint to $G$ and $G$ is right adjoint to $F$. 
+    In this case we denote $F tack.l G$ and we say that $F$ is *left adjoint* to $G$ and $G$ is *right adjoint* to $F$. Also $e$ is called the *unit* and $epsilon$ the *counit*.
 ]
+
+    The following commutative diagrams are in the categories of $Fun(cC, cD)$ and $Fun(cD, cC)$ respectively (where objects are functors and morphisms are natural transformations).
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAxEAX1PU1z5CKcqWLU6TVuw4BxLr37Y8BIgCYKEhizaJOPCTCgBzeEVAAzAE4QAtkjIgcEJKMk72WKAH0OAAgBjOww4GD82RRBrO1caZyQNd2k9GDRsRgJA4Mwwr18ePiibe0RHeMRE7WSQPIVKbiA
+#align(center, commutative-diagram(
+  node((1, 0), [$F$]),
+  node((0, 1), [$F G F$]),
+  node((1, 2), [$F$]),
+  arr((1, 0), (0, 1), [$id_F compose e$]),
+  arr((0, 1), (1, 2), [$epsilon compose id_F$]),
+  arr((1, 0), (1, 2), [$id_F$]),
+)) 
+
+#align(center, commutative-diagram(
+  node((1, 0), [$G$]),
+  node((0, 1), [$G F G$]),
+  node((1, 2), [$G$]),
+  arr((1, 0), (0, 1), [$e compose id_G $]),
+  arr((0, 1), (1, 2), [$  id_G compose epsilon$]),
+  arr((1, 0), (1, 2), [$id_G$]),
+)) 
 
 #image("2023-10-27-18-55-27.png")
 
+#image("imgs/2023-10-28-12-46-27.png")
+
+The first triangle says (in morphisms of $cD$):
+$ epsilon_(F(x)) compose F(e_x) = id_(F(x)) $
+for all $x in cC$. Similarly, the second triangle says (in morphisms of $cC$): 
+$ G(epsilon_y) compose e_(G(y)) = id_(G(y)) $
+for all $y in cD$ (this is in $cC$).
+
+== Understanding the definition
+
+Take any $x in cC$ and $y in cD$. Let $f in Hom(D)(F(x), y)$. Then (in $cC$)
+$ x rgt(e_x) G F (x) rgt(G(f)) G(y) $
+
+we have map $phi : Hom(D)(F(x), y) -> Hom(C)(x, G(y))$ defined by $ phi(f) := G(f) compose e_x in Hom(C)(x, G(y)) $
+
+Conversely, for $g in Hom(C)(x, G(y))$, we have (in $cD$)
+
+$ F(x) rgt(F(g)) F G (y) rgt(epsilon_y) y $
+
+then define $psi: Hom(C)(x, G(y)) -> Hom(D)(F(x), y)$ as
+$ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
+
+#proposition[$phi$ and $psi$ are inverse to each other.]
+
+#proof[
+    We show that $(phi compose psi)(g) = g$ for $g in Hom(C)(x, G(y))$.
+
+    Copying the defintion of $phi$, we have LHS is 
+
+    $ x rgt(e_x) G F (x) rgt(G(psi(g))) G(y) $
+
+    Wrapping the definition of $psi$ with $G$ we have $G(psi(g)): G F (x) -> G(y)$ is
+
+    $ G F(x) rgt(G F(g)) G F G (y) rgt(G(epsilon_y)) G(y) $
+
+    Combining them we have
+
+    $ x rgt(e_x) G F (x) rgt(G F(g)) G F G (y) rgt(G(epsilon_y)) G(y) $
+
+    Since $e$ is a natrual transformation, we have the commutative diagram (in $cC$): 
+
+    #image("imgs/2023-10-28-13-37-45.png", width: 30%)
+
+    Hence $ phi psi (g) = G(epsilon_y) oo G F(g) oo e_x = G(epsilon_y) oo e_(G(y)) oo g $
+
+    But $ G(epsilon_y) oo e_(G(y)) = id_(G(y)) $ due to the second triangle. So $phi psi (g) = g$.
+
+    The other direction is similar. (dual?)
+]
+
+#remark[
+    Historically the $Hom$ definition preceded the triangle definition; we made the triangle identity as axioms so that it works here. Unit and counit are used to construct the two maps $phi$ and $psi$.
+]
+
+#corollary[
+    The adjuntion defintion implies there is a bijection 
+    $ Hom(D)(F(x), y) iso Hom(C)(x, G(y)) $
+
+    for any $x in cC$ and $y in cD$. Moreover, this is natural in both $x$ and $y$. 
+]
+
+#proof[
+    Natural in $y$. Suppose we have $alpha : y -> y'$ and thus $G(alpha): G(y) -> G(y')$.
+    #align(center, image("imgs/2023-10-28-13-48-54.png", width: 80%))
+
+    Claim: $phi(alpha oo f) = G(alpha) oo phi(f)$.
+
+    #align(center,image("imgs/2023-10-28-13-53-09.png",width:50%))
+
+    The right hand side triangle commutes simply because $G$ is a functor. 
+]
+
+#proposition[
+    A collection of bijection $Hom(D)(F(x), y) iso Hom(C)(x, G(y)) $ that are natural in both $x, y$ is equivalent to the data of an adjuntion $F tack.l G$.
+]
+
+#example[
+    Typically, the forgetful functors have left adjoints given by some "free" construction. 
+
+    $"Forget": veck -> Set$ and $"Free": Set -> veck$, where $"Free"(X)$ is the vector space with $X$ as a basis.
+    
+    $ hom_veck ("Free"(X), V) iso hom_Set (X, "Forget"(V)) $
+
+    $ T mapsto T|_X $
+
+    $ f mapsto "extending to a linear map" $
+]
+
+#example[
+    In representation theory, Frobenius reciprocity is such an example. 
+]
+
+#proof[
+    We have proved one direction. 
+    Given the hom-set adjunction, how do we construct $e, epsilon$?
+
+    We have $ Hom(D)(F(x), y) iso Hom(C)(x, G(y)) $
+
+    Considering $e_x in Hom(C)(x, G  F (x))$, we specialise $y = F(x)$, and 
+
+    $ Hom(D)(F(x), F(x)) iso Hom(C)(x, G  F(x)) $
+
+    Very naturally we take $id_(F(x))$ from the LHS and we define $e_x$ as its corresponding element in the RHS. 
+
+    Similarly, $epsilon_y$ is defined as: 
+
+    $ Hom(D)(F G(y), y) iso Hom(C)(G(y), G(y)) $
+
+    The element corresponding to $id_(G(y))$ in LHS.
+
+    Is $e$ a natural transformation? Does this commute for any $beta: x -> x'$?
+
+    #align(center,image("imgs/2023-10-28-14-09-02.png",width:30%))
+
+    We have the following: 
+
+    #align(center,image("imgs/2023-10-28-14-12-50.png",width:80%))
+
+    The top and bottom squares commute because we assumed the naturality of the bijection between the hom-sets.
+    Top: 
+    $ tau oo F(beta) = G F (beta) oo e_x $
+    Bottom:
+    $ tau oo F(beta) = e_(x') oo beta $
+
+    (notice that $F(beta) oo id_(F(x)) = F(beta) = id_(F(x')) oo F(beta) $). From this we see that $e$ is natural.
+
+    Similarly, $epsilon$ is also natural.
+
+    Last thing: the commuting triangle for $e$ and $epsilon$. 
+
+    #align(center,image("imgs/2023-10-28-14-20-27.png",width:60%))
+]
+
+#example[
+    $"Forget": Ab-> Grp$ and $"Abel": G -> G over [G, G]$ and we have $"Abel" tack.l "Forget"$.
+]
 = Lecture 6 
 
 == More examples on adjunctions

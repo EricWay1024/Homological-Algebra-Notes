@@ -1,0 +1,5 @@
+{
+    "pasteImage.path": "${currentFileDir}/imgs",
+    "pasteImage.prefix": "#align(center,image(\"imgs/",
+    "pasteImage.suffix": "\",width:50%))"
+}

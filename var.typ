@@ -47,6 +47,8 @@
 #let lrms = [left $R$-modules]
 #let rrms = [right $R$-modules]
 
+#let oo = [$compose$]
+
 #let mapsto = [$|->$]
 
 #let theorem = thmbox(
