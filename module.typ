@@ -59,5 +59,51 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
     a *quotient module*. 
 ]
 
-                                                                                                          
+#definition[
+    Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x $
 
+    We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x $
+
+    An element $m in R^(ds X) $ can be written as 
+    $ m = sum_(x in X) a_x x $
+    where only finitely many $a_x in R$ is non-zero.
+]
+
+#proposition[
+    For any $R$-module $M$ and map between sets $phi.alt:  X -> M$, there exists a unique module homomorphism $phi : R^(ds X) -> M$ that make the following commute: 
+
+    #align(center,image("imgs/2023-10-28-21-16-04.png",width:30%))
+]
+
+#definition[
+    Let $X$ be a subset of $R$-module $M$ and let $i: X->M$ be the inclusion map. We have the corresponding map $sigma: R^(ds X) -> M$. We say
+    - $X$ is *linear independent* or *free* if $sigma$ is injective and $X$ is *linear dependent* otherwise;
+    - $X$ spans or generates $M$ if $sigma$ is surjective, in which case $X$ is a *generating set* of $M$. A module with a finite generating subset is called a *finitely generated module*.
+
+    A linear independent generating subset of $M$ is called a *basis* of $M$, and a module with a basis is called a *free module*.
+    // #align(center,image("imgs/2023-10-28-21-19-38.png",width:100%))
+]
+
+
+
+#corollary[
+    Any $R$-module $M$ is isomorphic to quotient of free groups. 
+]
+
+#proof[
+    Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
+]
+
+#definition[
+    Let $R, S$ be rings. An $(R, S)$-bimodule is an abelian group $M$ being both a left $R$-module and a right $S$-module, satisfying:
+    $ r(m s) = (r m) s $
+    for all $m in M, r in R, s in S$.
+]
+
+#definition[
+    Let $R$ be a ring. Consider #lrm $M$, #rrm $N$ and abelian group $(A, +)$. A map $B: M times N -> A$ is called a *balanced product* if it satisfies:
+    - $B(x + x', y) = B(x, y) + B(x', y)$;
+    - $B(x, y + y') = B(x, y) + B(x, y')$;
+    - $B(x r , y) = B(x, r y)$,
+    for all $x, x' in M$, $y, y' in N$ and $r in R$.Denote 
+]
