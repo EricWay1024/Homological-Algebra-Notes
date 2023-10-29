@@ -3,6 +3,7 @@
 #import "libs/commute.typ": node, arr, commutative-diagram
 
 #set heading(numbering: "1.a.")
+#set enum(numbering: "(1)")
 
 
 // Take a look at the file `template.typ` in the file panel
@@ -204,7 +205,22 @@ In general, a category is a "generalised" monoid because you can only compose mo
 
 #definition[
   A kernel of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way:
-  #image("imgs/5.png", width: 30%)
+
+  #v(20pt)
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbAELdeIDNjwEiAJjHV6zVohABhOXyWCiZYeK1Td7AOTdxMKAHN4RUADMAThAC2SUSA4EEjqEtps7oYgXr5IZIHBiAGWOiBYUTF+iPFBIdQARjBgUEgALACcmpKpxBneWQDM1LnZ1AxYYKlQdHAAFo4gVeG6MAAeWHA4cAAEAIR1sYhNCf5DVml2PB71SMstoSlstVwUXEA
+#align(center, commutative-diagram(
+  node((0, 0), [$A$]),
+  node((0, 1), [$B$]),
+  node((0, 2), [$C$]),
+  node((1, 0), [$A'$]),
+  arr((0, 1), (0, 2), [$f$]),
+  arr((0, 0), (0, 1), [$i$]),
+  arr((0, 0), (0, 2), [$0$], curve: 35deg),
+  arr((1, 0), (0, 0), [$exists !$], "dashed"),
+  arr((1, 0), (0, 1), [$i'$]),
+  arr((1, 0), (0, 2), [$0$], label-pos: -1em),
+))
+  // #image("imgs/5.png", width: 30%)
 ]
 
 #example[
@@ -426,32 +442,51 @@ Left adjunction preserves colimits and right adjunction preserves limits. In par
 == Abelian categories 
 
 #definition[
-  We call $cC$ Ab-enriched if every $Hom(C)(x, y) in Ab$ (which means you can now add morphisms in $Hom(C)(x, y)$) and composition is bilinear, namely $(f + g) compose h  = f compose h + g compose h$ and $f compose (g + h) = f compose g + f compose h$.
+  We call a category $cC$ *Ab-enriched* if every $Hom(C)(x, y) in Ab$ (which means we can now add morphisms in $Hom(C)(x, y)$) and composition is bilinear, namely $(f + g) compose h  = f compose h + g compose h$ and $f compose (g + h) = f compose g + f compose h$.
 ]
+
+Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
+are group homomorphisms in each variable @borceux[Definition 1.2.1].
 
 (This is the end of lecture 3).
 
 #definition[
-  If $cC, cD$ are Ab-enriched, we call $F : cC -> cD$ an additive functor if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
+  If $cC, cD$ are Ab-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
 ]
 
 #definition[
-  An Ab-enriched category $cC$ is additive if it admits finite coproducts.  
+  An Ab-enriched category $cC$ is *additive* if it admits finite coproducts.  
 ]
 
 #proposition[
-  In an Ab-enriched category, a finite product is also a coproduct. This also includes the case of the empty product and coprodut, namely any final object is initial and thus zero. 
+  If $cC$ is an Ab-enriched category, then so is $cC^op$.
 ]
-[See 3.4.9, Li]
+#proof[
+  The definition is self-dual. Namely, reversing all the arrows in $cC$ does not break the group structure on hom-sets or the bilinear composition. 
+]
 
+#proposition[Let $*$ be an object in an Ab-enriched category, then the followings are equivalent:
++ $*$ is a final object;
++ $*$ is an initial object;
++ $*$ is a zero object.]
 
-We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
-
-#proof[TODO
+#proof[
+  (3) $=>$ (1) and (3) $=>$ (2) is obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
 
   Suppose $*$ is a terminal object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$. 
-For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero object), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A) $
-So there is a unique morphism and $*$ is also initial. 
+For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A) $
+So there is a unique morphism from $*$ to $A$ and therefore $*$ is also initial. 
+]
+
+// This also includes the case of the empty product and coprodut, namely any final object is initial and thus zero. 
+
+A final object is an empty product and an initial object an empty coproduct, and therefore the next result is a generalisation of the previous one.
+
+#proposition[
+  In an Ab-enriched category $cC$, a binary product is also a coproduct. 
+]
+
+#proof[Let $X_1, X_2 in ob cC$. Suppose that $X_1$ and $X_2$ have a product $X_1 times X_2$ in $cal(C)$, with projections $p_k colon X_1 times X_2 arrow.r X_k$. By definition of products, there are unique morphisms $i_k colon X_k arrow.r X_1 times X_2$ such that the following diagrams commute.
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAA0B9YgAjwFt4PLgCYQAX1LpMufIRQAGclVqMWbLsQlSQGbHgJERy6vWatEHTmMnT9cokoUqz6y5u13ZhlMZEu1CysbFRgoAHN4IlAAMwAnCH4kJRAcCCRiWxB4xOTqNKQRLJykxABmfPTEMlVzNiwoTgAKTQBKT2yE0orUquMQACMYMCgkMpTXIIUOkrHKvJAGLDAgqDo4AAswkFNAthgADyw4HDgAQhmupAAWecR+yfrGlut24qvEW96M6iGRsYme0s03euU+dxSSxWbDWm22uzqlkOx1OPAu4go4iAA
 #align(center, commutative-diagram(
@@ -460,17 +495,43 @@ So there is a unique morphism and $*$ is also initial.
   node((1, 2), [$X_2$]),
   node((0, 0), [$X_1$]),
   node((2, 2), [$X_2$]),
-  arr((1, 1), (1, 0), []),
-  arr((1, 1), (1, 2), []),
+  arr((1, 1), (1, 0), [$p_1$]),
+  arr((1, 1), (1, 2), [$p_2$]),
   arr((0, 0), (1, 0), [$id_(X_1)$]),
   arr((0, 0), (1, 2), [$0$], curve: 30deg),
-  arr((0, 0), (1, 1), [$exists !$], "dashed"),
+  arr((0, 0), (1, 1), [$exists ! i_1$], "dashed"),
   arr((2, 2), (1, 2), [$id_(X_2)$]),
   arr((2, 2), (1, 0), [$0$], curve: 30deg),
-  arr((2, 2), (1, 1), [$exists !$], "dashed"),
+  arr((2, 2), (1, 1), [$exists ! i_2$], "dashed"),
 ))
+
+Explicitly, we have for $j, k in {1, 2}$, $ p_j oo i_k = cases(id_(X_j) quad &"if " j = k, 0 quad &"otherwise") $
 // #image("imgs/16.png")
+
+Then we have $ p_1 compose lr((i_1 p_1 plus i_2 p_2)) eq p_1 comma quad p_2 compose lr((i_1 p_1 plus i_2 p_2)) eq p_2 $
+
+By defintion of products, $id_(X_1 times X_2) $ is the unique morphism $h : X_1 times X_2 -> X_1 times X_2$ with $p_k compose h eq p_k$ for each $k$, so $i_1 p_1 plus i_2 p_2 eq id_(X_1 times X_2)$. We claim that
+$ X_1 rgt(i_1) X_1 times X_2 lft(i_2) X_2 $ is a universal cocone and thus a coproduct. Suppose 
+$ X_1 rgt(f_1) A lft(f_2) X_2 $
+is another cocone. Then we have a map
+$ phi eq f_1 compose p_1 plus f_2 compose p_2 colon X_1 times X_2 arrow.r A $
+such that for $k = 1, 2$, $ phi oo i_k = f_k $ 
+This gives a commutative diagram
+#align(center,image("imgs/2023-10-29-11-34-35.png",width:30%))
+
+It remains to show that $phi$ is unique. To see this, note that for any
+such $phi$ we have $ phi & eq phi compose id_(X_1 times X_2)\
+ & eq phi compose lr((i_1 p_1 plus i_2 p_2))\
+ & eq phi i_1 compose p_1 plus phi i_2 compose p_2\
+ & eq f_1 compose p_1 plus f_2 compose p_2 dot.basic $
+
+ See @notes[Proposition 3.7], @li[Theorem 3.4.9] and @borceux[Proposition 1.2.4].
 ]
+
+
+We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
+
+This extends to all finite products and coproducts. 
 
 #remark[
   This doesn't extend to infinite products or coproducts. In the case of abelian groups, 
@@ -482,7 +543,7 @@ $ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
   An additive category $cC$ is pre-abelian if any morphism has a kernel and a cokernel. 
 ]
 
-Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts [Corollary 2.8.4, Li]).
+Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts) @li[Corollary 2.8.4].
 
 #definition[
   If $cC$ is pre-abelian we get: 
@@ -642,7 +703,7 @@ Note. For any $RMod$ $M$ we can find an epi $R^(ds I) -> M -> 0$. (Any module ha
   Let $cA$ be an abelian category. Assume $cA$ has (small)(?) coproducts. Assume that $P$ is a compact, projective generator. Then the functor $Hom(A)(P, -) : cA -> End_cA (P)^op hyph Mod$ (not only an abelian group because any $f: P->P$ can act on it which makes it a module) is an equivalence of categories. 
 ]
 
-[Theorem 5.55 Rotman?]
+See @rotman[Theorem 5.55]. ?
 
 Note. If $cA = RMod$ we observe that $R$ (as an $RMod$) is a compact, projective generator with arbitrary coproducts (direct sums). In this case $End_RMod (R) = R^op$ because any module homomorphism $phi: R -> R$ is determined by $phi(1)$ but the composition is opposite. Then $End_RMod (R)^op hyph Mod$ is just $RMod$ because $(R^op)^op = R$.
 
@@ -765,7 +826,9 @@ We have the following commutative diagram:
   but $i$ is injective, and hence $a_1 - a_2 = f(a') in im f$. In other words, we could define $ diff(c') = i^(-1) g p'^(-1) (c') + im(f) $
   where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on. 
 
-  We still need to verify this is exact. TODO [See 6.8.6, Li]
+  We still need to verify this is exact. TODO
+  
+  See @li[Theorem 6.8.6].
 ]
 
 = Tensor products
@@ -1001,7 +1064,9 @@ Therefore, it follows that
 $alpha^prime lr((a)) plus phi lr((r)) eq alpha^prime lr((a^prime)) plus phi lr((r^prime))$
 so $alpha^(prime prime)$ is well-defined. But then $alpha^(prime prime)$
 strictly extends $alpha^prime$, contradicting maximality of
-$alpha^prime$. Hence $A^prime eq B$.]
+$alpha^prime$. Hence $A^prime eq B$.
+
+See @notes[Theorem 5.8] and @rotman[Theorem 3.30].]
 
 #definition[
   Let $R$ be an integral domain. A $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be \"divided\"
@@ -1043,8 +1108,8 @@ $m eq f lr((r))$. Then since $M$ is divisible, there is some $m' in M$
 such that $m eq r m'$. Define $tilde(f) colon R arrow.r M$ by
 $tilde(f) lr((1)) eq m'$. Clearly $tilde(f)$ is an extension of $f$, so
 $M$ is injective by Baer’s Criterion.
-[See Corollary 3.35 Rotman]
-]
+
+See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
 
 #example[
   In $Ab = ZZ hyph Mod$, we have that $QQ, ZZ_(p^ infinity) = ZZ[1 / p] over ZZ, QQ over ZZ$ are injective.
@@ -1075,3 +1140,4 @@ $M$ is injective by Baer’s Criterion.
 
 (This is the end of lecture 6.)
 
+#bibliography("bib.yml", style: "chicago-author-date")

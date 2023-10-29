@@ -40,6 +40,7 @@
 #let coker = [$op("coker")$]
 #let ses(A, B, C) = [$0 -> #A -> #B -> #C -> 0$]
 #let rgt(A) = [$attach(->, t: #A)$]
+#let lft(A) = [$attach(<-, t: #A)$]
 #let over = [$\/$]
 
 #let lrm = [left $R$-module]

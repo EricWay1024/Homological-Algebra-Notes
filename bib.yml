@@ -1,0 +1,62 @@
+li:
+  type: book
+  title: 代数学方法
+  author: "Li, Wenwei"
+  publisher: 高等教育出版社
+  volume: 1
+  language: zh-Hans
+  date: 2019-01
+  url:
+    value: "https://wwli.asia/downloads/books/Al-jabr-1.pdf"
+    date: 2023-10-24
+
+li2:
+  type: book
+  title: 代数学方法（卷二）
+  volume: 2
+  author: "Li, Wenwei"
+  language: zh-Hans
+  date: 2023
+  url:
+    value: "https://wwli.asia/downloads/books/Al-jabr-2.pdf"
+    date: 2023-10-24
+
+notes:
+  type: article
+  title: Homological Algebra
+  date: 2021-10-10
+  author:
+    - Monnet, Sebastian
+    - Kremnitzer, Kobi
+  url:
+    value: "https://courses.maths.ox.ac.uk/pluginfile.php/26979/mod_resource/content/1/Homological_Algebra%20%2813%29.pdf"
+    date: 2023-10-24
+
+rotman:
+  type: book
+  title: An Introduction to Homological Algebra
+  author: "Rotman, Joseph J."
+  edition: 2
+  publisher: Springer
+  date: 2009
+  url:
+    value: "https://www.matem.unam.mx/~javier/homologica/rotman.pdf"
+    date: 2023-10-24
+
+weibel:
+  type: book
+  title: An Introduction to Homological Algebra
+  author: "Weibel, Charles A."
+  publisher: Cambridge University Press
+  date: 1994
+  url:
+    value: "https://people.math.rochester.edu/faculty/doug/otherpapers/weibel-hom.pdf"
+    date: 2023-10-24
+
+borceux:
+  type: book
+  title: Handbook of Categorical Algebra
+  volume: 2
+  date: 1994
+  author: Borceux, Francis
+  publisher: Cambridge University Press
