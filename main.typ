@@ -1117,25 +1117,33 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
   Every injective abelian group $I = I_"tor" ds I_"free"$, where $I_"free"$ is a $QQ$-vector space and $I_"tor"$ (torsion part) is a direct sum copies of $ZZ_(p^ infinity)$.
 ]
 
+#lemma[
+    Direct sums of projectives are projectives, and   products of injectives are injectives. 
+]
+
+#proof[
+  The first half is easily seen from 
+  $ Hom (ds P_i, -) = product Hom (P_i, -) $
+  The second half is dual.
+]
 #proposition[
   $Ab$ has enough injectives. 
 ]
 
-[See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
-
 #proof[
-  Direct sums of projectives are projectives. 
-  $ Hom (ds P_i, -) = product Hom (P_i, -) $
-
-  Products of injectives are injectives. 
-
-  Define a functor $ I(A) := product_(Hom_Ab (A, QQ over ZZ)) QQ over ZZ $
+  For any $A in Ab$, define a map $I : Ab -> Ab$ by $ I(A) := product_(Hom_Ab (A, QQ over ZZ)) QQ over ZZ $
 
   The RHS is injective as a product of injectives $QQ over ZZ$.
 
-  Consider canonical map $e_A: A -> I(A)$, where (because $I(A)$ is a product) we need to define for each $phi  in Hom_Ab (A, QQ over ZZ)$ the component $e_(a, phi) : A -> QQ  over ZZ$, which we just define to be $phi$ itself. 
+  Consider canonical map $e_A: A -> I(A)$, where (because $I(A)$ is a product) we need to define for each $phi  in hom_Ab (A, QQ over ZZ)$ the component $e_(a, phi) : A -> QQ  over ZZ$, which we just define to be $phi$ itself. Explicitly, for any $a in A$, 
+  $ e_A (a) = (phi(a))_(phi in hom_Ab (A, QQ over ZZ)) $
 
-  We claim that $e_A$ is injective. We need to show that for any $0 != a in A$ there exists $phi in Hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$ (using that $QQ over ZZ$ is injective). (?)
+  We claim that $e_A$ is injective. We need to show that for any $0 != a in A$ there exists $phi in Hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$ (using that $QQ over ZZ$ is injective). 
+
+  - If $a$ has an infinite order, then set $phi(a)$ as any nonzero element of $QQ over ZZ$ and we obtain a group homomorphism $phi$ such that $phi(a) != 0$;
+  - If $a$ has order $m$ for some integer $m > 1$, then we set $phi(a) = 1/m + ZZ$ and this is a well defined group homomorphism. 
+
+  [See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
 ]
 
 (This is the end of lecture 6.)
