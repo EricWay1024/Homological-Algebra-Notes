@@ -572,20 +572,46 @@ Proof. TODO
 (This is the end of lecture 4.)
 
 #definition[
-   Let $cA$ be an abelian category. An object $P$ is called projective if $Hom(A) (P, -)$ is exact. Dually, an object $I$ is called injective if $Hom(A) (-, I)$ is exact. 
+   Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
 ]
 
 So $P$ is projective if for any ses $ses(X, Y, Z)$ in $cA$ then $ ses(Hom(A)(P, X), Hom(A)(P, Y), Hom(A)(P, Z)) $
 
 The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto. 
 
-Equivalently, for any $f: P->Z$ we can find $g: P->Y$ such that the following commutes (lifting property): 
+#proposition[
+  $P$ is *projective* if and only if for any epimorphism $h: Y->Z$ and any $f: P->Z$, there exists (not necessarily unique) $g: P->Y$ such that the following commutes (which we refer to as the *lifting property*): 
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAFEAX1PU1z5CKAEyli1Ok1btyPPiAzY8BImQk0GLNohAAtef2VCi5cZK0zdATR6SYUAObwioAGYAnCAFskZkDgQSGJS2uxuhiCePsE0gUjEvO5evogAzHFBiCGWOiAAFpHRqf7x6TSMWGB5UPRw+Q4gmtJ5MAAeWHA4CNyU3EA
+#align(center, commutative-diagram(
+  node((0, 1), [$P$]),
+  node((1, 2), [$0$]),
+  node((1, 1), [$Z$]),
+  node((1, 0), [$Y$]),
+  arr((0, 1), (1, 1), [$f$]),
+  arr((1, 1), (1, 2), []),
+  arr((1, 0), (1, 1), [$h$]),
+  arr((0, 1), (1, 0), [$exists g$], "dashed"),
+))
+// #image("imgs/20.png", width: 30%)
+]
 
-#image("imgs/20.png", width: 30%)
+#proof[
+  This is just a paraphrase of the definition. By definition, $P$ is projective iff for any epimorphism $h: Y->Z$, we have $ h oo - : Hom(A)(P, Y) -> Hom(A)(P, Z) $ is onto, which means for any $f : P->Z$, there exists $g: P-> Y$ such that $f = h oo g$.
+]
 
-For $I$ injective, dually we have,
-
-#image("imgs/21.png", width: 30%)
+#corollary[Dually, $I$ is injective iff for any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that the following commutes (which we refer to as the *extension property*):
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEkQBfU9TXfIRQAGUsKq1GLNsO68QGbHgJEy46vWatEIABpy+SwUQBMYiZuk6AmtwkwoAc3hFQAMwBOEALZIzIHAgkUUktNjcDEE8fJDIAoMQTHncvX0TqQKQAZg0pbRAAC0jotJz44OoGLDB8qDo4AocQXLCdGAAPLDgcOAACRzsuIA
+#align(center, commutative-diagram(
+  node((1, 1), [$I$]),
+  node((0, 0), [$0$]),
+  node((0, 1), [$X$]),
+  node((0, 2), [$Y$]),
+  arr((0, 1), (1, 1), [$f$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), [$h$]),
+  arr((0, 2), (1, 1), [$exists g$], "dashed"),
+))
+]
 
 #example[
   $R$ ring. In the category of $RMod$ 
@@ -742,7 +768,7 @@ We have the following commutative diagram:
   We still need to verify this is exact. TODO [See 6.8.6, Li]
 ]
 
-== Calculating tensor products
+= Tensor products
 
 The functor $- tp_R M$ is left adjoint so it commutes with colimits. If we want to calcualte $N tp_R M$. Then we pick the relations and generators of $N$: 
 $ R^(ds J) -> R^(ds I) -> N -> 0 $
@@ -798,6 +824,8 @@ $ Hom_S (A tpr B, C) bij Hom_R (A, Hom_S (B, C)) $
   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 ]
 
+= Projective and injective modules
+
 Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom(A)(-, I)$ is exact.
 
 #lemma[
@@ -812,16 +840,35 @@ Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom
 
 For most of our homological algebra to work a category needs to have enough projectives and injectives. We show that $RMod$ has enough projectives and injectives.
 
-#proposition[
-  $R$ is a ring. 
+== Projective modules
 
-  $P$ is a projective $R$-module iff $P$ is a direct summand of a free module.
+#lemma[Free $R$-modules are projective.]
 
-  $RMod$ has enough projectives. 
+#proof[
+Let $F eq plus.circle.big_(i in I) R x_i$ be a free $R$-module with basis
+$lr({x_i colon i in I})$. Suppose that we have a diagram
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRACEQBfU9TXfIRQAmclVqMWbAAzdeIDNjwEi0sdXrNWiEAEE5fJYKJlp4zVJ0AxbuJhQA5vCKgAZgCcIAWyQBmajgQSGoSWmyuBiAe3sEBQYjEPG6ePoiiIIGxoZYKWJHRqf4Z8ekMWGDaIFB0cAAW9iAakpWMaLV0tlxAA
+#align(center, commutative-diagram(
+  node((1, 1), [$B$]),
+  node((1, 2), [$0$]),
+  node((1, 0), [$A$]),
+  node((0, 1), [$F$]),
+  arr((0, 1), (1, 1), [$f$]),
+  arr((1, 1), (1, 2), []),
+  arr((1, 0), (1, 1), [$pi$]),
+  arr((0, 1), (1, 0), [$alpha$], label-pos:-1em, "dashed"),
+))
+
+Since $pi$ is surjective, for each $i$ there is some $a_i in A$ with
+$pi lr((a_i)) eq f lr((e_i))$. Define map
+$ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo alpha$.
+]
+
+#proposition[$P$ is a projective $R$-module iff $P$ is a direct summand of a free module.
 ]
 
 #proof[
-  Assume $P$ is a projective. Then we can always find a free module $F=R^(ds I)$ so that using the lifting property,
+  Assume $P$ is a projective. Then we can always find a free module $F=R^(ds I)$ such that $g: F -> P$ is onto. Using the lifting property,
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAxEAX1PU1z5CKchWp0mrdgAUefEBmx4CRAExiaDFm0Qhic-kqFFRxcVqm7Z3cTCgBzeEVAAzAE4QAtkjIgcEJHJeVw9vRFE-AMRVYJB3LyQAZhp-HxpGLDAdECh6OAALOxBNSWyYAA8sOBwEWPiw5MjAku12LCgeSm4gA
 #align(center, commutative-diagram(
@@ -829,37 +876,175 @@ For most of our homological algebra to work a category needs to have enough proj
   node((1, 1), [$P$]),
   node((1, 2), [$0$]),
   node((0, 1), [$P$]),
-  arr((1, 0), (1, 1), []),
+  arr((1, 0), (1, 1), [$g$]),
   arr((1, 1), (1, 2), []),
   arr((0, 1), (1, 0), [$exists$], "dashed"),
   arr((0, 1), (1, 1), [$id$]),
 ))
 
 So there exists a section $P-> F$ in the ses $ ses(K, F, P) $
-and hence $F iso K ds P$. This shows that $P$ is a direct summand of a free module.
+and hence $F iso K ds P$, where $K = ker(g)$. This shows that $P$ is a direct summand of a free module.
 
 [This is equivalent to find some idempotent $p: R^(ds I) -> R^(ds I)$ such that $p^2= p$. ? ]
 
-It is easy to see that free modules and direct summands of free modules are projective. 
+Now we show a direct summand of a free module is projective. 
+Suppose that $P$ is a direct summand of a free module. Then there
+exists some $R$-module $P^prime$ such that $P xor P^prime$ is free. Let
+$pi colon A arrow.r B$ be a surjection and let $f colon P arrow.r B$ be
+some map. Let $f^prime colon P xor P^prime arrow.r B$ be the map
+$f^prime lr((p comma p^prime)) eq f lr((p))$. Since $P xor P^prime$ is
+free, hence projective, $f^prime$ has a lift
+$alpha^prime colon P xor P^prime arrow.r A$. Now define
+$alpha colon P arrow.r A$ by
+$alpha lr((p)) eq alpha^prime lr((p comma 0))$.
 
-2) For any module $M$ we can find a free module $F$ with a surjection $ F-> M-> 0 $
-]
-
-#lemma(name: "Baer's criterion")[
-  The right $R$-module $E$ is injective iff for every right ideal $J$ of $R$, every $J -> E$ can be extended to $R -> E$.
-]
-
-#proof[
-  One direction follows from definition.
-
-  Other direction. TODO [Look at Theorem 3.30, Rotman]
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQAhEAX1PU1z5CKchWp0mrdgAYefEBmx4CRaWJoMWbRCACCc-kqFEyxcZqk6ACgAIocG1YDkBhQOXCSpaecnaQVjziMFAA5vBEoABmAE4QALZIoiA4EEjSvNFxiYhqKWmIxJkgsQlIACw0qekafuxRIDQARjBgUEgAzBnypTkdVQV5Fv5RLs2t7bnFvZ0DSTSMWGD+UPRwABYhjRJa7Exo6-RjIC1t6dPZFXOIyYvL7KsbW7W7OvuH26eTALRdF2WISr5TrcSjcIA
+#align(center, commutative-diagram(
+  node((2, 1), [$B$]),
+  node((2, 2), [$0$]),
+  node((2, 0), [$A$]),
+  node((1, 1), [$P ds P'$]),
+  node((0, 1), [$P$]),
+  arr((2, 0), (2, 1), [$pi$], label-pos: -1em),
+  arr((2, 1), (2, 2), []),
+  arr((0, 1), (2, 1), [$f$], curve: 30deg),
+  arr((1, 1), (2, 1), [$f'$], label-pos: -1em),
+  arr((1, 1), (2, 0), [$alpha'$], "dashed"),
+  arr((0, 1), (2, 0), [$alpha$], curve: -30deg, "dashed"),
+  arr((0, 1), (1, 1), [$i$], label-pos: -1em),
+))
 ]
 
 #corollary[
-  If $R$ is a PID, then an $RMod$ is injective iff it is divisibile.
+    $RMod$ has enough projectives. 
 ]
-[Look at Corollary 3.35 Rotman]
+#proof[
+  For any module $M$ we can find a free (and thus projective) module $F$ with a surjection $ F-> M-> 0 $
+]
 
+
+== Injective modules
+
+#lemma(name: "Baer's criterion")[
+  A right $R$-module $M$ is injective iff for every right ideal $I$ of $R$, every module homomorphism $I -> M$ can be extended to $R -> M$.
+]
+
+#proof[
+  One direction easily follows from definition. We focus on the other.
+
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbdgHJuvEBmx4CRAExjq9Zq0QcZcnn2WCiAZk0SdbAELzjA1SjLDx2qXoCy3cTCgBzeCJQADMAJwgAWyQyEBwIJFE4uiwGNgALCAgAa3sQcKjE6nikDWTUjKzco3yI6MQyksQLcrS9TJy8gvrYpoAWLUldfK66oriExAGQBiwwYag6OHS-EEHrPUY0dLpDBW7S4snp92GtnYM1mbmFpZWoUcLmo6Rp2fm2ReXVrgouIA
+#align(center, commutative-diagram(
+  node((0, 0), [$A$]),
+  node((0, 1), [$A'$]),
+  node((0, 2), [$A''$]),
+  node((0, 3), [$B$]),
+  node((1, 0), [$M$]),
+  arr((0, 0), (0, 1), [], "inj"),
+  arr((0, 1), (0, 2), [], "inj"),
+  arr((0, 2), (0, 3), [], "inj"),
+  arr((0, 0), (1, 0), [$f$]),
+  arr((0, 1), (1, 0), [$alpha'$], "dashed"),
+  arr((0, 2), (1, 0), [$alpha''$], curve: 10deg, "dashed"),
+  arr((0, 3), (1, 0), [], curve: 30deg, "dashed"),
+))
+
+  Fix some injection $i colon A arrow.r B$ of
+$R$-modules, and some map $f colon A arrow.r M$. Without loss of
+generality, assume that $A subset.eq B$ and $i$ is the inclusion. 
+
+
+[Construction of $A'$ and $alpha' : A' -> M$.] Let
+$Sigma$ be the set whose elements are $R$-module maps
+$alpha^prime colon A^prime arrow.r M$, where
+$A subset.eq A^prime subset.eq B$ and $alpha^prime$ extends $f$. We may give this set a partial order by
+saying that $alpha^prime lt.eq alpha^(prime prime)$ when
+$A^prime subset.eq A^(prime prime)$ and $alpha^(prime prime)$ extends
+$alpha^prime$. Suppose that $alpha_1 lt.eq alpha_2 lt.eq dots.h$ is an
+ascending chain in $Sigma$, with corresponding modules
+$A_1 subset.eq A_2 subset.eq dots.h$. Let $A^prime eq union A_n$, and
+define $alpha^prime colon A^prime arrow.r M$ by
+$alpha^prime lr((a)) eq alpha_i lr((a))$ for $a in A_i$. It is easy to
+check that $alpha^prime$ is a well-defined element of $Sigma$, and it is
+an upper bound on the chain \(n.b. we are really just taking the colimit
+of the chain).
+Since $Sigma$ is a partially ordered set in which every ascending chain
+has an upper bound, by Zorn’s Lemma it has a maximal element,
+which we call $alpha^prime colon A^prime -> M$. 
+
+To show that $M$
+is injective, we need to show that $A^prime eq B$, since we then have an
+extension $alpha$ of $f$ to $B$. 
+
+[Construction of $phi : R-> M$.] Suppose that $A^prime eq.not B$. Let $b in B without A^prime$, and
+define 
+$ A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B $ Let
+$I eq brace.l r in R$ : $b r in A^prime}$. Then $I$ is a right ideal of
+$R$, and we have a map
+$ I arrow.r M comma quad r arrow.r.bar alpha^prime lr((b r)) $
+
+By assumption, this extends to a map $phi colon R arrow.r M$. 
+
+[Construction of $alpha'' : A'' -> M$.] We
+claim that there is a well-defined map
+$ alpha^(prime prime) colon A^(prime prime) arrow.r M comma quad a plus b r arrow.r.bar alpha^prime lr((a)) plus phi lr((r)) comma $
+where $a in A^prime$ and $r in R$. To see that this is well-defined,
+suppose that $a plus b r eq a^prime plus b r^prime$
+where $a, a' in A'$ and $r, r' in R$.
+Then
+$ a minus a^prime eq b lr((r^prime minus r)) in A^prime sect b R dot.basic $
+
+From this we see $r - r' in I$, and then we have
+$ phi lr((r^prime minus r))
+ = alpha^prime lr((b lr((r^prime minus r)))) = alpha^prime lr((a minus a^prime)) $
+
+Therefore, it follows that
+$alpha^prime lr((a)) plus phi lr((r)) eq alpha^prime lr((a^prime)) plus phi lr((r^prime))$
+so $alpha^(prime prime)$ is well-defined. But then $alpha^(prime prime)$
+strictly extends $alpha^prime$, contradicting maximality of
+$alpha^prime$. Hence $A^prime eq B$.]
+
+#definition[
+  Let $R$ be an integral domain. A $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be \"divided\"
+by $r$, in the sense that there is an element $m^prime$ in $M$ such that
+$m eq r m^prime$. 
+]
+This condition can be reformulated by saying that the
+multiplication by $r$ defines a surjective map from $M$ to $M$.
+
+#corollary[
+  If $R$ is a PID, then an $R$-module $M$ is injective if
+  and only if it is divisible.
+]
+
+That is, for all $m in M$ and
+  $r in R without brace.l 0 brace.r$ there exists $m' in M$ such that
+  $m eq r m'$. Also recall that a PID is an integral domain in which every ideal is principal, i.e., can be generated by a single element.
+
+  // [Unfortunately the notations are confusing, because we use $I$ to represent an ideal in the last theorem but the same letter for an $R$-module here.]
+
+// The details of the proof can get in the way of the intuitive idea, which
+// is quite simple. Maybe try proving it yourself before reading on \(use
+// Baer’s Criterion).
+
+#proof[
+Let $M$ be an injective $R$-module, and let $m in M$ and
+$r in R without brace.l 0 brace.r$. Set $J eq r R$ (which is an ideal of $R$) and define
+$f colon J arrow.r M$ by $f lr((r)) eq m$. By Baer’s Criterion, we may
+extend $f$ to a homomorphism $tilde(f) colon R arrow.r M$. Then
+$ m eq f lr((r)) = tilde(f)(r)eq tilde(f) lr((r dot.op 1)) eq r dot.op tilde(f) lr((1)) $
+So taking $m' eq tilde(f) lr((1))$, we see that $M$ is divisible.
+
+Suppose conversely that $M$ is a divisible $R$-module. Let $J$ be an
+ideal of $R$ and let $f colon J arrow.r M$ be a module homomorphism. If
+$J$ is the zero ideal, then trivially we may extend $f$ to the zero
+homomorphism $R arrow.r M$. Assume that $J$ is nonzero.
+Since $R$ is a PID, we have $J eq R r$ for some nonzero $r in J$. Let
+$m eq f lr((r))$. Then since $M$ is divisible, there is some $m' in M$
+such that $m eq r m'$. Define $tilde(f) colon R arrow.r M$ by
+$tilde(f) lr((1)) eq m'$. Clearly $tilde(f)$ is an extension of $f$, so
+$M$ is injective by Baer’s Criterion.
+[See Corollary 3.35 Rotman]
+]
 
 #example[
   In $Ab = ZZ hyph Mod$, we have that $QQ, ZZ_(p^ infinity) = ZZ[1 / p] over ZZ, QQ over ZZ$ are injective.
@@ -870,6 +1055,8 @@ It is easy to see that free modules and direct summands of free modules are proj
 #proposition[
   $Ab$ has enough injectives. 
 ]
+
+[See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
 
 #proof[
   Direct sums of projectives are projectives. 
@@ -888,56 +1075,3 @@ It is easy to see that free modules and direct summands of free modules are proj
 
 (This is the end of lecture 6.)
 
-
-// = Introduction
-
-// #definition[A ring $(R, +, dot)$ satisfies:
-// - $R$ is an abelian group under addition;
-// - Multiplication is associative;
-// - Distributive: $a(b+c)= a b + a c, (a + b) c = a c + b c$.
-
-// Optionally,
-// - Multiplication can be commutative $=>$ commutative rings;
-// - Multiplication can have an identity.
-// ]
-
-// == Analogies between groups and rings
-
-// Groups act on sets. Rings act on modules.
-
-// #definition[
-//   Let $M$ be an abelian group. A module is when $R$ acts on $M$, satisfying:
-//   - $r (m + n) = r m + r n$ (distributitive for addition in $M$);
-//   - $(r + s) m = r m + s m$ (distributitive for addition in $R$);
-//   - $(r s) m = r (s m)$ (associative? for multiplication in $R$);
-//   - $1_R m = m$ if $R$ has $1_R$.
-// ]
-
-// When $R=ZZ$ the module is an abelian group.
-
-// We have left, right, and 2-sided group actions (where the left and right actions commute). Similarly, we have left, right, and 2-sided modules. If the ring is commutative, then left and right modules are the same.
-
-// We have disjoint union for sets. We also have direct sum for modules:
-// #definition[
-//   Let $M, N$ be $R$-modules. The direct sum $M plus.circle N$ is the $R$-module formed by $(m, n)$ where $m in M, n in N$.
-// ]
-
-// We have cartisian product for sets. We also have tensor product for modules. $abs(S times T) = abs(S) times abs(T)$ and similarly $dim (V plus.circle W) = dim V times dim W$. Caution: the inclusion-exclusion priciple does not work for modules when there are more than $2$ modules.
-
-// Cayley theorem claims that every group $G$ is the symmetry of the set $G$ acted on the right by $G$; hence the symmetry group is $G$ acting on the left. Every ring is the set of endomorphisms of some abelian group. We take $M = R$ with a right action of $R$. The endomorphism is just $R$ acting on the left.
-
-// Homomorphisms of groups. Homomorphisms of rings. Caution: $ZZ \/ 6ZZ tilde.equiv ZZ \/ 2 ZZ plus.circle ZZ \/ 3ZZ$ by the Chinese remainder theorem but $ZZ \/ 2 ZZ$ is not a subring of $ZZ \/ 6 ZZ$, because it does not take $1$ to $1$.
-
-// We have maps of $G$-sets that preserve the action of $G$. We also have homomorphism of modules (linear transformation). Notice that for a left module, a homomorphism $f: M-> N$ of modules should be written on the right: $m f in N$ so that $(r m) f = r (m f)$.
-
-// We have subgroups. We also have subrings. Normal subgroups; ideals. But we have left, right and 2-sided ideals. A 2-sided ideal is a kernel of homomorphism of rings. 
-
-// #definition[An ideal is closed under addition and for any $i in I, r in R$, we have $i r , r i in I$.]
-
-// We also have left or right submodules. A left ideal is just a submodule of $R$ considered as a left module. 
-
-// We have symmteric groups $S_n$. We also have symmetric groups of free modules $R^n = R plus.circle R plus.circle ...$ and the set of linear transformations of $R^n$ which is $M_n (R)$, $n times n$ matrices.
-
-// = Group rings
-
-// Given a group $G$ and a ring $R$

@@ -87,11 +87,16 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 
 
 #corollary[
-    Any $R$-module $M$ is isomorphic to quotient of free groups. 
+    Any $R$-module $M$ is isomorphic to a quotient of free modules. 
 ]
 
 #proof[
     Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
+]
+
+#remark[
+    This means we have the exact sequence:
+    $ 0 -> ker(sigma) -> R^(ds X) rgt(sigma) M -> 0 $
 ]
 
 #definition[
@@ -107,3 +112,57 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
     - $B(x r , y) = B(x, r y)$,
     for all $x, x' in M$, $y, y' in N$ and $r in R$.Denote 
 ]
+
+
+// = Introduction
+
+// #definition[A ring $(R, +, dot)$ satisfies:
+// - $R$ is an abelian group under addition;
+// - Multiplication is associative;
+// - Distributive: $a(b+c)= a b + a c, (a + b) c = a c + b c$.
+
+// Optionally,
+// - Multiplication can be commutative $=>$ commutative rings;
+// - Multiplication can have an identity.
+// ]
+
+// == Analogies between groups and rings
+
+// Groups act on sets. Rings act on modules.
+
+// #definition[
+//   Let $M$ be an abelian group. A module is when $R$ acts on $M$, satisfying:
+//   - $r (m + n) = r m + r n$ (distributitive for addition in $M$);
+//   - $(r + s) m = r m + s m$ (distributitive for addition in $R$);
+//   - $(r s) m = r (s m)$ (associative? for multiplication in $R$);
+//   - $1_R m = m$ if $R$ has $1_R$.
+// ]
+
+// When $R=ZZ$ the module is an abelian group.
+
+// We have left, right, and 2-sided group actions (where the left and right actions commute). Similarly, we have left, right, and 2-sided modules. If the ring is commutative, then left and right modules are the same.
+
+// We have disjoint union for sets. We also have direct sum for modules:
+// #definition[
+//   Let $M, N$ be $R$-modules. The direct sum $M plus.circle N$ is the $R$-module formed by $(m, n)$ where $m in M, n in N$.
+// ]
+
+// We have cartisian product for sets. We also have tensor product for modules. $abs(S times T) = abs(S) times abs(T)$ and similarly $dim (V plus.circle W) = dim V times dim W$. Caution: the inclusion-exclusion priciple does not work for modules when there are more than $2$ modules.
+
+// Cayley theorem claims that every group $G$ is the symmetry of the set $G$ acted on the right by $G$; hence the symmetry group is $G$ acting on the left. Every ring is the set of endomorphisms of some abelian group. We take $M = R$ with a right action of $R$. The endomorphism is just $R$ acting on the left.
+
+// Homomorphisms of groups. Homomorphisms of rings. Caution: $ZZ \/ 6ZZ tilde.equiv ZZ \/ 2 ZZ plus.circle ZZ \/ 3ZZ$ by the Chinese remainder theorem but $ZZ \/ 2 ZZ$ is not a subring of $ZZ \/ 6 ZZ$, because it does not take $1$ to $1$.
+
+// We have maps of $G$-sets that preserve the action of $G$. We also have homomorphism of modules (linear transformation). Notice that for a left module, a homomorphism $f: M-> N$ of modules should be written on the right: $m f in N$ so that $(r m) f = r (m f)$.
+
+// We have subgroups. We also have subrings. Normal subgroups; ideals. But we have left, right and 2-sided ideals. A 2-sided ideal is a kernel of homomorphism of rings. 
+
+// #definition[An ideal is closed under addition and for any $i in I, r in R$, we have $i r , r i in I$.]
+
+// We also have left or right submodules. A left ideal is just a submodule of $R$ considered as a left module. 
+
+// We have symmteric groups $S_n$. We also have symmetric groups of free modules $R^n = R plus.circle R plus.circle ...$ and the set of linear transformations of $R^n$ which is $M_n (R)$, $n times n$ matrices.
+
+// = Group rings
+
+// Given a group $G$ and a ring $R$
