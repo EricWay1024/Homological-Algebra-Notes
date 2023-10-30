@@ -51,6 +51,7 @@
 #let oo = [$compose$]
 
 #let mapsto = [$|->$]
+#let prshv = [$"PrShv"$]
 
 #let theorem = thmbox(
   "theorem",

@@ -12,6 +12,11 @@
   date: "October 24, 2023",
 )
 
+#let textwidth = 100%;
+#let img(path, width: textwidth) = {
+    align(center, image("imgs/cat/" + path + ".jpg", width: 40%))
+}
+
 = Lecture 5
 
 #definition[
@@ -351,3 +356,206 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 
     (1) => (2). 
 ]
+
+Theorem 2.7. The following two structures on the functors $F comma G$
+are equivalent:
+
+\(1) An adjunction $F tack.l G$,
+
+\(2) A natural transformation
+$e colon upright(i d)_(cal(C)) arrow.r.double G F$ such that
+$lr((F lr((x)) comma e_x))$ is initial in $lr((x arrow.r.double G))$ for
+all $x in cal(C)$.
+
+Proof.
+
+- $lr((1)) arrow.r.double lr((2))$.
+
+Suppose $F tack.l G$. Then we want to prove that the unit of the
+adjunction gives rise to an initial object of
+$lr((x arrow.r.double G))$.
+
+Take an object $lr((y comma f)) in lr((x arrow.r.double G))$ where
+$f colon x arrow.r G lr((y))$ and consider a morphism
+$g colon F lr((x)) arrow.r y$ making the diagram
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-17(2)", width: textwidth))
+
+]
+commute. The composite $G lr((g)) compose e_x eq f$ is the image of $g$
+under the isomorphism
+
+$ "Hom" lr((F lr((x)) comma y)) tilde.equiv "Hom" lr((x comma G lr((y)))) $
+
+But then $g in "Hom" lr((F lr((x)) comma y))$ is determined uniquely as
+the preimage of $f in "Hom" lr((x comma G lr((y))))$. In other words,
+the object $lr((y comma f))$ has a unique morphism from
+$lr((F lr((x)) comma e_x))$.
+
+- $lr((2)) arrow.r.double lr((1))$.
+
+Conversely, suppose $e_x colon x arrow.r G F lr((x))$ defines an initial
+object $lr((F lr((x)) comma e_x))$ in $lr((x arrow.r.double G))$ for
+every $x in cal(C)$. Then we are going to define a counit for the
+adjunction and show it is unique.
+
+Let $x eq G lr((y))$ and consider the comma category
+$lr((G lr((y)) arrow.r.double G))$. Since
+$lr((F G lr((y)) comma e_(G lr((y)))))$ is initial, we have a unique
+morphism $epsilon.alt_y colon F G lr((y)) arrow.r y$ making the diagram
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-17", width: textwidth))
+
+]
+commute.
+
+To show that $epsilon.alt$ is a natural transformation, consider a
+morphism $f colon y_1 arrow.r y_2$. We get commutative diagrams
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-17(1)", width: textwidth))
+
+]
+and
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-17(3)", width: textwidth))
+
+]
+We get two morphisms $F G lr((y_1)) arrow.r y_2$ making the respective
+diagrams commute: $f compose epsilon.alt_(y_1)$ and
+$epsilon.alt_(y_2) compose F G lr((f))$ and since
+$lr((G lr((y_1)) comma e_(G lr((y_1)))))$ is an initial object of
+$lr((G lr((y_1)) arrow.r.double G))$, these must be equal, i.e.
+$epsilon.alt$ is a natural transformation.
+
+By construction the composite
+
+$ G arrow.r.double^(e compose upright(i d)) G F G arrow.r.double^(upright(i d o) rho) G $
+
+is the identity.
+
+The other axiom states that the composite
+
+$ F lr((x)) arrow.r^(F lr((e_x))) F G F lr((x)) arrow.r^(epsilon.alt_(F lr((x)))) F lr((x)) $
+
+is the identity. To prove this, consider the commutative diagram
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-18(1)", width: textwidth))
+
+]
+where the triangle commutes due to naturality of $e$. But then we get
+two morphisms from the initial object $lr((F lr((x)) comma e_x))$ to
+$lr((F lr((x)) comma e_x))$ one of which is given by the identity
+morphism $F lr((x)) arrow.r F lr((x))$ and the other one is
+$epsilon.alt_(F lr((x))) compose F lr((e_x))$ which are, therefore,
+equal.
+
+So far we have shown that thus defined counit satisfies the required
+axioms and we are left to show uniqueness. Suppose $epsilon.alt_1$ and
+$epsilon.alt_2$ are two counits for the adjunction. Then we get a
+commutative diagram
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-18", width: textwidth))
+
+]
+Therefore, $epsilon.alt_(1 comma y)$ and $epsilon.alt_(2 comma y)$
+define morphisms from $lr((F G lr((y)) comma e_(G lr((y)))))$ to
+$lr((y comma upright(i d)))$ which by initiality must be equal.
+
+= Lecture 7 Yoneda's Embedding
+
+#definition[
+Functor categories: let $cC, cD$ be categories. The *functor category* $Fun(cC, cD)$ have objects $F: cC -> cD$ and morphisms natural transformations. 
+]
+
+Let $cC$ be a locally small category (Set, Grp, Vectk).
+Then we have for any $x in cC$, a functor 
+$ Hom(C)(-, x) : cC^op -> Set $
+Suppose we have $alpha: y_1 -> y_2$, then we get 
+$ - oo alpha :  hom(y_2, x) -> hom(y_1, x) $
+
+We now consider the category of *presheves* on $cC$, denote as $prshv(cC) = Fun(cC^op, Set)$ which this functor belongs to.
+
+#remark[
+Why this name? Let $X$ be a topp space and $J$ be topology on $X$, then preshef $S$ is for any U in J, S(U) in Set, if $V subset U$ then .. (see photo)
+
+If we define $"Open"(X)$ as object: open sets in $X$, morphisms: no morphisms if $V subset.eq.not U$; if $V subset.eq U$, then one map $V arrow.hook U$.
+Then a preshef $S in Fun("Open"(X)^op, Set)$.
+]
+
+#definition[
+    A functor $F in prshv(cC)$ is representable if there exists $x in cC$ such that $F iso Hom(C)(-, x)$.
+
+
+]
+
+More functorially, define Yoneda functor $Y: cC -> prshv(cC)$ as $x mapsto hom(C)(0, x)$. Then $F$ is representable if $F$ in the essential image of $Y$.
+
+(Proof of natural transformation of idkwhat, see photo)
+
+#example[
+    Take $PP in Fun(Set^op, Set)$ as $PP(A) = "power set of " A$ for $A in Set$. If $f : A-> B$, then we define $PP(f): PP(B)-> PP(A)$ as $PP(f)(S) = f^(-1)(S)$ for $S subset.eq B$. $PP$ is representable.
+]
+
+#proof[
+    We claim $PP iso hom_Set (-, {0, 1}).$ Take any $T in PP(A)$, we can define 
+    $ x_T = cases(1 "on" T, 0 "on" A without T) $
+
+    Conversely, for $x : A->{0,1}$, define $T = x^(-1)(1)$.
+]
+
+#example[
+    Non-example. Take $F in Fun(Grp^op, Set)$. Define $ F(G) = "the set of all subgroups of" G $ This not representable. (It is easier to prove representableness than non-.)
+]
+
+Useful "universal" property. Suppose $F iso Hom(C) (-, x)$. That means $F(x) iso hom (x, x)$ so there exists a "distinguished" element $a in F(x)$ corresponding to $id_x$. Say $eta: hom(C) (-, x) => F$ is a natural transformation, ... see photo
+
+For every $b in F(y)$, there exists a unique $alpha : y -> x$ such that $F(alpha)(a) = b$.
+
+Apply this to the subgroups functor. Suppose $F$ is representable, then there exists $G$ ($=x$) (representing group) and $H <= G$ (where $H = a$) such that for all groups $G'$ and every subgroups $H'$, there exists $alpha : G' -> G$, such that $F(alpha)(H) = H'$ or $alpha^(-1)(H) =H$. 
+
+If we take $G' = ZZ$ and $H' = 0$, there exists unique $alpha : ZZ -> G$ such that $alpha^(-1)(H) = 0$. Set $beta: ZZ-> G$ such that $forall n in ZZ$, $beta(n) = alpha(2 n)$ and we also have $beta^(-1)(H) = 0$, which fails the uniqueness of $alpha$.
+
+
+#proposition[
+    The Yoneda functor is faithful.
+]
+
+This is a consequence of Yoneda's Lemma.
+
+#lemma[
+    $x in cC$ and $F in Fun(C^op, Set)$. The canonical restriction map: 
+    $ "res": hom (Y(x), F) -> F(x) $
+    is a bijection.
+    
+    If $eta: Y(x) => F$ is a nat transformation, then we send it to $eta_x (id_x)$. Notice $eta_x : hom(x, x) -> F(x)$ where $id_x in hom(x, x)$.
+]
+Lemma 2.10 in notes.
+#proof[
+    What can the inverse be?
+    Suppose we have $a in F(x)$. We want to contruct $zeta(a): Y(x) => F$, a nat transformation. Consider its component $zeta(a)_(x')$, which we define to send every $g : x' -> x$ to $F(g)(a)$. (The only natural thing to do.)
+
+    We need to prove $zeta(a)$ is a natural transformation.
+    (See photo.) Don't forget $F$ is a contravariant functor.
+
+    Now we need to show $zeta$ is an inverse to $"res"$. 
+
+    For all $a in F(x)$, 
+    $
+        "res" oo zeta(a) = zeta(a)_x (id_x) = F(id_x)(a) = id_(F(x))(a) = a
+    $
+
+    For all $eta : Y(x) => F$, 
+    $
+        zeta(eta_x(id_x))_y (g: y->x) = F(g)(eta_x (id_x)) = eta_y (id_x oo g) = eta_y (g)
+    $
+
+    using def of $zeta$ and that $eta$ is a natural transformation. 
+]
+
+You just the only thing that makes sense at every step. Just write it yourself. 
