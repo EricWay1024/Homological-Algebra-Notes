@@ -1148,4 +1148,127 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
 
 (This is the end of lecture 6.)
 
+= injective and projective and adjoints 
+
+#proposition[
+  If an additive functor $R: cB -> cA$ between abelian categories is right adjoint to an exact functor and $I$ is injective in $cB$, then $R(I)$ is injective in $cA$. 
+  
+  Dually, if an additive functor $L: cA -> cB$ is left adjoint to an exact functor and $P$ is projective in $cA$, then $L(P)$ is projective in $cB$. 
+]
+#proof[
+  We want to show that 
+  $ Hom(A)(-, R(I)) $ is exact. 
+  We have
+  $ Hom(A)(-, R(I)) iso Hom(B)(L(-), I ) $
+  but $L$ is exact and $Hom(B)(-, I)$ is exact, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact. 
+]
+We can construct adjunctions to prove if there is enough proj/inj.
+
+Recall that $ hom_Ab (M, A) bij homr (M, hom_Ab (R, A)) $ for $R$ ring and $M in Mod-R$. The $M$ on the LHS is actually $"Forget"(M)$, using $M$ as an abelian group. ($- tpr R$ ?)
+
+#corollary[
+  If $I$ is an injective abelian group, then $hom_Ab (R, I)$ is an injective #rrm.
+]
+
+#example[
+  $hom_Ab (R, QQ over ZZ)$ is injective.
+]
+
+#proposition[
+  $RMod$ has enough injectives. 
+]
+
+#proof[
+  Let $M$ be an $R$-module. 
+  $ I(M) = product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ) $
+  $I(M)$ is injective as a product of injectives, and there is a canonical morphism $e_M : M -> I(M)$. We only need to construct $ e_(M, phi) : M ->hom_Ab (R, QQ over ZZ) $ for all $phi in homr(M, hom_Ab (R, QQ over ZZ))$.
+
+  Exercise: $e_M$ is one-to-one (mono). (like what we did before.) [TODO]
+]
+
+= Complexes
+
+Let $cA$ be an abelian category. 
+
+#definition[
+  A chain complex in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d^2 = 0$, where $d_n$ are called differentials and we denote $Z_n = ker d_n$ ($n$-cycles), $B_n = im d_(n+1)$ ($n$-boundaries).
+
+  We have $B_n arrow.hook Z_n arrow.hook C_n$ (as subobjects).
+
+  $H_n (C_dot) = coker(B_n arrow.hook Z_n)$ can form a category $"Ch"(cA)$ with objects chain complexes and morphisms $mu_dot : C_dot -> D_dot$ such that 
+  TODO
+  commutes for all $n in ZZ$.
+]
+
+#example[
+  Show that $mu_dot$ induces a morphism $H_n (mu) : H_n (C) -> H_n (D)$ and thus $H_n : "Ch"(cA) -> cA$ is a functor. 
+]
+
+#let Ch = [$"Ch"$]
+
+#definition[
+  A morphism between $C_dot$ and $D_dot$ is called a *quasi-isomorphism* if the induced maps $H_n (C_dot) -> H_n (D_dot)$ are isomorphisms. 
+]
+
+(Remark here, connection to topology)
+#remark[
+  Derived category of an abelien category $cA$ is $ D(A) = Ch(A) ["qiso"^(-1)]$. Compare to $R[s^(-1)]$ for some $s in R$ and non-commutative $R$. 
+  
+  Non-linear version: homotopy types. $Top[W^(-1)]$
+
+  (?)
+]
+
+#proposition[
+  Tfae: 
+  - $C_dot$ is exact at every $C_n$;
+  - $C_dot$ is acyclic, i.e. $H_n (C_dot) = 0$ for all $n$;
+  - $0 -> C_dot$ is a quasi-isomorphism. 
+]
+
+#proof[
+  Follows directly from def.
+]
+
+#definition[
+  A cochain complex is given by ${C^n}_(n in ZZ)$ and $d^n : C^n -> C^(n+1)$ with $d^2 = 0$.
+
+  ... Just dual. TODO
+]
+
+#example[
+  Let $X$ be a topological space. Then $S_k = S_k (X)$ is the free $R$-module on the set of continuous maps $Delta_k -> X$, with restriction to the $i$-th face defines $S_k rgt(diff_i) S_(k-1)$, $d = sum (-1)^i diff_i$ gives a chain complex. 
+
+  The singular chain complex of $X$ 
+
+  $H_n^"singular"(X, R)$
+]
+
+#remark[
+  If $cA$ is an abelian category, then we can define $S cA$ as the set of simplicial objects in $cA$. Then there is a functor $N: S cA -> Ch_(>= 0) (cA)$.
+
+  Dold-Kan
+  (?)
+]
+
+#definition[
+  A chain map $f: C_dot -> D_dot$ is *null homotopic* if there are maps $s_n : C_n -> D_(n+1)$ such that $f = d s + s d$, or more rigrously,
+  $ f_n = d_(n+1) s_n + s_(n+1) d_n $
+  for all $n$.
+]
+
+This means $f tilde 0$ and $f tilde g <=> f - g tilde 0 <=> f - g = s d + d s$.
+
+#example[
+  If $f: C-> D$ is null homotopic, then $f_* = 0 : H_* (C) -> H_* (D)$. 
+
+  If $f tilde g$, then $f_* = g_* :  H_* (C) -> H_* (D)$.
+]
+
+(This is the end of lecture 7.)
+
+#pagebreak()
+
+
+
 #bibliography("bib.yml", style: "chicago-author-date")

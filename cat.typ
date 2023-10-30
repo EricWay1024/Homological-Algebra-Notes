@@ -342,9 +342,19 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 ]
 
 #theorem[
-    Let $F : cC arrows.lr cD: G$. T.f.a.e.:
-    - $F tack.l G$;
-    - There exists a natural transformation $e : id_cC => G F$ such that $(F(x), e_x)$ is initial in $(x => G)$ for all $x in cC$. 
+    // Let $F : cC arrows.lr cD: G$. T.f.a.e.:
+    // - $F tack.l G$;
+    // - There exists a natural transformation $e : id_cC => G F$ such that $(F(x), e_x)$ is initial in $(x => G)$ for all $x in cC$. 
+
+The following two structures on the functors $F comma G$
+are equivalent:
+
+\(1) An adjunction $F tack.l G$,
+
+\(2) A natural transformation
+$e colon upright(i d)_(cal(C)) arrow.r.double G F$ such that
+$lr((F lr((x)) comma e_x))$ is initial in $lr((x arrow.r.double G))$ for
+all $x in cal(C)$.
 ]
 
 #remark[
@@ -356,18 +366,6 @@ $ psi(g) := epsilon_y compose F(g) in Hom(D)(F(x), y) $
 
     (1) => (2). 
 ]
-
-Theorem 2.7. The following two structures on the functors $F comma G$
-are equivalent:
-
-\(1) An adjunction $F tack.l G$,
-
-\(2) A natural transformation
-$e colon upright(i d)_(cal(C)) arrow.r.double G F$ such that
-$lr((F lr((x)) comma e_x))$ is initial in $lr((x arrow.r.double G))$ for
-all $x in cal(C)$.
-
-Proof.
 
 - $lr((1)) arrow.r.double lr((2))$.
 
