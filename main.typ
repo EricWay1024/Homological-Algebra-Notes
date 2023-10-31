@@ -1138,7 +1138,8 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
   Consider canonical map $e_A: A -> I(A)$, where (because $I(A)$ is a product) we need to define for each $phi  in hom_Ab (A, QQ over ZZ)$ the component $e_(a, phi) : A -> QQ  over ZZ$, which we just define to be $phi$ itself. Explicitly, for any $a in A$, 
   $ e_A (a) = (phi(a))_(phi in hom_Ab (A, QQ over ZZ)) $
 
-  We claim that $e_A$ is injective. We need to show that for any $0 != a in A$ there exists $phi in Hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$ (using that $QQ over ZZ$ is injective). 
+  We claim that $e_A$ is injective. We need to show that for any $0 != a in A$ there exists $phi in Hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$.
+  //  (using that $QQ over ZZ$ is injective). 
 
   - If $a$ has an infinite order, then set $phi(a)$ as any nonzero element of $QQ over ZZ$ and we obtain a group homomorphism $phi$ such that $phi(a) != 0$;
   - If $a$ has order $m$ for some integer $m > 1$, then we set $phi(a) = 1/m + ZZ$ and this is a well defined group homomorphism. 
@@ -1160,14 +1161,21 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
   $ Hom(A)(-, R(I)) $ is exact. 
   We have
   $ Hom(A)(-, R(I)) iso Hom(B)(L(-), I ) $
-  but $L$ is exact and $Hom(B)(-, I)$ is exact, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact. 
-]
-We can construct adjunctions to prove if there is enough proj/inj.
+  but $L$ is exact and $Hom(B)(-, I)$ is exact, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact.
 
-Recall that $ hom_Ab (M, A) bij homr (M, hom_Ab (R, A)) $ for $R$ ring and $M in Mod-R$. The $M$ on the LHS is actually $"Forget"(M)$, using $M$ as an abelian group. ($- tpr R$ ?)
+  See @notes[Lemma 5.25] and @weibel[Proposition 2.3.10].
+]
+With this proposition, we can construct adjunctions to prove if there is enough proj/inj.
 
 #corollary[
   If $I$ is an injective abelian group, then $hom_Ab (R, I)$ is an injective #rrm.
+]
+#proof[
+  // Notice that $hom_Ab (R, A)$ is a #lrm.
+Assume $R$ is a ring and $M$ is a #rrm. $ hom_Ab ("Forget"(M), A) bij hom_Ab (M tpr R, A ) bij hom_ModR (M, hom_Ab (R, A)) $
+using hom-tensor adjunction, where $"Forget": ModR -> Ab$ is the forgetful functor and we view $R$ as a left $R$-module here (instead of an $R, R$-bimodule). 
+
+This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful functor is clearly exact.
 ]
 
 #example[
@@ -1179,11 +1187,15 @@ Recall that $ hom_Ab (M, A) bij homr (M, hom_Ab (R, A)) $ for $R$ ring and $M in
 ]
 
 #proof[
-  Let $M$ be an $R$-module. 
+  Let $M$ be a left $R$-module. 
+  We define
   $ I(M) = product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ) $
-  $I(M)$ is injective as a product of injectives, and there is a canonical morphism $e_M : M -> I(M)$. We only need to construct $ e_(M, phi) : M ->hom_Ab (R, QQ over ZZ) $ for all $phi in homr(M, hom_Ab (R, QQ over ZZ))$.
+  $I(M)$ is injective as a product of injectives, and there is a canonical morphism $e_M : M -> I(M)$. We only need to construct $ e_(M, phi) : ModR ->hom_Ab (R, QQ over ZZ), quad M mapsto phi(M) $ for all $phi in homr(M, hom_Ab (R, QQ over ZZ))$.
 
-  Exercise: $e_M$ is one-to-one (mono). (like what we did before.) [TODO]
+  // Exercise: $e_M$ is one-to-one (mono). (like what we did before.) [TODO]
+
+  We only need to show that for any $0 != m in M$, there exists $phi : M -> hom_Ab (R, QQ over ZZ)$ such that $phi(m) != 0$. Notice that we have $ phi in homr(M, hom_Ab (R, QQ over ZZ)) iso hom_Ab (M, QQ over ZZ) $
+  Hence we only need to find some $phi : M -> QQ over ZZ$ in $Ab$ so that $phi(m) != 0$. This is the same case as before.
 ]
 
 = Complexes
@@ -1191,23 +1203,24 @@ Recall that $ hom_Ab (M, A) bij homr (M, hom_Ab (R, A)) $ for $R$ ring and $M in
 Let $cA$ be an abelian category. 
 
 #definition[
-  A chain complex in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d^2 = 0$, where $d_n$ are called differentials and we denote $Z_n = ker d_n$ ($n$-cycles), $B_n = im d_(n+1)$ ($n$-boundaries).
+  A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$ (or $d^2 = 0$), where $d_n$ are called *differentials*. The *$n$-cycles* of $Ccx$ are $ Z_n := ker d_n $ and the *$n$-boundaries* are $ B_n := im d_(n+1) $
+ 
+  We have $ B_n arrow.hook Z_n arrow.hook C_n $ (as subobjects) for all $n$.
 
-  We have $B_n arrow.hook Z_n arrow.hook C_n$ (as subobjects).
-
-  $H_n (C_dot) = coker(B_n arrow.hook Z_n)$ can form a category $"Ch"(cA)$ with objects chain complexes and morphisms $mu_dot : C_dot -> D_dot$ such that 
-  TODO
-  commutes for all $n in ZZ$.
+  The *$n$-th homology* are defined as $ H_n (C_cx) := coker(B_n arrow.hook Z_n) $
 ]
-
+#definition[
+    We can form a category $"Ch"(cA)$ with objects chain complexes and morphisms $u_cx : C_cx -> D_cx$ which
+  commutes with differentials, namely for all $n in ZZ$,
+  #align(center,image("imgs/2023-10-30-23-38-29.png",width:30%)) commutes.
+]
 #example[
-  Show that $mu_dot$ induces a morphism $H_n (mu) : H_n (C) -> H_n (D)$ and thus $H_n : "Ch"(cA) -> cA$ is a functor. 
+  Show that $u_cx : Ccx -> Dcx$ induces a morphism $H_n (u_cx) : H_n (Ccx) -> H_n (Dcx)$ and thus $H_n : "Ch"(cA) -> cA$ is a functor. 
 ]
 
-#let Ch = [$"Ch"$]
 
 #definition[
-  A morphism between $C_dot$ and $D_dot$ is called a *quasi-isomorphism* if the induced maps $H_n (C_dot) -> H_n (D_dot)$ are isomorphisms. 
+  A morphism  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C_cx) -> H_n (D_cx)$ are all isomorphisms. 
 ]
 
 (Remark here, connection to topology)
@@ -1221,14 +1234,11 @@ Let $cA$ be an abelian category.
 
 #proposition[
   Tfae: 
-  - $C_dot$ is exact at every $C_n$;
-  - $C_dot$ is acyclic, i.e. $H_n (C_dot) = 0$ for all $n$;
-  - $0 -> C_dot$ is a quasi-isomorphism. 
+  - $C_cx$ is exact at every $C_n$;
+  - $C_cx$ is *acyclic*, i.e. $H_n (C_cx) = 0$ for all $n$;
+  - $0 -> C_cx$ is a quasi-isomorphism. 
 ]
-
-#proof[
-  Follows directly from def.
-]
+#proof[Trivial.]
 
 #definition[
   A cochain complex is given by ${C^n}_(n in ZZ)$ and $d^n : C^n -> C^(n+1)$ with $d^2 = 0$.
@@ -1236,13 +1246,38 @@ Let $cA$ be an abelian category.
   ... Just dual. TODO
 ]
 
-#example[
-  Let $X$ be a topological space. Then $S_k = S_k (X)$ is the free $R$-module on the set of continuous maps $Delta_k -> X$, with restriction to the $i$-th face defines $S_k rgt(diff_i) S_(k-1)$, $d = sum (-1)^i diff_i$ gives a chain complex. 
+#definition[
+  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n := ker d^n $ and the *$n$-coboundaries* are $ B^n := im d^(n+1) $
+ 
+  We have $ B^n arrow.hook Z^n arrow.hook C^n $ (as subobjects) for all $n$.
 
-  The singular chain complex of $X$ 
-
-  $H_n^"singular"(X, R)$
+  The *$n$-th cohomology* are defined as $ H^n (C^cx) := coker(B^n arrow.hook Z^n) $
 ]
+
+#example[
+  Let $X$ be a topological
+space, and let $S_k eq S_k lr((X))$ be the free $R$-module on the set of
+continuous maps from the standard $k$-simplex $Delta_k$ to X. Restriction
+to the $i$-th face of $Delta_k lr((0 lt.eq i lt.eq k))$ transforms a
+map $Delta_k arrow.r X$ into a map
+$Delta_(k minus 1) arrow.r X$, and induces an $R$-module
+homomorphism $diff_i$ from $S_k$ to $S_(k minus 1)$. The alternating
+sums $d eq sum lr((minus 1))^i diff_i$ (from $S_k$ to $S_(k minus 1)$) 
+assemble to form a chain complex
+$ dots.h.c arrow.r^d S_2 arrow.r^d S_1 arrow.r^d S_0 arrow.r 0 $ called the *singular chain complex* of $X$.
+The $n$-th homology module of $S_cx (X)$ is called the
+$n$-th singular homology of $X$ \(with
+coefficients in $R$) and is written $H_n lr((X semi R))$. 
+
+See @weibel[Application 1.1.4].
+]
+// #example[
+//   Let $X$ be a topological space. Then $S_k = S_k (X)$ is the free $R$-module on the set of continuous maps $Delta_k -> X$, with restriction to the $i$-th face defines $S_k rgt(diff_i) S_(k-1)$, $d = sum (-1)^i diff_i$ gives a chain complex. 
+
+//   The singular chain complex of $X$ 
+
+//   $H_n^"singular"(X, R)$
+// ]
 
 #remark[
   If $cA$ is an abelian category, then we can define $S cA$ as the set of simplicial objects in $cA$. Then there is a functor $N: S cA -> Ch_(>= 0) (cA)$.
@@ -1252,18 +1287,43 @@ Let $cA$ be an abelian category.
 ]
 
 #definition[
-  A chain map $f: C_dot -> D_dot$ is *null homotopic* if there are maps $s_n : C_n -> D_(n+1)$ such that $f = d s + s d$, or more rigrously,
+  A chain map $f: Ccx -> Dcx$ is *null homotopic* if there are maps $s_n : C_n -> D_(n+1)$ such that $f = d s + s d$, or more rigrously,
   $ f_n = d_(n+1) s_n + s_(n+1) d_n $
   for all $n$.
+  #align(center,image("imgs/2023-10-31-00-07-24.png",width:50%))
+  (This is not a commutative diagram.)
+]
+#definition[
+  Two chain maps $f$ and $g$ from $Ccx$ to $Dcx$ are *chain homotopic* if $f - g$ is null homotopic. 
+]
+Being null homotopic means $f tilde 0$.
+
+$f tilde g <=> f - g tilde 0 <=> f - g = s d + d s$.
+
+#lemma[
+  // If $f tilde g$, then $f_* = g_* :  H_* (C) -> H_* (D)$.
+  Suppose that chain maps
+$f comma g colon C_cx arrow.r D_cx$ are chain homotopic.
+Then the induced maps
+$f_* comma g_* colon H_n lr((C)) arrow.r H_n lr((D))$
+are equal. In particular, if $f: Ccx-> Dcx$ is null homotopic, then $f_* = 0 : H_n (C) -> H_n (D)$. 
 ]
 
-This means $f tilde 0$ and $f tilde g <=> f - g tilde 0 <=> f - g = s d + d s$.
+#proof[ Let $h$ be a chain homotopy from $f$ to $g$. We have
 
-#example[
-  If $f: C-> D$ is null homotopic, then $f_* = 0 : H_* (C) -> H_* (D)$. 
+$ f_n minus g_n eq s_(n minus 1) compose d_n^(lr((C))) plus d_(n plus 1)^(lr((D))) compose s_n $
 
-  If $f tilde g$, then $f_* = g_* :  H_* (C) -> H_* (D)$.
-]
+for each $n$. Let $x in H_n lr((C))$. Then $x eq lr([c])$ for some cycle
+$c in Z_n C$. We have
+
+$ f_* lr((x)) minus g_* lr((x)) & eq lr([f_n lr((c)) minus g_n lr((c))])\
+ & eq lr([s_(n minus 1) compose d_n^(lr((C))) lr((c)) plus d_(n plus 1)^(lr((D))) compose s_n lr((c))])\
+ & eq lr([d_(n plus 1)^(lr((D))) compose s_n lr((c))])\
+ & eq 0 comma $
+
+The third equality is because $c$ is an $n$-cycle  in $C$ and last equality is because $d_(n plus 1)^(lr((D))) compose s_n lr((c))$ is an $n$-boundary in $D$.
+
+See @notes[Lemma 2.32] and @weibel[Lemma 1.4.5].]
 
 (This is the end of lecture 7.)
 

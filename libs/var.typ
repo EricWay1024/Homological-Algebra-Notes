@@ -22,8 +22,8 @@
 #let ob = [$"ob"$]
 #let Set = [$bd("Set")$]
 #let Cat = [$bd("Cat")$]
-#let RMod = [$R hyph bd("Mod")$]
-#let ModR = [$bd("Mod") hyph R$]
+#let RMod = [$R$-$bd("Mod")$]
+#let ModR = [$bd("Mod")$-$R$]
 #let homr = [$op("Hom")_RMod$]
 #let endr = [$op("End")_RMod$]
 #let Mod = [$bd("Mod")$]
@@ -52,6 +52,13 @@
 
 #let mapsto = [$|->$]
 #let prshv = [$"PrShv"$]
+#let cx = [$circle.filled.small$]
+#let Ccx = [$C_cx$]
+#let Dcx = [$D_cx$]
+#let Cco = [$C^cx$]
+#let Dco = [$D^cx$]
+
+#let Ch = [$"Ch"$]
 
 #let theorem = thmbox(
   "theorem",
