@@ -105,15 +105,57 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
     for all $m in M, r in R, s in S$.
 ]
 
+#let Bil = [$"Bil"$]
 #definition[
-    Let $R$ be a ring. Consider #lrm $M$, #rrm $N$ and abelian group $(A, +)$. A map $B: M times N -> A$ is called a *balanced product* if it satisfies:
+    Let $R$ be a ring. Consider #rrm $M$, #lrm $N$ and abelian group $(A, +)$. A map $B: M times N -> A$ is called a *balanced product* (or we say it is *$R$-biadditive*) if it satisfies:
     - $B(x + x', y) = B(x, y) + B(x', y)$;
     - $B(x, y + y') = B(x, y) + B(x, y')$;
     - $B(x r , y) = B(x, r y)$,
-    for all $x, x' in M$, $y, y' in N$ and $r in R$.Denote 
+    for all $x, x' in M$, $y, y' in N$ and $r in R$. 
+    
+    Denote the set of all balanced products $B : M times N -> A$ as $Bil\(M, N; A)$, which is an abelian group under addition. 
+]
+#definition[
+    If $R$ is a commutative ring and $M, N, A$ are $R$-modules, a map $f : M times N -> A$ is called *$R$-bilinear* if it is $R$-biadditive and also 
+    $ f(x r, y) = f(x, r y) = r f(x, y) $
+]
+#definition[
+    The *tensor product* of a #rrm $M$ and a #lrm $N$ is an abelian group $M tpr N$ with a balance product $M times N -> M tpr N$ such that for any balanced product $B: M times N -> A$, there exists a unique group homomorphism $M tpr N -> A$ that makes the diagram commutes:
+
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkACPAW3k4ByIAL6l0mXPkIoAjOSq1GLNlxxoAToJFiQGbHgJE5MhfWatEIAIIiFMKAHN4RUADN1EHkjIgcEJABM1GbKlgBC2m4eXohyvv6IQSAMWGAWIFB0cAAW9iDBSukwAB5YcDhwnACEkSDunt7UfkgywhTCQA
+#align(center, commutative-diagram(
+  node((0, 0), [$M times N$]),
+  node((0, 1), [$M tpr N$]),
+  node((1, 1), [$A$]),
+  arr((0, 0), (1, 1), [$B$]),
+  arr((0, 1), (1, 1), [$exists !$], "dashed"),
+  arr((0, 0), (0, 1), []),
+))
+    In other words, $M tpr N$ is an initial object of the category of all balanced products $M times N -> A$.
 ]
 
+#lemma[The tensor product $M times N -> M tpr N$ exists for any #rrm $M$ and #lrm $N$.]
 
+#lemma[
+    Let $phi : M -> M'$ and $psi : N -> N'$ be module homomorphisms, then there exists a unique group homomorphism $phi tp psi : M tpr N -> M' tpr N'$, such that $ phi tp psi : m tp n mapsto phi(m) tp psi(n) $ 
+]
+
+In other words, $M tpr N$ is a functor to both $M$ and $N$.
+#proposition[
+    Let $Q, R, S$ be rings, $M$ be a $(Q, R)$-bimodule, and $N$ be a $(R, S)$-bimodule. Then $M tpr N$ is a $(Q, S)$-bimodule. 
+]
+#proof[
+    See @li[Proposition 6.5.9].
+]
+
+In this case we know $M tpr N$ is not merely an abelian group.
+
+#proposition[
+    Let $R$ be a commutative ring and $A, B$ be $R$-modules. Then $A tpr B$ is an $R$-module and $h: A times B -> A tpr B$ is $R$-bilinear.  Morever, $A tpr B$ is an initial object in the category of all $R$-bilinear maps.
+]
+#proof[
+    See @rotman[Proposition 2.55].
+]
 // = Introduction
 
 // #definition[A ring $(R, +, dot)$ satisfies:

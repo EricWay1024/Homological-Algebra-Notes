@@ -1149,7 +1149,7 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
 
 (This is the end of lecture 6.)
 
-= injective and projective and adjoints 
+// = injective and projective and adjoints 
 
 #proposition[
   If an additive functor $R: cB -> cA$ between abelian categories is right adjoint to an exact functor and $I$ is injective in $cB$, then $R(I)$ is injective in $cA$. 
@@ -1198,7 +1198,7 @@ This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful fun
   Hence we only need to find some $phi : M -> QQ over ZZ$ in $Ab$ so that $phi(m) != 0$. This is the same case as before.
 ]
 
-= Complexes
+= Chain Complexes
 
 Let $cA$ be an abelian category. 
 
@@ -1223,13 +1223,13 @@ Let $cA$ be an abelian category.
   A morphism  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C_cx) -> H_n (D_cx)$ are all isomorphisms. 
 ]
 
-(Remark here, connection to topology)
 #remark[
+(Remark here, connection to topology)
   Derived category of an abelien category $cA$ is $ D(A) = Ch(A) ["qiso"^(-1)]$. Compare to $R[s^(-1)]$ for some $s in R$ and non-commutative $R$. 
   
   Non-linear version: homotopy types. $Top[W^(-1)]$
 
-  (?)
+  (TODO)
 ]
 
 #proposition[
@@ -1328,7 +1328,5 @@ See @notes[Lemma 2.32] and @weibel[Lemma 1.4.5].]
 (This is the end of lecture 7.)
 
 #pagebreak()
-
-
 
 #bibliography("bib.yml", style: "chicago-author-date")
