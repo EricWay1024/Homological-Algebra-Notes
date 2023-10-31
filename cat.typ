@@ -531,12 +531,12 @@ This is a consequence of Yoneda's Lemma.
     $ "res": hom (Y(x), F) -> F(x) $
     is a bijection.
     
-    If $eta: Y(x) => F$ is a nat transformation, then we send it to $eta_x (id_x)$. Notice $eta_x : hom(x, x) -> F(x)$ where $id_x in hom(x, x)$.
+    If $eta: Y(x) => F$ is a natural transformation, then we send it to $eta_x (id_x)$. Notice $eta_x : hom(x, x) -> F(x)$ where $id_x in hom(x, x)$.
 ]
 Lemma 2.10 in notes.
 #proof[
     What can the inverse be?
-    Suppose we have $a in F(x)$. We want to contruct $zeta(a): Y(x) => F$, a nat transformation. Consider its component $zeta(a)_(x')$, which we define to send every $g : x' -> x$ to $F(g)(a)$. (The only natural thing to do.)
+    Suppose we have $a in F(x)$. We want to contruct $zeta(a): Y(x) => F$, a natural transformation. Consider its component $zeta(a)_(x')$, which we define to send every $g : x' -> x$ to $F(g)(a)$. (The only natural thing to do.)
 
     We need to prove $zeta(a)$ is a natural transformation.
     (See photo.) Don't forget $F$ is a contravariant functor.
@@ -557,3 +557,117 @@ Lemma 2.10 in notes.
 ]
 
 You just the only thing that makes sense at every step. Just write it yourself. 
+
+= Lecture 8
+
+#corollary[
+    The Yoneda functor is fully faithful.
+]
+
+This means if you take $x, y in cC$ and $ Y: hom(C)(x, y) -> hom_prshv(cC)(Y(x), Y(y)) $ is a bijection. 
+
+#proof[
+    Specialise $F = Y(y)$ in Yoneda Lemma. Inverse $zeta: Y(y)(x) -> hom_prshv(cC)(Y(x), Y(y))$ is a bijection. Only need to check that $zeta$ is the same as $Y$ on $Hom(C)(x, y)$. 
+
+    If $alpha in Hom(C)(x, y)$, then $zeta(alpha): Y(x) => Y(y)$ and then $ zeta(alpha)_(x') (g: x' -> x) = F(g)(alpha) = alpha oo g $
+    This is the same as $Y$. 
+]
+
+#remark[
+  + The natural transformations between two represtable functors correspond (1-1) to morphisms between the representing objects. 
+  + If $Hom(C)(y, x_1) iso Hom(C)(y, x_2)$ for all $y in cC$ in some natural way, then we have $x_1 iso x_2$. 
+
+    This fits into the philoshpy that objects interact with other objects in the category. You identify an object $x$ by how it interact with other objects. 
+]
+
+#example[
+    $G$ group, then take the groupoid $ast over G$ and $End _(ast) = G$. 
+
+    $prshv(ast over G) = F : (ast over G)^op -> Set$  Then $F(ast) = X$, a set. 
+
+    $F(g oo_op h) = F(g) oo F(h)$
+
+    Define right $G$-action on $X$: 
+    $ x dot g = F(g)(x) $
+
+    Then $prshv(ast over G) = G"-sets"$ 
+
+    What about natural transformations? $G$-equivalent maps. $phi: X_1 -> X_2$ such that $phi(x_1 dot g) = phi(x_1) dot g$.
+
+    By Yoneda, we know that $ast over G arrow.hook G"-sets"$ and $ast mapsto Y(ast) iso G$ (a set with right $G$-action).
+
+    Using the res function,
+    $forall G"-set" X$, we have $Hom_(G"-set")(G, X) bij X$ that $f: G-> X$ maps to $f(e_G)$
+
+    Take $X = G$, we have $ G iso hom_(G"-set")(G, G) arrow.hook hom_Set (G, G) = "Perm"(G) $ 
+
+    This is Cayley's Theorem in group theory.
+]
+
+#example[
+    Every row operation on matrices is given by left multiplication by an $n times n$ matrix, namely the matrix obtained by applying the row operation to the identity matrix. (This is a corollary of Yoneda's Lemma in the catory of matrices. Riehl Cor 2.2.9) TODO
+]
+
+#remark[
+    Contravariant Yoneda embedding. $cC -> Fun(cC, Set)^op$ that $x mapsto Hom(C)(x, -)$
+
+    corepresentable functors
+
+    We will use the covaraint version.
+]
+
+#definition[
+Essential image of $Y$ is called *representable functors*. 
+
+]
+
+#example[
+  If $cC$ is a category, we can define the centre of $cC$ as $End (id_cC)$. (all nat trans $id_cC => id_cC$ where $id_cC$ is the identity functor)
+    + The centre of $cC$ is a comutative monoid;
+    + If $cC = RMod$ where $R$ is a ring with identity. Then the centre of $cC$ is iso to $Z(R)$.
+    + Can you prove 2 as a consequence of Yoneda's Lemma?
+]
+
+Formal adjoints. 
+
+$F: cC -> cD$. Does $F$ have a right adjoint? 
+The formal right adjoint of $F$ is $F^"fra": cD -> prshv(cC)$ that $y mapsto Hom(D) (F(-), y)$ and $g: y_1 -> y_2$ maps to post composition.
+
+#proposition[
+    $F$ has a right adjoint $G$ if and only if for all $y in cD$, the $F^"fra" (y) in prshv(cC)$ is representable. 
+]
+
+#proof[
+    =>. If $F tack.l G$, then 
+    $ Hom(D) (F(x) , y) iso Hom(C) (x, G(y)) $
+    then $F^"fra" (y) iso Hom(C)(-, G(y))$ is represented by $G(y)$.
+
+    <=. If $F^"fra" (y)$ is representable for all $y in cD$, then $F^"fra"$ lands in $prshv(cC)^"repr"$.
+
+    A consequence of Yoneda embedding: 
+    $ cC iso prshv(cC)^"repr"$
+
+    Denote $P$ as $Y tack.l P$.
+
+    Set $G = P oo F^"fra" : cD -> cC$ and then $Hom(C)(x, G(y))$
+
+    (see photos)
+
+]
+#remark[
+    We also know that a right adjoint, if it exists, is unique up to isomorphism. $F tack.l G_1$, $F tack.l G_2$, then $G_1 iso G_2$.
+
+    $Y G_1 iso F^"fra" iso Y G_2 $, since $Y$ is fully faithful, $G_1 iso G_2$.
+]
+
+
+= Limit and Colimits
+
+#example[
+    Product. 
+]
+
+There is no binary product $k times k$ for $k$ a field. 
+
+Suppose there is, call it $P$. Then it has to come with two maps, $p_k^i : P -> K$. We take $W = K$.
+
