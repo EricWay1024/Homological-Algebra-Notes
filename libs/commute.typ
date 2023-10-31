@@ -1,6 +1,6 @@
 #let node(pos, label) = (kind: "node", pos: pos, label: label)
 
-#let arr(start, end, label, start-space: none, end-space: none, label-pos: 1em, curve: 0deg, stroke: 0.45pt, ..options) = {
+#let arr(start, end, label, start-space: none, end-space: none, label-pos: left, curve: 0deg, stroke: 0.45pt, ..options) = {
   (
     kind: "arrow",
     start: start,
@@ -25,7 +25,10 @@
   style(styles => {
 
     // useful utility function
-    let center(c) = pad(left: -100%, top: -100%, c)
+    let _center(c) = {
+      let m = measure(c, styles)
+      place(dx: -0.5*m.width, dy: -0.5*m.height, c)
+    }
   
     // get nodes and arrows from the function arguments
     let entities = entities.pos()
@@ -102,12 +105,17 @@
       return (width: 0pt, height: 0pt)
     }
   
+    // units conversion
+    let pt-per-em = measure(rect(width: 1em), styles).width
+    let to-pt(l) = l.abs + l.em * pt-per-em
+
     // various vector utility functions
     let v-add(a, b) = (a.at(0) + b.at(0), a.at(1) + b.at(1))
     let v-sub(a, b) = (a.at(0) - b.at(0), a.at(1) - b.at(1))
     let v-mul(a, x) = (a.at(0) * x, a.at(1) * x)
-    let v-add-dir(p, a, l) = v-add(p, v-mul((calc.cos(a), calc.sin(a)), l))
-    let v-length(vv) = calc.sqrt(vv.at(0)/1mm*vv.at(0)/1mm + vv.at(1)/1mm*vv.at(1)/1mm)*1mm
+    let v-dir(a, l) = v-mul((calc.cos(a), calc.sin(a)), l)
+    let v-add-dir(p, a, l) = v-add(p, v-dir(a, l))
+    let v-length(vv) = calc.sqrt(to-pt(vv.at(0))/1mm*to-pt(vv.at(0))/1mm + to-pt(vv.at(1))/1mm*to-pt(vv.at(1))/1mm)*1mm
   
     // measures the length of a segment starting in the center
     // of a rectangle and ending on one of the rectangle's edges,
@@ -126,8 +134,6 @@
       }
     }
   
-    let pt-per-em = measure(rect(width: 1em), styles).width
-
     // the box where all the diagram's elements are
     box(
       width: width + 2*padding, height: height + 2*padding,
@@ -147,9 +153,6 @@
         if end-space == none {
           end-space = measure-at-angle(size-at(arr.end), angle + curve-angle, arr-clearance / 1em * pt-per-em) / pt-per-em * 1em
         }
-        if "inj" in arr.options {
-          start-space += 0.2em
-        }
         let astart = v-add-dir(start, angle - curve-angle, start-space)
         let aend = v-add-dir(end, angle + 180deg + curve-angle, end-space)
       
@@ -157,15 +160,14 @@
         place(dx: aend.at(0), dy: aend.at(1),
           rotate(angle + curve-angle + 90deg, origin: top+left,
             if "surj" in arr.options {
-              move(dy: 0.3em, center(box[
-                $arrow.t.twohead$
-                #place(dy: -0.35em, dx: 0.24em, rect(width: 0.10em, height: 0.7em, fill: white))
-              ]))
+              move(dy: 0.21em, _center(box(clip:true, height: 0.42em, $arrow.t.twohead$)))
+              aend = v-add-dir(aend, angle + curve-angle, -0.42em)
+            } else if "nat" in arr.options {
+              move(dy: 0.18em, _center(box(clip:true, height: 0.36em, $arrow.t.double$)))
+              aend = v-add-dir(aend, angle + curve-angle, -0.36em)
             } else {
-              move(dy: 0.3em, center(box[
-                $arrow.t$
-                #place(dy: -0.50em, dx: 0.2em, rect(width: 0.10em, height: 0.7em, fill: white))
-              ]))
+              move(dy: 0.15em, _center(box(clip:true, height: 0.3em, $arrow.t$)))
+              aend = v-add-dir(aend, angle + curve-angle, -0.3em)
             }
           )
         )
@@ -173,44 +175,69 @@
         place(dx: astart.at(0), dy: astart.at(1),
           rotate(angle - curve-angle - 90deg, origin: top+left, {
             if "bij" in arr.options {
-              move(dy: 0.25em, center(box[
-              $arrow.t$
-              #place(dy: -0.50em, dx: 0.20em, rect(width: 0.10em, height: 0.7em, fill: white))
-            ]))
+              if "nat" in arr.options {
+                move(dy: 0.18em, _center(box(clip:true, height: 0.36em, $arrow.t.double$)))
+                astart = v-add-dir(astart, angle - curve-angle, 0.36em)
+              } else {
+                move(dy: 0.15em, _center(box(clip: true, height: 0.3em, $arrow.t$)))
+                astart = v-add-dir(astart, angle - curve-angle, 0.3em)
+              }
             } else if "inj" in arr.options {
-              place(pad(top: -100%, circle(stroke: arr.stroke, radius: 0.15em))) + rect(width: 0.33em, height: 0.2em, fill:white)
+              path(stroke: arr.stroke, (0em, 0.15em), ((0.15em, 0em), (-0.15em, 0em)), (0.3em, 0.15em))
+              astart = v-add-dir(astart, angle - curve-angle, 0.15em)
             } else if "def" in arr.options {
               place(dx: -0.2em, line(stroke: arr.stroke, length: 0.4em))
             }  
             })
         )
-      
-        let N = int(20*calc.abs(curve-angle / 1rad) + 1)
-        let frac = 1
-        if "dashed" in arr.options {
-          N = int((v-length(v-sub(start, end)) - (start-space + end-space) / 1em * pt-per-em) / 8pt)
-          frac = 0.7
-        }
-        let normal = (- aend.at(1) + astart.at(1), aend.at(0) - astart.at(0))
-        let t = calc.tan(curve-angle)
-        for i in range(-N, N) {
-          place(line(
-            start: v-add(v-add(v-mul(astart, (N -i)/(2*N)), v-mul(aend, (N+i)/(2*N))),
-              v-mul(normal, (i - N)*(i + N)/N/N/4*t)),
-            end: v-add(v-add(v-mul(astart, (N -i -frac)/(2*N)), v-mul(aend, (N+i+frac)/(2*N))),
-              v-mul(normal, (i +frac - N)*(i+frac + N)/N/N/4*t)),
-            stroke: arr.stroke,
+
+        let dash = arr.options.filter(opt => opt not in ("inj", "surj", "bij", "def", "nat")).at(0, default: none)
+
+        // this should be, up to a good approximation (due to different
+        // start and end tips), a parabola. See https://en.wikipedia.org/wiki/Bézier_curve
+        let ctrl-length = - v-length(v-sub(astart, aend)) / 3 / calc.cos(curve-angle)
+        if "nat" in arr.options {
+          place(path(stroke: (thickness: arr.stroke, dash: dash),
+            (v-add-dir(astart, angle - curve-angle + 90deg, -0.095em), v-dir(angle - curve-angle, ctrl-length)),
+            (v-add-dir(aend, angle + curve-angle + 90deg, -0.095em), v-dir(angle + curve-angle, ctrl-length)),
+          ))
+          place(path(stroke: (thickness: arr.stroke, dash: dash),
+            (v-add-dir(astart, angle - curve-angle + 90deg, 0.095em), v-dir(angle - curve-angle, ctrl-length)),
+            (v-add-dir(aend, angle + curve-angle + 90deg, 0.095em), v-dir(angle + curve-angle, ctrl-length)),
+          ))
+        } else {
+          place(path(stroke: (thickness: arr.stroke, dash: dash),
+            (astart, v-dir(angle - curve-angle, ctrl-length)),
+            (aend, v-dir(angle + curve-angle, ctrl-length)),
           ))
         }
       
-        let middle = v-add(v-mul(v-add(astart, aend), 0.5), v-mul(normal, -t/4))
+        let normal = (- aend.at(1) + astart.at(1), aend.at(0) - astart.at(0))
+        let middle = v-add(v-mul(v-add(astart, aend), 0.5), v-mul(normal, -calc.tan(curve-angle)/4))
       
+        let m = measure(arr.label, styles)
+        let l = (
+          (
+            if arr.label-pos == right { -0.5 }
+            else if arr.label-pos == left { 0.5 }
+            else { 0 }
+          ) * (
+            0.5em +
+            calc.sin(angle) * m.width +
+            calc.cos(angle) * (m.height + 0.3em)
+          ) + (
+            if type(arr.label-pos) == "length" { arr.label-pos }
+            else { 0pt }
+          )
+        )
+        let lpos = v-add-dir(middle, angle - 90deg, l)
         if arr.label-pos == 0 {
-          place(dx: middle.at(0), dy: middle.at(1), center(rect(fill: white, arr.label, outset:-0.2em)))
-        } else {
-          let lpos = v-add-dir(middle, angle - 90deg, arr.label-pos)
-          place(dx: lpos.at(0), dy: lpos.at(1), center(arr.label))
+          place(dx: lpos.at(0), dy: lpos.at(1), _center(rect(width: m.width + 0.1em, height: m.height + 0.3em, fill: white)))
         }
+        if debug {
+          place(dx: lpos.at(0), dy: lpos.at(1), _center(rect(width: m.width + 0.5em, height: m.height + 0.8em, radius: 0.25em, stroke: 0.5pt + red)))
+        }
+        place(dx: lpos.at(0), dy: lpos.at(1), _center(arr.label))
       }
   
       for node in nodes {
@@ -218,19 +245,19 @@
         place(
           dx: coords.at(0),
           dy: coords.at(1),
-          center(node.label)
+          _center(node.label)
         )
         if debug {
           let m = measure(node.label, styles)
           place(
             dx: coords.at(0),
             dy: coords.at(1),
-            center(rect(width: m.width + 2 * arr-clearance, height: m.height + 2 * arr-clearance, stroke: 0.5pt+red)),
+            _center(rect(width: m.width + 2 * arr-clearance, height: m.height + 2 * arr-clearance, stroke: 0.5pt+red)),
           )
           place(
             dx: coords.at(0),
             dy: coords.at(1),
-            center(circle(radius: calc.max(m.width, m.height) / 2 + arr-clearance, stroke: 0.5pt+red)),
+            _center(circle(radius: calc.max(m.width, m.height) / 2 + arr-clearance, stroke: 0.5pt+red)),
           )
         }
       }
