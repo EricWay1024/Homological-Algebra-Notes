@@ -37,7 +37,7 @@ $ f ast g (t_1, t_2, ..., t_n) = cases(
   g(2 t_1 -1, t_2, ..., t_n) quad &t_1 >= 1/2
 ) $
 
-Notice we are doing operations on the equivalent classes, so it is really 
+Notice we are doing operations on the equivalence classes, so it is really 
 $ [f] + [g] = [f+ g] $
 
 #align(center,image("imgs/2023-10-31-21-53-40.png",width:30%))
@@ -88,6 +88,147 @@ $ pi_1 (RR ^2 without {ast, ast }) = F_2 $
 #align(center,image("imgs/2023-10-31-22-28-08.png",width:50%))
 
 = Lecture 2
+$ pi_1 : Top_ast over tilde -> Grp $
+$ pi_n : Top_ast over tilde -> Ab $
+
+Let $f, g :X-> Y$, then $f tilde g$ if they are homotopic (pointed) maps. Then $f_ast, g_ast : pi_1 (X) -> pi_1 (Y)$ are equal. This also holds for $pi_n$.
+
+$Top over tilde$ is the category of topological spaces and homotopy classes of continuous maps. $Top_ast over tilde$ is the category of pointed topological spaces and homotopy classes of base-point-preserving continuous maps. 
+
+This class is mainly concerned about homology:
+$ H_n : Top over tilde -> Ab $
+for $n >= 0$ and cohomology: 
+$ H^n : Top over tilde -> Ab $
+for $n >= 0$. 
+
+The cohomology is a contravariant functor. If we have $f : X-> Y$, then it will induce $f_ast : H_n (X) -> H_n (Y)$ and $f^ast: H^n (Y) -> H^n (X)$. 
+
+== Homology
+
+One definition $H_1\(X) := pi_1 (X)_"ab"$ (abelianised). This only applies to path-connected spaces. 
+
+First idea: Take $pi_1$ and drop base-point condition. We hence look at the set 
+$ {S^1 -> X} over tilde $
+
+#lemma[
+  If $X$ is path-connected (we might just say connected), ${S^1 -> X} over tilde$ is equal to the conjugacy classes in $pi_1 (X)$. 
+]
+
+#proof[
+  Any map $S^1 -> X$ can be deformed to a base-point-preserving map since $X$ is connected.
+    #align(center,image("imgs/2023-11-01-09-39-44.png",width:50%))
+  We can start from the base point, follow the green path, go around the loop, and return along the green path. This defines a map ${S^1 -> X} -> pi_1 (X)$, but this is a map that depends on the choice of the green path.
+
+  If we choose another green path, 
+  #align(center,image("imgs/2023-11-01-09-42-51.png",width:50%))
+  the result gets modified by a conjugation. 
+  [TODO] But this is off topic.
+]
+
+In homology, we can separate loops like this:
+#align(center,image("imgs/2023-11-01-09-48-08.png",width:50%))
+
+Roughly speaking, $ H_n\(X) = {"closed" n"-dimensional stuff mapping to " X} over tilde $
+
+Simplices are the stuff we are going to use.
+
+== Simplex 
+#align(center,image("imgs/2023-11-01-09-52-02.png",width:50%))
+
+$ Delta^n = {(t_0, ... t_n) in RR^(n+1)_(>=0) | sum t_i = 1} $
+
+Notice for $Delta^n$ we need one more dimension, in $RR^(n+1)$, to make things easier.
+
+Now we have $"Map"(Delta^n, X)$; and we take the free abelian group on it. 
+
+#definition[
+  The $n$-chains on $X$ is defined as the free abelian group (informally, linear combination) of $ { sigma: Delta^n -> X } $ denoted as $C_n\(X)$.
+]
+
+This is our "$n$-dimensional stuff mapping to $X$".
+
+What do we mean by closed? 
+#align(center,image("imgs/2023-11-01-10-01-29.png",width:50%))
+We have to make sure at each point the number of "flow-in" is equal to "flow-out". This is an example of a closed $1$-chain.
+
+#align(center,image("imgs/2023-11-01-10-06-44.png",width:50%))
+Now it's the edges must satisfy some conditions. 
+
+We define the boundary of an $n$-chain.
+
+#definition[
+  The boundary of an $n$-chain $c in C_n (X)$ is an $(n-1)$-chain $diff c in C_(n-1) (X)$.
+]
+
+#definition[
+  $c in C_n (X; R)$ is closed if and only if $diff c = 0$. 
+]
+
+#align(center,image("imgs/2023-11-01-10-10-10.png",width:50%))
+#align(center,image("imgs/2023-11-01-10-12-03.png",width:50%))
+
+= Lecture 3
+#definition[
+  A map $sigma: Delta^n -> X$ is called a *singualr simplex*. 
+]
+
+A typical $n$-chain is written $ sum r_sigma sigma $ (finite sum). By default $r_sigma in ZZ$. More generally, $r_sigma in R$ for any abelian group $R$, which leads to $H_n\(X; R)$, the $n$-th homology of $X$ with coefficients in $R$. (Free $R$-module on the set!) But $R$ is an abelian group not a ring, so $ C_n (X; R) = plus.circle.big_(sigma: Delta ^n -> X) R $
+
+Notice: not all $n$-chains represent a class in $H_n (X)$. Only the closed ones; we have to make sure the boundary is zero.
+#align(center,image("imgs/2023-11-01-10-22-32.png",width:50%))
+
+#definition[The boundary map
+$diff : C_n (X; R) -> C_(n-1) (X; R)$ 
+$ sigma mapsto sum _(i=0) ^n (-1)^i sigma |_[0, ..., hat(i), ..., n] $
+This can be linearly extended for any $sum r sigma $.
+]
+
+#align(center,image("imgs/2023-11-01-10-37-37.png",width:50%))
+#align(center,image("imgs/2023-11-01-10-38-07.png",width:30%))
+
+$sigma|_[0 , 2, 3]$ is a map $Delta^2 -> X$. 
+
+#definition[
+Formally, the $i$-th face of a singular simplex is defined as 
+$ sigma|_[0, ..., hat(i), ..., n] (x_0, ..., x_(n-1)) := sigma(x_0, ..., x_(i-1), 0, x_i, ..., x_(n-1)) $
+]
+
+Now we look at the equivalence relation. 
+
+#align(center,image("imgs/2023-11-01-10-47-42.png",width:50%))
+
+$ diff a = c_2 - c_1 $
+#definition[
+  Two closed $n$-chains $c_1, c_2$ are *homologous* if there exists an $(n+1)$-chain $a$ such that $diff a = c_2 - c_1$. 
+]
+It is easily seen that this is an equivalence relation. 
+
+#definition[
+$ H_n\(X; R) := {"closed " n"-chains"} over "homologous" $
+]
+
+#definition[
+  A chain complex is a sequence of abelian groups ${C_n}_(n in ZZ)$ and linear maps $diff_n: C_n -> C_(n-1)$ such that $diff oo diff = 0$. 
+  This whole package is called $Ccx$. 
+]
+
+#definition[The $n$-th homology group
+  $ H_n (Ccx) = {c in C_n | diff c = 0} over {c in C_n | exists a in C_(n+1) diff a = c}  = ker(diff_n) over im (diff_(n+1)) $
+]
+We need $diff (diff sigma ) = 0$ so that $ im (diff_(n+1)) subset.eq ker(diff_n) $.
+
+#lemma[
+  $ diff (diff sigma ) = 0 $
+]
+#proof[
+  TODO
+]
+
+= Lecture 4
+
+#pagebreak()
+
+
 
 
 = Lecture 6
