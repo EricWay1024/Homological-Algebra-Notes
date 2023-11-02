@@ -51,7 +51,8 @@
 #let oo = [$compose$]
 
 #let mapsto = [$|->$]
-#let prshv = [$"PrShv"$]
+#let prshv = [$"Psh"$]
+#let Psh = [$"Psh"$]
 #let cx = [$circle.filled.small$]
 #let Ccx = [$C_cx$]
 #let Dcx = [$D_cx$]

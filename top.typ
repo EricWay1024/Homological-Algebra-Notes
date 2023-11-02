@@ -226,6 +226,36 @@ We need $diff (diff sigma ) = 0$ so that $ im (diff_(n+1)) subset.eq ker(diff_n)
 
 = Lecture 4
 
+$ d_i : Delta^(n-1) -> Delta^n $ that $ d_i(x_0, ..., x_(n-1)) = (x_0, ..., x_(i-1), 0, x_i, ..., x_(n-1)) $
+Then $ diff sigma = sum_(i=0)^n (-1)^i (sigma oo d_i) $
+We know that $ d_i oo d_j = d_j oo d_(i+1) $ if $i > j$ and thus $diff oo diff = 0$.
+#align(center,image("imgs/2023-11-01-17-45-19.png",width:90%))
+
+$Z_n (Ccx) = ker (diff : C_n -> C_(n-1))$ is the $n$-cycles.
+
+$B_n (Ccx) = im (diff : C_(n+1) -> C_n)$ is the $n$-boundaries.
+
+$H_n (Ccx) = Z_n (Ccx) over B_n (Ccx)$
+
+A morphism of chain complex $Ccx -> Dcx$ consists of morphisms of abelian groups $f_n : C_n -> D_n$ for each $n in ZZ$ satisfying
+#align(center,image("imgs/2023-11-01-17-50-13.png",width:30%)) 
+We thus have the category of chain complexes.
+
+If we have $f: X-> Y$ a continous map between topological spaces, then it induces $f_ast: Ccx (X) -> Ccx(Y)$, defined by the linear expansion of $ sigma |-> f oo sigma $
+
+Quick check: 
+#align(center,image("imgs/2023-11-01-17-55-10.png",width:50%))
+
+Note: $f_* : Ccx -> Dcx$ induces $Z_n (Ccx) -> Z_n (Dcx)$, $B_n (Ccx) -> B_n (Dcx)$, and therefore also $H_n (Ccx) -> H_n (Dcx)$.
+
+What if we have coefficients in $R$ instead of $ZZ$? Apply $- tp_ZZ R$. (Still, $R$ is an abelian group, not a ring.)
+#align(center,image("imgs/2023-11-01-18-37-28.png",width:100%))
+
+Cohomology.
+#align(center,image("imgs/2023-11-01-18-45-15.png",width:100%))
+#align(center,image("imgs/2023-11-01-18-51-18.png",width:100%))
+
+
 #pagebreak()
 
 

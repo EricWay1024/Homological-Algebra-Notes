@@ -467,37 +467,67 @@ $lr((y comma upright(i d)))$ which by initiality must be equal.
 
 = Lecture 7 Yoneda's Embedding
 
-#definition[
-Functor categories: let $cC, cD$ be categories. The *functor category* $Fun(cC, cD)$ have objects $F: cC -> cD$ and morphisms natural transformations. 
+#definition(name: "Functor categories")[
+Let $cC, cD$ be categories. The *functor category* $Fun(cC, cD)$ has objects functor $F: cC -> cD$ and morphisms natural transformations. 
 ]
 
-Let $cC$ be a locally small category (Set, Grp, Vectk).
-Then we have for any $x in cC$, a functor 
-$ Hom(C)(-, x) : cC^op -> Set $
-Suppose we have $alpha: y_1 -> y_2$, then we get 
-$ - oo alpha :  hom(y_2, x) -> hom(y_1, x) $
+#definition[
+    Given a category $cC$, a *presheaf* on $cC$ is a functor $cC^op -> Set$. All presheaves on $cC$ form a cateogry $prshv(cC) := Fun(cC^op, Set)$.
+]
 
-We now consider the category of *presheves* on $cC$, denote as $prshv(cC) = Fun(cC^op, Set)$ which this functor belongs to.
+Let $cC$ be a locally small category (e.g. $Set, Grp, veck$).
+Then we have for any $x in cC$, a functor 
+$ Hom(C)(-, x) : cC^op &-> Set \
+ y &mapsto Hom(C) (y, x) \
+ (beta: y_1 -> y_2) &mapsto (- oo beta) :  Hom(C)(y_2, x) -> Hom(C)(y_1, x) $
+
+We see that $Hom(C)(-, x)$ is a functor in $prshv(cC)$. Moreover, it is a special member ("representative") of this category.
 
 #remark[
+    TODO
 Why this name? Let $X$ be a topp space and $J$ be topology on $X$, then preshef $S$ is for any U in J, S(U) in Set, if $V subset U$ then .. (see photo)
-
 If we define $"Open"(X)$ as object: open sets in $X$, morphisms: no morphisms if $V subset.eq.not U$; if $V subset.eq U$, then one map $V arrow.hook U$.
 Then a preshef $S in Fun("Open"(X)^op, Set)$.
 ]
 
 #definition[
-    A functor $F in prshv(cC)$ is representable if there exists $x in cC$ such that $F iso Hom(C)(-, x)$.
-
-
+    A functor $F in prshv(cC)$ is *representable* if there exists $x in cC$ such that $F iso Hom(C)(-, x)$.
 ]
 
-More functorially, define Yoneda functor $Y: cC -> prshv(cC)$ as $x mapsto hom(C)(0, x)$. Then $F$ is representable if $F$ in the essential image of $Y$.
+#definition[
+Define *Yoneda functor* 
+$ Y: cC &-> prshv(cC) = Fun(cC^op, Set) \
+x &mapsto Hom(C)(-, x) \
+(alpha: x_1 -> x_2) &mapsto (alpha oo -) : Hom(C)(-, x_1) => Hom(C)(-, x_2)
+$
+]
 
-(Proof of natural transformation of idkwhat, see photo)
+Notice we map a morphism in $cC$ to a morphism (which is supposed to be a natural transformation) in $Psh(cC)$ (a functor category). Here we need to verify that given $alpha: x_1 -> x_2$, $ eta := (alpha oo -) : Hom(C)(-, x_1) => Hom(C)(-, x_2) $ is indeed a natural transformation. Suppose we have $beta: y -> y'$ in $cC$, 
 
-#example[
-    Take $PP in Fun(Set^op, Set)$ as $PP(A) = "power set of " A$ for $A in Set$. If $f : A-> B$, then we define $PP(f): PP(B)-> PP(A)$ as $PP(f)(S) = f^(-1)(S)$ for $S subset.eq B$. $PP$ is representable.
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAsIBbAAgAoAngHJSPAB4B9AIwBKEAF9S6TLnyEUZKVVqMWbTr0EjxEgExzFy7HgJEppLdXrNWiDt34DRk8wqUgMazU7cm1nPTcDT29pC20YKABzeCJQADMAJ24kMhAcCCQAZiddVxAAWh4ICB4AIxgcOj90rK4c6nykex0XNga6CSMZHgBeHkY0djoqmvLmkEzsxGK8gsRTEt63fokBUfGGSenqnjnLBdaujrWNnoiKmbr+hQp5IA
+#align(center, commutative-diagram(
+  node((0, 0), [$hom (y', x_1)$]),
+  node((1, 0), [$hom (y', x_2)$]),
+  node((1, 1), [$hom (y, x_2)$]),
+  node((0, 1), [$hom (y, x_1)$]),
+  arr((0, 0), (0, 1), [$- oo beta$]),
+  arr((0, 0), (1, 0), [$eta_(y') = alpha oo -$]),
+  arr((0, 1), (1, 1), [$eta_y = alpha oo -$]),
+  arr((1, 0), (1, 1), [$- oo beta$]),
+))
+
+We see that $(alpha oo -) oo (- oo beta) = alpha oo - oo beta =(- oo beta) oo  (alpha oo -)$ and hence the diagram commutes. 
+
+#proposition[
+$F in Psh(cC)$ is representable if and only if $F$ in the essential image of $Y$.
+]
+
+
+#example[Define functor $PP in Psh(Set)$
+    $ PP : Set^op &-> Set \ 
+    A &|-> "power set of " A \ 
+    (f : A-> B) &mapsto f^(-1) : PP(B) -> PP(A) $
+    In other words, $PP(f)(S) = f^(-1)(S)$ for $S subset.eq B$. Then $PP$ is representable.
 ]
 
 #proof[
@@ -528,35 +558,75 @@ This is a consequence of Yoneda's Lemma.
 
 #lemma[
     $x in cC$ and $F in Fun(C^op, Set)$. The canonical restriction map: 
-    $ "res": hom (Y(x), F) -> F(x) $
+    $ "res": hom_(prshv(x)) (Y(x), F) &-> F(x) \ 
+        (eta: Y(x) => F) &mapsto eta_x (id_x)
+     $
     is a bijection.
     
-    If $eta: Y(x) => F$ is a natural transformation, then we send it to $eta_x (id_x)$. Notice $eta_x : hom(x, x) -> F(x)$ where $id_x in hom(x, x)$.
+   Notice the natural transformation $eta$ has $x$-component $ eta_x : hom(x, x) -> F(x) $ and $id_x in hom(x, x)$, and therefore $eta_x (id_x) in F(x)$.
 ]
 Lemma 2.10 in notes.
 #proof[
-    What can the inverse be?
-    Suppose we have $a in F(x)$. We want to contruct $zeta(a): Y(x) => F$, a natural transformation. Consider its component $zeta(a)_(x')$, which we define to send every $g : x' -> x$ to $F(g)(a)$. (The only natural thing to do.)
+    [Constructing the inverse $zeta : F(x) -> hom_(prshv(x)) (Y(x), F)$.]
+    Let $a in F(x)$. We want to construct a natural transformation $zeta(a): Y(x) => F$. Consider its $y$-component for $y in cC$ $ zeta(a)_(y) : Y(x)(y) -> F(y) $ 
+    
+    Notice this is a function between two sets. Also notice $Y(x)(y) equiv Hom(C)(y, x)$ by definition, hence we only need to consider what element in $F(y)$ to which we should send each $g : y -> x$. Remembering $F$ is a contravariant functor we have $ F(g): F(x) -> F(y) $
+    Also $a in F(x)$. Hence we define 
+    $ zeta(a)_(y) : Hom(C)(y, x) &-> F(y) \ g  &|-> F(g)(a) $ 
+    
+    [Showing $zeta(a)$ is a natural transformation.]
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAkIBbACgGEAlAAIeATwD6AJlJCAHgJABfUuky58hFAEZyVWoxZtOvQSIk65C5aux4CRMlr31mrRCABiYqVZUgMthpEOk7ULobuXuZWejBQAObwRKAAZgBO3EhkIDgQSDr6rmwAtEIQEEKMaAAWdEp+6ZmI2blI0oURIABeMDh0PHQC4t6SvqkZXPnUrYgAzGEGbt29-YPD0fXjTe0z8x1LXlW1MYpAA
+#align(center, commutative-diagram(
+  node((0, 0), [$Hom(C) (y_2, x)$]),
+  node((0, 1), [$Hom(C) (y_1, x)$]),
+  node((1, 0), [$F(y_2)$]),
+  node((1, 1), [$F(y_1)$]),
+  arr((0, 0), (0, 1), [$- oo alpha$]),
+  arr((0, 0), (1, 0), [$zeta(a)_(y_2)$]),
+  arr((0, 1), (1, 1), [$zeta(a)_(y_1)$]),
+  arr((1, 0), (1, 1), [$F(alpha)$]),
+))
+    Let $f: y_2 -> x$. Then $zeta(a)_(y_2) (f) = F(f) (a)$ and $F(alpha)(F(f)(a)) = F(f oo alpha)(a)$. On the other hand, $zeta(a)_(y_1)(f oo alpha) = F(f oo alpha)(a)$. Hence the above diagram commutes.
 
-    We need to prove $zeta(a)$ is a natural transformation.
-    (See photo.) Don't forget $F$ is a contravariant functor.
+    // This is the only natural thing to do. 
+    // To sum up,
 
-    Now we need to show $zeta$ is an inverse to $"res"$. 
+    // $
+    //     zeta: F(x) &-> hom_(prshv(x)) (Y(x), F) \
+    //     a &mapsto {(g: y-> x) mapsto F(g )(a)}_(y in cC)
+    // $
 
-    For all $a in F(x)$, 
+    //  Don't forget $F$ is a contravariant functor.
+
+    [Showing $zeta$ is an inverse to $"res"$.]  For all $a in F(x)$, 
     $
         "res" oo zeta(a) = zeta(a)_x (id_x) = F(id_x)(a) = id_(F(x))(a) = a
     $
 
-    For all $eta : Y(x) => F$, 
+    For all $eta : Y(x) => F$, we have $zeta oo "res"(eta) = zeta(eta_x (id_x)) : Y(x) => F$. For $y in cC$ and $g : y-> x$,
     $
-        zeta(eta_x(id_x))_y (g: y->x) = F(g)(eta_x (id_x)) = eta_y (id_x oo g) = eta_y (g)
+        zeta(eta_x (id_x))_y (g) = F(g)(eta_x (id_x)) = eta_y (id_x oo g) = eta_y (g)
     $
+    where we notice since $eta$ is a natural transformation, the following commutes:
 
-    using def of $zeta$ and that $eta$ is a natural transformation. 
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAkIBbACgGEAlDwAepAATCBIAL6l0mXPkIoAjOSq1GLNp16CeAT3GSZckBmx4CRMio31mrRCABiIqbPmWlRNXeoO2s5uBh4aMFAA5vBEoABmAE7cSGQgOBBIapqObAC0YhAQYpGm8UlcSABM1OlIAMwBWk6uPJEeZonJiKm1iNXZQSAwOHQA+sKlIJ0ViFm9DQPNw2MGMhTSQA
+#align(center, commutative-diagram(
+  node((0, 0), [$Hom(C)(x, x)$]),
+  node((0, 1), [$Hom(C)(y, x)$]),
+  node((1, 0), [$F(x)$]),
+  node((1, 1), [$F(y)$]),
+  arr((0, 0), (0, 1), [$- oo g$]),
+  arr((1, 0), (1, 1), [$F(g)$]),
+  arr((0, 0), (1, 0), [$eta_x$]),
+  arr((0, 1), (1, 1), [$eta_y$]),
+))
+
+    // using def of $zeta$ and that $eta$ is a natural transformation. 
+]
+#remark[
+You just do  the only thing that makes sense at every step. Just write it yourself. 
 ]
 
-You just the only thing that makes sense at every step. Just write it yourself. 
 
 = Lecture 8
 
@@ -564,7 +634,7 @@ You just the only thing that makes sense at every step. Just write it yourself.
     The Yoneda functor is fully faithful.
 ]
 
-This means if you take $x, y in cC$ and $ Y: hom(C)(x, y) -> hom_prshv(cC)(Y(x), Y(y)) $ is a bijection. 
+This means if you take $x, y in cC$ and $ Y: Hom(C)(x, y) -> hom_prshv(cC)(Y(x), Y(y)) $ is a bijection. 
 
 #proof[
     Specialise $F = Y(y)$ in Yoneda Lemma. Inverse $zeta: Y(y)(x) -> hom_prshv(cC)(Y(x), Y(y))$ is a bijection. Only need to check that $zeta$ is the same as $Y$ on $Hom(C)(x, y)$. 
