@@ -1327,6 +1327,123 @@ See @notes[Lemma 2.32] and @weibel[Lemma 1.4.5].]
 
 (This is the end of lecture 7.)
 
+#definition[
+Translation $ (C[p])_n := C_(n+p) $
+
+$ (C[p])^n := C^(n-p) $
+
+differential is $(-1)^p d $
+
+]
+
+$(C[p])_0 = C_p$
+
+$H_n (C[p]) = H_(n+p) (C)$
+
+$f: Ccx -> Dcx$ => $f[p]_n = f_(n+p)$ so we get a functor $[p]: Ch(cA) -> Ch(cA)$
+
+Note: $Ch(cA)$ is also an abelian category if $cA$ is an abelian category. 
+
+#definition[
+$ses(A_cx, B_cx, Ccx)$ is ses iff $ses(A_n, B_n, C_n)$ is ses for all $n$.
+
+]
+
+Long exact sequence. 
+
+#theorem[
+  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a ses of chain complexes, there is a natural map $ diff: H_n (C) -> H_(n-1) (A) $ (connecting homomorphism) making (TODO) a long exact sequence. 
+
+  Same with cochain complexes, with the connecting homomorphism 
+  $ diff : H^n\(C) -> H^(n+1)(A) $
+]
+
+#proof[
+  This is an application of the snake lemma. 
+
+  TODO
+
+  Apply snake lemma, twice.
+
+  Putting all these exact sequences together, we get the long exact sequence.
+]
+
+#example[
+  Show that there exists a functor 
+
+  category of ses of complexes in $cA$
+  ->
+  category of les in $cA$
+
+  We just construct the object maps, still need to verify it works on the morphisms and thus it is a functor.
+]
+
+
+#definition[
+  Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$ with $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
+  $ ... -> P_2 rgt(d) P_1 rgt(d) P_0 rgt(epsilon) M -> 0 $
+  is exact.
+
+  If each $P_i$ is projective, then we call it a *projective resolution*.
+
+  In the same way, we define *right resolutions* and *injective resolutions*, only reversing all the arrows. 
+]
+
+#remark[
+  $P_cx$ is a resolution iff (TODO) is a quasi-isomorphism. 
+]
+
+(Some more remark...?)
+
+Instead of working with a complicated object $M$, we are working with a complex of "simple" objects.
+
+#lemma[
+  If $cA$ has enough projectives, then every object has a projective resolution.
+]
+
+#proof[
+  (5.20)
+
+  Let $epsilon_0: P_0 -> M$ be an epi where $P_0$ is projective.
+  Let $M_0 := ker epsilon_0$. 
+  
+  By induction, given $M_(n-1) = ker d_(n-1)$, we let $epsilon_n : P_n -> M_(n-1)$ be an epi where $P_n$ is projective.  $d_n$ is the composite $P_n -> M_(n-1) -> P_(n-1)$. The image of $d_n$ is $ d_(n) (P_n) = M_(n-1) = ker d_(n-1) $ and hence exact.
+
+  (TODO A very nice commutative diagram!!)
+]
+
+(Some remarks...)
+
+Dually we get the same construction for injective resolutions. 
+
+In the case of $RMod$, we can work with free resolutions instead of just projective ones. 
+
+#theorem(name: "Comparison theorem")[
+  Let $P_cx rgt(epsilon) M$ be a projective resolution of $M$ (enough to assume $P_cx$ is a complex with projective objects). Let $f': M->N$. Then for every resolution $eta: Q_cx -> N$, there is a chain map $f: P_cx -> Q_cx$ lifiting $f'$, i.e. $ eta oo f = f' oo epsilon $
+
+  which is unique up to a chian homotopy eq. (Any two choices of lifting are homotopic.)
+]
+
+#proof[
+  Suppose $f_n$ has been constructed... TODO
+
+  The uniqueness is an exercise. Or check the book.
+]
+
+#lemma(name: "Horseshoe lemma")[
+  Suppose $ses(A', A, A'')$ is a ses, and $P' rgt(epsilon') A'$ and $P'' rgt(epsilon'') A''$ are projective resolutions. Then there exists a projective resolution $P rgt(epsilon) A$ such that $P_n = P_n' ds P_n''$ such that 
+
+  $
+    0 -> P' rgt(i) P rgt(pi) P'' -> 0
+  $
+  is a ses of complexes where $i$ is the canonical inclusion (mono) and $pi$ is the canonical proj.
+]
+(Some remark...)
+#proof[
+  TODO.
+]
+(This is the end of lecture 8.)
+
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
