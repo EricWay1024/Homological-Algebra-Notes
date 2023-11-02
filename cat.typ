@@ -605,7 +605,7 @@ Lemma 2.10 in notes.
 
     For all $eta : Y(x) => F$, we have $zeta oo "res"(eta) = zeta(eta_x (id_x)) : Y(x) => F$. For $y in cC$ and $g : y-> x$,
     $
-        zeta(eta_x (id_x))_y (g) = F(g)(eta_x (id_x)) = eta_y (id_x oo g) = eta_y (g)
+        zeta(eta_x (id_x))_y (g: y-> x) = F(g)(eta_x (id_x)) = eta_y (id_x oo g) = eta_y (g)
     $
     where we notice since $eta$ is a natural transformation, the following commutes:
 
@@ -637,10 +637,14 @@ You just do  the only thing that makes sense at every step. Just write it yourse
 This means if you take $x, y in cC$ and $ Y: Hom(C)(x, y) -> hom_prshv(cC)(Y(x), Y(y)) $ is a bijection. 
 
 #proof[
-    Specialise $F = Y(y)$ in Yoneda Lemma. Inverse $zeta: Y(y)(x) -> hom_prshv(cC)(Y(x), Y(y))$ is a bijection. Only need to check that $zeta$ is the same as $Y$ on $Hom(C)(x, y)$. 
+    Specialise $F = Y(y)$ in Yoneda Lemma. 
+    We know the inverse $ zeta: Y(y)(x) -> hom_prshv(cC)(Y(x), Y(y)) $ is a bijection. 
+    We only need to check that $zeta$ is the same as $Y$ on $Hom(C)(x, y)$. 
 
-    If $alpha in Hom(C)(x, y)$, then $zeta(alpha): Y(x) => Y(y)$ and then $ zeta(alpha)_(x') (g: x' -> x) = F(g)(alpha) = alpha oo g $
-    This is the same as $Y$. 
+    If $alpha in Hom(C)(x, y)$, then $zeta(alpha): Y(x) => Y(y)$ and then $ zeta(alpha)_(x') (g: x' -> x) = F(g)(alpha) =  Y(y)(g)(alpha) = alpha oo g $
+    where for $Y(alpha) : Y(x) => Y(y)$, we also have 
+    $ Y(alpha)_(x')(g: x'-> x) = alpha oo g $
+    Thus $zeta = Y$ on $Hom(C)(x, y)$ and thus $Y$ is fully faithful.
 ]
 
 #remark[
@@ -650,26 +654,41 @@ This means if you take $x, y in cC$ and $ Y: Hom(C)(x, y) -> hom_prshv(cC)(Y(x),
     This fits into the philoshpy that objects interact with other objects in the category. You identify an object $x$ by how it interact with other objects. 
 ]
 
-#example[
-    $G$ group, then take the groupoid $ast over G$ and $End _(ast) = G$. 
 
-    $prshv(ast over G) = F : (ast over G)^op -> Set$  Then $F(ast) = X$, a set. 
+#corollary(name: "Cayley's Theorem")[
+    Any group $G$ is isomorphic to a subgroup of a permutation group.
+]
 
-    $F(g oo_op h) = F(g) oo F(h)$
+#proof[
+    Take the groupoid $ast over G$ with $end(*) = G$. Consider $F in prshv(ast over G)$:
+    $
+        F : (ast over G)^op &-> Set \
+        ast &mapsto X\
+        g &mapsto (x |-> x dot g)
+    $
 
-    Define right $G$-action on $X$: 
+    where we have composition $F(h oo g) = F(g) oo F(h)$ and define right $G$-action on $X$: 
     $ x dot g = F(g)(x) $
 
-    Then $prshv(ast over G) = G"-sets"$ 
 
-    What about natural transformations? $G$-equivalent maps. $phi: X_1 -> X_2$ such that $phi(x_1 dot g) = phi(x_1) dot g$.
+    Natural transformations between two such functors are $G$-equivariant maps $phi: X_1 -> X_2$ such that $phi(x_1 dot g) = phi(x_1) dot g$. Thus $Psh(ast over G)$ has objects as right $G$-sets and morphisms as $G$-equivariant maps. We use $Set_G$ to denote the category of right $G$-sets, and we see $Psh(ast over G) = Set_G$.
+    // Then $prshv(ast over G) = G"-sets"$ 
 
-    By Yoneda, we know that $ast over G arrow.hook G"-sets"$ and $ast mapsto Y(ast) iso G$ (a set with right $G$-action).
+    By Yoneda embedding $ C arrow.hook Psh(C)$ we have 
+    $
+        ast over G &arrow.hook Set_G \
+        ast &mapsto Y(ast) = hom (-, ast) iso G
+    $
 
-    Using the res function,
-    $forall G"-set" X$, we have $Hom_(G"-set")(G, X) bij X$ that $f: G-> X$ maps to $f(e_G)$
+    (Because the only possible input for $Y(ast)$ is $ast$ which produces $hom (ast, ast) = G$.) Here $G$ is seen as a right $G$-set.
 
-    Take $X = G$, we have $ G iso hom_(G"-set")(G, G) arrow.hook hom_Set (G, G) = "Perm"(G) $ 
+
+    Using the $"res"$ function,
+    for any right $G$-set $X$, we have $
+        hom_(Set_G)(G, X) &bij X \ (f: G-> X) &|-> f(e_G)
+        $
+
+    Taking $X = G$, we have $ G iso hom_(Set_G)(G, G) attach(arrow.hook, t: "Forget") hom_Set (G, G) = "Perm"(G) $ 
 
     This is Cayley's Theorem in group theory.
 ]

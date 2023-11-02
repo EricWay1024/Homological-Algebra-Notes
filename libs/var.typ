@@ -5,9 +5,8 @@
 #let homk = [$op("Hom")_k$]
 
 #let hom = [$op("Hom")$]
-#let Hom = [$op("Hom")$]
 #let Hom(c) = [$op("Hom")_cal(#c)$]
-#let End = [$op("End")$]
+#let end = [$op("End")$]
 #let End(c) = [$op("End")_cal(#c)$]
 #let tp = [$times.circle$]
 #let ds = [$plus.circle$]
