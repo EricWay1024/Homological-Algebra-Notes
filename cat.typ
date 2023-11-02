@@ -698,17 +698,22 @@ This means if you take $x, y in cC$ and $ Y: Hom(C)(x, y) -> hom_prshv(cC)(Y(x),
 ]
 
 #remark[
-    Contravariant Yoneda embedding. $cC -> Fun(cC, Set)^op$ that $x mapsto Hom(C)(x, -)$
+    // Contravariant Yoneda embedding. $cC -> Fun(cC, Set)^op$ that $x mapsto Hom(C)(x, -)$
+    // corepresentable functors
+    // We will use the covaraint version.
+    Using categorical duality one also has a contravariant Yoneda embedding
 
-    corepresentable functors
+$ cal(C) arrow.r "Fun"lr((cal(C) comma Set))^op $
 
-    We will use the covaraint version.
+given by sending $x arrow.r.bar "Hom"_(cal(C)) lr((x comma minus))$.
+Functors in the essential image of the contravariant Yoneda functor are
+known as *corepresentable functors*.
 ]
 
-#definition[
-Essential image of $Y$ is called *representable functors*. 
+// #definition[
+// The essential image of $Y$ is called *representable functors*. 
 
-]
+// ]
 
 #example[
   If $cC$ is a category, we can define the centre of $cC$ as $End (id_cC)$. (all nat trans $id_cC => id_cC$ where $id_cC$ is the identity functor)
@@ -717,37 +722,102 @@ Essential image of $Y$ is called *representable functors*.
     + Can you prove 2 as a consequence of Yoneda's Lemma?
 ]
 
-Formal adjoints. 
+== Formal adjoints
+Let
+$"Fun"lr((cal(C)^(o p) comma Set))^"repr" arrow.r.hook "Fun"\(cal(C)^(o p)$,
+Set $paren.r$ be the subcategory of representable functors, i.e. the
+essential image of the Yoneda functor. Combining Yoneda lemma with
+Theorem 1.13(TODO) we see that the functor
+$cal(C) arrow.r "Fun"lr((cal(C)^(o p) upright(", Set ")))^"repr"$ is
+an equivalence and so there is a functor
 
-$F: cC -> cD$. Does $F$ have a right adjoint? 
-The formal right adjoint of $F$ is $F^"fra": cD -> prshv(cC)$ that $y mapsto Hom(D) (F(-), y)$ and $g: y_1 -> y_2$ maps to post composition.
+$ P colon "Fun"lr((cal(C)^(o p) comma upright(" Set ")))^"repr" arrow.r cal(C) $
+such that $Y tack.l P$ forms an adjoint equivalence. 
+
+
+// $F: cC -> cD$. Does $F$ have a right adjoint? 
+#definition[
+The *formal right adjoint* of a functor $F : cC -> cD $ is  a functor
+    $ F^"fra": cD &-> prshv(cC) \ y &mapsto Hom(D) (F(-), y) \ (g: y_1 -> y_2) &mapsto g oo - $ 
+]
 
 #proposition[
     $F$ has a right adjoint $G$ if and only if for all $y in cD$, the $F^"fra" (y) in prshv(cC)$ is representable. 
 ]
+#proof[
+    $=>$.
+We have a natural isomorphism
+$"Hom"_(cal(D)) lr((F x comma y)) tilde.equiv "Hom"_(cal(C)) lr((x comma G y))$
+for every $x in cal(C)$ and $y in cal(D)$. Therefore, the functor
+$F^"fra" lr((y))$ is representable by the functor
+$"Hom"_(cal(C)) lr((minus comma G y))$. 
+
+$arrow.l.double$. We define the right adjoint $G$ to be the composite
+$G eq P compose F^"fra"$, where
+$P colon "Fun" lr((cal(C)^(o p) comma "Set"))^"repr" arrow.r cal(C)$
+is the inverse to the Yoneda embedding $Y$.
+
+To show that $F tack.l G$, we have to construct an isomorphism
+$"Hom"_(cal(D)) lr((F x comma y)) tilde.equiv "Hom"_(cal(C)) lr((x comma G y))$
+natural in $x$ and $y$. It is constructed in the following way:
+
+$ "Hom"_(cal(C)) lr((x comma G y)) & eq "Hom"_(cal(C)) lr((x comma P F^"fra" y))\
+ & tilde.equiv "Hom"_(prshv(cC)) lr((Y x comma F^"fra" y))\
+ & tilde.equiv F^"fra" lr((y)) lr((x))\
+ & eq "Hom"_(cal(D)) lr((F x comma y)) comma $
+
+where in the second line we have used the adjoint equivalence
+$Y tack.l P$ and in the third line we applied the Yoneda lemma.
+]
+// #proof[
+//     =>. If $F tack.l G$, then 
+//     $ Hom(D) (F(x) , y) iso Hom(C) (x, G(y)) $
+//     then $F^"fra" (y) iso Hom(C)(-, G(y))$ is represented by $G(y)$.
+
+//     <=. If $F^"fra" (y)$ is representable for all $y in cD$, then $F^"fra"$ lands in $prshv(cC)^"repr"$.
+
+//     A consequence of Yoneda embedding: 
+//     $ cC iso prshv(cC)^"repr"$
+
+//     Denote $P$ as $Y tack.l P$.
+
+//     Set $G = P oo F^"fra" : cD -> cC$ and then $Hom(C)(x, G(y))$
+
+//     (see photos)
+
+// ]
+
+In other words, adjoints can be thought of as factorizations of the
+diagram
+
+#block[
+#box(width: textwidth, img("2023_10_29_c96760a46085980a504cg-22(1)", width: textwidth))
+
+]
+More precisely, a right adjoint consists of a functor
+$G colon cal(D) arrow.r cal(C)$ and a natural isomorphism
+$Y G tilde.equiv F^"fra"$. Using Yoneda lemma one can
+give an easier proof of Theorem 2.4 (TODO):
+
+#theorem[
+A right adjoint, if it exists, is unique up to isomorphism.
+] 
 
 #proof[
-    =>. If $F tack.l G$, then 
-    $ Hom(D) (F(x) , y) iso Hom(C) (x, G(y)) $
-    then $F^"fra" (y) iso Hom(C)(-, G(y))$ is represented by $G(y)$.
+Indeed, suppose $G_1$ and $G_2$ are two right adjoints. Then we have
+isomorphisms
 
-    <=. If $F^"fra" (y)$ is representable for all $y in cD$, then $F^"fra"$ lands in $prshv(cC)^"repr"$.
+$ Y G_1 tilde.equiv F^"fra" tilde.equiv Y G_2 $
 
-    A consequence of Yoneda embedding: 
-    $ cC iso prshv(cC)^"repr"$
-
-    Denote $P$ as $Y tack.l P$.
-
-    Set $G = P oo F^"fra" : cD -> cC$ and then $Hom(C)(x, G(y))$
-
-    (see photos)
-
+Since the Yoneda embedding is fully faithful, a natural isomorphism
+$Y G_1 tilde.equiv Y G_2$ is equivalently a natural isomorphism
+$G_1 tilde.equiv G_2$.
 ]
-#remark[
-    We also know that a right adjoint, if it exists, is unique up to isomorphism. $F tack.l G_1$, $F tack.l G_2$, then $G_1 iso G_2$.
+// #remark[
+//     We also know that . $F tack.l G_1$, $F tack.l G_2$, then $G_1 iso G_2$.
 
-    $Y G_1 iso F^"fra" iso Y G_2 $, since $Y$ is fully faithful, $G_1 iso G_2$.
-]
+//     $Y G_1 iso F^"fra" iso Y G_2 $, since $Y$ is fully faithful, $G_1 iso G_2$.
+// ]
 
 
 = Limit and Colimits
