@@ -60,6 +60,11 @@
 
 #let Ch = [$"Ch"$]
 
+#let sest = [short exact sequence]
+#let lest = [long exact sequence]
+#let sess = [short exact sequences]
+#let less = [long exact sequences]
+
 #let theorem = thmbox(
   "theorem",
   "Theorem",
