@@ -830,3 +830,118 @@ There is no binary product $k times k$ for $k$ a field.
 
 Suppose there is, call it $P$. Then it has to come with two maps, $p_k^i : P -> K$. We take $W = K$.
 
+#example[
+    $I$ is a set, $X_i$ for $i in I$ are objects in $cC$. The product is an object $product_(i=I) X_i$ together with morphisms (projections) $ p_j: product_(i=I) X_i -> X_j $ such that if $W in cC$ has morphisms $h_j : X-> X_j$, then there exists unique $alpha: W -> product_(i=I) X_i$ such that $h_j = p_j oo alpha$. 
+]
+
+#example[
+    A final object is a product over an empty set. $ast in cC$ is final if for every $W in cC$ there exists unique $alpha : W -> ast$.
+]
+
+#example[
+    Equalisers. Suppose we have $f, g: x-> y$ in $cC$. Then $E in cC$ with a morphism $i : E-> x$ such that $ f oo i = g oo i $ such that for all $W in cC$ with $h : W-> X$ such that $f oo h = g oo h$, there exists unique $alpha: W -> E$ such that $h = i oo alpha$.
+]
+
+#example[
+    In $Set$, an equaliser of $f, g: X-> Y$ is the set $ {a in X : f(a) = g(a)} $ together with the inclusion map.
+]
+
+#example[
+    Fibre product (pullback). With $f : X-> Z$ and $g: Y->Z$, the fibre product $X times_Z Y$ in an object that comes with morphisms $q_X, q_Y$ to $X, Y$ respectively such that 
+    $ f oo q_X = g oo q_Y $
+    satisfying the universal property (which you can guess).
+]
+
+#example[In $Set$, 
+    $ X times_Z Y = {(x, y) : f(x) = g(y) } $
+    and $q_X$ (resp. $q_Y$) is the projection onto the first (resp. second) entry.
+]
+
+#remark[
+    $ X times_Z Y = Eq(f oo p_X, g oo p_Y : X times Y -> Z) $
+
+    Suppose $cC$ has an final object $ast$, then $ X times Y = X times_ast Z $ (?)
+]
+
+
+#definition[
+    Let $cC$ be a category. A functor $F : I -> C$ where $I$ is a small category is called a diagram of shape $I$. A limit of $F$ in $cC$ is an object $lim_I F in cC$ together with morphisms $p_i : lim_I F -> F(i)$ for all $i in I$, such that
+    - $forall g : i-> j in I$, we have $p_j = F(g) oo p_i$;
+    - Universal property, in the following sense: $forall W in cC$ and $h_i : W -> F(i)$ such that $F(g) oo h_i = h_j$, there exists a unique $h: W -> lim_I F$ such that $h_i = p_i oo h$. 
+]
+
+#example[ How do the previous examples fit in the definition?
+    - Product. We regard $I in Set$ as a discrete category. 
+    - Final object. Take $I$ as the empty category.
+    - Equaliser. Take $I = 0 arrows.rr 1$.
+]
+
+A better way of organising the definition is to introduce the notion of cones.
+
+#definition[
+    Given $F: I-> cC$, a *cone* on $F$ is an object $W in cC$ with morphisms $h_i : W-> F(i) $ in $cC$ for all $i in I$ such that $F(g) oo h_i = h_j$ for all $g : i -> j$ in $I$.
+]
+#let Cone = [$bd("Cone")$]
+
+Category of cones. The objects are cones $(W, (h_i))$; morphism from $(W, (h_i))$ to $(W', (h'_i))$ is a morphism $alpha : W-> W' in cC$ such that $h_i = h'_i oo alpha$ for all $i$. 
+
+
+#definition[
+    $lim_I F$ is a final object in $Cone(F)$. 
+]
+
+In particular, if a limit exists, it is unique up to unique isomorphism.
+
+#definition[
+    A category is *complete* if it has all limits. 
+]
+
+#proposition[
+    The category $Set$ has all limits. ($Set$ is complete.)
+]
+#proof[
+    $Set$ has products (Cartesian products).
+
+    For diagram $F : I-> Set$, define $
+        lim_I F := {(a_i) in product_(i in I) F(i) : forall g : i->j, a_j = F(g) (a_i)}
+    $
+    with the projections $p_i$ as projection onto the $i$-th factor. Check the universal property yourself.
+]
+
+Generalisation.
+
+#theorem[
+    $cC$ is complete if and only if $cC$ has products and equalisers.
+]
+#proof[
+    Take $F: I->cC$ and $g: i-> j$.
+    We can think of the cone condition as (\*)
+    $
+        product_(k in I) F(k) arrows.rr^(p_j)_(F(g) oo p_i) F(j)
+    $
+
+    $p_j$ is the projection.
+
+    Consider $Fun([1], I)$, this is the category of all arrows in $I$, and thus $g: i-> j in Fun([1], I) =: J$.
+
+    Define $tilde(F): J-> C$, where $tilde(F) (g: i->j) = F(j)$. Thus (\*) is a cone on $tilde(F)$.Because the products exist, there exists unique maps 
+    $
+        product_(k in I) F(k) -> product_(g in J) F(j) = lim_J tilde(F)
+    $
+    using the universal property of $lim_J tilde(F)$. 
+
+    Then set $lim_I F$ to be the equaliser of this diagram.
+
+    (Not well explained...)
+]
+
+Suppose a category $cC$ has all limits of shape $I$.  Then we can think of $lim_I$ as a functor
+$
+    lim_I : Fun(I, cC) &-> cC \
+    F &mapsto lim_I F \
+    eta: F_1 => F_2 &mapsto ("TODO")
+$
+
+Tmr:
+
+$lim_I$ has a left adjoint which is $ Delta: cC -> Fun(I, cC) $ diagonal functor. 
