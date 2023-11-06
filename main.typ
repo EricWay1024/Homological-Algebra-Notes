@@ -1756,6 +1756,107 @@ See @weibel[Horseshoe Lemma 2.2.8].
 ]
 (This is the end of lecture 8.)
 
+== $delta$-functors
+
+#definition[
+  Let $cA, cB$ be abelian catefoies. A homological (co-) $delta$-functor between $cA$ and $cB$ is a collection of functors $T_n: cA -> cB$ of additive functors for $n >= 0$ with morphisms $ delta_n : T_n(C)  -> T_(n-1)(cA) $ defined for each #sest $ses(A, B, C)$ in $cA$, such that 
+  $ ... -> T_(n+1)(c) ->^delta T_n (A) -> T_n(B) -> T_n(C) rgt(delta) T_(n-1)(A) -> ... $
+  is a #lest; (So $T_0$ is right exact.)
+
+  For each morphism of #sess, (TODO), we get a commutative diagram (TODO)
+
+  Cohomology (TODO)
+]
+
+#example[
+  Homology is a homological $delta$-functor.
+  $ 
+    H_ast : Ch_(>= 0)(cA) -> cA
+  $
+
+  Also, cohomology.
+]
+
+#example[
+  For any integer $p$, define $T_(0)(A) = A over p A$ and $T_1(A) = p A = {a in A | p a = 0}$ and $T_n = 0$ for $n >= 2$ gives a homological $delta$-functor from $Ab -> Ab$, by the Snake Lemma,
+  TODO
+]
+
+#let dftor = [$delta$-functor]
+
+#definition[
+  A morphism of $delta$-functors is a collection of natural transformations $S_n -> T_n$ which commutes with $delta$. A homological $delta$-functor $T = {T_n}$ is *universal* if given any other $delta$-functor $S = {S_n}$ and a natural transformation $f_0: S_0 -> T_0$, there exists a unique morphism $ {f_n : S_n -> T_n} $ of #dftor extending $f_0$. 
+]
+#definition[
+  A cohomological #dftor $T$ is *universal* if given $S$ and $f^0 : T^0 -> S^0$, there exists a unique extension $T->S$.
+]
+
+#example[
+  If $F : cA -> cB$ is exact, then $T_0 = F$, $T_1 = 0$, for $n != 0$ is a universal #dftor.
+]
+
+How to construct a universal #dftor? In categories with enough projectives or injectives, derived functors work.
+
+
+== Derived functors 
+
+#definition[
+Let $F : cA -> cB$ be right exact. Assume $cA$ has enough projectives. For any $A in ob cA$, pick a projective resolution $P_(cx) ^A -> A$. $ L_i F(A) := H_i (F(P_cx^A)) in cB $ is the *$i$-th left derived functor*.
+
+]
+
+Since $F(P_1) -> F(P_0) arrow F(A) -> 0$ is exact, we set $L_0 F(A) iso F(A)$.
+
+#lemma[
+  If $P_cx -> A$ and $Q_cx -> A$ are two projective resolutions, then there is a canonical isomorphism 
+  $ H_i (F(P_cx)) bij H_i (F(Q_cx)) $
+]
+This means the choice in the definition does not matter.
+
+#proof[
+  By the comparison lemma, there is a chain map $f: P_cx -> Q_cx$ lifting the identity $id_A : A->A$, unique up to homotopy, giving $f_ast : H_i F(P_cx) -> H_i F(Q_cx)$. Any other lift $f' : P_cx -> Q_cx$ is chain homotopic to $f$ so $f_ast = f'_ast$.
+  (TODO)
+  So $f_ast$ is canonical. We can also lift the identity to a map $g: Q_cx -> P_cx$, so we get $g_ast : H_i F(Q) -> H_i F(P)$. Notice we can compose the two maps and $g oo f : P_cx -> P_cx$ and $id_P : P_cx -> P_cx$ are both lifts of the identity. Then we apply the comparison theorem to $P$ itself, so $ g_* f_* = (g f)_* = (id_P)_* $ and similarly 
+  $ f_* g_* = (id_Q)_* $
+]
+
+#corollary[
+  If $A$ is projective, then $L_i F (A) = 0$ for $i != 0$.
+]
+
+#lemma[
+  If $f : A' -> A$ a morphism in $cA$, then there is a natural map $ L_i F(f) : L_i F(A') -> L_i F(A) $ 
+]
+#proof[
+  Let $P'_cx -> A'$ and $P_cx -> A$ be chosen resolutions. So $f$ lifts to a map $tilde(f) : P'_cx -> P_cx$. This gives a map $tilde(f_ast) : H_i F(P'_cx) -> H_i F(P_cx)$ as any other lift is homotopic to $tilde(f)$, the map $tilde(f_ast)$ is independent of the lift. 
+]
+
+#proposition[
+  $L_i F$ is an additive functor from $cA$ to $cB$. 
+]
+#proof[
+  It is the same again. $id_P$ lifts $id_A$. So $L_i F(id_A) = id_(L_i F(A))$. Given $A' rgt(f) A rgt(g) A''$ and lifts $tilde(f), tilde(g)$, then $tilde(g) oo tilde(f )$ is a lift of $g oo f$, so $g_ast oo f_ast = (g f)_ast$.  So $L_i F$ is a functor. 
+  
+  If $f_1, f_2 : A' -> A$ with lifts $tilde(f_1), tilde(f_2)$, then $tilde(f_1) + tilde(f_2)$ lifts $f_1 -> f_2$, so $f_(1 ast) + f_(2 ast) = (f_1 + f_2)_ast$. So $L_i F$ is additive.
+] 
+
+#theorem[
+  ${L_i F}$ form a homological #dftor. They form a universal homological #dftor.
+]
+We never use the fact that it is unviersal. Check the book for proof.
+#proof[
+  Given a #sest $ ses(A', A, A'') $ and projective resolutions $P' -> A'$ and $P'' -> A''$, there is a projective resolution $P-> A$ such that $ses(P', P, P'')$ is a #sest of resolutions and $ses(P'_n, P_n, P''_n)$ is split (being split is important!) by the Horseshoe Lemma. As $F$ is additive, $
+    ses(F(P'_n), F(P_n), F(P''_n))
+  $
+  is still exact in $cB$. Hence 
+  $
+    ses(F(P'), F(P), F(P''))
+  $
+  is a #sest of complexes. Hence we have the connecting maps and it gives a #lest.
+]
+(This is the end of lecture 9.)
+
+
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
