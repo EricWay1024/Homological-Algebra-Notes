@@ -1384,6 +1384,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 See @rotman[Proposition 5.100]. 
 ]
 
+= Short and Long Exact Sequences
 #definition[ For chain complexes $A_cx, B_cx, Ccx$,
 $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, C_n)$ is a short exact sequence for all $n$.
 ]
@@ -1485,7 +1486,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, 
   We just construct the object maps, still need to verify it works on the morphisms and thus it is a functor.
 ]
 
-
+= Resolutions
 #definition[
   Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$ with $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
   $ ... -> P_2 rgt(d) P_1 rgt(d) P_0 rgt(epsilon) M -> 0 $
@@ -1756,56 +1757,82 @@ See @weibel[Horseshoe Lemma 2.2.8].
 ]
 (This is the end of lecture 8.)
 
-== $delta$-functors
+= $delta$-functors
+
+See @weibel[Section 2.1].
 
 #definition[
-  Let $cA, cB$ be abelian catefoies. A homological (co-) $delta$-functor between $cA$ and $cB$ is a collection of functors $T_n: cA -> cB$ of additive functors for $n >= 0$ with morphisms $ delta_n : T_n(C)  -> T_(n-1)(cA) $ defined for each #sest $ses(A, B, C)$ in $cA$, such that 
-  $ ... -> T_(n+1)(c) ->^delta T_n (A) -> T_n(B) -> T_n(C) rgt(delta) T_(n-1)(A) -> ... $
-  is a #lest; (So $T_0$ is right exact.)
-
-  For each morphism of #sess, (TODO), we get a commutative diagram (TODO)
-
-  Cohomology (TODO)
+  Let $cA, cB$ be abelian categories. A *homological $delta$-functor* (resp. *cohomological $delta$-functor*) between $cA$ and $cB$ is a collection of of additive functors $T_n: cA -> cB$ (resp. $T^n : cA -> cB$)  for $n >= 0$ together with morphisms 
+  $ delta_n : T_n (C)  -> T_(n-1)(A) $ 
+  $ "(resp." quad delta^n : T^n (C)  -> T^(n+1)(A) ")" $
+   defined for each #sest $ses(A, B, C)$ in $cA$, such that 
+  #enum(block(width: 100%)[
+    $ ... -> T_(n+1)(C) ->^delta T_n (A) -> T_n (B) -> T_n (C) rgt(delta) T_(n-1)(A) -> ... $
+    $ "(resp." ... -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... ")" $
+    is a #lest and $T_0$ is right exact (resp. $T^0$ is left exact);
+  ],
+  [
+    For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s give a commutative diagram 
+    #align(center,image("imgs/2023-11-06-21-12-16.png",width:80%))
+  ])
 ]
 
 #example[
-  Homology is a homological $delta$-functor.
+  Homology gives a homological $delta$-functor
   $ 
     H_ast : Ch_(>= 0)(cA) -> cA
   $
 
-  Also, cohomology.
+  Cohomology gives a cohomologicla $delta$-functor $ H^ast : Ch^(>= 0) (cA) -> cA $
 ]
 
 #example[
-  For any integer $p$, define $T_(0)(A) = A over p A$ and $T_1(A) = p A = {a in A | p a = 0}$ and $T_n = 0$ for $n >= 2$ gives a homological $delta$-functor from $Ab -> Ab$, by the Snake Lemma,
-  TODO
+   If $p$ is an integer, the functors
+$T_0 lr((A)) eq A slash p A$,
+$ T_1 lr((A)) eq zws_p A equiv brace.l a in A colon p a eq 0 brace.r $
+and $T_n = 0$ for $n >= 2$
+fit together to form a homological $delta$-functor, or a cohomological
+$delta$-functor \(with $T^0 eq T_1$ and $T^1 eq T_0$ ) from $Ab$
+to $Ab$. To see this, apply the Snake Lemma to #align(center,image("imgs/2023-11-06-21-52-48.png",width:50%)) to get the exact
+sequence
+$ 0 arrow.r zws_p A arrow.r zws_p B arrow.r zws_p C arrow.r^delta A slash p A arrow.r B slash p B arrow.r C slash p C arrow.r 0 $
+
+
+  // For any integer $p$, define $T_(0)(A) = A over p A$ and $T_1(A) = p A = {a in A | p a = 0}$ and $T_n = 0$ for $n >= 2$ gives a homological $delta$-functor from $Ab -> Ab$, by the Snake Lemma,
+  // TODO
 ]
 
 #let dftor = [$delta$-functor]
 
 #definition[
-  A morphism of $delta$-functors is a collection of natural transformations $S_n -> T_n$ which commutes with $delta$. A homological $delta$-functor $T = {T_n}$ is *universal* if given any other $delta$-functor $S = {S_n}$ and a natural transformation $f_0: S_0 -> T_0$, there exists a unique morphism $ {f_n : S_n -> T_n} $ of #dftor extending $f_0$. 
-]
+  A *morphism* $S->T$ of $delta$-functors is a collection of natural transformations $S_n -> T_n$ (resp. $S^n -> T^n$) which commutes with $delta$.  This is equivalent to saying that there is a commutative ladder diagram connecting
+the long exact sequences for $S$ and $T$ associated to any short exact
+sequence in $cA$.]
 #definition[
-  A cohomological #dftor $T$ is *universal* if given $S$ and $f^0 : T^0 -> S^0$, there exists a unique extension $T->S$.
+   A homological $delta$-functor $T = {T_n}$ is *universal* if, given any other $delta$-functor $S = {S_n}$ and a natural transformation $f_0: S_0 -> T_0$, there exists a unique morphism $ {f_n : S_n -> T_n} $ of #dftor extending $f_0$. 
+
+  // A cohomological #dftor $T$ is *universal* if given $S$ and $f^0 : T^0 -> S^0$, there exists a unique extension $T->S$.
+
+  A cohomological $delta$-functor $T$ is *universal* if, given $S$ and
+$f^0 colon T^0 arrow.r S^0$, there exists a unique morphism
+$T arrow.r S$ of $delta$-functors extending $f^0$.
 ]
 
 #example[
-  If $F : cA -> cB$ is exact, then $T_0 = F$, $T_1 = 0$, for $n != 0$ is a universal #dftor.
+  If $F : cA -> cB$ is exact, then $T_0 = F$ and $T_1 = 0$ for $n != 0$ defines a universal #dftor.
 ]
 
 How to construct a universal #dftor? In categories with enough projectives or injectives, derived functors work.
 
 
-== Derived functors 
+= Derived functors 
 
 #definition[
-Let $F : cA -> cB$ be right exact. Assume $cA$ has enough projectives. For any $A in ob cA$, pick a projective resolution $P_(cx) ^A -> A$. $ L_i F(A) := H_i (F(P_cx^A)) in cB $ is the *$i$-th left derived functor*.
+Let $F : cA -> cB$ be a right exact functor between two abelian categories. Assume $cA$ has enough projectives. For any $A in ob cA$, pick a projective resolution $P_(cx) ^A -> A$. Define $ L_i F(A) := H_i (F(P_cx^A))  $ as the *$i$-th left derived functor*.
 
 ]
 
-Since $F(P_1) -> F(P_0) arrow F(A) -> 0$ is exact, we set $L_0 F(A) iso F(A)$.
+Since $F(P_1) -> F(P_0) arrow F(A) -> 0$ is exact, we always have $L_0 F(A) iso F(A)$.
 
 #lemma[
   If $P_cx -> A$ and $Q_cx -> A$ are two projective resolutions, then there is a canonical isomorphism 
