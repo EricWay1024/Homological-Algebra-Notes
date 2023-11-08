@@ -865,7 +865,7 @@ Suppose there is, call it $P$. Then it has to come with two maps, $p_k^i : P -> 
 
 
 #definition[
-    Let $cC$ be a category. A functor $F : I -> C$ where $I$ is a small category is called a diagram of shape $I$. A limit of $F$ in $cC$ is an object $lim_I F in cC$ together with morphisms $p_i : lim_I F -> F(i)$ for all $i in I$, such that
+    Let $cC$ be a category. A functor $F : I -> C$ where $I$ is a small category is called a *diagram* of *shape* $I$. A *limit* of $F$ in $cC$ is an object $lim_I F in cC$ together with morphisms $p_i : lim_I F -> F(i)$ for all $i in I$, such that
     - $forall g : i-> j in I$, we have $p_j = F(g) oo p_i$;
     - Universal property, in the following sense: $forall W in cC$ and $h_i : W -> F(i)$ such that $F(g) oo h_i = h_j$, there exists a unique $h: W -> lim_I F$ such that $h_i = p_i oo h$. 
 ]
@@ -932,7 +932,7 @@ We thus get maps $phi = (phi_f)_((f : i->j) in I)$ and $psi = (psi_f)_((f : i->j
 $ product_(k in I) F lr((k)) arrows.rr^(phi)_(psi) product_(lr(( f: i arrow.r j)) in I ) F lr((j)) $
 
 by the universal property of the product (on the right-hand side).
-#footnote[Alternatively, we can write $i->j in upright(F u n) lr((lr([1]) comma I))$, where $"Fun" lr((lr([1]) comma I))$ is the category of arrows in $I$,
+#footnote[Alternatively, we can write $i->j in upright(F u n) lr((lr([1]) comma I))$, where $"Fun"lr((lr([1]) comma I))$ is the category of arrows in $I$,
 i.e. pairs of objects $i comma j in I$ together with a morphism
 $i arrow.r j$.]
 
@@ -974,16 +974,16 @@ the indexing set is empty), the identity functor \(if the indexing set
 has a single element) or can be constructed as an iterated application
 of binary products.
 ]
-Suppose a category $cC$ has all limits of shape $I$.  Then we can think of $lim_I$ as a functor
-$
-    lim_I : Fun(I, cC) &-> cC \
-    F &mapsto lim_I F \
-    eta: F_1 => F_2 &mapsto ("TODO")
-$
+// Suppose a category $cC$ has all limits of shape $I$.  Then we can think of $lim_I$ as a functor
+// $
+//     lim_I : Fun(I, cC) &-> cC \
+//     F &mapsto lim_I F \
+//     eta: F_1 => F_2 &mapsto ("TODO")
+// $
 
-Tmr:
+// Tmr:
 
-$lim_I$ has a left adjoint which is $ Delta: cC -> Fun(I, cC) $ diagonal functor. 
+// $lim_I$ has a left adjoint which is $ Delta: cC -> Fun(I, cC) $ diagonal functor. 
 
 = Lecture 10
 
@@ -1070,10 +1070,25 @@ We proved $cC$ is complete if and only if it has arbitary products and equaliser
     - $I != emptyset$;
     - For all $ i, j in I$, there exist $k in I$ and morphisms $k -> i$ and $k -> j$;
     - For all $i, j in I $ and morphisms $i arrows.rr^u_v j$, there exists $k in I$ and a morphism such that  $k -> i arrows_v^u j$ commutes.
+] 
+
+#proposition[
+A category is cofiltered if and only if it has cones for every finite diagram.
+]
+#proof[Informally, the definition is just asking for "non-universal final object" (which is _any_ object), "non-universal binary products" and "non-universal equalisers", so we get "non-universal limits", i.e. cones, for finite diagrams.
 ]
 
+#definition[
+    A category $I$ is *filtered* if (unsurprisingly) $I^op$ is cofiltered.
+]
+
+
 #example[
-    The category $(NN, <=)$ has objects $n in NN$ and morphisms $n -> m$ if $n <= m$. Then $NN^op = (NN, >=)$ is cofiltered.
+    The category $(NN, <=)$ has objects $n in NN$ and morphisms $n -> m$ if $n <= m$. Then $NN$ is filtered and $NN^op = (NN, >=)$ is cofiltered.
+]
+
+#proof[
+    A cone for a finite diagram in $NN^op$ is just an upper bound for a finite subset of $NN$, which always exists.
 ]
 
 #definition[
@@ -1101,9 +1116,9 @@ We proved $cC$ is complete if and only if it has arbitary products and equaliser
 ]
 
 #proof[
-    An equaliser is a finite limit. Need to show that $cC$ has arbitrary products. Take set $I$ and think of it as a discrete category. Let $I^+$ be the category of finite subsets of $I$ where the morphisms are inclusions. Then $(I^+)^op$ is cofiltered. 
+    An equaliser is a finite limit. We still need to show that $cC$ has arbitrary products. Take set $I$ and think of it as a discrete category. Let $I^+$ be the category of finite subsets of $I$ where the morphisms are inclusions. Then $(I^+)^op$ is cofiltered. 
 
-    Define $ F^+ : (I^+)^op &-> cC \
+    Let $F : I -> cC$ be a functor. Define $ F^+ : (I^+)^op &-> cC \
     J &mapsto lim_J (F|_J)
     $
     We know $lim_J (F|_J)$ exists because $J$ is finite. 
