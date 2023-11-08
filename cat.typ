@@ -911,30 +911,69 @@ In particular, if a limit exists, it is unique up to unique isomorphism.
 Generalisation.
 
 #theorem[
-    $cC$ is complete if and only if $cC$ has products and equalisers.
+    // $cC$ is complete if and only if $cC$ has products and equalisers.
+A category $cal(C)$ is complete iff it has products and equalizers. 
+]
+
+#proof[Clearly, if a category has limits, then it has products and
+equalizers. Conversely, suppose the category $cal(C)$ has products and
+equalizers and consider a diagram $F colon I arrow.r cal(C)$. 
+// We want to
+// repeat the construction of limits in Set in $cal(C)$. 
+For every morphism
+$f colon i arrow.r j$ we define a pair of morphisms
+$ phi_f, psi_f: product_(k in I) F lr((k)) arrow.r F lr((j)) $ as follows. We define $phi_f$ simply as the projection
+$product_(k in I) F lr((k)) arrow.r F lr((j))$ on the component
+$k eq j$. On the other hand, the morphism $psi_f$ is given by the composite
+$ product_(k in I) F lr((k)) arrow.r F lr((i)) arrow.r^(F lr((f))) F lr((j)) $
+where the first arrow is the projection on the component $k = i$.
+
+We thus get maps $phi = (phi_f)_((f : i->j) in I)$ and $psi = (psi_f)_((f : i->j) in I)$ such that
+$ product_(k in I) F lr((k)) arrows.rr^(phi)_(psi) product_(lr(( f: i arrow.r j)) in I ) F lr((j)) $
+
+by the universal property of the product (on the right-hand side).
+#footnote[Alternatively, we can write $i->j in upright(F u n) lr((lr([1]) comma I))$, where $"Fun" lr((lr([1]) comma I))$ is the category of arrows in $I$,
+i.e. pairs of objects $i comma j in I$ together with a morphism
+$i arrow.r j$.]
+
+Take any object $C$ with morphism $h: C -> product_(k in I) F lr((k))$, where we can write $h= (h_k)_(k in I)$ for $h_k : C->F(k)$. 
+We see that $C$ is a cone if and only if for every $(f: i-> j) in I $, $F(f) oo h_i = h_j$, but this is exactly $psi oo h = phi oo h$. 
+
+Now we claim that the equaliser $E$ of $phi$ and $psi$ is the limit of $F$.
+The universal property of the equaliser claims that for any $C$ such that $phi oo h = psi oo h$, there exists a unique morphism $C -> E$. Equivalently, for any cone $C$, there exists a unique morphism $C -> E$, and this is exactly the universal property of the limit.
+// Indeed, the universal property of the equalizer is that for any morphism
+// $W arrow.r product_(k in I) F lr((k))$, i.e. for any collection of morphisms $W arrow.r F lr((k))$, such that the composite
+// $W arrow.r F lr((i)) arrow.r^(F lr((f))) F lr((j))$ coincides with
+// $W arrow.r F lr((j))$ for every $f colon i arrow.r j$, there is a unique
+// morphism $W arrow.r E$. But this is exactly the universal property of
+// the limit.
+// 000
+//     Take $F: I->cC$ and $g: i-> j$.
+//     We can think of the cone condition as (\*)
+//     $
+//         product_(k in I) F(k) arrows.rr^(p_j)_(F(g) oo p_i) F(j)
+//     $
+//     $p_j$ is the projection.
+//     Consider $Fun([1], I)$, this is the category of all arrows in $I$, and thus $g: i-> j in Fun([1], I) =: J$.
+//     Define $tilde(F): J-> C$, where $tilde(F) (g: i->j) = F(j)$. Thus (\*) is a cone on $tilde(F)$. Because the products exist, there exists unique maps 
+//     $
+//         product_(k in I) F(k) -> product_(g in J) F(j) = lim_J tilde(F)
+//     $
+//     using the universal property of $lim_J tilde(F)$. 
+//     Then set $lim_I F$ to be the equaliser of this diagram.
+//     (Not well explained...)
+]
+
+#corollary[
+A category $cal(C)$ has finite limits iff it has binary products, final object and equalizers.
 ]
 #proof[
-    Take $F: I->cC$ and $g: i-> j$.
-    We can think of the cone condition as (\*)
-    $
-        product_(k in I) F(k) arrows.rr^(p_j)_(F(g) oo p_i) F(j)
-    $
-
-    $p_j$ is the projection.
-
-    Consider $Fun([1], I)$, this is the category of all arrows in $I$, and thus $g: i-> j in Fun([1], I) =: J$.
-
-    Define $tilde(F): J-> C$, where $tilde(F) (g: i->j) = F(j)$. Thus (\*) is a cone on $tilde(F)$.Because the products exist, there exists unique maps 
-    $
-        product_(k in I) F(k) -> product_(g in J) F(j) = lim_J tilde(F)
-    $
-    using the universal property of $lim_J tilde(F)$. 
-
-    Then set $lim_I F$ to be the equaliser of this diagram.
-
-    (Not well explained...)
+    The same proof shows that a category has finite limits iff it has finite
+products and equalizers. But any finite product is a final object \(if
+the indexing set is empty), the identity functor \(if the indexing set
+has a single element) or can be constructed as an iterated application
+of binary products.
 ]
-
 Suppose a category $cC$ has all limits of shape $I$.  Then we can think of $lim_I$ as a functor
 $
     lim_I : Fun(I, cC) &-> cC \
@@ -945,3 +984,140 @@ $
 Tmr:
 
 $lim_I$ has a left adjoint which is $ Delta: cC -> Fun(I, cC) $ diagonal functor. 
+
+= Lecture 10
+
+Suppose $cC$ has all limits of shape $I$. $
+    lim_I : Fun(I, cC) &-> cC \
+    F &mapsto lim_I F \
+    eta: F_1 => F_2 &mapsto lim_I eta: lim_I F_1 -> lim_I F_2
+$
+
+Define diagonal functor $
+    Delta = Delta_I: cC &-> Fun(I, cC)  \
+    x  &|-> Delta_x : I -> cC quad cases(Delta_x (i) = x, Delta_x (g: i-> j) = id_x)  \
+    f: x-> y &mapsto  eta_f : Delta_x => Delta_y quad eta_(f, i) = f
+$
+
+#theorem[ Suppose $cC$ has all limits of shape $I$. Then 
+    $ Delta_I tack.l lim_I $
+]
+#remark[
+    You can use this to construct $lim_I$ by finding the right adjoint of $Delta_I$ if that exists. 
+]
+
+#proof[
+    We want to show $
+        hom_(Fun(I, cC)) (Delta_x , F) iso Hom(C) (x, lim_I F)
+    $   
+
+    Quite easy, TODO
+]
+
+#example[
+    Let $cC = Set$ and let $I$ be a discrete category. Denote $B_i = F(i)$ which is some set, then $F : I -> cC$ correspond to ${B_i}_(i in I)$, a collection of sets and $ lim_I F = product_(i in I) B_i $
+    Let $A in Set$, then we have 
+    $
+        hom_Fun(I, Set) (Delta_A, F) iso hom_Set (A, product_(i in I) B_i)
+    $
+
+    LHS is maps $ (A)_(i in I) -> (B_i)_(i in I) $ $ (a)_(i in I) -> (b_i)_(i in I) $ and RHS is $ a -> (b_i)_(i in I) $ 
+    
+]
+
+#remark[
+    In $Set$, we can use $A iso hom_Set (ast, A)$. Hence $
+        lim_I F = hom_Set (ast, lim_I F) = hom_Fun(I, Set) (Delta(ast), F)
+    $
+    This could be the definition of $lim_I F$. 
+]
+
+== Swap limits "Fubini"
+
+Let $I, J$  be categories. Then $I times J$ is a category where the objects are ordered pairs $(i, j)$ for $i in I, j in J$ and morphisms are pairs of morphisms $i->i' in I, j-> j' in J$.
+
+#theorem[
+    Suppose $cC$ has limits of shape $I$ and $J$. Then it has limits of shape $I times J$ and 
+    $
+        lim_(I times J) F iso lim_I (lim_J F) iso lim_J (lim_I F)
+    $
+]
+
+For every $F : I times J -> C$, for every $i in I$, define $F^i : J -> cC$ such that $F^i (j) = F(i, j)$. Then we can get a functor $I -> cC$ such that $i |-> lim_J F^i$ (TODO: what about the morphisms?) and we can take $lim_I$ of this functor, yielding $lim_I (lim_J F)$.
+
+#proof[
+    $
+        Hom(C)(x, lim_I (lim_J F)) &iso hom_Fun(I, cC) (Delta_I (x), lim_J F) \
+
+        &iso hom_Fun(J, Fun(I, cC)) (Delta_((I), J) (Delta_I (x)), F) \
+
+        &iso hom_Fun(I times J, cC) (Delta_(I times J) (x), F)
+    $
+
+    where $Delta_((I), J): Fun(I, cC) -> Fun(J, Fun(I, cC))$.
+
+    This means that $lim_I lim_J F = lim _(I times J) F$.
+]
+
+#proposition[
+    $Fun(J, Fun(I, cC)) iso Fun(I times J, cC)$
+]
+
+We proved $cC$ is complete if and only if it has arbitary products and equalisers. 
+
+#definition[
+    A category $I$ is *cofiltered* if 
+    - $I != emptyset$;
+    - For all $ i, j in I$, there exist $k in I$ and morphisms $k -> i$ and $k -> j$;
+    - For all $i, j in I $ and morphisms $i arrows.rr^u_v j$, there exists $k in I$ and a morphism such that  $k -> i arrows_v^u j$ commutes.
+]
+
+#example[
+    The category $(NN, <=)$ has objects $n in NN$ and morphisms $n -> m$ if $n <= m$. Then $NN^op = (NN, >=)$ is cofiltered.
+]
+
+#definition[
+    A limit over a cofiltered diagram is a *cofiltered limit*.
+]
+
+#example[
+    Let $I = NN^op$ and $
+        F: NN^op &-> cC \
+        n &mapsto F(n) \
+        n->m &mapsto F(n) -> F(m) quad "whenver " n >= m
+    $
+    Then $F$ is equivalent to a chain in $cC$: 
+    $ ... -> F(3) -> F(2) -> F(1) $
+    The limit is the inverse limit, denoted as $lim_(<-) F(n)$.
+]
+
+#example[
+    In Rings, $lim_(<-) ZZ over p^n = ZZ_p$, the $p$-adic integers.
+]
+
+
+#theorem[
+    $cC$ is complete if and only if it has finite limits and cofiltered limits. 
+]
+
+#proof[
+    An equaliser is a finite limit. Need to show that $cC$ has arbitrary products. Take set $I$ and think of it as a discrete category. Let $I^+$ be the category of finite subsets of $I$ where the morphisms are inclusions. Then $(I^+)^op$ is cofiltered. 
+
+    Define $ F^+ : (I^+)^op &-> cC \
+    J &mapsto lim_J (F|_J)
+    $
+    We know $lim_J (F|_J)$ exists because $J$ is finite. 
+
+    Exercise:
+    $ product_(i in I) F(i) := lim_((I^+)^op) F^+ $
+]
+
+Colimit. coproduct.
+$
+    colim_I tack.l Delta_I tack.l lim_I
+$
+
+Warning: limits and colimits do not commute in general. In $Set$, coproudct of $A, B$ is the disjoint union $A product.co B$ but 
+$
+    (A product.co B) times (C product.co D) != (A times C) product.co (B times D)
+$
