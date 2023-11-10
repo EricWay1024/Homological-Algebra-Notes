@@ -64,7 +64,11 @@
 #let lest = [long exact sequence]
 #let sess = [short exact sequences]
 #let less = [long exact sequences]
-
+#let Ext = [$"Ext"$]
+#let Tor = [$"Tor"$]
+#let cone = [$"cone"$]
+#let cyl = [$"cyl"$]
+#let Tot = [$"Tot"$]
 #let theorem = thmbox(
   "theorem",
   "Theorem",
