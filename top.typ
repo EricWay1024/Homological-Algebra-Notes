@@ -256,6 +256,43 @@ Cohomology.
 #align(center,image("imgs/2023-11-01-18-51-18.png",width:100%))
 
 
+$ C_n (X; R) = plus.circle.big_(sigma : Delta^n -> X) R $
+$ C^n (X; R) = product_(sigma : Delta^n -> X) R $
+$ diff sigma = sum_(i=0)^n (-1)^i (sigma|_[0 ... hat(i) ... n]) $
+$ delta phi.alt (sigma) = sum_(i=0)^n (-1)^i phi.alt (sigma|_[0 ... hat(i) ... n]) $
+
+It is better to view the product as a function $phi.alt$ that takes a $sigma$ and returns an element in $R$.
+
+We have now defined homology and cohomology with coefficients in $R$.
+
+#proposition[
+  When the space is connected, $H_0 = ZZ$.
+]
+
+#example[
+  The 2-dimensional sphere $S^2$ has $H_0(S^2) = ZZ$, $H_2(S^2) = ZZ$.
+]
+#example[
+  The mobius band is homotopy equivalent to a circle. $H_0 = ZZ$, $H_1 = ZZ$.
+]
+#example[
+  The torus. $H_0 = ZZ$, $H_1 = ZZ^2$, $H_2 = ZZ$.
+]
+
+#example[
+  $RR PP^2$. $H_0 = ZZ$, $H_1= ZZ over 2$, $H_2 = 0$ but $H_2(RR PP^2, ZZ over 2) = ZZ over 2$.
+  TODO
+]
+= Lecture 5
+#align(center,image("imgs/2023-11-09-11-09-12.png",width:90%))
+#align(center,image("imgs/2023-11-09-11-14-21.png",width:50%))
+
+$ diff sigma = sigma|_[1 2] - sigma|_[0 2] + sigma |_[0 1] $
+
+#align(center,image("imgs/2023-11-09-11-16-07.png",width:50%))
+The idea is you have to have the minus sign for things to work.
+
+
 #pagebreak()
 
 
