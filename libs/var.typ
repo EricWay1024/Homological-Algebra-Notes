@@ -37,7 +37,7 @@
 #let Fun = [$op("Fun")$]
 #let Coeq = [$op("Coeq")$]
 #let coker = [$op("coker")$]
-#let ses(A, B, C) = [$0 -> #A -> #B -> #C -> 0$]
+#let ses(A, B, C, f: "", g: "") = [$0 -> #A ->^#f #B ->^#g #C -> 0$]
 #let rgt(A) = [$attach(->, t: #A)$]
 #let lft(A) = [$attach(<-, t: #A)$]
 #let over = [$\/$]
