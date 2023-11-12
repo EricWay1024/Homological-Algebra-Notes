@@ -1980,7 +1980,7 @@ $
 #definition[
   The *mapping cylinder* of $f$ is defined as the chain complex $cyl(f)_n = B_n xor B_(n-1) xor C_n$. The differential can be represented by the matrix 
   $
-    mat(d_b, id_b, 0;0, -d_B, 0; 0, -f, d_C)
+    mat(d_B, id_B, 0;0, -d_B, 0; 0, -f, d_C)
   $
 ]
 #remark[
@@ -1989,20 +1989,39 @@ Let $0->B->^f C->^g D-> 0$ be a #sest of complexes. Then $phi: cone(f) -> D$ has
 == Double Complexes
 Recall that $Ch(cA)$ is also an abelian category. Then we may look at $Ch(Ch(cA))$. But what we define next is slightly different from that.
 #definition[
-  A *double complex* (or *bicomplex*) in $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h : C_(p, q) -> C_(p-1, q)$ and $d^v : C_{p, q} -> C_{p, q-1}$ such that $(d^h)^2 = (d^v)^2 = 0$ and $d^v d^h + d^h d^v = 0$ (anti-commute!).
+  A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h : C_(p, q) -> C_(p-1, q)$ and $d^v : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0 $ and $ d^v d^h + d^h d^v = 0 $ (anti-commute!).
 ]
+#align(center,image("imgs/2023-11-12-16-01-47.png",width:50%))
 #remark[
   If you replace $d^v_(p, q)$ by $(-1)^p d^v_(p, q)$ we get that the square commute which gives an isomorphism of categories between bicomplexes and $Ch(Ch(cA))$.
 ]
 #definition[
-  Given $C = {C_(p, q)}$, we can define the total complex
+  Let $C_(bullet bullet)$ be a double complex. We say that
+$C_(bullet bullet)$ is an *upper half-plane complex* if there is some
+$q_0$ such that $C_(p q) eq 0$ for all $q lt q_0$. Similarly,
+$C_(bullet bullet)$ is a *right half-plane complex* if there is some $p_0$
+such that $C_(p q) eq 0$ for all $p lt p_0$.
+]
+== Total Complexes
+#definition[
+  Given $C = {C_(p, q)}$, we can define the *total complex*
   $ Tot^Pi (C)_n = product_(p + q = n) C_(p, q) $
   as well as the finite version 
   $ Tot^xor (C)_n = plus.circle.big _(p+q=n) C_(p, q) $
-  with differential $ d= d^h + d^v$.
+  with differential $ d= d^h + d^v $
 We have that $d^2 = 0$. (which is why we define double complex in the anti-commuting way) @rotman[Lemma 10.5]
 ]
-#lemma[
+
+The total complex is illustrated by the colours in the following diagram; each “diagonal
+slice” is given a different colour. For example, $Tot(C_(cx cx))_0$ is the direct sum of all the
+red terms @notes[Definition 8.6]. This diagram also helps explain how the differential of the total complex works. For example, take $ c = (..., c_(-1, 1), c_(0, 0), c_(1, -1), ...) in product_p C_(-p, p) = Tot(C)_0 $
+Then 
+$ d (c) = ( ...,  
+underbrace(d^v (c_(-1, 1)) + d^h (c_(0,0)), in C_(-1, 0)) , 
+underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1) $
+#align(center,image("imgs/2023-11-12-16-04-08.png",width:50%))
+
+#lemma(name: "Acyclic Assembly Lemma")[
   Let $C = {C_(p, q)}$ be a double complex. If
   + $C$ is an upper half-plane complex with exact columns, or
   + $C$ is a right half-plane complex with exact rows,
@@ -2014,12 +2033,30 @@ We have that $d^2 = 0$. (which is why we define double complex in the anti-commu
   then $Tot^xor (C)$ is acyclic.
 ]
 #proof[
+  We only prove (1) here and the other conditions follow similarly.
   Let $C$ be an upper half-plane bicomplex with exact columns. We will show that 
   $ H_0 (Tot^Pi (C)) = 0 $
-  Let $ c = (..., c_(-2, 2), c_(-1, 1), c_(0, 0)) in product C_(-p, p) = Tot^Pi (C)_0 $ be a $0$-cycle.
+  and by translating $C$ left and right, this will indicate that $H_n (Tot^Pi (C)) = 0$ for all $n$ and hence prove the result.
+  Let $ c = (..., c_(-2, 2), c_(-1, 1), c_(0, 0)) in product C_(-p, p) = Tot^Pi (C)_0 $ be a $0$-cycle (i.e. $d(c) = 0$).
   We will use indcution to find elements $b_(-p, p+1)$ such that $ d^v (b_(-p, p+1)) + d^h (b_(-p+1, p)) = c_(-p, p) $
 
-  Let $b_(10) = 0$ for $p = -1$. Since the $0$-th column is exact, there is a $b_01 in C_01$ so that $d^v (b_01) = c_00$ by induction.
+  Let $b_(10) = 0$ for $p = -1$. Since the $0$-th column is exact, there is a $b_01 in C_01$ so that $d^v (b_01) = c_00$. 
+
+  Suppose we have found $b_(-p+1, p)$ and want to find $b_(-p, p+1)$. We compute that 
+$ d^v lr((c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))))) & eq d^v lr((c_(minus p, p))) plus d^h d^v lr((b_(minus p plus 1 comma p)))\
+ & eq d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) minus d^h d^h \(b_(minus p plus 2 comma p minus 1 )) \
+ & eq 0 dot.basic $
+
+ where $d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) = 0$ because $d(c) = 0$.
+
+Since the $(minus p)$-th  column is exact, there is a
+$b_(minus p comma p plus 1)$ so that
+$ d^v lr((b_(minus p comma p plus 1))) eq c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))) $
+as desired. Now assembling all $b_(-p, p+1)$ gives 
+
+$ b = (..., b_(-1, 2), b_(0, 1), b_(1, 0)) in product C_(-p, p+1) = Tot^Pi (C)_(1) $ such that $d (b) =  c$, which proves that $H_0 (Tot^Pi (C)) = 0$. 
+
+See @weibel[Lemma 2.7.3].
 ]
 (This is the end of lecture 10.)
 #pagebreak()
