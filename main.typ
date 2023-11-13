@@ -2021,6 +2021,8 @@ underbrace(d^v (c_(-1, 1)) + d^h (c_(0,0)), in C_(-1, 0)) ,
 underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1) $
 #align(center,image("imgs/2023-11-12-16-04-08.png",width:50%))
 
+(This is the end of lecture 10.)
+
 #lemma(name: "Acyclic Assembly Lemma")[
   Let $C = {C_(p, q)}$ be a double complex. If
   + $C$ is an upper half-plane complex with exact columns, or
@@ -2042,7 +2044,7 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
 
   Let $b_(10) = 0$ for $p = -1$. Since the $0$-th column is exact, there is a $b_01 in C_01$ so that $d^v (b_01) = c_00$. 
 
-  Suppose we have found $b_(-p+1, p)$ and want to find $b_(-p, p+1)$. We compute that 
+  By induction, suppose we have found $b_(-p+1, p)$ and want to find $b_(-p, p+1)$. We compute that 
 $ d^v lr((c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))))) & eq d^v lr((c_(minus p, p))) plus d^h d^v lr((b_(minus p plus 1 comma p)))\
  & eq d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) minus d^h d^h \(b_(minus p plus 2 comma p minus 1 )) \
  & eq 0 dot.basic $
@@ -2058,7 +2060,56 @@ $ b = (..., b_(-1, 2), b_(0, 1), b_(1, 0)) in product C_(-p, p+1) = Tot^Pi (C)_(
 
 See @weibel[Lemma 2.7.3].
 ]
-(This is the end of lecture 10.)
+
+#remark[
+  Spectral sequences. This lemma is a consequence of sepectral sequences. 
+]
+
+== Balancing $Tor$ and $Ext$
+
+Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call $P_cx tpr Q_cx$. The $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_p tp 1$ and $d^v = (-1)^p tp d_Q$, where the sign trick is to make this anticommute. 
+
+#theorem[ For all $n$,
+  $ L_n (A tpr -)(B) iso L_n (- tpr B)(A) = Tor_n^R (A, B) $ 
+]
+#proof[
+  Choose a projective resolution $P_cx rgt(epsilon) A$ and $Q_cx rgt(eta) B$. We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$ and $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp id: P tpr Q -> A tpr Q$ and $id tp eta: P tpr Q -> P tpr B$. Now we want to show that 
+  $ Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
+  $ Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
+  are quasi-isomoprhism, which would give isomorphisms on homology and thus prove the result, i.e.
+
+  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $ and so on.
+
+  If we look at the double complex $C$ obtained from $P tpr Q$ by adding $A tpr Q[-1]$ in the column $p = -1$ using the augmentation, we get that $Tot(C)[1]$ is the mapping cone of $ epsilon tp id : Tot(P tpr Q) -> Q tpr Q $
+
+  To show that $epsilon tp Q$ is a quasi-isomorphism, we need to show the cone $cone(epsilon tp Q) = Tot(C)[1]$ is acyclic. Note that $- tpr Q_p$ is exact as $Q_p$ are projective. So every row of $C$ is exact and so $Tot^xor (C)$ is exact by the acyclic assembly lemma. So $epsilon tpr Q$ is a quasi-isomorphism. 
+  
+  ($Q$ means $id_Q$ in proper places)
+]
+
+Given a chain complex $P$ and a cochain complex $I$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
+
+For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$.
+
+#definition[
+  $Tot^Pi (hom(P, I))$ is the *$hom$ cochain complex*.
+]
+
+#remark[If $C, D$ are chain complexes and we reindex $D$ to be a cochain complex. Then $H^n Tot^Pi hom (C, D)$ is the group of chain homotopy eq classes of morphisms $C -> D[-n]$.]
+
+Check: 
+
+$ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
+$I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/left $R$-modules.
+
+#theorem[ For all $n$,
+  $ Ext^n_R(A, B) = R^n hom_R (A, -) (B) =R^n hom_R (-, B) (A) $
+]
+#proof[
+  TODO
+]
+
+(This is the end of Lecture 11.)
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
