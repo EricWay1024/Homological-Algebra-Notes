@@ -754,7 +754,7 @@ $"Hom"_(cal(C)) lr((minus comma G y))$.
 
 $arrow.l.double$. We define the right adjoint $G$ to be the composite
 $G eq P compose F^"fra"$, where
-$P colon "Fun" lr((cal(C)^(o p) comma "Set"))^"repr" arrow.r cal(C)$
+$P colon "Fun"lr((cal(C)^(o p) comma "Set"))^"repr" arrow.r cal(C)$
 is the inverse to the Yoneda embedding $Y$.
 
 To show that $F tack.l G$, we have to construct an isomorphism
@@ -1142,23 +1142,57 @@ $
 Let $F : cC -> cD$ and diagram $J : I -> cC$. If $(x, (f_i))$ is a cone on $J$, then $F(x)$ is a cone on $F oo J$. 
 
 #definition[
-    F *preserves limits* if whenever $lim_I J$ exists in $cC$, the limit $lim_I F oo J$ exists in $cD$ and $lim_I F oo J iso F (lim_I J)$.
+    $F$ *preserves limits* (or $F$ is *continuous*) if whenever $lim_I J$ exists in $cC$, the limit $lim_I F oo J$ exists in $cD$ and $lim_I F oo J iso F (lim_I J)$.
 ]
 
-#remark[
-    This is the categorical version of a continuous function, if you want.
-]
+// #remark[
+//     This is the categorical version of a continuous function, if you want.
+// ]
 
-#example[
-    Let $x in cC$. Then 
-    + $Hom(C) (x, -) : cC -> Set$ preserves limits. 
+#theorem[Let $cC$ be a locally small category and $x in cC$. Then 
+  $Hom(C) (x, -) : cC -> Set$ preserves limits. 
 ]
 
 #proof[
-    Let $J : I -> cC$. Suppose $lim_I J$ exists in $cC$ with maps $f_i$. Then $ Hom(C) (x, lim_I J) ->^(f_i oo -) Hom(C)(x, J(i)) $ is a cone on $Hom(C)(x, -) oo J = Hom(C)(x, J(-))$.
+    Let $J : I -> cC$. Suppose $lim_I J$ exists in $cC$ with maps $f_i$. Then $(Hom(C) (x, lim_I J), (f_i oo -)_(i in I))$ is a cone on $Hom(C)(x, -) oo J = Hom(C)(x, J(-))$, where $ f_i oo - : Hom(C) (x, lim_I J) -> Hom(C)(x, J(i)) $
 
-    We have to verify the universal property. TODO See photo
+    Let $(W, (h_i)_(i in I))$ be another cone, where 
+    $h_i : W -> Hom(C)(x, J(i))$.
+    Let $g: i -> j in I$, which is sent to $J(g) oo - : Hom(C)(x, J(i)) -> Hom(C)(x, J(j))$ by $Hom(C)(x, J(-))$. Then by definition of cone, $h_j = J(g) oo h_i$, thus for all $w in W$ (remember $W$ is a set), $h_j (w) = J(g) oo h_i (w)$. 
+    Notice that $h_i (w) : x -> J(i)$, and thus $(x, (h_i(w))_(i in I))$ is a cone in $cC$. So there exists a unique $alpha(w): x -> lim_I J$ such that $h_i (w) = f_i oo alpha(w)$. Now define $alpha: W -> Hom(C) (x, lim_I J)$ as $w mapsto alpha(w)$ and we see $h_i = f_i oo alpha$, which shows $Hom(C) (x, lim_I J)$ is a limit.
+    // We have to verify the universal property. TODO See photo
 ]
+
+// Theorem 4.3. Suppose $cal(C)$ is a locally small category. Then the Hom
+// functor
+
+// $ "Hom"_(cal(C)) lr((x comma minus)) colon cal(C) arrow.r upright(" Set ") $
+
+// preserves limits for any $x in cal(C)$.
+An alternative proof for the same theorem is given below, taken from the notes.
+#proof[
+Suppose $J colon I arrow.r cal(C)$ is a diagram with a limit in
+$cal(C)$ and consider an object $x in cal(C)$.
+
+Let us start with the following observation:
+
+$ "Hom"_("Fun"lr((I comma cal(C)))) lr((Delta lr((x)) comma J)) tilde.equiv "Hom"_(upright("Fun")lr((I comma Set))) lr((Delta lr((ast)) comma "Hom"_(cal(C)) lr((x comma J)))) $ where $ast$ is the singleton set.
+Indeed, a morphism on the left is a compatible family of morphisms
+$x arrow.r J lr((i))$ while a morphism on the right is a compatible
+family of morphisms
+$ast arrow.r "Hom"_(cal(C)) lr((x comma J lr((i))))$.
+
+We get the following chain of isomorphisms natural in $x$ :
+
+$ "Hom"_(upright("Set ")) lr((ast comma "Hom"_(cal(C)) lr((x comma lim_I J)))) & tilde.equiv "Hom"_(cal(C)) lr((x comma lim_I J))\
+ & tilde.equiv "Hom"_(upright("Fun")lr((I comma cal(C)))) lr((Delta lr((x)) comma J))\
+ & tilde.equiv "Hom"_(upright("Fun")lr((I comma "Set"))) lr((Delta lr((ast)) comma "Hom"_(cal(C)) lr((x comma J)))) $
+
+Therefore, $"Hom"_(cal(C)) lr((x comma J))$ has a limit which is
+isomorphic to $"Hom"_(cal(C)) lr((x comma lim_I J))$.
+]
+ 
+
 
 #example[ Product is a limit, so
     $ Hom(C) (X, product_(i in I) X_i) = product_(i in I) Hom(cC) (X, X_i) $
@@ -1198,16 +1232,18 @@ Let $F : cC -> cD$ and diagram $J : I -> cC$. If $(x, (f_i))$ is a cone on $J$, 
     Suppose $F: cC arrows.lr cD : G$ and $F tack.l G$. Then $G$ preserves limits and $F$ preserves colimits. 
 ]
 
-For example, $"Forget": Grp -> Set$ and $Grp -> veck$ etc preserves limits but doe not preserve colimits in general. Easy way to see is through initial objects; $"Forget": Ab -> Grp$ doesn't preserve coproducts. In general, $"Forget"$ do not have right adjoints. 
+For example, $"Forget": Grp -> Set$ and $Grp -> veck$ etc preserves limits but doe not preserve colimits in general. Easy way to see is through initial objects; $"Forget": Ab -> Grp$ doesn't preserve coproducts. In general, $"Forget"$ do not have right adjoints.  TODO
 
 #proof[
-    We will show $G : cD-> cC$ preserves limits. Let $J : I -> cD$ be a diagram and suppose $lim_I J in cD$ exists. Then $G(lim_I cD)$ is a cone on $G oo J$. We want to show this is universal.
+    We will show $G : cD-> cC$ preserves limits. Let $J : I -> cD$ be a diagram and suppose $lim_I J in cD$ exists with $f_i : lim_I J -> J(i)$ for all $i in I$. Then $G(lim_I cD)$ is a cone on $G oo J$. We want to show this is universal.
+    
+    Suppose we have another cone $ (W, (h_i : W -> G J(i))_(i in I)) in cC $ 
+    Let $g : i -> j in I$, then $h_j =  G J (g) oo h_i$. Transpose this using the natural bijection between homsets
+    $ Hom(C) (W, G J (i)) iso Hom(D) (F(W), J(i)) $
+    we have $tilde(h_j) = J (g) oo tilde(h_i)$ in $cD$. (This holds because of the naturality of the bijection!)
+    Then $(F W, (tilde(h_i)))$ is a cone on $J$. Due to the universality of $lim_I J$, there exists unique $tilde(alpha) : F W -> lim_I J$ and then transpose to get unique $alpha : W -> G(lim_I J)$ such that $h_i = f_i oo alpha$ for all $i$, yielding the univerality of $G(lim_I J)$.
 
-    Suppose we have another cone $W in cC$ such that $W -> G J(i) -> G J (j)$ (TODO) commutes for all $g: i -> j$. Transpose this using adjunction (natural bijection between homsets):
-    $ F W -> J (i) -> J (j) $
-    commutes (TODO). Then $(F W, (tilde(h_i)))$ is a cone on $J$. Due to the universality of $lim_I J$ there exists unique $tilde(alpha) : F W -> lim_I J$ and then transpose to get unique $alpha : W -> G(lim_I J)$.
-
-    (Emily's book has beautiful diagrams.)
+    // (Emily's book has beautiful diagrams.)
 
     Formally,
     $ lim_I Hom(C) (W, G oo J(-)) 
@@ -1240,10 +1276,143 @@ For example, $"Forget": Grp -> Set$ and $Grp -> veck$ etc preserves limits but d
     Should be easy. TODO
 ]
 
-Tmr.
+= Lecture 12
+
+== Limits in functor categories
+
 Motivation: remember from metric spaces, $X$, $Y$ are metric spaces and $C(X, Y)$ are continuous functions. If $Y$ is complete then $C(X, Y)$ is complete. 
 
 #theorem[
     If $cD$ is (co)complete and then $Fun(cC, cD)$ is (co)complete.
 ]
-Can use this on the presheve category.
+We can use this on the presheve category.
+
+
+For category $cC, cD$, consider the functor category $Fun(cC, cD)$ with natural transformations as morphisms. 
+
+#remark[
+    $Fun(cC, cD)$ is locally small if $cC$ is small. 
+]
+
+#theorem[
+    Suppose $cD$ has limits of shape $I$. Let $lim_I ^cD : Fun(I, cD) -> cD$ be the limit functor. Then 
+
+    + $Fun(cC, cD)$ has limits of shape $I$.
+    + #fw[
+        The limits can be computed "pointwise", i.e. $ Fun(I, Fun(cC, cD)) iso Fun(I times cC, cD) iso Fun(cC, Fun(I, cD)) ->^(lim_I cD) Fun(cC, cD) $
+    ]
+
+    Similarly for colimits. 
+]
+#proof[
+    The limit functor is right adjoint to the diagnoal functor: 
+    $ Delta_I^cD tack.l lim_I^cD $
+]
+
+#theorem[
+Suppose $cal(D)$ has limits of shape $I$ and denote by
+$lim_I colon "Fun"lr((I comma cal(D))) arrow.r cal(D)$ the limit
+functor. Then the composite
+
+$ "Fun"lr((I comma "Fun"lr((cal(C) comma cal(D))))) tilde.equiv "Fun"lr((cal(C) comma "Fun"lr((I comma cal(D))))) arrow.r "Fun"lr((cal(C) comma cal(D))) $
+
+is the limit functor. In other words, limits in
+$"Fun"lr((cal(C) comma cal(D)))$ are computed pointwise.
+
+Dually, if $cal(D)$ has colimits of shape I, colimits in
+$"Fun"lr((cal(C) comma cal(D)))$ are computed pointwise.
+]
+
+#proof[
+Consider the adjunction $lim_I tack.r Delta$ between categories
+$"Fun"lr((I comma cal(D))) arrows.lr cal(D)$. We claim that it induces
+an adjunction
+
+$ "Fun"lr((cal(C) comma "Fun"lr((I comma cal(D))))) arrows.lr "Fun"lr((cal(C) comma cal(D))) $
+
+Indeed, it is easy to write the unit and counit for the adjunction on
+the functor categories from the one on the ordinary categories.
+
+Next we claim that the composite
+
+$ "Fun"lr((cal(C) comma cal(D))) arrow.r "Fun"lr((cal(C) comma "Fun"lr((I comma cal(D))))) tilde.equiv "Fun"lr((I comma "Fun"lr((cal(C) comma cal(D))))) $
+
+where the first functor comes from the constant functor
+$Delta colon cal(D) arrow.r "Fun"lr((I comma cal(D)))$ coincides with
+the constant functor
+
+$ "Fun"lr((cal(C) comma cal(D))) arrow.r "Fun"lr((I comma "Fun"lr((cal(C) comma cal(D))))) $
+
+Indeed, a functor $A colon cal(C) arrow.r cal(D)$ is sent under $Delta$
+to the functor
+
+$ x in cal(C) arrow.r.bar lr((i in I arrow.r.bar A lr((x)))) $
+
+Viewed as a functor $I arrow.r "Fun"lr((cal(C) comma cal(D)))$ this is
+
+$ i in I arrow.r.bar lr((x in cal(C) arrow.r.bar A lr((x)))) $
+
+i.e. the constant functor.
+
+But then the functor
+$"Fun"lr((cal(C) comma "Fun"lr((I comma cal(D))))) arrow.r "Fun"lr((cal(C) comma cal(D)))$
+is right adjoint to the constant functor and is hence the limit functor.
+
+The dual statement is proved similarly.]
+
+#corollary[
+    Since $Set$ is complete and cocomplete, $ Psh(cC) = Fun(cC^op, Set) $ is complete and cocomplete.
+]
+
+Recall Yoneda Funcor $Y : cC -> Psh(cC)$ is fully faithful. Essential image $Psh(cC)^"repr"$ representable functors.
+For all $x in cC$, $Y(x): cC^op -> Set$ preserves limits (colimits in $cC$ sent to limits in $Set$). It does not preserve colimits. 
+
+#example[
+    In $Set$, $ hom(X, A_1 product.co A_2) != hom(X, A_1) product.co hom(X, A_2) $
+    Suppose finite, then LHS has cardinality $(abs(A_1) + abs(A_2))^abs(X)$ while RHS has cardinality $abs(A_1)^abs(X) + abs(A_2)^abs(X)$. 
+]
+
+We have $Y(x_1 product.co x_2) != Y(x_1) product.co Y(x_2)$. $Y$ does not preserve colimits.
+
+#theorem[
+    // Let $cC$ be a small category. There exists an equivalence of categories 
+Let $cal(C)$ be a small category and $cal(D)$ a category
+which has small colimits. Then we have an equivalence of categories
+
+$ "Fun"^("colim") lr((Psh(cal(C)) comma cal(D))) tilde.equiv "Fun"lr((cal(C) comma cal(D))) comma $
+
+where the category on the left is the full subcategory of functors which
+preserve small colimits.
+]
+
+#proof[
+    Step 1. Every preshef is a colimit of representable functors. Every $Gamma: cC^op -> Set$ is $Gamma iso colim_(epsilon(Gamma)) P_Gamma$ where $P_Gamma : epsilon(Gamma) -> Psh(cC)^"repr"$.
+
+    Step 2. Let $F: cC->cD$. Want to construct $hat(F): Psh(cC) -> cD$ which preserves colimits. 
+
+    $Gamma in Psh(cC)$, $Gamma iso colim_(epsilon(Gamma)) P_Gamma mapsto $
+
+    TODO See notes Corollary 4.10.
+]
+
+== Adjoint functor theorems
+
+Assumption $alpha$: $F: cC -> cD$ preserves colimits (is cocontinous). $cC, cD$ are small and $cC$ is cocomplete. 
+
+Under some further condition, $F$ has a right adjoint. 
+
+The general theorem: Freyd's adjoint functor theorem. Proof in the lecture notes, not examinable.
+#theorem[
+Under assumption $alpha$, 
+$F$ has a right adjoint iff for all $y in cD$, the comma category $(F=>y)$ satisfies the solution set condition. 
+]
+
+#definition[
+    A category $cal(E)$ satisfies the *solution set condition* if there exists a set $I$ and objects $x_i in cal(E)$ for all $i in I$ such that for all $x in cal(E)$, there exists an arrow $x_i -> x$ for some $i$. 
+]
+
+Dual statement: $cC$ is complete, $F$ preserves limits (is continuous). $F$ has a left adjoint if and only if for all $x$, $(x => F)$ satisfies the solution set condition.
+
+#example[
+    $ "Forget": Grp -> Set$ creates limits. (MacLane) So it is continuous. $Grp$ is complete because $Set$ is. TODO
+]

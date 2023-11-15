@@ -2104,7 +2104,7 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
 
 #theorem[ For all $n$,
   $ Ext^n_R(A, B) = R^n hom_R (A, -) (B) =R^n hom_R (-, B) (A) $
-]
+] 
 #proof[
   TODO
 ]

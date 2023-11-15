@@ -73,49 +73,65 @@
   "theorem",
   "Theorem",
   fill: rgb("#e8e8f8"),
+  breakable: true,
 )
 
 #let lemma = thmbox(
   "theorem",
   "Lemma",
   fill: rgb("#e8e8f8"),
+  breakable: true,
+
 )
 
 #let proposition = thmbox(
   "theorem",
   "Proposition",
   fill: rgb("#e8e8f8"),
+  breakable: true,
+
 )
 
 #let definition = thmbox(
   "theorem",
   "Definition",
   fill: rgb("#e8f8e8"),
+  breakable: true,
+
 )
 
 #let example = thmbox(
   "theorem",
   "Example",
   stroke: rgb("#ffaaaa") + 1pt,
+  breakable: true,
+
 )
 
 #let remark = thmbox(
   "theorem",
   "Remark",
   // stroke: rgb("#aaaaff") + 1pt,
+  breakable: true,
+
 )
 
 #let note = thmbox(
   "theorem",
   "Note",
   // stroke: rgb("#aaffaa") + 1pt,
+  breakable: true,
+
 )
 
 #let corollary = thmbox(
   "theorem",
   "Corollary",
   fill: rgb("#e8e8f8"),
+  breakable: true,
+
 )
 
+#let fw(doc) = box(width: 100%)[#doc]
 
-#let proof(term) = block(width: 100%)[_Proof._ #term #h(1fr) $qed$]
+#let proof(term) = block(width: 100%, breakable: true)[_Proof._ #term #h(1fr) $qed$]
