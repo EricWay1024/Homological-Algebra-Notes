@@ -2067,13 +2067,15 @@ See @weibel[Lemma 2.7.3].
 
 == Balancing $Tor$ and $Ext$
 
-Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call $P_cx tpr Q_cx$. The $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_p tp 1$ and $d^v = (-1)^p tp d_Q$, where the sign trick is to make this anticommute. 
+#definition[
+Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$. The $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$, where the sign trick is to make this anticommute. ]
 
 #theorem[ For all $n$,
   $ L_n (A tpr -)(B) iso L_n (- tpr B)(A) = Tor_n^R (A, B) $ 
 ]
-#proof[
-  Choose a projective resolution $P_cx rgt(epsilon) A$ and $Q_cx rgt(eta) B$. We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$ and $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp id: P tpr Q -> A tpr Q$ and $id tp eta: P tpr Q -> P tpr B$. Now we want to show that 
+#proof[ (TODO review)
+  Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$. 
+  We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$ and $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp id: P tpr Q -> A tpr Q$ and $id tp eta: P tpr Q -> P tpr B$. Now we want to show that 
   $ Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
   $ Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
   are quasi-isomoprhism, which would give isomorphisms on homology and thus prove the result, i.e.
@@ -2085,6 +2087,8 @@ Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a
   To show that $epsilon tp Q$ is a quasi-isomorphism, we need to show the cone $cone(epsilon tp Q) = Tot(C)[1]$ is acyclic. Note that $- tpr Q_p$ is exact as $Q_p$ are projective. So every row of $C$ is exact and so $Tot^xor (C)$ is exact by the acyclic assembly lemma. So $epsilon tpr Q$ is a quasi-isomorphism. 
   
   ($Q$ means $id_Q$ in proper places)
+
+  See @weibel[Theorem 2.7.2].
 ]
 
 Given a chain complex $P$ and a cochain complex $I$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
@@ -2102,14 +2106,95 @@ Check:
 $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
 $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/left $R$-modules.
 
+
+(This is the end of Lecture 11.)
+
 #theorem[ For all $n$,
   $ Ext^n_R(A, B) = R^n hom_R (A, -) (B) =R^n hom_R (-, B) (A) $
 ] 
 #proof[
+  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentracted at degree $0$. We can form double complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. Then we need to show 
+  $ hom(A, I) -> Tot^Pi hom(P, I) $ and 
+  $ hom(P, B) -> Tot^Pi hom(P, I) $ are quasi-isomorphisms. This is equivalent to the cones of the maps being acyclic. 
+
+  Observation: $cone (hom (A, I) -> Tot^Pi hom (P, I))$ is the total complex of the double complex $hom(P, I)$ with $hom(A, I)[-1]$ added.  For this augumented double complex, we see that $Tot^Pi$ is exact using the acyclic assmebly lemma: $hom(P_p, -)$ is exact and $hom(-, I^q)$ is exact. 
+
+  $ R^ast hom(A, -) (B) = H^ast hom (A, I) = H^ast Tot^Pi ( hom(P, I))  \ iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
+]
+
+== Yoneda Product
+
+Given $R$-modules $A, B, C$. Take projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$. We get that $Ext^i_R\(A, B) =H^i Tot^Pi hom (P, Q)$, which is chain homotopy classes of chain maps $P -> Q[i]$. Also, $Ext^j_R\(B, C)=H^j Tot^Pi hom(Q, T)$, which is eq classes of chain maps $Q -> T[j]$. 
+
+Note: $hom(Q, T[j]) iso hom(Q[i], T[i + j])$. The translation (shifting) functor is an isomorphism on the category of chain complexes and it preserves chain homotopy. 
+
+The composition $P -> Q[i] ->T[i+j]$ gives a map $ Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j) (A, C) $ 
+
+This is associative and biadditive. 
+
+#remark[
+We have shown $D^- (RMod) iso K^- ("Proj" RMod)$.
+
+]
+
+$Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any $B$, $Ext_R^ast (A , B) = plus.circle.big_i Ext^i (A, B)$ is a graded module over the ring. 
+
+== Flatness
+
+#definition[
+  A #lrm $B$ is *flat* if $ - tpr B$ is exact. A #rrm $A$ is *flat* if $  A tpr -$ is exact. 
+]
+
+#remark[
+  In some sense flatness gives "continuity". It appears in algebraic geometry.
+Assume $R$ is commutative, and let $M$ be an $R$-module. Then $tilde(M)$ quasi- ?? sheaf on $"Spec"(R)$. 
+
+We already used that projective modules are flat. First we have free modules are flat. Second, if $P xor Q$ is free (i.e. $P$ is projective) then $- tpr P$ is exact. 
+]
+
+#proposition[
+  The followings are equivalent: 
+  - $B$ is flat;
+  - $Tor_n^R (A, B) = 0$ for all $n > 0$ and all $A$;
+  - $Tor_1^R (A, B) = 0$ for all $A$.
+]
+#proof[
   TODO
 ]
 
-(This is the end of Lecture 11.)
+  Recall since tensoring is left adjoint, it commutes with all colimits. Thus $ (colim_I A_i) tpr B iso colim_I (A tpr B) $
+#proposition[
+  For any small category $I$ and any functor $I -> ModR$, we have 
+  
+  Let $I$ be a filtered poset (for any $i, j in I$ there exists $k$ such that $i <= k$ and $j <= k$). View $I$ as a categor. Then the functor $colim: RMod^I -> RMod$ is exact. (Here $RMod^I = Fun(I, RMod)$.)
+]
+Ref: category theory.
+
+#corollary[
+  A filtered colimit of flat $R$-modules is flat. 
+]
+#proof[
+  Let $A = colim_I A_i$ where $I$ is a filtered poset and $A_i$ are flat. If we have #sest $ ses(B_1, B_2, B_3) $ then 
+  $ A tpr B_1 -> A tpr B_2 tpr A tpr B_3 $
+  then 
+  $ colim(A_i tpr B_1) -> colim(A_i tpr B_2) -> colim (A_i tpr B_3) $
+
+  Since $A_i$ is flat, then $ ses(A_i tpr B_1, A_i tpr B_2, A_i tpr B_3) $ is a #sest.
+
+  Since $colim$ is exact ($I$ filt.), we get the result.
+]
+
+#example[
+  Let $A$ be a torsion free abelian group. Then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so $A_i$ is free and hence flat.  $ A = union A_i = colim A_i $  Hence torsion free abelian groups are flat.
+]
+
+#example[
+  Let $s in R$ be a central element of $R$. We can localise $s$ to get $R[s^(-1)]$ (this is the universal ring where $s$ is invertible, which is $colim(R->^s R ->^s R-> ...)$), so this flat $R$-module.
+
+  To generalise, for a set $S$, we form $R[S^-1]$, and this is flat as well.
+]
+
+(This is the end of lecture 12.)
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
