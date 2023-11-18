@@ -314,3 +314,61 @@ $ diff oo diff = 0 $
 The cohomology is 
 
 $ C_"simplicial"^n ( X; R) = product_(alpha in I_n) R $
+
+(TODO some examples Klein bottles, etc)
+
+== Homotopy invariance 
+The next is the main theorem in this section.
+#theorem[
+If $f, g: X -> Y$ are homotopic, they induce the same map in homology and cohomology.
+]
+Once the main theorem is proven we can have the following corollary:
+#corollary[
+  If $X iso Y$, then $H_n (X) iso H_n (Y)$ and $H^n (X) iso H^n (Y)$.
+]
+#proof[
+  We have $ f: X -> Y\ g: Y -> X \ f oo g tilde id \ g oo f tilde id $
+  Apply $H_n$ to all of them and get 
+  $ f_ast : H_n (X) -> H_n (Y) \ g_ast : H_n (Y) -> H_n (X) \ f_ast oo g_ast = id \ g_ast oo f_ast = id $
+  It is the same for cohomolgy.
+]
+
+Now to prove the main theorem we need some reductions. 
+#proposition[
+  It is enough to prove the special case where $Y = X times I$, where $I = [0, 1]$, and $f : x mapsto (x, 0)$ and $g : x mapsto (x, 1)$.
+]
+#proof[
+  Let $i(x) = (x, 0)$ and $j(x) = (x, 1)$.
+  Let $f, g : X -> Y$ be homotopic maps, i.e. there exists $h : X times I -> Y$ such that $f = h oo i$ and $ g = h oo j$. Apply $H_n$, we get $f_ast = h_ast oo i_ast$ and $g_ast = h_ast oo j_ast$. But by assumption, $i_ast = j_ast$ and thus $f_ast = g_ast$. The same proof works for cohomology.
+]
+
+Our goal now is to show that chain maps $i_ast, j_ast : Ccx (X) -> Ccx (X times I)$ induce the same map in homology. It turns out we need them to have the following property:
+
+#definition[
+  Two chain maps $f_cx, g_cx: C_cx -> D_cx$ are called *chain homotopic* if there exists $ {h_n : C_n -> D_(n+1)}_(n in ZZ) $ such that $diff^D oo h + h oo diff^C = g - f$.
+]
+
+#proposition[
+  Suppose that chain maps
+$f_cx comma g_cx colon C_cx arrow.r D_cx$ are chain homotopic.
+Then the induced maps
+$f_* comma g_* colon H_n lr((C)) arrow.r H_n lr((D))$
+are equal.
+]
+#proof[
+  See homological algebra.
+]
+
+Now our goal is to prove the chain maps $i_ast, j_ast$ are chain homotopic, from which it easily follows that $i^ast, j^ast: C^cx (X times I) -> C^cx (X)$ are also chain homotopic by applying $hom_ZZ (-, R)$.
+
+#endlec(6)
+
+#align(center,image("imgs/2023-11-18-22-08-32.png",width:90%))
+
+We want to construct $h$, which sends $n$-chains on $X$ to $(n+1)$-chains on $X times I$, subject to the equation $diff h = g_ast - f_ast - h diff$. The easist idea is to multiply any $n$-chain on $X$ with $I$, but it might not be a $(n+1)$-chain on $X times I$ readily, and we need to triangulate it and give each triangle an orientation.
+
+#align(center,image("imgs/2023-11-18-22-19-23.png",width:90%))
+
+$ h(sigma)= sum_(i=0)^n (-1)^i (sigma times I)|_(mat(, , i, ..., n; 0, ..., i, , )) $
+
+where $mat(, , i, ..., n; 0, ..., i, , )$ means using vertices $0, ..., i$ at the bottom, i.e. $X times {0}$, and $i, ..., n$ at the top, i.e. $X times {1}$. 
