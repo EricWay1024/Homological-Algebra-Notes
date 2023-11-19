@@ -682,7 +682,7 @@ Assume we have shown the above, we could prove the theorm in the following way:
 #proof[
   First, we show $H^cal(U) (X) -> H (X)$ is surjective. Pick $[c] in H_n (X)$. As $S iso id$, for all $N$ we have $[S^N (c)] = [c]$. But $S^N (c) in C^cal(U) (X)$ for $N$ large enough. 
 
-  Second, we show $H^cal(U) (X) -> H (X)$ is injective. Pick $[c] in H_n^cal(U) (X)$ such that its iamge in $H_n (X)$ is zero. Pick $d in C_(n+1) (X)$ such that $diff d = c$. By assumption, we can pick $N$ large enough such that $S^N d in C^cal(U) (X)$. We can also pick a chain homotopy $k$ from $id $ to $S^N$. Thus we have $ d - S^n d = k diff d + diff k d = k c + diff k d $
+  Second, we show $H^cal(U) (X) -> H (X)$ is injective. Pick $[c] in H_n^cal(U) (X)$ such that its image in $H_n (X)$ is zero. Pick $d in C_(n+1) (X)$ such that $diff d = c$. By assumption, we can pick $N$ large enough such that $S^N d in C^cal(U) (X)$. We can also pick a chain homotopy $k$ from $id $ to $S^N$. Thus we have $ d - S^n d = k diff d + diff k d = k c + diff k d $
   Applying $diff$ to get
   $ diff k c = c - diff (S^N d) $
   and therefore $c = diff (k c + S^N d)$ (minus sign? #TODO) and hence $[c] = 0$.
@@ -790,7 +790,7 @@ $"Ext"lr((A comma B))$ is a contravariant functor of the variable $A$, and covar
 like $hom$). 
 
 $"Tor"lr((A comma B))$ is a covariant functor of each
-variable, and şatisfies $"Tor"lr((A comma B)) eq "Tor"lr((B comma A))$
+variable, and satisfies $"Tor"lr((A comma B)) eq "Tor"lr((B comma A))$
 \(just like $ - times.circle minus$ ).
 ]
 #proof[Omitted.]
@@ -800,3 +800,107 @@ $  & "Ext"lr((bb(Z) slash 2 comma B)) eq B slash brace.l 2 b colon b in B brace.
 \(can be seen by taking the free resolution of $bb(Z) slash 2$ given by
 $bb(Z) ->^2 bb(Z)$.)
 ]
+
+#proposition[
+  $ hom (A, B) = ker(f^ast: product_I B -> product _J B) $
+  $ A tp B = coker(f_ast : plus.circle.big_J B -> plus.circle.big_I B ) $
+]
+
+// $bold(A) times.circle bold(B) eq "coker" lr((upright(f) dot.basic colon xor_(upright(J)) upright(B) arrow.r xor_1 upright(med B)))$
+// because that’s coker
+// $lr((bb(Z)^(xor upright(J)) times.circle upright(B) arrow.r bb(Z)^(xor 1) times.circle upright(B)))$.
+
+#proof[
+Notice that $ hom(A, B) = ker (hom (ZZ^(xor I), B) -> hom(ZZ^(xor J), B)) $ and $ A tp B = coker(ZZ^(xor J) tp B -> ZZ^(xor I) tp B) $
+
+The second one is harder to show.
+
+The map 
+$ coker lr((bb(Z)^(xor J) times.circle B arrow.r bb(Z)^(xor I) times.circle B)) arrow.r A times.circle B $
+is visibly surjective. Because for a typical element
+$sum_i a_i times.circle b_i in A times.circle B$, one can lift each
+$a_i$ to $bb(Z)^(xor I)$. 
+
+We need to see that if
+$ sum_i x_i times.circle b_i in bb(Z)^(xor I) times.circle B mapsto 0 in A times.circle B $
+then it comes from $bb(Z)^(xor J) times.circle B$. The expression
+$sum_i x_i times.circle b_i$ represents an element of
+$xor_B lr((bb(Z)^(xor I)))$. Since its image in $xor_B A$ represents zero
+in $A times.circle B$, it can be written as
+$ sum_k a_k times.circle lr((b_k^prime plus b^(prime prime)_k)) minus a_k times.circle b_k^prime minus a_k times.circle b^(prime prime)_k in xor_B A $
+Lift each $a_k in A$ to some $x_k^prime in Z^(xor I)$ and consider the
+corresponding sum
+$ sum_k x_k^prime times.circle lr((b_k^prime plus b^(prime prime)_k)) minus x_k^prime times.circle b_k^prime minus x_k^prime times.circle b^(prime prime)_k in xor_B lr((bb(Z)^(xor I))) $
+That new element of $xor_(B) lr((bb(Z)^(xor I)))$ differs
+from our original $sum_i x_i times.circle b_i$ by something in
+$ xor_B ker lr((bb(Z)^(xor I) arrow.r A)) eq xor_B lr((bb(Z)^(xor J))) $
+We have written
+$sum_i x_i times.circle b_i in xor_B lr((bb(Z)^(xor I)))$ as a sum of
+something in $xor_B lr((bb(Z)^(xor J)))$ and something that
+represents 0 in $bb(Z)^(xor I) times.circle B$. Thus we have
+written our
+$sum_i x_i times.circle b_i in bb(Z)^(xor I ) times.circle B$ as
+something in $bb(Z)^(xor J) times.circle B$. #TODO]
+
+#theorem(name: "Universal coefficient theorem")[
+  There exsit natural, split #sess:
+  $ ses(H_n (X, ZZ) tp R, H_n (X, R), Tor(H_(n-1) (X, ZZ), R)) $
+  $ ses(Ext(H_(n-1) (X, ZZ), R), H^n (X, R), hom (X_n (X, ZZ), R))  $
+]
+#proof[
+  The #sest (\*) $ ses(Z_n (X),  C_n (X), B_(n-1) (X), g: diff) $
+  can be interpreted as a #sest of chain complexes:
+  $ ses( Z_cx (X), Ccx (X), B_cx (X)) $
+  where the first and third terms are viewed as chain complexes with zero differential.
+  Now we look at the associated #lest of homology groups. The connecting homomorphism $B_(cx -1) (X) -> Z_(cx -1) (X)$ is just the usual inclusion. 
+  #align(center,image("imgs/2023-11-19-22-20-42.png",width:50%))
+  Applying the functors $ - tp R$ and $hom (-, R)$ to get two new #sest of chain complexes:
+
+  $ ses(Z_cx (X) tp R, Ccx (X, R), B_(cx - 1) (X) tp R) $
+  $ ses(hom(B_(cx - 1)(X), R), C^cx (X, R), hom (Z_cx (X), R)) $
+  
+  Note: these two functors do not in general send #sest to #sest. But the #sest (\*) is split because $B_(n-1) (X)$ is a free abelian group. Recall that every subgroup of a free abelian group is free.
+
+  We get the corresponding #lest in (co)homology:
+
+  // We get corresponding LES in \(co)homology: and
+$   quad dots.h arrow.r B_n lr((X)) times.circle R arrow.r Z_n lr((X)) times.circle R arrow.r H_n lr((X comma R)) arrow.r B_(n minus 1) lr((X)) times.circle R arrow.r Z_(n minus 1) lr((X)) times.circle R arrow.r dots.h $
+and 
+ $
+  dots.h arrow.r "Hom"lr((Z_(n minus 1) lr((X)) comma R)) arrow.r  "Hom"lr((B_(n minus 1) lr((X)) comma R)) arrow.r H^ast.basic lr((X comma R)) \ arrow.r   "Hom"lr((Z_n lr((X)) comma R)) arrow.r  "Hom"lr((B_n lr((X)) comma R)) arrow.r dots.h $
+Like above, the maps
+$B_n lr((X)) times.circle R arrow.r Z_n lr((X)) times.circle R$ and
+$"Hom"lr((Z_(n minus 1) lr((X)) comma R)) arrow.r "Hom"lr((B_(n minus 1) lr((X)) comma R))$
+are induced by the inclusion
+$B_n lr((X)) times.circle R arrow.r.hook Z_n lr((X))$. 
+
+We rewrite this as short exact sequences: 
+$ 0 arrow.r "coker"lr((B_n lr((X)) times.circle R arrow.r Z_n lr((X)) times.circle R)) arrow.r H_n lr((X comma R)) \ arrow.r ker lr((B_(n minus 1) lr((X)) times.circle R arrow.r Z_(n minus 1) lr((X)) times.circle R)) arrow.r 0 $
+and
+$ 0 arrow.r coker lr(("Hom"lr((Z_(n minus 1) lr((X)) comma R)) arrow.r  "Hom"lr((B_(n minus 1) lr((X)) comma R)))) arrow.r H^ast.basic lr((X comma R)) \ arrow.r ker lr(("Hom"lr((Z_n lr((X)) comma R)) arrow.r "Hom"lr((B_n lr((X)) comma R)))) arrow.r 0 $
+
+which we then recognise as 
+$ 0 arrow.r H_n lr((X comma bb(Z))) times.circle R arrow.r H_n lr((X comma R)) arrow.r "Tor"lr((H_(n minus 1) lr((X comma bb(Z))) comma R)) arrow.r 0 $
+and 
+$ 0 arrow.r "Ext"lr((H_(n minus 1) lr((X comma bb(Z))) comma R)) arrow.r H^ast.basic lr((X comma R)) arrow.r "Hom"lr((H_n lr((X comma bb(Z))) comma R)) arrow.r 0 $
+
+In view of the fact that
+$ dots.h arrow.r 0 arrow.r B_n lr((X)) arrow.r Z_n lr((X)) $ is a
+free resolution of $H_n lr((X))$. Here, we’ve used that if
+$dots.h arrow.r 0 arrow.r bb(Z)^(xor J) arrow.r^f bb(Z)^(xor I)$
+is a free resolution of $A$, then
+  $
+  A times.circle R &eq "coker"lr((f_ast colon xor_(J) R arrow.r xor_(I) R)) \
+  "Tor"lr((A comma R)) &eq ker lr((f_ast colon xor_(J) R arrow.r xor_I R)) \
+"Ext"lr((A comma R)) &eq "coker"lr((f^ast colon product_I R arrow.r product_J R)) \
+"Hom"lr((A comma R)) &eq ker lr((f^star.op colon product_I R arrow.r product_J R))
+  $
+]
+#TODO a lot of stuff
+#corollary[ Excision stuff ]
+
+#endlec(11)
+
+= Equivalence of singular and simplicial homology
+
+Our next
