@@ -70,6 +70,7 @@
 #let cyl = [$"cyl"$]
 #let Tot = [$"Tot"$]
 #let endlec(n) = text(red)[This is the end of lecture #n.]
+#let TODO = text(blue)[TODO]
 #let theorem = thmbox(
   "theorem",
   "Theorem",
