@@ -903,4 +903,54 @@ is a free resolution of $A$, then
 
 = Equivalence of singular and simplicial homology
 
-Our next
+#let Hsing(X, n: $ast$) = [$H_#n^"sing" (#X)$]
+#let Hsimp(X, n: $ast$) = [$H_#n^"simpl"$ (#X)]
+#let Hcell(X, n: $ast$) = [$H_#n^"cellular"$ (#X)]
+#let Hcw(X, n: $ast$) = [$H_#n^"CW"$ (#X)]
+Our next goal is to show for any space $X$, $ Hsing(X) iso Hsimp(X) $
+
+For that we will first show $ Hsing(X) iso Hcell(X) $
+where $Hcell(X) equiv Hcw(X)$ is homology for CW-complexes. 
+
+#definition[
+  A *CW-Complex* $X$ is a space $ X = union.big_(n=0)^infinity X^(n) $
+  where each $X^((n))$ is obtained from the previous $X^(n-1)$ by a pushout diagram:
+// #align(center,image("imgs/2023-11-20-07-46-04.png",width:30%))
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRDQCdomBjHAOh4QA+gAoAksLABKAARQsAM0WyAIgD1CAX1LpMufIRQBGclVqMWbABrrRosAFpj06SB17seAkVPHz9MysiCC29jJuHuz63kYkpP7UgVYhnNx8giISUnIa2uYwUADm8ESgilwAtkhkIDgQSKYWQWw8ABZY7rogFRDViE31SABMUb39tUOIAMxJlsEgnWNVSLN1DYijFFpAA
+#align(center, commutative-diagram(
+  node((0, 0), [$product.co_(I_n) diff D^n$]),
+  node((0, 1), [$X^((n-1))$]),
+  node((1, 1), [$X^((n))$]),
+  node((1, 0), [$product.co_(I_n) D^n$]),
+  arr((0, 0), (0, 1), [$chi$]),
+  arr((0, 1), (1, 1), []),
+  arr((0, 0), (1, 0), [$i$]),
+  arr((1, 0), (1, 1), []),
+))
+  where $D^n$ is a copy of the (closed) $n$-ball. 
+
+  We call the subspace $X^((n))$ the  *$n$-skeleton* of $X$, and $chi$ in the diagram is called the *attaching map*.
+]
+#remark[
+  More explicitly, $X^((n))$ is the space obtained from the disjoint union $X^((n-1)) union.sq product.co_(I_n) D^n $ by identifying each $i (y) in product.co_(I_n) D^n$ with $chi(y) in X^((n-1))$ for all $y in product.co_(I_n) diff D^n$, and equipping the resulting set with quotient topology.
+  See https://www.math.ru.nl/~gutierrez/files/Lecture07.pdf
+]
+#definition[
+  
+  $
+    D^n = { x in RR^n | norm(x) <= 1 } \
+    S^n = diff D^(n+1) = D^n over diff D^n
+  $
+
+]
+
+#definition[
+  The *cellular complex* of a CW-complex $X$ is 
+  $
+    C_n^"CW" (X) := ZZ ^(xor I_n) 
+  $
+  and the differential $diff^"CW" : C_(n+1)^"CW" (X) -> C_n^"CW" $ is given by a $I_(n+1) times I_n$ matrix of integers.
+  
+  
+  
+]
