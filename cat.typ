@@ -1416,3 +1416,92 @@ Dual statement: $cC$ is complete, $F$ preserves limits (is continuous). $F$ has 
 #example[
     $ "Forget": Grp -> Set$ creates limits. (MacLane) So it is continuous. $Grp$ is complete because $Set$ is. TODO
 ]
+
+#endlec(12)
+
+= Monads
+
+This is the lecture you've all been waiting for.
+
+#definition[
+    A *monad* on a category $cC$ is an endofunctor $T: cC -> cC$ together with natural transformations:
+    - multiplication: $mu: T^2 => T$ and
+    - unit: $eta: id_cC => T$,
+    such that diagrams commute:
+    - associativity #TODO,
+    - unit #TODO.
+]
+
+#example[
+    Let $A$ be a unital associative $k$-algebra (for example, $A = M_(n times n)(k)$). Let $T : veck -> veck $ be $V mapsto A tpk V$. $A$ has multiplication $mu_A : A tp A -> A$ such that $a tp b mapsto a dot b$ and $eta_A : k -> A$ such that $1 mapsto e_A$. 
+
+    Monad on $T$. $mu$:
+    $
+        T^2(V) = A tp (A tp V) = (A tp A) tp V -->^(mu_a tp id_V) A tp V = T(V)
+    $
+    $eta_V$:
+    $
+        V = k tpk V -->^(eta_A tp id_V) A tp V = T(V)
+    $
+    Verify the axioms #TODO
+]
+#example[
+    Power sets. 
+    $
+        P : Set &-> Set \
+        P(A) &= "power set of" A\
+        P(f: A-> B) &= f_* : P(A) -> P(B)
+    $
+    where  for $S subset.eq A$, $f_ast (S) = f(S)$.
+    
+    Multiplication. 
+    $
+        mu_A: P^2(A) &-> P(A) \
+        { S_i subset.eq A : i in I} &mapsto union.big_i S_i 
+    $
+    Unit. 
+    $
+        eta_A : A &-> P(A) \
+        a &mapsto {a} 
+    $
+    #TODO verify the axioms
+    
+]
+
+#definition[
+    A *comonad* is a monad on $cC^op$, which has $T: cC -> cC$ with 
+    - comultiplication $Delta : T => T^2$ and
+    - counit $epsilon : T => id_cC$.
+    Axioms as above but flip all the arrows.
+]
+
+#example[
+    A coalgebra. Group algebra. Universal enveloping algebra of $a$. don't really know what he's talking about
+    #TODO
+]
+
+#proposition[
+    $F: cC arrows.lr cD : G$ and $F tack.l G$. Then $G F : cC -> cC$ is a monad and $F G : cD -> cD$ is a comonad, where $eta : id_cC => G F$ (the unit of adjunction) and $mu : G (F G) F ==>^(id_G oo epsilon oo id_F) F G F$ make the monad; $epsilon: F G => id_cD$ and $Delta: F G ==>^(id_F oo eta oo id_G) F (G F ) G$ make the comonad.
+]
+#proof[
+    Take the first triangle and compose on the left with $id_G$...
+    #TODO read the lecture notes
+]
+
+#example[
+    $Set arrows.lr^"Forget"_"Free" Ab$ with $F = "Free" tack.l "Forget" = G$. Monad $T = G F : Set -> Set$. 
+    
+    $F(S)$ is finite formal $ZZ$-linear combination of elements of $S$, i.e. $F(S) = sum k_s s$, where $s in S$ and $k_s in ZZ$, only finitely many of which are nonzero. This is an abelian group with pointwise addition.
+
+    On the other hand, $T(S)$ is the set of $sum k_s s$, forgetting the group structure. 
+
+    $epsilon_A$ for $"Free" oo "Forget"$ is the evaluation. (?) #TODO
+]
+
+#example[ Interesting...
+    Giry monad (probablity) 
+    - Michele Giry "Categorical Probablity Theory" 
+    - Tom Avery "Codensity and the Giry monad"
+]
+
+#endlec(13)
