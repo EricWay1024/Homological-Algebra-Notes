@@ -2191,10 +2191,110 @@ Ref: category theory.
 #example[
   Let $s in R$ be a central element of $R$. We can localise $s$ to get $R[s^(-1)]$ (this is the universal ring where $s$ is invertible, which is $colim(R->^s R ->^s R-> ...)$), so this flat $R$-module.
 
-  To generalise, for a set $S$, we form $R[S^-1]$, and this is flat as well.
+  To generalise, for a set $S$, we form $R[S^(-1)]$, and this is flat as well.
 ]
 
 (This is the end of lecture 12.)
+
+#lemma(name: "Free resolution lemma")[
+  Let $F_cx -> A$ be a resolution of $A$ with $F_n$ flat modules for all $n$. Then 
+  $
+    Tor_ast^R (A, B) iso H_ast (F_cx tpr B )
+  $
+  Similarly, if $F'_cx -> B$ is a flat resolution, then 
+  $
+    Tor_ast^R (A, B) iso H_ast (A tpr F'_cx)
+  $
+  
+]
+#proof[
+  By induction. As $- tpr B$ is right exact, we get the result for $n = 0$. Let 
+  $
+    ses(K, F_0, A)
+  $
+  be a short exact sequence. If we write $E_cx = (... -> F_2 -> F_1 -> 0)$, then $E_cx -> K$ is a flat resolution of $K$.
+
+  For $n=1$, we get from the #lest of $Tor$ 
+  $
+    Tor_1 (A, B) = ker (K tp B -> F_0 tp B) = ker ((F_1 tp B) / im(F_2 tp B) -> F_0 tp B) = H_1 (F tp B)
+  $
+  We see the result is true for $n = 1$. For $n >= 2$, by induction, 
+  $
+    Tor_n (A, B) = Tor_(n+1) (K, B) = H_(n-1) (E tp B) = H_n (F tp B)
+  $
+  the first equation due to $Tor_k (F_0, B) = 0$. 
+  #TODO
+]
+
+#remark[
+  If $F$ is a right exact functor, we call an object $Q$ *$F$-acyclic* if $L_i F(Q) = 0$ for all $i != 0$.  
+  The same proof shows that if $Q_cx -> A$ is a resolution by $F$-acyclic objects, then $L_i F(A) = H_i (F (Q_cx))$. 
+]
+
+#remark[
+  #TODO
+]
+
+= UCT
+
+How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
+
+#theorem[
+  Let $P$ be a chain complex of flat, right $R$-modules such that each submodule $d(P_n)$ of $P_(n-1)$ is also flat. Then for every $n$ and every left $R$-module $M$ there is a #sest 
+  
+  $
+    ses(H_n (P) tpr M, H_n (P_cx tpr M), Tor_1^R (H_(n-1)(P), M))
+  $
+  
+]
+#proof[
+  We have a #sest 
+  $
+    ses(Z_n, P_n, d(P_n))
+  $
+  The associated #lest in $Tor$ shows that $Z_n$ is also flat. Using that 
+  $
+    Tor_1^R (d(P_n), M) = 0
+  $
+  gives that 
+  $
+    ses(Z_n tp M, P_n tp M, d(P_n) tp M)
+  $
+  is a #sest for every $M$, so we get a #sest for complexes 
+  $
+    ses(Z_cx tp M , P_cx tp M, d(P)_cx tp M)
+  $
+  Note that the differential on the complexes  $Z_cx$ and $d(P)_cx$ are zero. We now look at the #lest... #TODO 
+] 
+#remark[
+  These are the games you play with the machine.
+]
+#theorem(name: "Universal Coefficient Theorem")[
+  Let $P$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Kunneth #sest splits, so $ H_n (P tp M) = H_n (P) tp M ds Tor_1^ZZ (H_(n-1) (P), M) $
+]
+#proof[
+  #TODO
+
+  Note: $P_n -> d(P_n)$ splits. 
+]
+
+Recall if $P_cx, Q_cx$ are complexes, we define $P_cx tpr Q_cx$.
+
+Full Kunneth formula. #TODO can't figure out anything now, what an end of world... how can anyone follow these lectures??? 
+
+Koszul resolution
+
+Let $x in R$ be a central element. Let $K(x)$ be the chain complex 
+$
+  0->R->^x R ->0
+$ 
+in degrees $0,1$. We call the generator in degree $1$ $e_x$ so $d(e_x) = x$. If $underline(x) = (x_1, ..., x_n)$ is a finite sequence of central elements, define 
+$
+  K(underline(x)) = (((K(x_1) tpr K(x_2)) tpr) ... tpr K(x_n))
+$
+
+
+
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
