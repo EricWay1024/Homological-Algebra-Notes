@@ -587,7 +587,7 @@ We are usually only concerned with a weaker form, where we assume $m, p, l, n$ a
   #TODO Diagram chasing
 ]
 
-== Consequences of Small Simplices Theorem
+== Excision Theorem
 
 The reader is reminded that $macron(E)$ is the closure of $E$ and $circle(A)$, also denoted as $A^circle.small$, is the interior of $A$. 
 #theorem(name: "Excision Theorem")[
@@ -609,6 +609,7 @@ The reader is reminded that $macron(E)$ is the closure of $E$ and $circle(A)$, a
   // #align(center,image("imgs/2023-11-19-12-39-30.png",width:50%))
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBhAPoBjAB4A9OYwAUAVQCUAAjUBBLVx4gM2PASIAmUdXrNWiELMUr12vQA0j3XuYFEAMy24g7S8sqqDJq6ap6kOobGfvyWKAAsIfaSThy+pnwWgiSkQmLZjuzJBf5pyCJldhKVLgp6SflmqcU2jaE5zhFePiZdRUGl5c3hil4JHaOFARmTTWG5XGIwUADm8ESgAGYAThAAtkhkIDgQSEL5J+d31DdIVg+nF4g217eIgR8nv8Xn90oCvgBWEFIABs4Nh0MQAHZ4cjEQAOVHoxEATlRIl+sNRP1eyNRwUJiExFE4QA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((0, 0), [$0$]),
   node((0, 1), [$C_cx^cal(U) (A)$]),
   node((0, 2), [$C_cx^cal(U) (X)$]),
@@ -667,69 +668,119 @@ $i colon lr((A comma A)) arrow.r lr((U comma A))$ is the inclusion).
 #example[
   In the topologist's sine curve, the segment on the $y$-axis does not make a good pair with the whole space.
 ]
-#corollary[
+
+Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if $x, y in A$ or $x = y$. The next corollary equates the relative homology of a good pair with the reduced homology of their quotient space. 
+
+#corollary(name: "Collapsing a Pair")[
   If $A subset.eq X$ is a good pair, then $H_ast (X, A) = tilde(H)_ast (X over A)$.
 ]
-#remark[
-  $X over A$ is such a space that $[x] = [y]$ if $x, y in A$ or $x = y$. 
-]
+  Before we proceed with the proof, the reader is kindly reminded of the potential confusion between symbols $\\$ (for set-theoretic exclusion or 'without') and $over$ (for forming a quotient space).
+  
 #proof[
   Pick an open neighborhood $V$ of $A$ as in the definition of good pair.
   The map of pairs $(X, A) -> (X, V)$ gives a map of long exact sequences:
-  #align(center,image("imgs/2023-11-19-12-56-51.png",width:80%))
+  // #align(center,image("imgs/2023-11-19-12-56-51.png",width:80%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAJAfQAowBqYgEoABDwCCQkAF9S6TLnyEUAJgrU6TVu259BongA0ps+djwEiAZnU0GLNok5cwYw6RGSZckBnNKiABZbTQcdFzEvU18FC2VkAFYQ+20nblcjEx8-RUsUMmINFMdnPWExADUss1z4tUK7LRLdAXLM7xq461IG0NTnDPcRKo6Y-zzkYN7i8Iyo7NiAlCTpptm3arHaonJktacAOiPRnK6UADY9sMPj6NOl5F3V65Ajg5PFicvn-reZDRgUAA5vAiKAAGYAJwgAFskMRdiAcBAkORolDYaiaMj4ejoXDEGQkSjECo8ZjSdiSVZyQSbMSkIFaYyqfDiMzCWoGYgEhyktzzhzLtyAOwckWsxAADg5UslAE4OfLJcQaT4MQTETieRyidrBer8UgudqxYaKfTtTLzQTgtzFZRpEA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
+  node((0, 1), [$H_(n+1) (A)$]),
+  node((0, 2), [$H_(n+1) (X)$]),
+  node((0, 3), [$H_n (X, A)$]),
+  node((0, 4), [$H_n (A)$]),
+  node((0, 5), [$H_n (X)$]),
+  node((1, 1), [$H_(n+1) (V)$]),
+  node((1, 2), [$H_(n+1) (X)$]),
+  node((1, 3), [$H_n (X, V)$]),
+  node((1, 4), [$H_n (A)$]),
+  node((1, 5), [$H_n (X)$]),
+  node((0, 0), [$...$]),
+  node((0, 6), [$...$]),
+  node((1, 0), [$...$]),
+  node((1, 6), [$...$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), []),
+  arr((0, 2), (0, 3), []),
+  arr((0, 3), (0, 4), []),
+  arr((0, 4), (0, 5), []),
+  arr((0, 5), (0, 6), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((1, 3), (1, 4), []),
+  arr((1, 4), (1, 5), []),
+  arr((1, 5), (1, 6), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((0, 3), (1, 3), []),
+  arr((0, 4), (1, 4), []),
+  arr((0, 5), (1, 5), []),
+))
   By #thmref(<five>)[Five Lemma], $H_ast (X, A) -> H_ast (X, V)$ is an isomorphism.
+
+  Since $ast = A over A$ is a deformation retract of $V over A$, in the same way as above, the long exact sequence associated with $(A over A arrow.hook X over A) -> (V over A arrow.hook X over A)$ shows that $ H_ast (X over A, ast) = H_ast (X over A, V over A)  $
+  but $ H_ast (X over A, ast) = tilde(H)_ast (X over A)$ by definition.
+
   By #thmref(<excision>)[Excision Theorem], for $A subset.eq V subset.eq X$, 
   $ H_ast (X, V) iso H_ast (X \\ A, V \\ A) $
   Apply #thmref(<excision>)[Excision Theorem] again to $ A over A subset.eq V over A subset.eq X over A$,
   $ H_ast (X over A, V over A) iso H_ast (X \\ A, V \\ A)  $
-  Since $ast = A over A$ is a deformation retract of $V over A$, the long exact sequence associated with $(A over A arrow.hook X over A) -> (V over A arrow.hook X over A)$ shows that $ H_ast (X over A, V over A) = H_ast (X over A, ast) = tilde(H) (X over A) $
-  Thus we have shown  $H_ast (X, A) = tilde(H)_ast (X over A)$.
+  Putting together all the pieces gives
+  $
+    H_ast (X, A) = H_ast (X, V) = H_ast (X \\ A, V \\ A) = H_ast (X over A, V over A) = H_ast (X over A, A over A) = tilde(H)_ast (X over A) 
+  $
 ]
 
-#remark[
-  Don't confuse $\\$ (set-theoretic without) with $over$ (quotient).
-]
 #example[
   When $A = S^1$ and $X = S^1 or S^1$, $A subset X$ is a good pair. Thus 
   $ H_ast (S^1 or S^1, S^1) = tilde(H)_ast (S^1) $
 ]
+== Mayer-Vietoris Theorem
 #theorem(name: "Mayer-Vietoris Theorem")[
   Let $X = A union B$ be an open cover by two sets. Then there is a #lest 
   $ ...-> H_n (A sect B) -> H_n (A) xor H_n (B) -> H_n (X) -> H_(n-1) (A sect B) -> ... $
 #align(center,image("imgs/2023-11-19-13-11-54.png",width:80%))
+<mv>
 ]
 #proof[
   Consider the open cover $cal(U) = {A, B}$. Then we get a #sest 
-  $ ses(Ccx(A sect B), Ccx (A) xor Ccx (B), C_cx^cal(U) (X)) $
-  We then obtain a #lest on homology groups. Apply small simplices theorem to replace $H_ast^cal(U) (X) $ by $H_ast (X)$. 
+  $ ses(Ccx(A sect B), Ccx (A) xor Ccx (B), C_cx^cal(U) (X), f: i, g: pi) $
+  where $i: sigma mapsto (sigma , -sigma)$ and $pi : (alpha, beta) mapsto alpha + beta$. (The minus sign in $f$ is to make the sequence exact.)
+  We then obtain a #lest on homology groups. Apply #thmref(<small-simp>)[Small Simplices Theorem] to replace $H_ast^cal(U) (X) $ by $H_ast (X)$. 
 ]
 #endlec(9)
 #definition[
-  A space $X$ is a *well-pointed* one if $ ast in X$ is a good pair.
+  A space $X$ is *well-pointed* if $ ast in X$ is a good pair.
 ]
 
-#example[
-  Let $ast in X$, $ast in Y$ be two well-pointed spaces. Then 
+#corollary[
+  Let $ast in X$, $ast in Y$ be two well-pointed spaces. Then for $n >= 1$,
   $ H_n (X or Y)  = H_n (X) xor H_n (Y) $
-  for $n > 0$.
 ]
   #align(center,image("imgs/2023-11-19-13-23-03.png",width:30%))
 #proof[
   Cover $X or Y$ by $A = X union U_y$, where $U_y $ is an open neighborhood of $ast in Y$ as in the definition of good pair, and $B = Y union U_x$, where $U_x$ is defined similarly.
-  Apply MV Theorem to get a #lest
+  Notice $A sect B = U_x union U_y$.
+
+  Apply #thmref(<mv>)[Mayer-Vietoris Theorem] to get a #lest
   $
     ...-> H_n (U_x union U_y) -> H_n (X union U_y) xor H_n (Y union U_x) -> H_n (X or Y) ->  H_(n-1) (U_x union U_y) ->...
   $
   But $U_x union U_y iso ast$, $X union U_y iso X$ and $Y union U_x iso Y$.
-  For $n >= 2$, we easily see $  H_n (X ) xor H_n (Y ) = H_n (X or Y)  $
-  For $n = 1$ we need some reasoning:
-  #align(center,image("imgs/2023-11-19-13-31-12.png",width:60%))
+  For $n >= 2$, since $H_n (ast) = H_(n-1) (ast)= 0$, we easily see $  H_n (X ) xor H_n (Y ) = H_n (X or Y)  $
+  For $n = 1$,
+  $
+    ... -> 0 -> H_1 (X) xor H_1 (Y) -> H_1 (X or Y) ->^f ZZ ->^i H_0 (X) xor H_0 (Y) -> ...
+  $
+  Here map $i $ is injective which means map $f = 0$, so we still have $ H_1 (X ) xor H_1 (Y ) = H_1 (X or Y)$. 
+  //  we need some reasoning:
+  // #align(center,image("imgs/2023-11-19-13-31-12.png",width:60%))
 ]
 
 #example[
   $X = S^2$. We define $A$ as "the northen hemisphere plus $epsilon$" (a narrow band across the equator) and $B$ as "the southern hemisphere plus $epsilon$". Note that $ A iso ast iso B$ and $A sect B = S^1$. #align(center,image("imgs/2023-11-19-13-36-38.png",width:15%))
-  By the MV theorem,
+  By #thmref(<mv>)[Mayer-Vietoris Theorem],
   #align(center,image("imgs/2023-11-19-13-42-37.png",width:50%))
+  Recall that $H_n (S_1) = ZZ$ for $n = 0, 1$ and $H_n (S_1) = 0$ for $n >= 2$. 
   We can compute that
   $H_n (S^2) = 0$ for $n >= 3$ and $n = 1$, and $H_n (S^2) = ZZ$ for $n = 0, 2$.
 ]
@@ -740,9 +791,12 @@ $i colon lr((A comma A)) arrow.r lr((U comma A))$ is the inclusion).
   #TODO
 ]
 
-Now we prove the Small Simplices Theorem. The strategy of the proof:
+= Proving Small Simplices Theorem
+https://www.dpmms.cam.ac.uk/~or257/teaching/IIIAlgTop2016/SmallSx.pdf
+
+Now we work on proving #thmref(<small-simp>)[Small Simplices Theorem]. The strategy of the proof:
 + Define a "subdivision operator" $S : C_cx (X) -> C_cx (X)$. For example: #align(center,image("imgs/2023-11-19-14-20-27.png",width:50%))
-+ Prove that $S$ is chian homotopic to $id : C_cx (X) -> Ccx (X)$;
++ Prove that $S$ is chain homotopic to $id : C_cx (X) -> Ccx (X)$;
 + Prove for all $c in Ccx(X)$, there exists $N$ such that $S^N (c) in C^cal(U) (X) $.
 
 Assume we have shown the above, we could prove the theorm in the following way:
