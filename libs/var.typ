@@ -136,4 +136,4 @@
 
 #let fw(doc) = box(width: 100%)[#doc]
 
-#let proof(term) = block(width: 100%, breakable: true)[_Proof._ #term #h(1fr) $qed$]
+#let proof(title: "Proof", term) = block(width: 100%, breakable: true)[_#title._ #term #h(1fr) $qed$]

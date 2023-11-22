@@ -314,35 +314,36 @@ $ diff oo diff = 0 $
 The cohomology is 
 
 $ C_"simplicial"^n ( X; R) = product_(alpha in I_n) R $
-
+ 
 (TODO some examples Klein bottles, etc)
 
-= Homotopy invariance 
+= Homotopy Invariance 
 The next is the main theorem in this section.
-#theorem[
-If $f, g: X -> Y$ are homotopic, they induce the same map in homology and cohomology.
+#theorem(name: "Homotopy Invariance")[
+If two maps $f, g: X -> Y$ are homotopic, then they induce the same map in homology and cohomology, i.e. $f_ast = g_ast : H_ast (X) -> H_ast (Y)$ and $f^ast = g^ast : H^ast (X) -> H^ast (Y)$. <hmtp-inv>
 ]
 Once the main theorem is proven we can have the following corollary:
 #corollary[
   If $X iso Y$, then $H_n (X) iso H_n (Y)$ and $H^n (X) iso H^n (Y)$.
 ]
 #proof[
-  We have $ f: X -> Y\ g: Y -> X \ f oo g tilde id \ g oo f tilde id $
-  Apply $H_n$ to all of them and get 
-  $ f_ast : H_n (X) -> H_n (Y) \ g_ast : H_n (Y) -> H_n (X) \ f_ast oo g_ast = id \ g_ast oo f_ast = id $
-  It is the same for cohomolgy.
+  $X iso Y$ means we have $f: X -> Y$ and $g: Y -> X$ such that $ f oo g tilde id, quad g oo f tilde id $
+  Apply $H_n$ to get 
+  $f_ast : H_n (X) -> H_n (Y)$ and $g_ast : H_n (Y) -> H_n (X) $ such that $ f_ast oo g_ast = id, quad g_ast oo f_ast = id $
+  showing $H_n (X) iso H_n (Y)$. It is the same for cohomolgy.
 ]
 
 Now to prove the main theorem we need some reductions. 
-#proposition[
-  It is enough to prove the special case where $Y = X times I$, where $I = [0, 1]$, and $f : x mapsto (x, 0)$ and $g : x mapsto (x, 1)$.
+#proposition[ Let $I = [0, 1]$.
+  To prove #thmref(<hmtp-inv>)[Theorem], it is enough to prove the special case where $Y = X times I$, $f = i : x mapsto (x, 0)$ and $g = j : x mapsto (x, 1)$. 
 ]
 #proof[
-  Let $i(x) = (x, 0)$ and $j(x) = (x, 1)$.
-  Let $f, g : X -> Y$ be homotopic maps, i.e. there exists $h : X times I -> Y$ such that $f = h oo i$ and $ g = h oo j$. Apply $H_n$, we get $f_ast = h_ast oo i_ast$ and $g_ast = h_ast oo j_ast$. But by assumption, $i_ast = j_ast$ and thus $f_ast = g_ast$. The same proof works for cohomology.
+  // Let $i(x) = (x, 0)$ and $j(x) = (x, 1)$.
+  Let $f', g' : X -> Y$ be homotopic maps, i.e. there exists $h : X times I -> Y$ such that $f' = h oo i$ and $ g' = h oo j$. Apply $H_n$, we get $f'_ast = h_ast oo i_ast$ and $g'_ast = h_ast oo j_ast$. But by assumption, $i_ast = j_ast$ and thus $f'_ast = g'_ast$. The same proof works for cohomology.
 ]
 
-Our goal now is to show that chain maps $i_ast, j_ast : Ccx (X) -> Ccx (X times I)$ induce the same map in homology. It turns out we need them to have the following property:
+Now fix maps $i, j: X -> X times I$ as defined above.
+Our goal is to show that _chain maps_ $i_ast, j_ast : Ccx (X) -> Ccx (X times I)$ induce the same map in homology. It turns out we need them to have the following property:
 
 #definition[
   Two chain maps $f_cx, g_cx: C_cx -> D_cx$ are called *chain homotopic* if there exists $ {h_n : C_n -> D_(n+1)}_(n in ZZ) $ such that $diff^D oo h + h oo diff^C = g - f$.
@@ -359,25 +360,28 @@ are equal.
   See homological algebra.
 ]
 
-Now our goal is to prove the chain maps $i_ast, j_ast$ are chain homotopic, from which it easily follows that $i^ast, j^ast: C^cx (X times I) -> C^cx (X)$ are also chain homotopic by applying $hom_ZZ (-, R)$.
+Now our goal is to prove the chain maps $i_ast, j_ast$ are chain homotopic, from which it will easily follow that $i^ast, j^ast: C^cx (X times I) -> C^cx (X)$ are also chain homotopic by applying $hom_ZZ (-, R)$.
 
 #endlec(6)
 
 #align(center,image("imgs/2023-11-18-22-08-32.png",width:90%))
 
-We want to construct $h$, which sends $n$-chains on $X$ to $(n+1)$-chains on $X times I$, subject to the equation $diff h = g_ast - f_ast - h diff$. The easist idea is to multiply any $n$-chain on $X$ with $I$, but it might not be a $(n+1)$-chain on $X times I$ readily, and we need to triangulate it and give each triangle an orientation.
+We want to construct $h$, which sends $n$-chains on $X$ to $(n+1)$-chains on $X times I$, subject to the equation $diff h = g_ast - f_ast - h diff$. The easist idea is to multiply any $n$-chain on $X$ with $I$, but it might not be a $(n+1)$-chain on $X times I$ readily, and we need to triangulate it and give each triangle an orientation. For example, when $sigma: Delta^1 -> X$ is a $1$-chain (i.e. a path) on $X$, $sigma times I$ represents a "rectangle" in on $X times I$, which can be sliced to two $2$-chains (i.e. "triangles") $Delta^2 -> X times I$.  
 
 #align(center,image("imgs/2023-11-18-22-19-23.png",width:90%))
 
+#definition[
+We define $h : C_n (X) -> C_(n+1) (X times I)$ for $sigma: Delta^n -> X$ as
 $ h(sigma)= sum_(i=0)^n (-1)^i (sigma times I)|_(mat(, , i, ..., n; 0, ..., i, , )) $
 
 where $mat(, , i, ..., n; 0, ..., i, , )$ means using vertices $0, ..., i$ at the bottom, i.e. $X times {0}$, and $i, ..., n$ at the top, i.e. $X times {1}$. Formally,
 $ (sigma times I)|_(mat(, , i, ..., n; 0, ..., i, , )) : Delta^(n+1) &-> X times I \ 
 (x_0, ..., x_(n+1)) &mapsto (sigma (x_0, ... , x_(i-1), underbrace(x_i + x_(i_1), i"-th" ), x_(i+1), ..., x_(n+1)), x_(i+1) + ... + x_(n+1))
 $
+]
 
 #proposition[
-  $h$ defined above gives the chain homotopy we desire.
+  $h$ defined above gives the chain homotopy between chain maps $i_ast, j_ast : Ccx (X) -> Ccx (X times I)$ we desire.
 ]
 #proof[
 Now recall the formula for the boundary: 
@@ -436,25 +440,24 @@ $
 
 From which we finally conclude
 $ diff h (sigma) = g_ast (sigma) - f_ast (sigma) - h diff (sigma) $
-which makes us very happy.]
+which makes us very happy because we have proven #thmref(<hmtp-inv>)[Theorem].]
 #endlec(7)
 
-= Exact sequences
-
-
+The following is a simple application.
 #example[
-  For ${"pt"}$, we have $H_0 = ZZ$ and $H_n = 0$ for $n > 0$. It is the same for any contractible space because of the homotopy invariance.
+  For the single-point space ${"pt"}$, we have $H_0 = ZZ$ and $H_n = 0$ for $n > 0$. It is the same for any contractible space because of the homotopy invariance.
 ]
+= Exact Sequences and Relative Homology
 
-#proposition[
+#proposition[ Let $X_i$ be a family of spaces indexed by $i in I$. Then
   $ H_n (product.co_(i in I) X_i) = plus.circle.big_(i in I) H_n (X_i) $
   $ H^n (product.co_(i in I) X_i) = product_(i in I) H^n (X_i) $
 ]
-#proof[
-  #TODO
+#proof[@hatcher[Proposition 2.6]. Let $X = product.co_(i in I) X_i$. Since a singular simplex always has path-connected image, $C_n (X)$ splits as the direct sum $plus.circle.big_(i in I) C_n (X_i)$.
+The boundary maps $diff_n$ preserve this direct sum decomposition, taking $C_n (X_i)$ to $C_(n-1) (X_(i))$, so $ker diff_n$ and $im diff_n$ split similarly as direct sums, hence the homology groups also split. #TODO cohomology
 ]
 
-#definition[
+#definition[ Let $A, B, C$ be abelian groups.
   A *short exact sequence* $ ses(A, B, C, f: f, g: g) $ means $f$ is injective, $g$ is surjective and $im(f) = ker(f)$.
 ]
 #definition[
@@ -462,41 +465,54 @@ which makes us very happy.]
 ]
 
 #definition[
-  Let $A subset X$, then it induces $C_cx (A) arrow.hook Ccx (X)$. We define $
+  Let $X$ be a space and  $A subset.eq X$, then it induces $C_cx (A) arrow.hook Ccx (X)$. We define $
     C_cx (X, A) := C_cx (X)  over C_cx (A) 
   $
   Note that the differential on $C_cx (X)$ descends to a differential on $Ccx (X, A)$.
-   We also define $
-    C^cx (X, A) := hom (C_cx (X, A), ZZ)
-  $ The *relative homology* is 
+  Then the *relative homology* of the pair $A subset.eq X$ is 
   $
     H_ast (X, A) := H_ast (C_cx (X, A))
   $
 ]
+#definition[
+   We also define $
+    C^cx (X, A) := hom (C_cx (X, A), ZZ)
+  $ and the *relative cohomology*
+  $
+    H^ast (X, A) := H^ast (C^cx (X, A))
+  $
+  
+]
 #remark[
-  It is also true that $ C_ast (X, A) = plus.circle.big _(sigma: Delta^n -> X, im(sigma) subset.not A) ZZ  $ but it is better to think of it as a quotient group rather than a subgroup.
+  It is also true that $ C_n (X, A) = plus.circle.big _(sigma: Delta^n -> X, im(sigma) subset.not A) ZZ  $ but it is better to think of it as a quotient group of $C_n (X)$ rather than a subgroup.
 ]
 
+We now introduce the next theorem that uses the relative homology to construct a long exact sequence:
+#theorem[
 Let $A arrow.hook X$ be a subspace. Then $H_n (A) -> H_n (X)$ can be fit in a long exact sequence
 $ ... -> H_n (A) -> H_n (X) -> H_n (X, A) -> H_(n-1) (A) -> ... $
-where $H_n (X, A)$ is the *relative homology*. We also have for the cohomology:
+where $H_n (X, A)$ is the relative homology. We also have for the cohomology:
 
 $ ... <- H^n (A) <- H^n (X) <- H^n (X, A) <- H^(n-1) (A) <- ... $
+<les-relative>
+]
 
 The maps $ H_n (A) -> H_n (X) -> H_n (X, A) $ are clear because they are induced by the inclusion and quotient maps, i.e. the short exact sequence of chain complexes:
 $
   0-> Ccx(A) arrow.hook Ccx(X) arrow Ccx(X) over Ccx(A) -> 0
 $
 
-We work on a general theorem about short exact sequence of chain complexes, the Snake Lemma.
-#proposition[
+For the remaining map, $H_n (X, A) -> H_(n-1) (A)$, we need to work on a general theorem about short exact sequence of chain complexes, the Snake Lemma.
+#lemma(name: "Snake Lemma")[
   Every #sest of chain complexes has an associated #lest of homology groups.
-]
-Here all the rows are exact and each column is a chain complex:
+  
+  In diagrams, suppose all the rows are exact and each column is a chain complex:
 #align(center,image("imgs/2023-11-19-11-03-03.png",width:50%))
 We claim that we can always get the following:
 #align(center,image("imgs/2023-11-19-11-05-03.png",width:50%))
-where the zigzagging arrow is the *boundary homomorphism*.
+where the zigzagging arrow is the *boundary homomorphism*. 
+<snake>
+]
 #proof[
   For $[c] in H_(n+1) (Ccx)$, define $diff [c]$ to be $[a]$ for $a in A_n$... #TODO Digram Chasing
 
@@ -506,14 +522,14 @@ where the zigzagging arrow is the *boundary homomorphism*.
   - depends on $c$ within $[c]$?
 ]
 
+#proof(title: [Proof of #thmref(<les-relative>)[Theorem]])[
+With the #thmref(<snake>)[Snake Lemma], one can easily show the homology part of the claim.
 To dualise the argument, we can get the short exact sequence 
 $ 0<- C^cx (A) <- C^cx (X) <- C^cx (X, A) <- 0 $
-This is still a short exact sequence becasue the original short exact sequence is split and applying $hom(-, ZZ)$ preserves split short exact sequence.
+by applying $hom(-, ZZ)$.
+This is still a short exact sequence becasue the original short exact sequence is split and applying $hom(-, ZZ)$ preserves split short exact sequence.]
 
-#theorem(name: "Excision")[
-  Let $A subset X$ and $macron(E) subset circle(A)$, then 
-  $ H_ast (X, A) iso H_ast (X \\ E, A \\ E) $
-]
+The next is a special case of the relative homology when $A$ is a single point.
 
 #definition[
   The *reduced homology* of a space $X$ is $ tilde(H)_ast (X) := H_ast (X, ast) $
@@ -527,7 +543,13 @@ This is still a short exact sequence becasue the original short exact sequence i
 ]
 
 #remark[
-  Everything here also holds for coefficient ring $H_ast (X, R)$ and $H_ast (X, A, R)$.
+  Everything here also holds for coefficient ring $H_ast (X; R)$ and $H_ast (X, A; R)$.
+]
+
+The next example makes use of a theorem we shall discuss later.
+#theorem(name: "Excision Theorem")[
+  Let $A subset X$ and $macron(E) subset circle(A)$, then 
+  $ H_ast (X, A) iso H_ast (X \\ E, A \\ E) $
 ]
 #example[
   #align(center,image("imgs/2023-11-19-11-55-05.png",width:80%))
@@ -539,14 +561,14 @@ This is still a short exact sequence becasue the original short exact sequence i
 
 #endlec(8)
 
-= Computing homology groups
+= Computing Homology Groups
 
 #theorem(name: "Small Simplices Theorem")[
   Let $X = union.big_alpha U_alpha $ be an open cover, denoted as $cal(U)$. Set 
   $ C_n^cal(U) (X) = plus.circle.big_(sigma: Delta^n -> X \ sigma(Delta^n) subset.eq U_alpha "for some" alpha )  ZZ subset.eq C_n (X) $
-  which is a subchain complex. Then $C_n^cal(U) (X) -> C_n (X)$ induces an isomorphism in homology.
+  which is a subchain complex. Then $C_n^cal(U) (X) -> C_n (X)$ induces an isomorphism in homology. <small-simp>
 ]
-The proof is delayed later. We will first present some consequences of this theorem; but before doing that, we need the following lemma, a tool to prove isomorphisms using long exact sequences.
+The proof is delayed later. We will first present some consequences of this theorem; but before doing that, we need the following lemma, a tool from homological algebra to prove isomorphisms using long exact sequences.
 #lemma(name: "The Five Lemma")[
   Assume we are given a diagram of modules:
   #align(center,image("imgs/2023-11-19-12-18-27.png",width:50%))
@@ -556,6 +578,7 @@ The proof is delayed later. We will first present some consequences of this theo
   - $l$ is surjective;
   - $q$ is injective.
   Then $n$ is an isomorphism. 
+  <five>
 ]
 #remark[
 We are usually only concerned with a weaker form, where we assume $m, p, l, n$ are all isomorphisms.
@@ -564,34 +587,78 @@ We are usually only concerned with a weaker form, where we assume $m, p, l, n$ a
   #TODO Diagram chasing
 ]
 
+== Consequences of Small Simplices Theorem
+
+The reader is reminded that $macron(E)$ is the closure of $E$ and $circle(A)$, also denoted as $A^circle.small$, is the interior of $A$. 
 #theorem(name: "Excision Theorem")[
   Let $A subset X$ and $macron(E) subset circle(A)$, then 
   $ H_ast (X, A) iso H_ast (X \\ E, A \\ E) $
+  <excision>
 ]
-#remark[
-  $macron(E)$ is the closure of $E$ and $circle(A)$, also denoted as $A^circle.small$, is the interior of $A$. 
-]
+
 #proof[
   Consider the open cover $X = circle(A) union (X \\ macron(E))$. We observe that given a simplex $sigma: Delta^n -> X$ landing in $circle(A)$ or $X \\ macron(E)$, $sigma$ is either disjoint from $E$ or $sigma$ is contained in $circle(A)$.
   This implies that $ C_cx^cal(U) (X \\ E, A \\ E) = C^cal(U)_cx (X, A) $
+  Indeed, an element $sigma: Delta^n -> X$ in the basis of $C^cal(U)_cx (X, A)$ is one such that (due to the superscript $cal(U)$) either $im(sigma) subset.eq circle(A)$ or $im(sigma) subset.eq X \\ macron(E)$, but (due to the relativity to $A$) $im(sigma) subset.eq.not A$, which means $im(sigma)$ must be disjoint from $E$. Similarly, we can show that an element in the basis of $C_cx^cal(U) (X \\ E, A \\ E)$ must also be one with its image disjoint from $E$.
+
   Hence $
     H_ast^cal(U) (X \\ E, A \\ E) = H_ast^cal(U) (X, A)
   $
-  Consider map of #sess
+  Consider the following map between #sess
   // $ ses(C_cx^cal(U) (A), C_cx^cal(U) (X), C_cx^cal(U) (X, A)) $
-  #align(center,image("imgs/2023-11-19-12-39-30.png",width:50%))
+  // #align(center,image("imgs/2023-11-19-12-39-30.png",width:50%))
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBhAPoBjAB4A9OYwAUAVQCUAAjUBBLVx4gM2PASIAmUdXrNWiELMUr12vQA0j3XuYFEAMy24g7S8sqqDJq6ap6kOobGfvyWKAAsIfaSThy+pnwWgiSkQmLZjuzJBf5pyCJldhKVLgp6SflmqcU2jaE5zhFePiZdRUGl5c3hil4JHaOFARmTTWG5XGIwUADm8ESgAGYAThAAtkhkIDgQSEL5J+d31DdIVg+nF4g217eIgR8nv8Xn90oCvgBWEFIABs4Nh0MQAHZ4cjEQAOVHoxEATlRIl+sNRP1eyNRwUJiExFE4QA
+#align(center, commutative-diagram(
+  node((0, 0), [$0$]),
+  node((0, 1), [$C_cx^cal(U) (A)$]),
+  node((0, 2), [$C_cx^cal(U) (X)$]),
+  node((0, 3), [$C_cx^cal(U) (X, A)$]),
+  node((0, 4), [$0$]),
+  node((1, 0), [$0$]),
+  node((1, 1), [$C_cx (A)$]),
+  node((1, 2), [$C_cx (X)$]),
+  node((1, 3), [$C_cx (X, A)$]),
+  node((1, 4), [$0$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), []),
+  arr((0, 2), (0, 3), []),
+  arr((0, 3), (0, 4), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((1, 3), (1, 4), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((0, 3), (1, 3), []),
+))
   Passing to homology, we get a map of long exact sequences:
   #align(center,image("imgs/2023-11-19-12-41-03.png",width:80%))
-  By small simplices theorem, maps 1, 2, 4, 5 are isomorphisms.
-  By the five lemma, map 3 is an isomorphism. Thus $ H_ast (X\\E, A \\E) iso H_ast (X, A) $
-  #TODO (why we can remove the $cal(U)$?)
+  By #thmref(<small-simp>)[Small Simplices Theorem], maps 1, 2, 4, 5 are isomorphisms.
+  By #thmref(<five>)[Five Lemma], map 3 is an isomorphism, i.e. 
+  $
+    H_ast^cal(U) (X, A) iso H_ast (X ,A)
+  $
+  In the same way we can show that 
+  $
+    H_ast^cal(U) (X \\ E, A \\ E) iso H_ast (X\\E ,A\\E)
+  $
+   Thus $H_ast (X\\E, A \\E) iso H_ast (X, A) $.
 ]
 
 #definition[
-  $A subset.eq X$ is a *good pair* if $A$ is a nonempty closed subspace and $A$ is a deformation retract of some open neighbourhood $V$ of $A$ in $X$.
+  We say that a subset $A$ of a
+space $U$ is a *deformation retract* of $U$ if there exists
+$pi colon lr((U comma A)) arrow.r lr((A comma A))$ with
+$i compose pi tilde.op "id"_(lr((U comma A)))$ as maps of pairs \(where
+$i colon lr((A comma A)) arrow.r lr((U comma A))$ is the inclusion).
 ]
 
-#TODO what's deformation retract
+#definition[
+  We say $A subset.eq X$ is a *good pair* if 
+  - $A$ is a nonempty closed subspace of $X$ and 
+  - $A$ is a deformation retract of some open set $V$ such that $A subset.eq V subset.eq X$.
+]
+
 
 #remark[
   If $(A subset.eq X), V$ are as above, then $H_ast (A) -> H_ast (V)$ is an isomorphism.
@@ -607,14 +674,14 @@ We are usually only concerned with a weaker form, where we assume $m, p, l, n$ a
   $X over A$ is such a space that $[x] = [y]$ if $x, y in A$ or $x = y$. 
 ]
 #proof[
-  Pick an open neighborhoold $V$ of $A$ as in the definition of good pair.
-  Map of pair $(X, A) -> (X, V)$ gives a map of long exact sequences. 
+  Pick an open neighborhood $V$ of $A$ as in the definition of good pair.
+  The map of pairs $(X, A) -> (X, V)$ gives a map of long exact sequences:
   #align(center,image("imgs/2023-11-19-12-56-51.png",width:80%))
-  By the Five Lemma, $H_ast (X, A) -> H_ast (X, V)$ is an isomorphism.
-  By the Excision Lemma, for $A subset.eq V subset.eq X$, 
+  By #thmref(<five>)[Five Lemma], $H_ast (X, A) -> H_ast (X, V)$ is an isomorphism.
+  By #thmref(<excision>)[Excision Theorem], for $A subset.eq V subset.eq X$, 
   $ H_ast (X, V) iso H_ast (X \\ A, V \\ A) $
-  Apply the Excision Lemma again for $ A over A subset.eq V over A subset.eq X over A$,
-  $ H_ast (X \\ A, V \\ A) iso H_ast (X over A, V over A) $
+  Apply #thmref(<excision>)[Excision Theorem] again to $ A over A subset.eq V over A subset.eq X over A$,
+  $ H_ast (X over A, V over A) iso H_ast (X \\ A, V \\ A)  $
   Since $ast = A over A$ is a deformation retract of $V over A$, the long exact sequence associated with $(A over A arrow.hook X over A) -> (V over A arrow.hook X over A)$ shows that $ H_ast (X over A, V over A) = H_ast (X over A, ast) = tilde(H) (X over A) $
   Thus we have shown  $H_ast (X, A) = tilde(H)_ast (X over A)$.
 ]
@@ -954,3 +1021,7 @@ where $Hcell(X) equiv Hcw(X)$ is homology for CW-complexes.
   
   
 ]
+
+#pagebreak()
+
+#bibliography("bib.yml", style: "chicago-author-date")

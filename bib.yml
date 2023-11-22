@@ -60,3 +60,10 @@ borceux:
   date: 1994
   author: Borceux, Francis
   publisher: Cambridge University Press
+
+hatcher:
+  type: book
+  title: Algebraic Topology
+  date: 2002
+  author: Hatcher, Allen
+  publisher: Cambridge University Press 
