@@ -794,19 +794,23 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
 = Proving Small Simplices Theorem
 https://www.dpmms.cam.ac.uk/~or257/teaching/IIIAlgTop2016/SmallSx.pdf
 
-Now we work on proving #thmref(<small-simp>)[Small Simplices Theorem]. The strategy of the proof:
+Now we work on proving #thmref(<small-simp>)[Small Simplices Theorem], which states that $C^cal(U)_cx (X) -> C_cx (X)$ induces an isomphism in homology for any open cover $cal(U)$ of $X$. The strategy of the proof:
 + Define a "subdivision operator" $S : C_cx (X) -> C_cx (X)$. For example: #align(center,image("imgs/2023-11-19-14-20-27.png",width:50%))
 + Prove that $S$ is chain homotopic to $id : C_cx (X) -> Ccx (X)$;
-+ Prove for all $c in Ccx(X)$, there exists $N$ such that $S^N (c) in C^cal(U) (X) $.
++ Prove for all $c in C_n (X)$, there exists $N$ such that $S^N (c) in C^cal(U)_n (X) $.
 
 Assume we have shown the above, we could prove the theorm in the following way:
 #proof[
-  First, we show $H^cal(U) (X) -> H (X)$ is surjective. Pick $[c] in H_n (X)$. As $S iso id$, for all $N$ we have $[S^N (c)] = [c]$. But $S^N (c) in C^cal(U) (X)$ for $N$ large enough. 
+  First, we show $H^cal(U)_ast (X) -> H_ast (X)$ is surjective. Pick $[c] in H_n (X)$. As $S iso id$, for all $N$ we have $S^N iso id$ and $[S^N (c)] = [c]$. But $S^N (c) in C^cal(U)_n (X)$ for $N$ large enough, and thus $[c] = [S^N (c)] in H_ast^cal(U) (X)$.
 
-  Second, we show $H^cal(U) (X) -> H (X)$ is injective. Pick $[c] in H_n^cal(U) (X)$ such that its image in $H_n (X)$ is zero. Pick $d in C_(n+1) (X)$ such that $diff d = c$. By assumption, we can pick $N$ large enough such that $S^N d in C^cal(U) (X)$. We can also pick a chain homotopy $k$ from $id $ to $S^N$. Thus we have $ d - S^n d = k diff d + diff k d = k c + diff k d $
-  Applying $diff$ to get
-  $ diff k c = c - diff (S^N d) $
-  and therefore $c = diff (k c + S^N d)$ (minus sign? #TODO) and hence $[c] = 0$.
+  Second, we show $H^cal(U)_ast (X) -> H_ast (X)$ is injective. Pick $[c] in H_n^cal(U) (X)$ such that its image in $H_n (X)$ is zero. Then we can pick $d in C_(n+1) (X)$ such that $diff (d) = c$. 
+  By assumption, we can pick $N$ large enough such that $S^N (d) in C^cal(U)_(n+1) (X)$. We can also pick a chain homotopy $k$ from $S^N$ to $id$, i.e. $id - S^N = k diff + diff k$. Applying this to $d$ to get $ d - S^N (d) = k (diff (d)) + diff (k (d)) = k (c) + diff (k (d)) $
+  Applying $diff$ to get 
+  $
+    c - diff(S^N (d))  = diff (k (c))
+  $
+  
+  and therefore $c = diff (S^N (d) + k (c))$. Here $S^N (d) in C^cal(U)_(n+1) (X)$ by choice of $N$ and $k(c) in C^cal(U)_(n+1) (X)$ due to the naturality of chain homotopy $k$, and hence $[c] = 0$.
 ]
 
 Our current goal is to define $S : Ccx(X) -> Ccx(X)$ and $h: C_n (X) -> C_(n+1) (X)$ with $h diff + diff h = id - S$ in a way that is natural in $X$, i.e. for all $f: X-> Y$, the following diagrams commute:
@@ -852,7 +856,7 @@ The final task:
 
 #endlec(10)
 
-= Universal coefficient theorem
+= Universal Coefficient Theorem
 
  Basic questions that the UCT tries to
 answer: 
@@ -1034,28 +1038,39 @@ For that we will first show $ Hsing(X) iso Hcell(X) $
 where $Hcell(X) equiv Hcw(X)$ is homology for CW-complexes. 
 
 #definition[
-  A *CW-Complex* $X$ is a space $ X = union.big_(n=0)^infinity X^(n) $
-  where each $X^((n))$ is obtained from the previous $X^(n-1)$ by a pushout diagram:
+  A *CW-Complex* $X$ is a space $ X = union.big_(n=0)^infinity X^((n)) $
+  where each $X^((n))$ is obtained from the previous $X^((n-1))$ by a pushout diagram:
 // #align(center,image("imgs/2023-11-20-07-46-04.png",width:30%))
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRDQCdomBjHAOh4QA+gAoAksLABKAARQsAM0WyAIgD1CAX1LpMufIRQBGclVqMWbABrrRosAFpj06SB17seAkVPHz9MysiCC29jJuHuz63kYkpP7UgVYhnNx8giISUnIa2uYwUADm8ESgilwAtkhkIDgQSKYWQWw8ABZY7rogFRDViE31SABMUb39tUOIAMxJlsEgnWNVSLN1DYijFFpAA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((0, 0), [$product.co_(I_n) diff D^n$]),
   node((0, 1), [$X^((n-1))$]),
   node((1, 1), [$X^((n))$]),
   node((1, 0), [$product.co_(I_n) D^n$]),
-  arr((0, 0), (0, 1), [$chi$]),
+  arr((0, 0), (0, 1), [$phi$]),
   arr((0, 1), (1, 1), []),
   arr((0, 0), (1, 0), [$i$]),
   arr((1, 0), (1, 1), []),
 ))
-  where $D^n$ is a copy of the (closed) $n$-ball. 
-
-  We call the subspace $X^((n))$ the  *$n$-skeleton* of $X$, and $chi$ in the diagram is called the *attaching map*.
+  We call the subspace $X^((n))$ the  *$n$-skeleton* of $X$, and $phi$ in the diagram is called the *attaching map*.
 ]
 #remark[
-  More explicitly, $X^((n))$ is the space obtained from the disjoint union $X^((n-1)) union.sq product.co_(I_n) D^n $ by identifying each $i (y) in product.co_(I_n) D^n$ with $chi(y) in X^((n-1))$ for all $y in product.co_(I_n) diff D^n$, and equipping the resulting set with quotient topology.
+  More explicitly, $X^((n))$ is the space obtained from the disjoint union $X^((n-1)) union.sq product.co_(I_n) D^n $ by identifying each $i (y) in product.co_(I_n) D^n$ with $phi(y) in X^((n-1))$ for all $y in product.co_(I_n) diff D^n$, and equipping the resulting set with quotient topology.
   See https://www.math.ru.nl/~gutierrez/files/Lecture07.pdf
 ]
+
+
+#definition[
+  The *cellular complex* of a CW-complex $X$ is 
+  $
+    C_n^"CW" (X) := plus.circle.big_(I_n) ZZ
+  $
+  and the differential $diff^"CW" : C_(n+1)^"CW" (X) -> C_n^"CW" $ is given by a $I_(n+1) times I_n$ matrix of integers.
+]
+In the case of simplicial topology, all the coefficients are either $1$ or $-1$, representing the orientaion. But here it can be other integers. Suppose we have a $2$-cell and we want to attach its boundary $S^1$ to a $1$-cell, then what we do is defining a map $S^1 -> S^1$. For example, we might 'wind' the circle three times, yielding a coefficient of $3$. 
+
+== Maps between Spheres
 #definition[
   
   $
@@ -1065,17 +1080,137 @@ where $Hcell(X) equiv Hcw(X)$ is homology for CW-complexes.
 
 ]
 
-#definition[
-  The *cellular complex* of a CW-complex $X$ is 
-  $
-    C_n^"CW" (X) := ZZ ^(xor I_n) 
-  $
-  and the differential $diff^"CW" : C_(n+1)^"CW" (X) -> C_n^"CW" $ is given by a $I_(n+1) times I_n$ matrix of integers.
+We have the #lest:
+$
+  ... -> tilde(H)_n (D^n) -> H_n (D^n, diff D^n) -> tilde(H)_(n-1) (diff D^n) -> tilde(H)_(n-1) (D^n) -> ...
+$
+which indicates $H_n (D^n, diff D^n) -> tilde(H)_(n-1) (diff D^n)$ is an isomorphism. Hence standard choices of generators for $H_n (D^n over diff D^n)$ induce corresponding choices of generators of $H_n (diff D^(n+1))$. 
+
+We could use $Delta^n$ to define $D^n$, in which case $H_n (D^n, diff D^n)$ would have a natural generator.
+
+#proposition[For $n >= 0$, 
   
-  
+  $
+    tilde(H)_k (S^n) = cases(ZZ quad k = n, 0 quad k != n)
+  $
   
 ]
+#proof[
+  Induction on $n$. 
+]
 
+#definition[
+The matrix coefficient corresponding to $alpha in I_(n+1)$ and $beta in I_n$ is given by the homology of  
+$
+  diff D_(n+1) ->^(phi_alpha) X^((n)) arrow.r.twohead X^((n)) over X^((n-1)) = or.big_(I_n) S^n arrow.r.twohead^(pi_beta) D^n over diff D^n
+$
+]
+
+== Equivalence
+#proposition[
+  For any space $X$, $Hsing(X) iso Hcell(X)$. ]
+
+#proof[
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoBmAXVJADcBDAGwFcYkQAJAfQAowBqYgEoABDwAaAPR59BQoaRFSZYeSKEgAvqXSZc+QinIVqdJq3bdZwscr7zFdsAFphojdt3Y8BIgFYTGgYWNkROXgEbCWk+VwclGJcAJjUPHRAMbwMiJNIk02CLMO4wW0T5NK99XxQABkCzEPYtdMzqw2RjYgLzUPDS6JU5eRaqnw6AFlJanqaw2tGMvXGiKYnZovDYqKc4kc8lrJrO0j8NvoWDtpWUMm6g3vZL0xgoAHN4IlAAMwAnCAAtkhjCAcBAkGRQfQsIx2AALCAQADWiz+gKQ9VB4MQIMKfSgWG+31R-yBiExYIhBzRZMhlMQSWppKQUyxGKZ6JxNHpfg5ZICbMQADY+RDudiAOwPOYgAlEkmcqWC3JQmHwxEo0WIAAc4qQEq1AE49TjNJRNEA
+#align(center, commutative-diagram(
+  node-padding: (-10pt, 30pt),
+  node((3, 1), [$H_(n+1) (X^((n+1)), X^((n)) )$]),
+  node((3, 3), [$H_(n) (X^((n)), X^((n-1)) )$]),
+  node((3, 5), [$H_(n-1) (X^((n-1)), X^((n-2)) )$]),
+  node((2, 2), [$H_n (X^((n)))$]),
+  node((3, 0), []),
+  node((1, 3), [$H_n (X^((n+1)))$]),
+  node((0, 4), [$0$]),
+  node((4, 4), [$H_(n-1) (X^((n-1)))$]),
+  node((5, 3), [$0$]),
+  node((1, 1), [$0$]),
+  arr((2, 2), (3, 3), [], "inj"),
+  arr((3, 1), (2, 2), [$diff$]),
+  arr((3, 1), (3, 3), []),
+  arr((3, 3), (3, 5), []),
+  arr((3, 0), (3, 1), []),
+  arr((2, 2), (1, 3), []),
+  arr((1, 3), (0, 4), []),
+  arr((3, 3), (4, 4), [$diff$]),
+  arr((4, 4), (3, 5), [], "inj"),
+  arr((5, 3), (4, 4), []),
+  arr((1, 1), (2, 2), []),
+))
+#TODO 
+]
+
+
+#lemma[
+  $iota = id_(Delta^n)$ represents a generator $H_n (Delta^n, diff Delta^n)$. 
+]
+#proof[
+  Induction. We introduce the following notation: $ and_j^n = diff Delta^n over ("interior of the "j"-th face") $ we call it a "horn".
+
+  Pick any $j$. 
+  $
+    and_j^n arrow.hook diff Delta^n arrow.hook Delta^n
+  $
+
+LES of a triple $A subset B subset C$ #TODO
+
+  #TODO
+  
+]
+#endlec(12)
+
+#definition[
+  The *degree* of a map $f: S^n -> S^n$  is the induced map $ f_ast: ZZ = H_n (S^n) -> H_n (S^n) = ZZ $ denoted by an integer $deg(f)$. 
+]
+
+#example[
+  - $deg(id) = 1$.
+  - $deg("const") =0$. 
+  - $deg(z mapsto z^2)=2$ where $z in S^1$. 
+  - $deg(z mapsto macron(z))=-1$ where $z in S^1$. 
+  - $deg(g) = 1$ for $g in S O_(n+1)$.
+]
+#definition[
+  The *suspension* of a space $X$ is 
+  $
+    Sigma X = X times [0, 1] over tilde
+  $
+  where $(x, 0) tilde (y, 0)$ and $(x, 1) tilde (y, 1)$ for any $x, y in X$.  
+  #align(center,image("imgs/2023-11-22-23-40-25.png",width:10%)) 
+  It is a functor.
+]
+#proposition[
+  $deg(f) = deg(Sigma f)$. 
+]
+#proof[
+  Use the M.V. LES associated to the cover 
+  $
+    Sigma S^n = cone^+ (S^n) union cone^- (S^n)
+  $
+  #align(center,image("imgs/2023-11-22-23-47-41.png",width:80%))
+]
+
+#definition[ Let $f : S^n -> S^n$ be a map. Assume $x in S^n$ is an isolated point in $f^(-1) (f(x))$.
+  The *local degree* of $f$ at $x$, denoted as $deg_x (f)$, is the induced map 
+  $
+    ZZ = tilde(H)_n (S^n) =  H_n (S^n, S^n \\ {x}) iso H_n (U, U \\ {x}) ->^(f_ast) H_n (S^n, S^n \\ {f(x)}) = ZZ
+  $
+  where $U$ is a neighborhood of $x$ which isolates it in  $f^(-1) (f(x))$. #thmref(<excision>)[Excision Theorem] is used.
+]
+
+#proposition[
+  For any map $f : S^n -> S^n$ and $y in S^n$ such that $f^(-1) (y)$ is finite, then 
+  $
+    deg(f) = sum_(x in f^(-1) (y)) deg_x (f )
+  $
+]
+#proof[
+#align(center,image("imgs/2023-11-23-00-17-22.png",width:50%))
+]
+
+#example[
+  $T^2$. #TODO
+]
+#endlec(13)
 #pagebreak()
 
 #bibliography("bib.yml", style: "chicago-author-date")
