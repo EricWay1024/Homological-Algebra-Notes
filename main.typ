@@ -2066,8 +2066,10 @@ See @weibel[Lemma 2.7.3].
 
 = Balancing $Tor$ and $Ext$
 
+== Balancing $Tor$
 #definition[
 Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$. The sign trick is to make this anticommute. ]
+
 
 #theorem[ For all $n$,
   $ L_n (A tpr -)(B) iso L_n (- tpr B)(A) = Tor_n^R (A, B) $ 
@@ -2090,8 +2092,10 @@ Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a
   // ($Q$ means $id_Q$ in proper places)
 ]
 
+== Balancing $Ext$
+
 #definition[
-Given a chain complex $P$ and a cochain complex $I$, we can form a double _cochain_ complex $ hom(P, I) = {hom (P_p, I^q)} $
+Given a chain complex $P$ and a cochain complex $I$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
 
 For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$. 
 
@@ -2125,43 +2129,90 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
   #TODO review
 ]
 
-#lemma[@notes[Lemma 8.16].
+== Reinterpreting $Ext$
+#lemma[.
   Let $P_cx -> M$ and $Q_cx -> N$ be projective resolutions, then
   $
     Ext^ast_R (M, N) = H^ast Tot^Pi (hom_R (P_cx, Q_cx))
   $
-  
 ]
+The proof is similar to above and can be seen @notes[Lemma 8.16]. A useful diagram is 
+#align(center,image("imgs/2023-11-23-22-22-07.png",width:80%))
 
-== Yoneda Product
+Note that the $n$-th term of the total _cochain_ complex can be written explicitly as 
+$
+  [Tot^Pi (hom_R (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n))
+$
+Applying cohomology to this total cochain complex yields $Ext^ast _R (M, N)$. 
 
-Given $R$-modules $A, B, C$. Take projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$. We get that $Ext^i_R\(A, B) =H^i Tot^Pi hom (P, Q)$, which is chain homotopy classes of chain maps $P -> Q[i]$. Also, $Ext^j_R\(B, C)=H^j Tot^Pi hom(Q, T)$, which is eq classes of chain maps $Q -> T[j]$. 
+#corollary[
+  $Ext_R^n (M, N)$ is isomorphic to the chain homotopy classes of chain maps $P_cx -> Q_cx [-n]$, namely the 
+   quotient of the module of chain maps $P_cx -> Q_cx [-n]$ by the submodule of null homotopic chain maps.
+]
+A detailed proof can be seen @notes[Section 9.1]. 
+To see this intuitively, notice a chain map $P_cx -> Q_cx [-n]$ is a collection of 
+$hom (P_p, Q_(p - n))
+$ for all suitable index $p$, subject to being commutative with the differentials. 
+Hence, it is an element of $[Tot^Pi (hom_R (P_cx, Q_cx))]^n =: T^n$.
+One can show that the commutative condition for a chain map is equivalent to being a cycle in $T^n$. 
+Further, the chain map is null homotopic if and only if it is a boundary in $T^n$.
+Cohomology is cycles quotient by boundaries, which is now the same as "chain maps" quotient by "null homotopic chain maps".
 
-Note: $hom(Q, T[j]) iso hom(Q[i], T[i + j])$. The translation (shifting) functor is an isomorphism on the category of chain complexes and it preserves chain homotopy. 
+== Ring Structures on $Ext$
 
-The composition $P -> Q[i] ->T[i+j]$ gives a map $ Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j) (A, C) $ 
 
-This is associative and biadditive. 
+Given $R$-modules $A, B, C$ with projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$, we see that $Ext^i_R\(A, B) $ is the chain homotopy classes of chain maps $P -> Q[-i]$, and $Ext^j_R\(B, C)$ is the chain homotopy classes of chain maps $Q -> T[-j]$. 
+
+Note that $hom(Q, T[-j]) iso hom(Q[-i], T[-i - j])$, namely the translation (shifting) functor is an isomorphism on the category of chain complexes and it preserves chain homotopy. 
+Also homotopy commutes with composition
+of maps. 
+Hence the composition $P -> Q[-i] ->T[-i-j]$ gives a map $ ⌣ :  Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j) (A, C) $ 
+
+One can show that this is associative and biadditive. 
 
 #remark[
 We have shown $D^- (RMod) iso K^- ("Proj" RMod)$.
-
 ]
 
 $Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any $B$, $Ext_R^ast (A , B) = plus.circle.big_i Ext^i (A, B)$ is a graded module over the ring. 
 
-== Flatness
+#TODO what is even a graded ring 
+
+#TODO alternative definition of Yoneda product, "gluing sequences"
+
+= Flat Modules
 
 #definition[
   A #lrm $B$ is *flat* if $ - tpr B$ is exact. A #rrm $A$ is *flat* if $  A tpr -$ is exact. 
 ]
 
 #remark[
-  In some sense flatness gives "continuity". It appears in algebraic geometry.
-Assume $R$ is commutative, and let $M$ be an $R$-module. Then $tilde(M)$ quasi- ?? sheaf on $"Spec"(R)$. 
-
-We already used that projective modules are flat. First we have free modules are flat. Second, if $P xor Q$ is free (i.e. $P$ is projective) then $- tpr P$ is exact. 
+  #TODO link to algebraic geometry, algebraic continunity
+//   In some sense flatness gives "continuity". It appears in algebraic geometry.
+// Assume $R$ is commutative, and let $M$ be an $R$-module. Then $tilde(M)$ quasi- ?? sheaf on $"Spec"(R)$.
 ]
+
+#proposition[
+  Free modules are flat.
+]
+#proof[
+  Take free module $plus.circle.big _I R$ and any module $M$, then 
+  $
+    M tpr plus.circle.big _I R iso plus.circle.big_I M tpr R iso plus.circle.big_I M
+  $
+  The functor $plus.circle.big_I$ is exact.
+]
+
+#proposition[
+  Projective modules are flat.
+]
+#proof[
+  Let $P$ be a projective module, then there exists module $Q$ such that $P xor Q$ is free. #TODO @rotman[Propositin 3.46]
+]
+
+// #remark[
+//   We already used that projective modules are flat. First we have free modules are flat. Second, if $P xor Q$ is free (i.e. $P$ is projective) then $- tpr P$ is exact. 
+// ]
 
 #proposition[
   The followings are equivalent: 
@@ -2170,7 +2221,7 @@ We already used that projective modules are flat. First we have free modules are
   - $Tor_1^R (A, B) = 0$ for all $A$.
 ]
 #proof[
-  TODO
+  #TODO @notes[Lemma 6.26]
 ]
 
   Recall since tensoring is left adjoint, it commutes with all colimits. Thus $ (colim_I A_i) tpr B iso colim_I (A tpr B) $
