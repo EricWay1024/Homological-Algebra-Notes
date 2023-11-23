@@ -2125,6 +2125,14 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
   #TODO review
 ]
 
+#lemma[@notes[Lemma 8.16].
+  Let $P_cx -> M$ and $Q_cx -> N$ be projective resolutions, then
+  $
+    Ext^ast_R (M, N) = H^ast Tot^Pi (hom_R (P_cx, Q_cx))
+  $
+  
+]
+
 == Yoneda Product
 
 Given $R$-modules $A, B, C$. Take projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$. We get that $Ext^i_R\(A, B) =H^i Tot^Pi hom (P, Q)$, which is chain homotopy classes of chain maps $P -> Q[i]$. Also, $Ext^j_R\(B, C)=H^j Tot^Pi hom(Q, T)$, which is eq classes of chain maps $Q -> T[j]$. 
