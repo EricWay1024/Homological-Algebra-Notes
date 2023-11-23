@@ -5,7 +5,7 @@
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
-  set text(font: "Linux Libertine", lang: "en")
+  set text(font: "Computer Modern", lang: "en")
 
   // Title row.
   align(center)[
@@ -22,7 +22,7 @@
     grid(
       columns: (1fr,) * calc.min(3, authors.len()),
       gutter: 1em,
-      ..authors.map(author => align(center, strong(author))),
+      ..authors.map(author => align(center, author)),
     ),
   )
 

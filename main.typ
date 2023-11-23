@@ -11,14 +11,15 @@
 #show: project.with(
   title: "Homological Algebra",
   authors: (
-    "Yuhang Wei",
-  ),
+    "Notes by Yuhang Wei",
+    "Lectures by Kobi Kremnitzer"
+  ), 
   date: "October 24, 2023",
 )
 
+#outline(indent: true)
 #pagebreak()
 #include "module.typ"
-// #outline(indent: true)
 
 
 
@@ -1925,7 +1926,6 @@ Recall that $Hom(A)(A, -): cA -> Ab$ is left exact.
   $ Tor_n^R (A, B) = L_n (- tpr B) (A) $
 ]
 
-= Balancing of $Ext$ and $Tor$
 
 We will prove: 
 
@@ -1933,7 +1933,7 @@ $ L_n (- tpr B) (A) iso L_n (A tpr -) (B) $
 
 This is called the balancing of $Tor$. We need two new tools to prove this: mapping cone and double complexes. 
 
-== Mapping cylinders and mapping cones
+= Mapping cylinders and mapping cones
 In topology,  let $f: X-> Y  $ be a continuous map between two topological spaces. 
 #definition[
   The *topological mapping cylinder* $M_f$ of $f : X-> Y$ is the quotient
@@ -1970,11 +1970,9 @@ $
 #proof[
   We have $diff = i^(-1) d_(cone(f)) delta^(-1)$ due to the proof of the connecting homomorphism.
   Let $b in B_n$ be a cycle. We can lift it to $(-b, 0)$ in $cone(f)$. Apply the differential of $cone(f)$ to get $(d b, f b) = (0, f b)$. Thus $diff[b] = [f b] = f_ast b$.
-
-
 ]
 #corollary[
-  $f: B_cx -> C_cx$ is a quasi-isomorphism if and only if $cone(f)$ is exact. 
+  $f: B_cx -> C_cx$ is a quasi-isomorphism if and only if $cone(f)$ is exact. <cone-qi>
 ]
 
 #definition[
@@ -1986,7 +1984,7 @@ $
 #remark[
 Let $0->B->^f C->^g D-> 0$ be a #sest of complexes. Then $phi: cone(f) -> D$ has $phi(b, c)-> g(c)$.#align(center,image("imgs/2023-11-10-12-30-40.png",width:50%)) You can prove $cyl(f)-> C$ is a quasi-isomorphism and also $phi$ is quasi-isomorphism. (This is non-examinable.)
 ]
-== Double Complexes
+= Double Complexes and Total Complexes
 Recall that $Ch(cA)$ is also an abelian category. Then we may look at $Ch(Ch(cA))$. But what we define next is slightly different from that.
 #definition[
   A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h : C_(p, q) -> C_(p-1, q)$ and $d^v : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0 $ and $ d^v d^h + d^h d^v = 0 $ (anti-commute!).
@@ -2002,7 +2000,7 @@ $q_0$ such that $C_(p q) eq 0$ for all $q lt q_0$. Similarly,
 $C_(bullet bullet)$ is a *right half-plane complex* if there is some $p_0$
 such that $C_(p q) eq 0$ for all $p lt p_0$.
 ]
-== Total Complexes
+
 #definition[
   Given $C = {C_(p, q)}$, we can define the *total complex*
   $ Tot^Pi (C)_n = product_(p + q = n) C_(p, q) $
@@ -2033,6 +2031,7 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
   4. $C$ is a right half-lane complex with exact columns,
 
   then $Tot^xor (C)$ is acyclic.
+  <aal>
 ]
 #proof[
   We only prove (1) here and the other conditions follow similarly.
@@ -2065,43 +2064,45 @@ See @weibel[Lemma 2.7.3].
   Spectral sequences. This lemma is a consequence of sepectral sequences. 
 ]
 
-== Balancing $Tor$ and $Ext$
+= Balancing $Tor$ and $Ext$
 
 #definition[
-Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$. The $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$, where the sign trick is to make this anticommute. ]
+Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$. The sign trick is to make this anticommute. ]
 
 #theorem[ For all $n$,
   $ L_n (A tpr -)(B) iso L_n (- tpr B)(A) = Tor_n^R (A, B) $ 
 ]
-#proof[ (TODO review)
+#proof[ @weibel[Theorem 2.7.2].
+  #align(center,image("imgs/2023-11-23-03-00-04.png",width:80%))
   Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$. 
-  We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$ and $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp id: P tpr Q -> A tpr Q$ and $id tp eta: P tpr Q -> P tpr B$. Now we want to show that 
-  $ Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
-  $ Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
-  are quasi-isomoprhism, which would give isomorphisms on homology and thus prove the result, i.e.
+  We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$, $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp Q: P tpr Q -> A tpr Q$ and $Q tp eta: P tpr Q -> P tpr B$. Now we want to show that maps
+  $ epsilon tp Q : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
+  $ P tp eta: Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
+  are quasi-isomoprhisms, which would give isomorphisms on homology and thus prove the result, i.e.
 
-  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $ and so on.
+  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $ 
+  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (P tpr B) = L_ast (- tpr B ) (A) $  
 
-  If we look at the double complex $C$ obtained from $P tpr Q$ by adding $A tpr Q[-1]$ in the column $p = -1$ using the augmentation, we get that $Tot(C)[1]$ is the mapping cone of $ epsilon tp id : Tot(P tpr Q) -> Q tpr Q $
+  If we look at the double complex $C$ obtained from $P tpr Q$ by adding $A tpr Q[-1]$ in the column $p = -1$ using the augmentation, we get that $Tot(C)[1]$ is the mapping cone of $ epsilon tp Q : Tot(P tpr Q) -> A tpr Q $
 
-  To show that $epsilon tp Q$ is a quasi-isomorphism, we need to show the cone $cone(epsilon tp Q) = Tot(C)[1]$ is acyclic. Note that $- tpr Q_p$ is exact as $Q_p$ are projective. So every row of $C$ is exact and so $Tot^xor (C)$ is exact by the acyclic assembly lemma. So $epsilon tpr Q$ is a quasi-isomorphism. 
-  
-  ($Q$ means $id_Q$ in proper places)
-
-  See @weibel[Theorem 2.7.2].
+  To show that $epsilon tp Q$ is a quasi-isomorphism, we need to show $cone(epsilon tp Q) = Tot(C)[1]$ is acyclic by #thmref(<cone-qi>)[Corollary]. Note that $- tpr Q_p$ is exact as $Q_p$ are projective. So every row of $C$ is exact and so $Tot^xor (C)$ is exact by #thmref(<aal>)[Acyclic Assembly Lemma]. So $epsilon tp Q$ is a quasi-isomorphism. 
+  Similarly, we can show that $P tp eta$ is also a quasi-isomorphism.
+  // ($Q$ means $id_Q$ in proper places)
 ]
 
-Given a chain complex $P$ and a cochain complex $I$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
-
-For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$.
-
 #definition[
-  $Tot^Pi (hom(P, I))$ is the *$hom$ cochain complex*.
+Given a chain complex $P$ and a cochain complex $I$, we can form a double _cochain_ complex $ hom(P, I) = {hom (P_p, I^q)} $
+
+For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$. 
+
+Then we define
+
+  $ Tot^Pi (hom(P, I)) $ as the *$hom$ cochain complex*.
 ]
 
 #remark[If $C, D$ are chain complexes and we reindex $D$ to be a cochain complex. Then $H^n Tot^Pi hom (C, D)$ is the group of chain homotopy eq classes of morphisms $C -> D[-n]$.]
 
-Check: 
+Check: #TODO
 
 $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
 $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/left $R$-modules.
@@ -2110,16 +2111,18 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
 (This is the end of Lecture 11.)
 
 #theorem[ For all $n$,
-  $ Ext^n_R(A, B) = R^n hom_R (A, -) (B) =R^n hom_R (-, B) (A) $
+  $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A) $
 ] 
 #proof[
-  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentracted at degree $0$. We can form double complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. Then we need to show 
+  #align(center,image("imgs/2023-11-23-03-27-44.png",width:80%))
+  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentracted at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. Then we need to show 
   $ hom(A, I) -> Tot^Pi hom(P, I) $ and 
   $ hom(P, B) -> Tot^Pi hom(P, I) $ are quasi-isomorphisms. This is equivalent to the cones of the maps being acyclic. 
 
-  Observation: $cone (hom (A, I) -> Tot^Pi hom (P, I))$ is the total complex of the double complex $hom(P, I)$ with $hom(A, I)[-1]$ added.  For this augumented double complex, we see that $Tot^Pi$ is exact using the acyclic assmebly lemma: $hom(P_p, -)$ is exact and $hom(-, I^q)$ is exact. 
+  We observe that $cone(hom (A, I) -> Tot^Pi hom (P, I))$ is the total complex of the double complex $hom(P, I)$ with $hom(A, I)[-1]$ added.  For this augumented double complex, we see that $Tot^Pi$ is exact by #thmref(<aal>)[the Acyclic Assmebly Lemma] since $hom(P_p, -)$ is exact and $hom(-, I^q)$ is exact. Then 
 
   $ R^ast hom(A, -) (B) = H^ast hom (A, I) = H^ast Tot^Pi ( hom(P, I))  \ iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
+  #TODO review
 ]
 
 == Yoneda Product
