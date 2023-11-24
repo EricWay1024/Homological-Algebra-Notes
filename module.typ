@@ -99,6 +99,13 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
     $ 0 -> ker(sigma) -> R^(ds X) rgt(sigma) M -> 0 $
 ]
 
+#proposition[
+    Any submodule of a free module over a PID is free. <sub-pid>
+]
+#proof[
+    TODO
+]
+
 #definition[
     Let $R, S$ be rings. An $(R, S)$-bimodule is an abelian group $M$ being both a left $R$-module and a right $S$-module, satisfying:
     $ r(m s) = (r m) s $

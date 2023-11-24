@@ -675,6 +675,18 @@ The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto.
 ))
 ]
 
+
+#proposition[
+  If $P$ is a projective module, then any #sest 
+  $
+    ses(A, B, P)
+  $
+  splits.
+]
+#proof[
+  #TODO https://math.stackexchange.com/questions/3961643/why-does-the-short-exact-sequence-for-projective-module-split
+]
+
 #example[
   $R$ ring. In the category of $RMod$ 
   $ Hom_RMod (R, M) = M $ because any $phi $ is entirely determined by $phi(1_R)$. If $ses(M, M', M'')$ and we apply $Hom_RMod (R, -)$ to this we get the same ses $ses(M, M', M'')$ which is exact. 
@@ -928,7 +940,7 @@ $pi lr((a_i)) eq f lr((e_i))$. Define map
 $ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo alpha$.
 ]
 
-#proposition[$P$ is a projective $R$-module iff $P$ is a direct summand of a free module.
+#proposition[$P$ is a projective $R$-module if and only if $P$ is a direct summand of a free module.
 ]
 
 #proof[
@@ -2324,7 +2336,7 @@ Another way to prove the corollary is found @rotman[Propositin 3.46].
   $
     Tor_ast^R (A, B) iso H_ast (A tpr F'_cx)
   $
-  
+  <flat-resolution>
 ]
 #proof[
   By induction. As $- tpr B$ is right exact, we get the result for $n = 0$. Let 
@@ -2373,58 +2385,140 @@ If $Q_cx -> A$ is a resolution where $Q_n$ is $F$-acyclic for all $n$, then $L_i
 How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
 
 #theorem(name: "Künneth Formula")[
-  Let $P$ be a chain complex of flat, right $R$-modules such that each submodule $d(P_n)$ of $P_(n-1)$ is also flat. Then for every $n$ and every left $R$-module $M$ there is a #sest 
+  Let $P_cx$ be a chain complex of flat, right $R$-modules such that each submodule $d(P_n)$ of $P_(n-1)$ is also flat. Then for every $n$ and every left $R$-module $M$ there is a #sest 
   
   $
     ses(H_n (P) tpr M, H_n (P_cx tpr M), Tor_1^R (H_(n-1)(P), M))
   $
   
 ]
-#proof[
+#proof[@rotman[Theorem 7.55].
+  Let $Z_n = ker (P_n ->^d P_(n-1))$. 
   We have a #sest 
   $
     ses(Z_n, P_n, d(P_n))
   $
-  The associated #lest in $Tor$ shows that $Z_n$ is also flat. Using that 
-  $
-    Tor_1^R (d(P_n), M) = 0
-  $
-  gives that 
+  The associated #lest in $Tor$ shows that $Z_n$ is also flat, as $ Tor_k (P_n, M) = Tor_k (d(P_n), M) = 0 $ for all $k >= 1$. (#TODO In general, if two terms in a #sest are flat then the third one is also flat. ) Since 
+  $Tor_1^R (d(P_n), M) = 0
+  $,
+  we have that
   $
     ses(Z_n tp M, P_n tp M, d(P_n) tp M)
   $
-  is a #sest for every $M$, so we get a #sest for complexes 
+  is a #sest for every $M$, so we get a #sest of complexes 
   $
     ses(Z_cx tp M , P_cx tp M, d(P)_cx tp M)
   $
-  Note that the differential on the complexes  $Z_cx$ and $d(P)_cx$ are zero. We now look at the #lest... #TODO 
+  Note that the differentials on the complexes  $Z_cx$ and $d(P)_cx$ are all zero. We now look at the #lest induced by homology: 
+  #math.equation(block: true, numbering: "(1)", supplement: "long exact sequence",
+  $
+    H_(n+1) (d(P)_cx tp M ) ->^diff H_n (Z_cx tp M) \ -> H_n (P_cx tp M) -> H_n (d(P)_cx tp M) ->^diff H_(n-1) (Z_cx tp M) 
+  $) <eq1>
+  The differentials on $Z_cx tp M$ and $d(P)_cx tp M$ are also all zero, which gives 
+  $
+    H_n (d(P)_cx tp M) = d(P_n) tp M quad "and" quad H_n (Z_cx tp M ) = Z_n tp M
+  $
+  #TODO A theorem saying differential zero gives homology equals chain complex.
+
+  Hence @eq1 now becomes 
+  $
+    d(P_(n+1)) tp M ->^(diff_(n+1)) Z_n tp M -> H_n (P_cx tp M) -> d(P_(n)) tp M ->^(diff_n) Z_(n-1) tp M
+  $
+  Here by definition the connecting homomorphism $diff_(n+1) = i_n tp M$, where $i_n : d(P_(n+1)) -> Z_n$ is the inclusion map.
+  According to a theorem regarding exact sequences #TODO, we have a #sest
+  $
+    ses(coker(i_n tp M), H_n (P_cx tp M), ker(i_(n-1) tp M))
+  $
+  On the other hand, we have a flat resolution for $H_n (P_cx)$ 
+  $
+    ses(d(P_(n+1)), Z_n, H_n (P_cx), f: i_n)
+  $
+  By #thmref(<flat-resolution>)[Flat Resolution Lemma], $Tor_ast^R (H_n (P_cx), M)$ is the homology of 
+  $
+    0 -> d(P_(n+1)) tp M ->^(i_n tp M) Z_n tp M -> 0
+  $
+  Hence 
+  $
+    H_n (P_cx) tp M = Tor_0 (H_n (P_cx), M) = H_0 = coker (i_n tp M)
+  $ and 
+  $
+    Tor_1^R (H_n (P_cx), M) = H_1 = ker (i_n tp M)
+  $
+  replacing $n$ with $n-1$ in the last equation gives the result.
 ] 
 #remark[
   These are the games you play with the machine.
 ]
 #theorem(name: "Universal Coefficient Theorem")[
-  Let $P$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Kunneth #sest splits, so $ H_n (P tp M) = H_n (P) tp M ds Tor_1^ZZ (H_(n-1) (P), M) $
+  Let $P$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Künneth #sest splits, so $ H_n (P tp M) = H_n (P) tp M ds Tor_1^ZZ (H_(n-1) (P), M) $
+  The split is not canonical.
 ]
 #proof[
   #TODO
-
   Note: $P_n -> d(P_n)$ splits. 
 ]
 
 Recall if $P_cx, Q_cx$ are complexes, we define $P_cx tpr Q_cx$.
 
-Full Kunneth formula. #TODO can't figure out anything now, what an end of world... how can anyone follow these lectures??? 
+#theorem(name: "Full Künneth Formula")[
+  If $P_n$ and $d(P_n)$ are flat for each $n$, then there is a #sest 
+  $
+    ses(plus.circle.big _(i+j=n) H_i (P) tp H_j (Q), H_n (P tpr Q), plus.circle.big_(i+j = n-1) Tor_1^R (H_i (P), H_j (Q)))
+  $
+]
 
-Koszul resolution
+#example[
+  In topology, 
+  $
+    H_n (X times Y) = (plus.circle.big_(p=1)^n H_p (X) tp H_(n-p) (Y)) xor (plus.circle.big_(p=1)^n Tor_1^ZZ (H_(p-1) (X), H_(n-p) (Y)))
+  $
+]
+#endlec(12)
 
-Let $x in R$ be a central element. Let $K(x)$ be the chain complex 
+= Koszul Complexes
+
+#definition[
+Let $R$ be a ring and let $x in Z lr((R))$ be a central element. Then we
+define the *Koszul complex* $K lr((x))$ of $x$ to be the chain complex
+$ 0 arrow.r R arrow.r^x R arrow.r 0 $ concentrated in degrees $1$ and $0$.
+
+We denote the generator of $K lr((x))_1$ by $e_x$, so that
+$K lr((x))_1 eq R dot.op e_x comma K lr((x))_0 eq R dot.op 1$, and
+$d (e_x) eq x$.
+
+If $bd(x) = (x_1, ..., x_n)$ is a finite sequence of central elements, define 
 $
-  0->R->^x R ->0
-$ 
-in degrees $0,1$. We call the generator in degree $1$ $e_x$ so $d(e_x) = x$. If $underline(x) = (x_1, ..., x_n)$ is a finite sequence of central elements, define 
+  K(bd(x)) = (((K(x_1) tpr K(x_2)) tpr) ... tpr K(x_n))
 $
-  K(underline(x)) = (((K(x_1) tpr K(x_2)) tpr) ... tpr K(x_n))
-$
+
+For an $R$-module $A$, we define the *Koszul homology* and *Koszul
+cohomology* to be
+$ H_q lr((bd(x) comma A)) & eq H_q lr((K lr((bd(x))) times.circle_R A)) comma\
+H^q lr((bd(x) comma A)) & eq H^q lr(("Hom"_R lr((K lr((bd(x))) comma A)))) dot.basic $
+]
+
+#example[
+  Consider $K(x, y)$. 
+]
+
+
+
+// Suppose that $upright(x) eq lr((x_1 comma dots.h comma x_n))$ is a
+// finite sequence of central elements in $R$. Then $K lr((upright(x)))$ is
+// the chain complex
+// $ K lr((x_1)) times.circle_R dots.h times.circle_R K lr((x_n)) dot.basic $
+
+
+
+// Koszul resolution
+
+// Let $x in R$ be a central element. Let $K(x)$ be the chain complex 
+// $
+//   0->R->^x R ->0
+// $ 
+// in degrees $0,1$. We call the generator in degree $1$ $e_x$ so $d(e_x) = x$. 
+
+
 
 
 
