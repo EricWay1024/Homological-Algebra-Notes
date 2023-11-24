@@ -5,7 +5,7 @@
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
-  set text(font: "Computer Modern", lang: "en")
+  set text(font: "Linux Libertine", lang: "en")
 
   // Title row.
   align(center)[

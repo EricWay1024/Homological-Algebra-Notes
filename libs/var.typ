@@ -69,7 +69,7 @@
 #let cone = [$"cone"$]
 #let cyl = [$"cyl"$]
 #let Tot = [$"Tot"$]
-#let endlec(n) = text(red)[This is the end of lecture #n.]
+#let endlec(n) = [_This is the end of lecture #n._]
 #let TODO = text(blue)[TODO]
 #let theorem = thmbox(
   "theorem",

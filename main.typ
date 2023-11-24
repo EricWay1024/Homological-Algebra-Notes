@@ -125,7 +125,7 @@ In the category of $bd("Set")$,
 $ hom(X times Y, Z) = hom(X, hom (Y, Z)) $ 
 This is Cartesian category (?)
 
-(This is the end of lecture 1.)
+#endlec(1)
 
 == More discussions
 
@@ -335,7 +335,7 @@ Then we see that $"Fun"(cC, cD)$ is a category (functor category) where the obje
 
 Then we see that in $Cat$, the hom-sets are not only sets but also categories, which means that $Cat$ is a 2-category. 
 
-(This is the end of lecture 2.)
+#endlec(2)
 
 == Adjoint functors 
 #definition[
@@ -449,7 +449,7 @@ Left adjunction preserves colimits and right adjunction preserves limits. In par
 Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
 are group homomorphisms in each variable @borceux[Definition 1.2.1].
 
-(This is the end of lecture 3).
+#endlec(3)
 
 #definition[
   If $cC, cD$ are Ab-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
@@ -631,7 +631,7 @@ Proof. TODO
 #corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]
 
 
-(This is the end of lecture 4.)
+#endlec(4)
 
 #definition[
    Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
@@ -844,7 +844,7 @@ $ M^(ds J) -> M^(ds I) -> N tp_R M  -> 0 $
 
 Consider $R^(ds J) -> R^(ds I)$, this homomorphism between free modules can be represented by a (possibly infinite?) matrix $a_(i j) in R$. Then the same matrix can also act as $M^(ds J) -> M^(ds I) $; and when you take the cokernel of it you get the tensor product $N tp_R M$.
 
-(This is the end of lecture 5.)
+#endlec(5)
 
 Assume $R$ is a commutative ring. The functor $- tp_R M$ is left adjoint which implies that it is right exact and commutes with all colimits. Suppose we want to calculate $N tp_R M$, then we write $ N = coker(R^(ds J) rgt((a_(i j))) R^(ds I)) $ and then $ N tpr M = coker(R^(ds J) rgt((a_(i j))) R^(ds I)) tpr M iso coker(R^(ds J) tpr M rgt((a_(i j))) R^(ds I) tpr M) \ iso coker((R tpr M)^(ds J) rgt((a_(i j))) (R tpr M)^(ds I)) iso coker (M^(ds J) rgt((a_(i j))) M^(ds I)) $
 
@@ -888,7 +888,7 @@ $ Hom_S (A tpr B, C) bij Hom_R (A, Hom_S (B, C)) $
   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 ]
 
-= Projective and injective modules
+= Projective and Injective Modules
 
 Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom(A)(-, I)$ is exact.
 
@@ -904,7 +904,7 @@ Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom
 
 For most of our homological algebra to work a category needs to have enough projectives and injectives. We show that $RMod$ has enough projectives and injectives.
 
-== Projective modules
+== Projective Modules
 
 #lemma[Free $R$-modules are projective.]
 
@@ -987,7 +987,7 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$.
 ]
 
 
-== Injective modules
+== Injective Modules
 
 #lemma(name: "Baer's criterion")[
   A right $R$-module $M$ is injective iff for every right ideal $I$ of $R$, every module homomorphism $I -> M$ can be extended to $R -> M$.
@@ -1148,7 +1148,7 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
   [See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
 ]
 
-(This is the end of lecture 6.)
+#endlec(6)
 
 // = injective and projective and adjoints 
 
@@ -1302,6 +1302,8 @@ See @weibel[Application 1.1.4].
 //   (?)
 // ]
 
+== Chain Homotopy
+
 #definition[
   A chain map $f: Ccx -> Dcx$ is *null homotopic* if there are maps $s_n : C_n -> D_(n+1)$ such that $f = d s + s d$, or more rigrously,
   $ f_n = d_(n+1) s_n + s_(n+1) d_n $
@@ -1341,7 +1343,7 @@ The third equality is because $c$ is an $n$-cycle  in $C$ and last equality is b
 
 See @notes[Lemma 2.32] and @weibel[Lemma 1.4.5].]
 
-(This is the end of lecture 7.)
+#endlec(7)
 
 #definition[
 If $C = Ccx$
@@ -1378,6 +1380,7 @@ See @weibel[Translation 1.2.8].
 
 // $f: Ccx -> Dcx$ => $f[p]_n = f_(n+p)$ 
 
+== Exact Sequences
 #proposition[
 $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 ]
@@ -1385,7 +1388,9 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 See @rotman[Proposition 5.100]. 
 ]
 
-= Short and Long Exact Sequences
+
+We can form short exact sequences with chain complexes, and they naturally induce long exact sequences in (co)homology.
+
 #definition[ For chain complexes $A_cx, B_cx, Ccx$,
 $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, C_n)$ is a short exact sequence for all $n$.
 ]
@@ -1484,13 +1489,14 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, 
   Show that there exists a functor 
 
   category of ses of complexes in $cA$
-  ->
+  $->$
   category of les in $cA$
 
   We just construct the object maps, still need to verify it works on the morphisms and thus it is a functor.
+  #TODO
 ]
 
-= Resolutions
+== Resolutions
 #definition[
   Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$ with $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
   $ ... -> P_2 rgt(d) P_1 rgt(d) P_0 rgt(epsilon) M -> 0 $
@@ -1759,7 +1765,7 @@ The filling in of the \"horseshoe\" now proceeds by induction.
 
 See @weibel[Horseshoe Lemma 2.2.8].
 ]
-(This is the end of lecture 8.)
+#endlec(8)
 
 = $delta$-functors
 
@@ -1829,14 +1835,16 @@ $T arrow.r S$ of $delta$-functors extending $f^0$.
 How to construct a universal #dftor? In categories with enough projectives or injectives, derived functors work.
 
 
-= Derived functors 
+== Derived Functors 
 
+The main object of this section is to show that left derived functors, defined as follows, are homological $delta$-functors.
 #definition[
 Let $F : cA -> cB$ be a right exact functor between two abelian categories. Assume $cA$ has enough projectives. For any $A in ob cA$, pick a projective resolution $P_(cx) ^A -> A$. Define $ L_i F(A) := H_i (F(P_cx^A))  $ as the *$i$-th left derived functor*.
 
 ]
 
 Since $F(P_1) -> F(P_0) arrow F(A) -> 0$ is exact, we always have $L_0 F(A) iso F(A)$.
+
 
 #lemma[
   If $P_cx -> A$ and $Q_cx -> A$ are two projective resolutions, then there is a canonical isomorphism 
@@ -1885,7 +1893,7 @@ We never use the fact that it is unviersal. Check the book for proof.
   $
   is a #sest of complexes. Hence we have the connecting maps and it gives a #lest.
 ]
-(This is the end of lecture 9.)
+#endlec(9)
 #definition[
   Let $F : cA  -> cB$ be a left exact functor between two abelian categories. Assume $cA$ has enough injectives and for any $A in cA$ we have injective resolution $A -> I^cx$. Then the *$i$-th right derived functor*  is
   $ R^i F (A) := H^i (F (I^cx)) $
@@ -1893,7 +1901,7 @@ We never use the fact that it is unviersal. Check the book for proof.
 // If $F : cA  -> cB$ is left exact, we can define the right derived functor $R^i F(A) = H^i F(I)$ for $A -> I^cx$.
 
 Note: $R^i F(A) = (L_i F^op)^op (A)$.
-= Defining $Ext$ and $Tor$ 
+== Defining $Ext$ and $Tor$ 
 
 #definition[
   Let $cA$ be an abelian category.
@@ -1931,17 +1939,19 @@ We will prove:
 
 $ L_n (- tpr B) (A) iso L_n (A tpr -) (B) $
 
-This is called the balancing of $Tor$. We need two new tools to prove this: mapping cone and double complexes. 
+This is called the balancing of $Tor$. We need two new tools to prove this: mapping cones and double complexes. 
 
-= Mapping cylinders and mapping cones
+#TODO #lest induced by $Tor$ and $Ext$
+
+= Balancing $Ext$ and $Tor$
+== Mapping Cones and Mapping Cylinders
+#remark[
 In topology,  let $f: X-> Y  $ be a continuous map between two topological spaces. 
-#definition[
+
   The *topological mapping cylinder* $M_f$ of $f : X-> Y$ is the quotient
   $ ((X times I) product.co Y) over tilde $
   where the equivalence relation $tilde$ is generated by $ (x, 1) tilde f(x)$ for all $x in X$. That is, the mapping cylinder is obtained by gluing one end of $X times I$ to $Y$ via the map $f$. It is often denoted as $(X times I) union.sq_f Y$.
-]
 
-#definition[
   The *topological mapping cone* $C_f$ of $f : X-> Y$ is the quotient space of the mapping cylinder $(X times I) union.sq_f Y$ with respect to the equivalence relation $(x, 0) tilde (x', 0)$ for all $x, x' in X$. That is, the end of $X times I$ that is not glued to $Y$ is identified as a point.
   #align(center,image("imgs/Mapping_cone.svg",width:30%))
 ]
@@ -1984,7 +1994,7 @@ $
 #remark[
 Let $0->B->^f C->^g D-> 0$ be a #sest of complexes. Then $phi: cone(f) -> D$ has $phi(b, c)-> g(c)$.#align(center,image("imgs/2023-11-10-12-30-40.png",width:50%)) You can prove $cyl(f)-> C$ is a quasi-isomorphism and also $phi$ is quasi-isomorphism. (This is non-examinable.)
 ]
-= Double Complexes and Total Complexes
+== Double Complexes and Total Complexes
 Recall that $Ch(cA)$ is also an abelian category. Then we may look at $Ch(Ch(cA))$. But what we define next is slightly different from that.
 #definition[
   A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h : C_(p, q) -> C_(p-1, q)$ and $d^v : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0 $ and $ d^v d^h + d^h d^v = 0 $ (anti-commute!).
@@ -2019,7 +2029,7 @@ underbrace(d^v (c_(-1, 1)) + d^h (c_(0,0)), in C_(-1, 0)) ,
 underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1) $
 #align(center,image("imgs/2023-11-12-16-04-08.png",width:50%))
 
-(This is the end of lecture 10.)
+#endlec(10)
 
 #lemma(name: "Acyclic Assembly Lemma")[
   Let $C = {C_(p, q)}$ be a double complex. If
@@ -2064,7 +2074,6 @@ See @weibel[Lemma 2.7.3].
   Spectral sequences. This lemma is a consequence of sepectral sequences. 
 ]
 
-= Balancing $Tor$ and $Ext$
 
 == Balancing $Tor$
 #definition[
@@ -2112,7 +2121,7 @@ $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
 $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/left $R$-modules.
 
 
-(This is the end of Lecture 11.)
+#endlec(11)
 
 #theorem[ For all $n$,
   $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A) $
@@ -2129,6 +2138,7 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
   #TODO review
 ]
 
+= Ring Structures on $Ext$
 == Reinterpreting $Ext$
 #lemma[.
   Let $P_cx -> M$ and $Q_cx -> N$ be projective resolutions, then
@@ -2158,7 +2168,7 @@ One can show that the commutative condition for a chain map is equivalent to bei
 Further, the chain map is null homotopic if and only if it is a boundary in $T^n$.
 Cohomology is cycles quotient by boundaries, which is now the same as "chain maps" quotient by "null homotopic chain maps".
 
-== Ring Structures on $Ext$
+== Yoneda Product
 
 
 Given $R$-modules $A, B, C$ with projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$, we see that $Ext^i_R\(A, B) $ is the chain homotopy classes of chain maps $P -> Q[-i]$, and $Ext^j_R\(B, C)$ is the chain homotopy classes of chain maps $Q -> T[-j]$. 
@@ -2180,7 +2190,7 @@ $Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any 
 
 #TODO alternative definition of Yoneda product, "gluing sequences"
 
-= Flat Modules
+= $Tor$ and Flatness
 
 #definition[
   A #lrm $B$ is *flat* if $ - tpr B$ is exact. A #rrm $A$ is *flat* if $  A tpr -$ is exact. 
@@ -2192,74 +2202,121 @@ $Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any 
 // Assume $R$ is commutative, and let $M$ be an $R$-module. Then $tilde(M)$ quasi- ?? sheaf on $"Spec"(R)$.
 ]
 
-#proposition[
-  Free modules are flat.
-]
-#proof[
-  Take free module $plus.circle.big _I R$ and any module $M$, then 
-  $
-    M tpr plus.circle.big _I R iso plus.circle.big_I M tpr R iso plus.circle.big_I M
-  $
-  The functor $plus.circle.big_I$ is exact.
-]
+// #proposition[
+//   Free modules are flat.
+// ]
+// #proof[
+//   Take free module $plus.circle.big _I R$ and any module $M$, then 
+//   $
+//     M tpr plus.circle.big _I R iso plus.circle.big_I M tpr R iso plus.circle.big_I M
+//   $
+//   The functor $plus.circle.big_I$ is exact.
+// ]
 
-#proposition[
-  Projective modules are flat.
-]
-#proof[
-  Let $P$ be a projective module, then there exists module $Q$ such that $P xor Q$ is free. #TODO @rotman[Propositin 3.46]
-]
+// #proposition[
+//   Projective modules are flat.
+// ]
+// #proof[
+//   Let $P$ be a projective module, then there exists module $Q$ such that $P xor Q$ is free. #TODO @rotman[Propositin 3.46]
+// ]
 
 // #remark[
 //   We already used that projective modules are flat. First we have free modules are flat. Second, if $P xor Q$ is free (i.e. $P$ is projective) then $- tpr P$ is exact. 
 // ]
 
 #proposition[
+  Let $B$ a #lrm. 
   The followings are equivalent: 
-  - $B$ is flat;
-  - $Tor_n^R (A, B) = 0$ for all $n > 0$ and all $A$;
-  - $Tor_1^R (A, B) = 0$ for all $A$.
+  + $B$ is flat;
+  + $Tor_n^R (A, B) = 0$ for all $n > 0$ and all $A$;
+  + $Tor_1^R (A, B) = 0$ for all $A$.
+  <flat-tor>
 ]
-#proof[
-  #TODO @notes[Lemma 6.26]
+#proof[@notes[Lemma 6.26].
+(1) $=>$ (2). Suppose that $B$ is flat. Let $F_cx arrow.r A$ be a free
+resolution of $A$. Since $minus times.circle_R B$ is exact, the sequence
+$ dots.h arrow.r F_2 times.circle_R B arrow.r F_1 times.circle_R B arrow.r F_0 times.circle_R B arrow.r A times.circle_R B arrow.r 0 $
+is exact, so the homology of
+$ dots.h arrow.r F_2 times.circle_R B arrow.r F_1 times.circle_R B arrow.r F_0 times.circle_R B arrow.r 0 $
+vanishes in positive degree. 
+
+The implication \(2) $arrow.r.double lr((3))$
+is trivial.
+
+Finally, \(3) $arrow.r.double$ \(1) follows from the long
+exact sequence of $Tor$, since for any short exact sequence
+$0 arrow.r X arrow.r Y arrow.r Z arrow.r 0$, we have that
+$ 0 eq "Tor"_1^R lr((Z comma B)) arrow.r X times.circle B arrow.r Y times.circle B arrow.r Z times.circle B arrow.r 0 $
+is exact. 
 ]
 
-  Recall since tensoring is left adjoint, it commutes with all colimits. Thus $ (colim_I A_i) tpr B iso colim_I (A tpr B) $
-#proposition[
-  For any small category $I$ and any functor $I -> ModR$, we have 
-  
-  Let $I$ be a filtered poset (for any $i, j in I$ there exists $k$ such that $i <= k$ and $j <= k$). View $I$ as a categor. Then the functor $colim: RMod^I -> RMod$ is exact. (Here $RMod^I = Fun(I, RMod)$.)
+#corollary[Every projective module is flat. In particular, every free module is flat.]
+#proof[
+If $P$ is projective, then $0 arrow.r P$ is a projective
+resolution, so $"Tor"_n^R lr((A comma P)) eq 0$ for all $A$ and all
+$n gt.eq 1$.
 ]
-Ref: category theory.
+Another way to prove the corollary is found @rotman[Propositin 3.46].
+
+  Recall that since the tensor product is left adjoint, it commutes with all colimits. Thus $ (colim_I A_i) tpr B iso colim_I (A_i tpr B) $
+
+  #remark[
+    In case the notation seems confusing,
+    notice that in cateogry theory we would usually write $colim_I F$, where $F : I -> RMod$ is a functor. Here by $colim_I A_i$ we indicate that $A_i = F(i)$ for all $i in I$.  
+  ]
+
+
+
+#proposition[
+  // For any small category $I$ and any functor $I -> ModR$, we have 
+  Let $I$ be a filtered poset (for any $i, j in I$ there exists $k$ such that $i <= k$ and $j <= k$). View $I$ as a small category. Then the functor $ colim_I: Fun(I, RMod) -> RMod $ is exact. 
+]
+#proof[#TODO Ref: category theory.]
+
+#remark[
+  $colim_I$ is not a exact functor in general.
+]
 
 #corollary[
   A filtered colimit of flat $R$-modules is flat. 
 ]
 #proof[
-  Let $A = colim_I A_i$ where $I$ is a filtered poset and $A_i$ are flat. If we have #sest $ ses(B_1, B_2, B_3) $ then 
-  $ A tpr B_1 -> A tpr B_2 tpr A tpr B_3 $
-  then 
-  $ colim(A_i tpr B_1) -> colim(A_i tpr B_2) -> colim (A_i tpr B_3) $
-
-  Since $A_i$ is flat, then $ ses(A_i tpr B_1, A_i tpr B_2, A_i tpr B_3) $ is a #sest.
-
-  Since $colim$ is exact ($I$ filt.), we get the result.
+  Let $A = colim_I A_i$ where $I$ is a filtered poset and $A_i$ are flat for all $i in I$. We want to show $A$ is flat. If we have #sest $ ses(B_1, B_2, B_3) $ then for all $i in I$, 
+  $
+    ses(A_i tpr B_1, A_i tpr B_2, A_i tpr B_3)
+  $
+  Taking $colim_I$, which is exact as $I$ is a filtered poset, yields 
+  $
+    ses(colim_I (A_i tpr B_1), colim_I (A_i tpr B_2), colim_I (A_i tpr B_3))
+  $
+  $colim_I$ commutes with tensor products, hence 
+  $
+    ses((colim_I A_i) tpr B_1, (colim_I A_i) tpr B_2, (colim_I A_i) tpr B_3)
+  $
+  which is just 
+  $
+    ses( A tpr B_1, A tpr B_2, A tpr B_3)
+  $
+  showing $A$ is flat.
 ]
 
 #example[
-  Let $A$ be a torsion free abelian group. Then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so $A_i$ is free and hence flat.  $ A = union A_i = colim A_i $  Hence torsion free abelian groups are flat.
+  Let $A$ be a torsion free abelian group. Then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so $A_i$ is free and hence flat.  $ A = union A_i = colim A_i $  Hence torsion free abelian groups are flat. #TODO
 ]
 
 #example[
   Let $s in R$ be a central element of $R$. We can localise $s$ to get $R[s^(-1)]$ (this is the universal ring where $s$ is invertible, which is $colim(R->^s R ->^s R-> ...)$), so this flat $R$-module.
 
-  To generalise, for a set $S$, we form $R[S^(-1)]$, and this is flat as well.
+  To generalise, for a set $S$, we form $R[S^(-1)]$, and this is flat as well. #TODO
 ]
 
-(This is the end of lecture 12.)
+#endlec(12)
+#definition[
+  $F_cx -> A$ is a *flat resolution* of $A$ if $F_n$ are flat modules for all $n$.
+]
 
-#lemma(name: "Free resolution lemma")[
-  Let $F_cx -> A$ be a resolution of $A$ with $F_n$ flat modules for all $n$. Then 
+#lemma(name: "Flat Resolution Lemma")[
+  Let $F_cx -> A$ be a flat resolution of $A$. Then 
   $
     Tor_ast^R (A, B) iso H_ast (F_cx tpr B )
   $
@@ -2273,35 +2330,49 @@ Ref: category theory.
   By induction. As $- tpr B$ is right exact, we get the result for $n = 0$. Let 
   $
     ses(K, F_0, A)
-  $
-  be a short exact sequence. If we write $E_cx = (... -> F_2 -> F_1 -> 0)$, then $E_cx -> K$ is a flat resolution of $K$.
+  $ be a short exact sequence.   If we write $E_cx = (... -> F_2 -> F_1 -> 0)$, then $E_cx -> K$ is a flat resolution of $K$. 
 
-  For $n=1$, we get from the #lest of $Tor$ 
+  We can write the #lest induced by $Tor$: 
+  $
+    ... ->  Tor_n (F_0 , B) -> Tor_n (A , B) -> Tor_(n-1) (K , B) -> Tor_(n-1) (F_0 , B) -> ...
+  $
+  But $Tor_n (F_0, B) = 0$ for $n >= 1$ by (the dual of) #thmref(<flat-tor>)[Proposition]. 
+  Thus, 
+  $
+    Tor_n (A, B) iso cases(ker (K tp B -> F_0 tp B) quad &n = 1, Tor_(n-1) (K, B) quad &n >= 2)
+  $
+  For $n=1$, 
   $
     Tor_1 (A, B) = ker (K tp B -> F_0 tp B) = ker ((F_1 tp B) / im(F_2 tp B) -> F_0 tp B) = H_1 (F tp B)
   $
-  We see the result is true for $n = 1$. For $n >= 2$, by induction, 
+  For $n >= 2$, 
   $
-    Tor_n (A, B) = Tor_(n+1) (K, B) = H_(n-1) (E tp B) = H_n (F tp B)
+    Tor_n (A, B) iso Tor_(n-1) (K, B) iso H_(n-1) (E tp B) = H_n (F tp B)
   $
-  the first equation due to $Tor_k (F_0, B) = 0$. 
-  #TODO
+  by induction.
 ]
 
 #remark[
-  If $F$ is a right exact functor, we call an object $Q$ *$F$-acyclic* if $L_i F(Q) = 0$ for all $i != 0$.  
-  The same proof shows that if $Q_cx -> A$ is a resolution by $F$-acyclic objects, then $L_i F(A) = H_i (F (Q_cx))$. 
+  Why not define $Tor$ with flat resolutions in the first place? The problem is that we have to show it is well defined regardless of the choice of flat resolutions. This may not be as convenient as using projective resolutions. Nevertheless, now we are free to use flat resolutions, a larger class than projective resolutions, for calculations.
 ]
 
-#remark[
-  #TODO
+#definition[
+If $F$ is a right exact functor, an object $Q$ is *$F$-acyclic* if $L_i F(Q) = 0$ for all $i != 0$.  
+]
+#proposition[
+If $Q_cx -> A$ is a resolution where $Q_n$ is $F$-acyclic for all $n$, then $L_i F(A) = H_i (F (Q_cx))$. 
+]
+#proof[
+  The proof is exactly the same as above.
 ]
 
-= UCT
+#remark[#TODO Quillen model structures, fibrations and cofibrations.]
+
+= Universal Coefficient Theorem
 
 How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
 
-#theorem[
+#theorem(name: "Künneth Formula")[
   Let $P$ be a chain complex of flat, right $R$-modules such that each submodule $d(P_n)$ of $P_(n-1)$ is also flat. Then for every $n$ and every left $R$-module $M$ there is a #sest 
   
   $
