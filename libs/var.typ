@@ -10,7 +10,7 @@
 #let End(c) = [$op("End")_cal(#c)$]
 #let tp = [$times.circle$]
 #let ds = [$plus.circle$]
-#let iso = [$tilde.eq$]
+#let iso = [$tilde.equiv$]
 #let bij = [$attach(->, t: tilde)$]
 #let tpk = [$times.circle_k$]
 #let tpr = [$times.circle_R$]
