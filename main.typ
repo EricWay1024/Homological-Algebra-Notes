@@ -24,130 +24,8 @@
 
 
 #pagebreak()
-= Tensor products
 
-#TODO probably delete this section. this is only introductory and we could have worked on modules directly instead of vector spaces
-
-
-Let $k$ be a field and let $veck$ denote the category of $k$-vector spaces. Let $V, W, L in veck$, denote by $"Bilin"(V, W; L)$ the set of bilinear transformations $V times W -> L$. Let $T in "Bilin"(V, W; L)$, then can we write $T$ in terms of linear algebra?
-
-Denote
-$ "Hom"_k (V, W) := "Hom"_veck (V, W) $ as the set of linear transformations $V -> W$, and it is a $k$-vector space (in a natural way).
-//  We denote the same set by $#underline("Hom") (V, W)$ to emphasise the vector space structure. 
-
-We see that
-
-$
-"Bilin"(V, W; L) tilde.eq homk (V, homk (W, L)) tilde.eq homk(V, homk(V, L))
-$
-
-#remark[This is currying in computer science.]
-
-Is $"Bilin"(V, W; -): veck -> bd("Set")$ _representable_? In other words, is there a $k$-vector space $V times.circle_k W$ with a _natural_ isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
-where naturality means that the isomorphism is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
-
-Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any blinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
-
-// #image("imgs/1.png", width: 50%)
-
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOQrU6TVuwAyo8SAzY8BInOIKGLNok480AayGiFMKAHN4RUADMAThF5IyIHBCTkYq4eXog+fkgATEEg7p5RNBGIciCMWGAmIFD0cAAWdiA0RsqmMAAeWHA4cFwAhDYiQA
-#align(center, commutative-diagram(
-  node((1, 0), [$V times W$]),
-  node((1, 1), [$L$]),
-  node((0, 1), [$V tpk W$]),
-  arr((1, 0), (1, 1), []),
-  arr((1, 0), (0, 1), []),
-  arr((0, 1), (1, 1), [$exists !$], "dashed"),
-))
-
-
-Remark: it is also equivalent to asking for an adjoint functor.
-
-For any $(v, w) in V times W$ we want to find $v times.circle w in V tpk W$. This is a bilinear map, so for example:
-
-$
-(v+v') tp w = v tp w + v' tp w
-$
-
-#definition[
-   For any set $X$, let $k[X]$ denote the vector space spanned by $X$: $ sum_(x in X) a_x x $ where $a_x = 0$ for almost all $x in X$.
-]
-
-Now we look at $k[V times W]$ (a free vector space). This is large: even if $V$ and $W$ have finite dimensions this vector space has infinite. We look at the subspace spanned by the relations $ M = "span"{(v + v', w) - (v, w) - (v', w) \ (v, w + w') - (v, w) - (v, w') \ c(v, w) - (c v, w) \ c(v, w) - (c w, v)} $ TODO
-
-for all $v, v' in V$ and $w, w' in W$ and $c in k$. Then we have 
-$
-homk (k[V times W] \/ M, L) tilde.eq "Bilin"(V, W; L)
-$
-due to the first isomorphism theorem. We see that if $T in homk (k[V times W] \/ M, L)$ then $T$ is a linear transformation $k[V times W] -> L$ such that $T(M) = 0$. For any $(v, w) in V times W$:
-
-$ V times W -> k[V times W] -> k[V times W] \/ M \
-(v, w) |-> (v, w) |-> (v, w) + M $
-
-We can thus define $V tpk W := k[V times W] \/ M$.
-
-Note: $V tpk W$ is defined up to a unique isomorphism. This follows from the universal property (ref. category theory). 
-
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOVLFqdJq3bccaANZDR4kBmx4CROQCZFDFm0ScemgOTaRimFADm8IqABmAJwi8kMhAcCCRyMW8-AMQgkKQTCJBff3iaOMQ5EEYsMCsQKHo4AAsXEBoAIxgwKCQAZiCLFWsYAA8sOBw4LgBCHUiUjLTQxBMKqprEepps3PYC4tKaRrzW9s6e0UoRIA
-#align(center, commutative-diagram(
-  node((1, 0), [$V times W$]),
-  node((0, 1), [$V tpk W$]),
-  node((2, 1), [$V tpk' W$]),
-  arr((1, 0), (0, 1), []),
-  arr((1, 0), (2, 1), []),
-  arr((2, 1), (0, 1), [$exists !$], curve: 30deg, "dashed"),
-  arr((0, 1), (2, 1), [$exists !$], curve: 30deg, "dashed"),
-))
-
-// #image("imgs/2.png")
-
-== Properties of tensor product
-
-$"Bilin"(V, W; -) tilde.eq "Bilin"(W, V; -)$ in a canonical way and hence $V tpk W tilde.eq W tpk V$. Also $k tpk W tilde.eq W$.
-
-$ "Trilin"(V_1, V_2, V_3; L) tilde.eq "Bilin"(V_1 tpk V_2, V_3; L)  tilde.eq  "Bilin"(V_1,  V_2 tpk V_3; L) $
-and hence $ (V_1 tpk V_2) tpk V_3 tilde.eq V_1 tpk (V_2 tpk V_3) $
-
-It is obviously hard to verify these properties using the definition directly (but good exercise?).
-
-More generally, let $sigma in S_n$ (symmetric group),
-
-$ ( ... (V_1 tpk V_2) tpk ... tpk V_n) tilde.eq ( ... (V_sigma(1) tpk V_sigma(2)) tpk ... tpk V_sigma(n)) $
-
-Remark: in category theory, we think of things by their properties not their definition.
-
-Remark: we now have $(veck, - tpk -)$ which also preserves liner maps. If we have $T: V-> V'$ and $S: W-> W'$ then $T tpk S: V tpk W -> V' tpk W$. (This is heavily used in quntum computing.) This is a symmetric monoidal category.
-
-#definition[
-  A $k$-algebra is a monoid object in $(veck, tpk)$; namely, $A in veck$ with multiplication $m: A tpk A -> A$ and a unit $i: k -> A$ which are associative and unital. Namely, $m$ is a multiplication that takes two elements in $A$ and is bilinear; $i$ just sends $1 in K$ to $i(1)$ which is the unit element in $A$. Associativity of $m$ is shown in commuting diagram:
-
-  #image("imgs/3.png")
-]
-
-== Non-linear version
-
-In the category of $bd("Set")$, 
-$ hom(X times Y, Z) = hom(X, hom (Y, Z)) $ 
-This is Cartesian category (?)
-
-#endlec(1)
-
-== More discussions
-
-$ dim (V ds W) = dim V + dim W $
-$ dim (V tp W) = dim V dot dim W $
-
-An alternative definition of the tensor product: let $V$ be a vector space with basis ${v_i}_(i in I)$ and $W$ with ${w_j}_(j in J)$ and define $V tpk W$ to have basis ${v_i tp w_j}_(i in I, j in J)$. When we change basis this can be problematic.
-
-Remark: Categorification. If we discuss a category $(C, ds, tp)$ then this is similar to categorifying some underlying structure of a ring. Active field of research.
-
-We were discussing $V tpk W$ for $k$ a field. To generalise, for a ring $R$ and left $R$-modules $M, N$, we can define $M tpr N$.
-
-Note: if $R$ is a non-commutative ring, $M$ is a right $R$-module and $N$ is a left $R$-module, then $M tpr N$ is (only) an abelian group. There would be a problem moving the scalars $r in R$ from side to side in the definition (using free modules), i.e. we can only have things like $m r tp n - m tp r n$.
-
-#pagebreak()
-
-= Category Theory
+= Basic Category Theory
 
 This section is a crash course in Category Theory. The reader is advised to take the Cateogry Theory course concurrently and/or refer to other materials when necessary.
 
@@ -181,7 +59,7 @@ This section is a crash course in Category Theory. The reader is advised to take
   $
     hom_cC (X, Y) = cases({id_X} quad &X = Y, nothing quad &X != Y)
   $
-  It does not contain more information than $ob cC$, so it can be simply regarded as a set (strictly speaking, when $cC$ is small).
+  It does not contain more information than $ob cC$, so it can be simply regarded as a collection of objects, or a set when $cC$ is small.
 ]
 #example[
   If $ob cC = {x}$, then $hom_cC (x, x)$ is a *monoid*.
@@ -300,7 +178,7 @@ In general, a category is a "generalised" monoid because in a category you can o
   Kernels are monic. 
 ]
 
-(This indicates that $A$ is the "biggest" subobject (to be defined!) of $B$ to be mapped to zero by $f$.)
+// (This indicates that $A$ is the "biggest" subobject (to be defined!) of $B$ to be mapped to zero by $f$.)
 
 #definition[ A cokernel of $f: B->C$ is a map $j: C-> D$ such that $j compose f  = 0$ in a universal way.]
 
@@ -505,7 +383,6 @@ Consider $Cat$, then two small categories $cC$ and $cD$ are isomorphic if there 
 
 #definition[
 Let $I$ be a small category and $F: I -> cA$ be a functor. Then $F$ is called a *diagram*. Denote $F(i)  = F_i$ for all $i in I$. 
-
 A *cone* of $F$ is an object $C$ of $cA$ with morphisms ${f_i : C -> F_i}_(i in I)$, such that for any $alpha : j -> i $  in $I$,
 
 // #image("imgs/11.png", width: 30%)
@@ -550,33 +427,78 @@ A limit is a universal cone; namely, $L$ is a *limit* of $F$ if it is a cone of 
 #notation[
   Sometimes we write $L = lim F_i$ when $I$ is clear from the context or is not important.
 ]
+Dually, we define the colimit of $F$. This concept is important enough to be restated as follows. 
+#definition[
+Let $I$ be a small category and $F: I -> cA$ be a diagram. Denote $F(i)  = F_i$ for all $i in I$. 
+A *cocone* of $F$ is an object $C$ of $cA$ with morphisms ${f_i :  F_i -> C}_(i in I)$, such that for any $alpha : j -> i $  in $I$,
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABkQBfU9TXfIRRkAjFVqMWbAGIB9AFbdeIDNjwEiI0mOr1mrRCDlZu4mFADm8IqABmAJwgBbJFpA4ISMhP1s0WBSU7RxdEACZqDy9dSQMVAJNqBjoAIxgGAAV+dSEQeywLAAscIJAHZ1dIz3CY30NpAApGNEK6AEpTLiA
+#align(center, commutative-diagram(
+    node-padding: (50pt, 50pt),
+  node((0, 0), [$C$]),
+  node((1, 0), [$F_j$]),
+  node((1, 1), [$F_i$]),
+  arr((1, 0), (0, 0), [$f_j$], label-pos: 1.5em),
+  arr((1, 1), (0, 0), [$f_i$], label-pos: -1em),
+  arr((1, 0), (1, 1), [$F(alpha)$]),
+))
+commutes.
 
-#definition[Dually, we define the colimit of $F$, denoted as $colim_I F$.
-
-// #image("imgs/13.png", width: 30%)
+A colimit is a universal cocone; namely, $L$ is a *colimit* of $F$ if it is a cocone of $F$ with ${pi_i :  F_i -> L}_(i in I)$ and there exists a unique morphism $h :  L -> C$ for any cocone $C$ of $F$ with ${f_i : F_i -> C}_(i in I)$ such that $f_i = h oo pi_i $ for all $i in I$. We denote $L = colim_I F$.
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAZEAX1PU1z5CKMgCZqdJq3YAxAPoArHnxAZseAkXKlxNBizaIQ8rMv7qhRMsQn7pRgMI8JMKAHN4RUADMAThABbJG0QHAgkMkkDdjQsRTMQP0CkURowiL0pQ1U4014ffyDEEPTEVKj7YwAKJjQAC3oASgSkopLwxABmGgAjGDAoJE7Iu2zveJpGej7GAAUBDWEQRhhvHBbClLSO7pA+gaQAWmHM6KNxvJVWjNCdyawwbKh6ODrXEFPKmAAPLDgcOAAAgAhM5uEA
+#align(center, commutative-diagram(
+    node-padding: (50pt, 50pt),
+  node((1, 0), [$L$]),
+  node((2, 0), [$F_j$]),
+  node((2, 1), [$F_i$]),
+  node((0, 0), [$C$]),
+  arr((2, 0), (1, 0), [$pi_j$], label-pos: -1em),
+  arr((2, 1), (1, 0), [$pi_i$], label-pos: -1em),
+  arr((2, 0), (2, 1), [$F(alpha)$]),
+  arr((2, 0), (0, 0), [$f_j$], curve: 30deg, label-pos: 1em),
+  arr((2, 1), (0, 0), [$f_i$], label-pos: 1em, curve: -30deg),
+  arr((1, 0), (0, 0), [$exists !$], label-pos: -1em, "dashed"),
+))
 ]
 
 #proposition[
   If any limit or colimit exists, then it is unique up to a unique isomorphism. 
 ]
 
-#example[
-  If $I$ is a discrete category, then $lim_I F = product_(i in I) F_i$ and $colim_I F = product.co_(i in I) F_i$.
+#notation[
+  Hence we usually say "the" limit (or kernel, product, etc.) instead of "a" limit of a diagram.
 ]
-#definition[Equalisers and coequalisers. Consider category $I = circle.filled arrows.rr circle.filled$.]
+
+#example[
+  If $I$ is a discrete category, then $lim_I F = product_(i in I) F_i$ is the product and $colim_I F = product.co_(i in I) F_i$ is the coproduct.
+]
+#definition[Let $I = circle.filled arrows.rr circle.filled$ be the category with two objects and two parallel morphisms between them. Let $F : I-> cC$ be a functor which maps $I$ to 
+$
+   A arrows.rr^f_g B
+$
+in $cC$. Then we define the *equaliser* of $f$ and $g$ as $lim_I F$, denoted as $Eq(f, g)$, and *coequaliser* of $f$ and $g$ as $colim_I F$, denoted as $Coeq(f, g)$.
+]
+
+#remark[
+  Again, $Eq(f, g)$ could mean either an object or a morphism whose domain is that object. So is the case with $Coeq(f, g)$. Welcome to the notation-abusing wonderland of mathematics.
+  $
+  Eq(f, g) -> A arrows.rr^f_g B ->  Coeq(f, g)
+$
+]
 
 #proposition[
-  Equalisers are always monomorphisms. 
+$Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
+
 ]
-Equalisers are the biggest subobject which when composed with $f$ or $g$ you can the same thing. 
 
-// #image("imgs/14.png")
+#proposition[
+  An equaliser is a monomorphism.  A coequaliser is an epimorphism.
+]
 
-#image("imgs/15.png")
 
-Coequaliser is just another direction. 
+// #image("imgs/15.png")
 
-Note: $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
+// Coequaliser is just another direction. 
+
 
 #proposition[ 
   Let $L : cA arrows.lr cB : R$ be an adjunction and $ L(colim A_i) iso colim L (A_i) \ R(lim B_i) iso lim R(B_i) $ 
@@ -586,7 +508,7 @@ Note: $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
 
   $ hom_cB (L(colim A_i), X) = hom_cA (colim A_i,  R(X)) =  lim hom_cA (A_i, R(X)) \ = lim hom_cB (L (A_i),  X)  =  hom_cB (colim L (A_i), X) $
 
-If we move colimit out of Hom, it becomes limit. This is seen for products and coproducts. 
+If we move colimit out of $hom$, it becomes limit. This is seen for products and coproducts. 
 
 We then apply Yoneda Lemma to show $L(colim A_i) $ and $colim L(A_i)$ are isomorphic. 
 ]
@@ -596,35 +518,69 @@ Left adjunction preserves colimits and right adjunction preserves limits.
 In particular, left adjunction preserves cokernels and are right exact; right adjunction preserves kernels and are left exact (to be defined later). 
 ]
 
+== Subobjects
 
-== Abelian Categories 
-
-#definition[
-  We call a category $cC$ *$Ab$-enriched* if every $Hom(C)(x, y)$ in an abelian group and morphism composition is bilinear, namely $(f + g) compose h  = f compose h + g compose h$ and $f compose (g + h) = f compose g + f compose h$.
-]
-The abelian group structure on hom-sets mean that we can now add morphisms in $Hom(C)(X, Y)$ for any $X, Y in cC$. In particular, there exists a zero morphism $0 in Hom(C)(X, Y)$ for any $X, Y in cC$.
-
-Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
-are group homomorphisms in each variable @borceux[Definition 1.2.1].
-
-#endlec(3)
+@awodey[Section 5.1]. 
+This section offers some new vocabulary to describe things we already have seen.
 
 #definition[
-  If $cC, cD$ are $Ab$-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
-]
+  Let $A$ be an object of category $cC$. A *subobject* of $A$ is a monomorphism $u : S -> A$. 
+  
+  Give two subobjects $u : S-> A$ and $v : T->A$ of $A$, we define the relation of *inclusion* of subobjects by $u subset.eq v$ if and only if there exists $f : S -> T$ such that $u = v oo f$. Such $f$ is unqiue if it exists, since $v$ is a monomorphism.
 
-#definition[
-  An Ab-enriched category $cC$ is *additive* if it admits finite coproducts.  
+  We say two subobjects $u : S-> A$ and $v : T->A$ of $A$ are *equivalent* if $u subset.eq v$ and $v subset.eq u$.
 ]
 
 #proposition[
-  If $cC$ is an Ab-enriched category, then so is $cC^op$.
-]
-#proof[
-  The definition is self-dual. Namely, reversing all the arrows in $cC$ does not break the group structure on hom-sets or the bilinear composition. 
+  Let  $u : S-> A$ and $v : T->A$  be two equivalent subobjects of $A$, then $S$ and $V$ are isomorphic objects.
 ]
 
-#proposition[Let $*$ be an object in an Ab-enriched category, then the followings are equivalent:
+#notation[
+  Sometimes instead of saying $u: S-> A$ is a subobject of $A$, we may say $S$ is a subobject of $A$ when the monomorphism $u$ is clear from the context. 
+]
+
+#proposition[
+  In category $cC$, $i: A->B$ is the equaliser of $f, g: B-> C$ if and only if $i$ is the largest subobject of $B$ such that $f oo i = g oo i$. In particular, $i: A->B$ is the kernel of $f: B-> C$ if and only if $i$ is the largest subobject of $B$ such that $f oo i = 0$. 
+]
+
+The dual concept of subobjects is *quotient objects*.
+
+
+
+= Abelian Categories 
+
+== $Ab$-enriched Categories
+
+We have seen, for example, that in $veck$ every hom-set not only is a collection (or set) of morphisms but also has some "additional structures", i.e. a vector space. This leads to the idea of enriched categories, where enriching means equipping the hom-sets with "additional structures". The following is a speical case where every hom-set is an abelian group.
+
+#definition[
+  We call a category $cC$ *$Ab$-enriched* if every $Hom(C)(X, Y)$ is a abelian group, subject to bilinear morphism composition, namely $ (f + g) compose h  = f compose h + g compose h quad "and" quad f compose (k + h) = f compose k + f compose h $
+  for all $f, g : Y-> Z$ and $h, k : X->Y$. 
+]
+The abelian group structure on hom-sets means that we are allowed to add two morphisms (as above) in $Hom(C)(X, Y)$ for any $X, Y in cC$. Also, there exists a zero morphism $0 in Hom(C)(X, Y)$ for any $X, Y in cC$ because every abelian group has an identity element. However, note that an $Ab$-enriched category needs not have a zero object. 
+
+// Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
+// are group homomorphisms in each variable @borceux[Definition 1.2.1].
+
+#endlec(3)
+
+We can also define functors between $Ab$-enriched categories which respect the abelian group structures of the hom-set:
+
+#definition[
+  If $cC, cD$ are $Ab$-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(X, Y) -> Hom(D)(F(X), F(Y)) $ is a group homomorphism for any $X, Y in cC$.
+]
+
+
+#proposition[
+  If $cC$ is an *Ab*-enriched category, then so is $cC^op$.
+]
+#proof[
+  The definition is self-dual. Namely, reversing all the arrows in $cC$ breaks neither the group structure on hom-sets nor the bilinear morphism composition. 
+]
+
+We mentioned that an $Ab$-enriched category needs not have a zero object, but once it has an initial or final object, it has a zero object, as shown below.
+
+#proposition[Let $*$ be an object in an *Ab*-enriched category, then the followings are equivalent:
 + $*$ is a final object;
 + $*$ is an initial object;
 + $*$ is a zero object.]
@@ -639,13 +595,16 @@ So there is a unique morphism from $*$ to $A$ and therefore $*$ is also initial.
 
 // This also includes the case of the empty product and coprodut, namely any final object is initial and thus zero. 
 
-A final object is an empty product and an initial object an empty coproduct, and therefore the next result is a generalisation of the previous one.
-
+In fact, a final object is an empty product and an initial object an empty coproduct, and the previous result can be generalised. 
 #proposition[
-  In an Ab-enriched category $cC$, a binary product is also a coproduct. 
+  In an *Ab*-enriched category $cC$, let $X_1, X_2$ be two objects. Then
+  + If the product $X_1 times X_2$ exists, then the coproduct $X_1 union.sq X_2$ also exists and is isomorphic to $X_1 times X_2$;
+  + If the coproduct $X_1 union.sq X_2$ exists, then the product $X_1 times X_2$ also exists and is isomorphic to $X_1 union.sq X_2$.
 ]
 
-#proof[Let $X_1, X_2 in ob cC$. Suppose that $X_1$ and $X_2$ have a product $X_1 times X_2$ in $cal(C)$, with projections $p_k colon X_1 times X_2 arrow.r X_k$. By definition of products, there are unique morphisms $i_k colon X_k arrow.r X_1 times X_2$ such that the following diagrams commute.
+#proof[@notes[Proposition 3.7], @li[Theorem 3.4.9] and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality.
+  
+  Suppose the product $X_1 times X_2$ exists with projections $p_k colon X_1 times X_2 arrow.r X_k$. By definition of products, there are unique morphisms $i_k colon X_k arrow.r X_1 times X_2$ such that the following diagrams commute.
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAA0B9YgAjwFt4PLgCYQAX1LpMufIRQAGclVqMWbLsQlSQGbHgJERy6vWatEHTmMnT9cokoUqz6y5u13ZhlMZEu1CysbFRgoAHN4IlAAMwAnCH4kJRAcCCRiWxB4xOTqNKQRLJykxABmfPTEMlVzNiwoTgAKTQBKT2yE0orUquMQACMYMCgkMpTXIIUOkrHKvJAGLDAgqDo4AAswkFNAthgADyw4HDgAQhmupAAWecR+yfrGlut24qvEW96M6iGRsYme0s03euU+dxSSxWbDWm22uzqlkOx1OPAu4go4iAA
 #align(center, commutative-diagram(
@@ -654,14 +613,14 @@ A final object is an empty product and an initial object an empty coproduct, and
   node((1, 2), [$X_2$]),
   node((0, 0), [$X_1$]),
   node((2, 2), [$X_2$]),
-  arr((1, 1), (1, 0), [$p_1$]),
+  arr((1, 1), (1, 0), [$p_1$], label-pos: -1em),
   arr((1, 1), (1, 2), [$p_2$]),
   arr((0, 0), (1, 0), [$id_(X_1)$]),
   arr((0, 0), (1, 2), [$0$], curve: 30deg),
-  arr((0, 0), (1, 1), [$exists ! i_1$], "dashed"),
-  arr((2, 2), (1, 2), [$id_(X_2)$]),
-  arr((2, 2), (1, 0), [$0$], curve: 30deg),
-  arr((2, 2), (1, 1), [$exists ! i_2$], "dashed"),
+  arr((0, 0), (1, 1), [$exists ! i_1$], label-pos: -1em, "dashed"),
+  arr((2, 2), (1, 2), [$id_(X_2)$], label-pos: -1.5em),
+  arr((2, 2), (1, 0), [$0$], label-pos: -1em, curve: 30deg),
+  arr((2, 2), (1, 1), [$exists ! i_2$], label-pos: -1em, "dashed"),
 ))
 
 Explicitly, we have for $j, k in {1, 2}$, $ p_j oo i_k = cases(id_(X_j) quad &"if " j = k, 0 quad &"otherwise") $
@@ -671,10 +630,10 @@ Then we have $ p_1 compose lr((i_1 p_1 plus i_2 p_2)) eq p_1 comma quad p_2 comp
 
 By defintion of products, $id_(X_1 times X_2) $ is the unique morphism $h : X_1 times X_2 -> X_1 times X_2$ with $p_k compose h eq p_k$ for each $k$, so $i_1 p_1 plus i_2 p_2 eq id_(X_1 times X_2)$. We claim that
 $ X_1 rgt(i_1) X_1 times X_2 lft(i_2) X_2 $ is a universal cocone and thus a coproduct. Suppose 
-$ X_1 rgt(f_1) A lft(f_2) X_2 $
+$X_1 rgt(f_1) A lft(f_2) X_2 $
 is another cocone. Then we have a map
 $ phi eq f_1 compose p_1 plus f_2 compose p_2 colon X_1 times X_2 arrow.r A $
-such that for $k = 1, 2$, $ phi oo i_k = f_k $ 
+such that for $k = 1, 2$, $phi oo i_k = f_k $.
 This gives a commutative diagram
 #align(center,image("imgs/2023-10-29-11-34-35.png",width:30%))
 
@@ -683,20 +642,65 @@ such $phi$ we have $ phi & eq phi compose id_(X_1 times X_2)\
  & eq phi compose lr((i_1 p_1 plus i_2 p_2))\
  & eq phi i_1 compose p_1 plus phi i_2 compose p_2\
  & eq f_1 compose p_1 plus f_2 compose p_2 dot.basic $
-
- See @notes[Proposition 3.7], @li[Theorem 3.4.9] and @borceux[Proposition 1.2.4].
 ]
 
 
-We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
+#definition[
+  Let $cC$ be an $Ab$-enriched category and let $X, Y in cC$. If $X$ and $Y$ has a product (or a coproduct) in $cC$, then it is called the *biproduct* of $X$ and $Y$, denoted as $X xor Y$.
+]
 
-This extends to all finite products and coproducts. 
+#corollary[
+  In an $Ab$-enriched category, a binary biproduct is both a product and a coproduct. 
+]
+// We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
 
-#remark[
-  This does not extend to infinite products or coproducts. In the case of abelian groups, 
+#remark[This extends to all finite products and coproducts, but
+  this does not extend to infinite products or coproducts. In the case of abelian groups, 
 $ union.sq.big _I M_i = plus.circle.big_I M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i} $
 $ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
 ]
+
+== Additive Categories
+
+#definition[
+  An $Ab$-enriched category $cC$ is *additive* if it admits all finite coproducts and all finite products.  
+]
+
+Hence an additive category admits all biproducts, including the zero object. We note that all zero morphisms factor through the zero object. 
+
+
+#proposition[
+  In an additive category, if a monomorphism $i : A-> B$ is a zero morphism, then $A$ is the zero object. 
+  
+  Dually, if an epimorphism $p : C -> D$ is a zero morphism, then $D$ is the zero object.
+]
+
+#proposition[@rotman[Proposition 5.89]. 
+Let $u colon A arrow.r B$ be a morphism in an additive
+category $cal(A)$.
+- If $ker u$ exists, then $u$ is monic if and only if $ker u eq 0$.
+- Dually, if coker $u$ exists, then $u$ is epic if and only if coker $u eq 0$.
+]
+#proof[
+We refer to the diagrams in the definitions of kernel and
+cokernel. Let ker $u$ be $iota colon K arrow.r A$, and assume that
+$iota eq 0$. If $g colon X arrow.r A$ satisfies $u g eq 0$, then the
+universal property of kernel provides a morphism
+$theta colon X arrow.r K$ with $g eq iota theta eq 0$ \(because
+$iota eq 0$). Hence, $u$ is monic. Conversely, if $u$ is monic,
+consider $ K arrows.rr^iota_0 A arrow.r^u B dot.basic $
+
+Since $u iota eq 0 eq u 0$, we have $iota eq 0$. The proof for
+epimorphisms and cokers is dual. 
+
+#TODO modify
+]
+
+
+
+== Pre-abelian Categories
+
+
 
 #definition[
   An additive category $cC$ is *pre-abelian* if any morphism has a kernel and a cokernel. 
