@@ -2,7 +2,7 @@
 #import "libs/var.typ": *
 #import "libs/commute.typ": node, arr, commutative-diagram
 
-#set heading(numbering: "1.a.")
+#set heading(numbering: "1.1.")
 #set enum(numbering: "(1)")
 
 
@@ -26,20 +26,25 @@
 #pagebreak()
 = Tensor products
 
+#TODO probably delete this section. this is only introductory and we could have worked on modules directly instead of vector spaces
 
-Let $k$ be a field and let $veck$ denote the category of $k$-vector spaces. Let $V, W, L in veck$, denote by $"Bilin"(V, W; L)$ the set of bilinear transformations. Let $T in "Bilin"(V, W; L)$, then $T: V times W -> L$. Can we write $T$ in terms of linear algebra?
 
-$"Hom"_veck (V, W) = "Hom"_k (V, W)$ is the set of linear transformations from $V$ to $W$, and it is a $k$-vector space (in a natural way). We denote the same set by $#underline("Hom") (V, W)$ to emphasise the vector space structure. 
+Let $k$ be a field and let $veck$ denote the category of $k$-vector spaces. Let $V, W, L in veck$, denote by $"Bilin"(V, W; L)$ the set of bilinear transformations $V times W -> L$. Let $T in "Bilin"(V, W; L)$, then can we write $T$ in terms of linear algebra?
+
+Denote
+$ "Hom"_k (V, W) := "Hom"_veck (V, W) $ as the set of linear transformations $V -> W$, and it is a $k$-vector space (in a natural way).
+//  We denote the same set by $#underline("Hom") (V, W)$ to emphasise the vector space structure. 
+
+We see that
 
 $
 "Bilin"(V, W; L) tilde.eq homk (V, homk (W, L)) tilde.eq homk(V, homk(V, L))
 $
 
-[This is currying in computer science.]
+#remark[This is currying in computer science.]
 
-Question: Is $"Bilin"(V, W; -): veck -> bd("Set")$ representable? In other words, is there a $k$-vector space $V times.circle_k W$ with a natural isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
-
-What does natural mean? It means it is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
+Is $"Bilin"(V, W; -): veck -> bd("Set")$ _representable_? In other words, is there a $k$-vector space $V times.circle_k W$ with a _natural_ isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
+where naturality means that the isomorphism is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
 
 Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any blinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
 
@@ -140,60 +145,105 @@ We were discussing $V tpk W$ for $k$ a field. To generalise, for a ring $R$ and 
 
 Note: if $R$ is a non-commutative ring, $M$ is a right $R$-module and $N$ is a left $R$-module, then $M tpr N$ is (only) an abelian group. There would be a problem moving the scalars $r in R$ from side to side in the definition (using free modules), i.e. we can only have things like $m r tp n - m tp r n$.
 
-= Crash course in category theory
+#pagebreak()
 
-== Basic definitions
+= Category Theory
 
-#definition[
-  A category $cal(C)$ consists of a set (or a class) of objects $ob cC$ and for every $x, y in ob cC$ a set $hom_cC (x, y)$, with composition maps which are associative and unit morphisms (ref. category theory).
-]
+This section is a crash course in Category Theory. The reader is advised to take the Cateogry Theory course concurrently and/or refer to other materials when necessary.
 
-#example[
-  If $ob cC = {x}$ then $hom(x, x)$ is a monoid.
-]
-
-In general, a category is a "generalised" monoid because you can only compose morphisms in certain situations, not always.
-
-#example[
-  $veck, Set, $ left/right $R$-modules, bimodules, topolocial spaces, etc.
-]
+== Basic Definitions
 
 #definition[
-  $f: B-> C$ or $f in hom_cA (B, C)$ is monic if for any $e_1, e_2 : A -> B$ such that $f compose e_1 = f compose e_2$ we have $e_1 = e_2$; $f$ is epic if for any $g_1, g_2 : C-> D$ such that $g_1 compose f = g_2 compose f$ we have $g_1 = g_2$.
+  A *category* $cal(C)$ consists of 
+  - A collection of *objects* $ob cC$ and 
+  - For every pair of objects $X, Y in ob cC$, a collection of *morphisms* $hom_cC (X, Y)$, where for $f in Hom(C)(X, Y)$ we denote $f: X->Y$ or $X ->^f Y$ and say $X$ is the *domain* of $f$ and $Y$ is the *codomain* of $f$;
+  such that
+  - For every object $X$, there exists an *identity morphism* $id_X in Hom(C) (X, X)$;
+  - For every pair of morphisms $f : X -> Y$ and $g : Y -> Z$, there exists a *composite morphism* $g oo f : X -> Z$,
+
+  subject to the axioms:
+  - For every morphism $f : X -> Y$, we have $id_y oo f = f oo id_X = f$;
+  - For every triple of morphisms $f : X -> Y$, $g : Y -> Z$ and $h: Z -> W$, we have $(h oo g) oo f = h oo (g oo f)$, which we simply denote as $h oo g oo f$. 
+]
+
+#notation[
+  We usually write $X in cC$ when we mean $X in ob cC$. We sometimes denote $Hom(C)(X, X)$ as $End(C) (X)$ (the *endomorphisms* of $X$). We might simply write $hom$ instead of $Hom(C)$ if the underlying category is clear from the context.
+]
+
+#definition[
+  A category $cC$ is *locally small* if for every $X, Y in cC$, $Hom(C) (X, Y)$ is a set. A category $cC$ is *small* if it is locally  small and further $ob cC$ is a set. 
+]
+// #remark[
+  These definitions above are to avoid set-theoretic size issues, which we shall not devle into. They are employed when necessary to ensure that we do not run into paradoxes.
+// ]
+#example[
+  A *discrete category* $cC$ is one where 
+  $
+    hom_cC (X, Y) = cases({id_X} quad &X = Y, nothing quad &X != Y)
+  $
+  It does not contain more information than $ob cC$, so it can be simply regarded as a set (strictly speaking, when $cC$ is small).
+]
+#example[
+  If $ob cC = {x}$, then $hom_cC (x, x)$ is a *monoid*.
+]
+
+// #remark[
+  If you have never heard of monoids before, the above can be seen as the definition of a monoid.
+In general, a category is a "generalised" monoid because in a category you can only compose two morphisms $f, g$ in certain situations (namely, when the codomain of $f$ and the domain of $g$ match), whereas composition is allowed for any two elements of a monoid.
+// ]
+
+#example[ The following are the main cateogries we will be working with.
+  - The category $Set$ has objects which are sets and morphisms which are functions between sets. Notice in category theory we avoid talking directly about elements of a set, because a set, which is an object of the category $Set$, is "atomic" or inseparable.
+  - Let $k$ be a field. The category $veck$ has objects which are vector spaces over $k$ and morphisms which are linear transformations between vector spaces. We often denote $hom_veck$ as $homk$. In particular, for any $V, W in veck$, $homk (V, W)$ is also a vector space.
+  - Let $R$ be a ring. The category $RMod$ has objects which are #lrms and morphisms which are module homomorphisms. Similarly, we have the category $ModR$ of #rrms. We often denote $hom_RMod$ or $hom_ModR$ as $homr$; it should be clear from the context which one we are referring to.
+  - The category $Grp$ has objects which are groups and morphisms which are group homomorphisms. Similarly, we have the category $Ab$ of abelian groups. 
+  // $veck, Set, $ left/right $R$-modules, bimodules, topolocial spaces, etc.
+]
+
+#definition[
+  A morphism $f: B-> C$ is *monic* (or a *monomorphism*) if for any $e_1, e_2 : A -> B$ such that $f compose e_1 = f compose e_2$ we have $e_1 = e_2$.
+  
+  A morphism $f: B->C$ is *epic* (or an *epimorphism*) if for any $g_1, g_2 : C-> D$ such that $g_1 compose f = g_2 compose f$ we have $g_1 = g_2$.
 ]
 
 #example[
-  In $Set$, monic is 1-1 and epic is onto.
+  In $Set$, a monomorphism is equivalent to a one-to-one map and an epimorphism is equivalent to an onto map.
 ]
 #example[
-  In the category of commutative rings, $ZZ -> QQ$ is monic and epic. If we have $ ZZ -> QQ -> R $ and if two maps agree on $ZZ->R$ they must also agree on $QQ -> R$.
+  In the category of commutative rings, $ZZ -> QQ$ is both monic and epic. Note that if two maps agree on $ZZ->R$, they must also agree on $QQ -> R$, since a ring homomorphism $f: QQ -> R$ is uniquely determined by $f(1)$. 
 ]
 #example[
    In the category of commutative rings, for any ring $R$ and its ideal $I$, $R -> R\/I$ is epic.
 ]
-[Any localisation in ring is epic?]
+// [Any localisation in ring is epic? #TODO]
 
 #definition[
-  An initial object $I$ is such that for any $A in ob cC$ there exists a unique map $I -> A$.  A final object $T$ is such that for any $A in ob cC$ there exists a unique map $A -> T$.
+  An *initial object* $I$ of category $cC$ is an object such that for any $A in ob cC$, there exists a unique map $I -> A$.  
+  
+  A *final object* $T$ is an object such that for any $A in ob cC$ there exists a unique map $A -> T$.
 ]
 
 #example[
-  In $Set$ an initial object is an empty set, a final object in a one-element set.
+  In $Set$, an initial object is equivalent to an empty set, while a final object is equivalent to a one-element (or singleton) set.
 ]
 
 #definition[
-  A zero object $0$ is both initial and final (here $0$ is an object!).
+  A *zero object* $0$ is both initial and final.
 ]
 
 #example[
-  In $RMod$ the zero module is a zero object.
+  In $RMod$, a zero object is equivalent to the zero module.
 ]
 
 #proposition[
-  If there is a zero object in the category, then for any $B, C in cC$ we have $0 in hom_cC (B, C)$ (now $0$ is a morphism!).
+  If there is a zero object in the category, then for any $B, C in cC$ we have a *zero morphism* $0 in hom_cC (B, C)$.
 
   // https://tikzcd-typst-editor.pages.dev/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACEQBfU9TXfIRQAmclVqMWbAMLdeIDNjwEiARlKrx9Zq0Qhi3cTCgBzeEVAAzAE4QAtkjIgcEJKp5XbDxE5dJRIAxYYLogUHRwABbGcp72-tR+iOqBwaHhUTFcFFxAA
-#align(center, commutative-diagram(
+// #image("imgs/4.png", width: 30%)
+]
+#proof[
+  #align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
   node((0, 0), [$B$]),
   node((0, 2), [$C$]),
   node((1, 1), [$0$]),
@@ -201,15 +251,23 @@ In general, a category is a "generalised" monoid because you can only compose mo
   arr((0, 0), (1, 1), [$exists!$], "dashed"),
   arr((1, 1), (0, 2), [$exists!$], "dashed"),
 ))
-// #image("imgs/4.png", width: 30%)
+  It is clear from the commutative diagram.
+]
+#notation[
+  In a commutative diagram, two paths with the same starting and ending points correspond to two equal morphisms.
+]
+
+#notation[
+  We (ab)use the notation $0$ to denote both a zero object and a zero morphism.
 ]
 
 #definition[
-  A kernel of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way:
+  A *kernel* of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way. That is, for any $i' : A'-> B$ such that $f compose i' = 0$, there exists a unique morphism $h : A' -> A$ such that $i' = i oo h$. Diagrammatically,
 
   #v(20pt)
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbAELdeIDNjwEiAJjHV6zVohABhOXyWCiZYeK1Td7AOTdxMKAHN4RUADMAThAC2SUSA4EEjqEtps7oYgXr5IZIHBiAGWOiBYUTF+iPFBIdQARjBgUEgALACcmpKpxBneWQDM1LnZ1AxYYKlQdHAAFo4gVeG6MAAeWHA4cAAEAIR1sYhNCf5DVml2PB71SMstoSlstVwUXEA
 #align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
   node((0, 0), [$A$]),
   node((0, 1), [$B$]),
   node((0, 2), [$C$]),
@@ -217,11 +275,22 @@ In general, a category is a "generalised" monoid because you can only compose mo
   arr((0, 1), (0, 2), [$f$]),
   arr((0, 0), (0, 1), [$i$]),
   arr((0, 0), (0, 2), [$0$], curve: 35deg),
-  arr((1, 0), (0, 0), [$exists !$], "dashed"),
+  arr((1, 0), (0, 0), [$exists !$], label-pos: 1.5em, "dashed"),
   arr((1, 0), (0, 1), [$i'$]),
   arr((1, 0), (0, 2), [$0$], label-pos: -1em),
 ))
   // #image("imgs/5.png", width: 30%)
+]
+#remark[
+  Sometimes, we might also say the object $A$ in the above definition is the kernel of $f$ when the map $i$ is clear.
+]
+
+#example[
+  In $Set$, a kernel of $f: X -> Y$ is the inclusion map
+  $
+    i: { x in X | f(x) = 0} arrow.hook X
+  $
+  Hence we might also say the set ${ x in X | f(x) = 0}$ is a kernel of $f$.
 ]
 
 #example[
@@ -240,33 +309,56 @@ In general, a category is a "generalised" monoid because you can only compose mo
 ]
 
 #example[
-  For vector spaces $T: V -> W$, the cokernel is $W \/ im T$.
+  In $veck$, the cokernel of $T: V -> W$ is $W \/ im T$.
 ]
 
 #definition[
-  Opposite category: $cC |-> cC^op$, where $ob cC^op = ob cC$ and $hom_(cC^op)(x, y) = hom_cC (y, x)$.
+  The *opposite category* of $cC$ is a category $cC^op$  where $ob cC^op = ob cC$ and $hom_(cC^op)(x, y) = hom_cC (y, x)$.
 ]
 
-#proposition[$f: B->C$ is monic in $cC$ if and only if $f^op : C -> B$ is epic in $cC^op$.]
+#proposition[A morphism $f: B->C$ is monic in $cC$ if and only if $f^op : C -> B$ is epic in $cC^op$.]
 
-== Products and coproducts
+We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects" and "final objects" are dual; "kernels" and "cokerels" are dual.
+
+== Products and Coproducts
 
 #definition[
-  Suppose we have a family of objects ${C_i | i in I}$, then the product $product_(i in I) C_i$ satisfies universally:
-#image("imgs/6.png", width: 50%)
+  Let  ${C_i | i in I}$ be a family of objects, then their *product* $product_(i in I) C_i$ is an object such that there exist $pi_j : product_(i in I) -> C_j$ for all $j in I$ in a universal way. That is, for any object $D$ with morphisms $g_j : D -> C_j$ for all $j in I$, there exists a unique morphism $D -> product_(i in I)$.
+// #image("imgs/6.png", width: 50%)
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABEQBfU9TXfIRQBGclVqMWbNACdoTAMY4A+gAosAAixgNASQCUGgMLKs3XiAzY8BIqOHj6zVohAmAVt3EwoAc3hEoABmcgC2SGQgOBBIoiAM2i4gUHRwABY+5sFhEdTRSABM1E5Srr7KnjzZEOGIcfmIRRLO0lgVXlxAA
+#align(center, commutative-diagram(
+  node((0, 0), [$D$]),
+  node((0, 1), [$product_(i in I) C_i$]),
+  node((1, 1), [$C_j$]),
+  arr((0, 0), (0, 1), [$exists !$], "dashed"),
+  arr((0, 0), (1, 1), [$g_j$]),
+  arr((0, 1), (1, 1), [$pi_j$]),
+))
 
-Products in $cC^op$ are coproducts $product.co_(i in I) C_i$:
+  The *coproduct* of ${C_i | i in I}$ is defined as their product in the opposite category $C^op$. 
 
-#image("imgs/7.png", width: 50%)
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABEQBfU9TXfIRQBGclVqMWbNACdoTAMY4A+gAosAAixgNASQCUGgMLKs3XiAzY8BIqOHj6zVohAmAVt3EwoAc3hEoABmcgC2SKIgOBBIZCAM2i4gUHRwABY+5sFhSABM1NGx1E5SrkHKnjzZEOGI+VExiJElSVgVXlxAA
+#align(center, commutative-diagram(
+  node((0, 0), [$D$]),
+  node((0, 1), [$product.co_(i in I) C_i$]),
+  node((1, 1), [$C_j$]),
+  arr((0, 1), (0, 0), label-pos: -1em, [$exists !$], "dashed"),
+  arr((1, 1), (0, 0), label-pos: -1em, [$f_j$]),
+  arr((1, 1), (0, 1), label-pos: -1em, [$i_j$]),
+))
+
+// Products in $cC^op$ are coproducts $product.co_(i in I) C_i$:
+
+// #image("imgs/7.png", width: 50%)
 ]
 
 #example[
-  In $Set$,
-$ product X_i = {(x_i)_(i in I) | x_i in X_i} $ and $product.co X_i$ is the disjoint union. 
+  In $Set$, let ${X_i | i in I}$ be a family of sets.
+$ product_(i in I) X_i = {(x_i)_(i in I) | x_i in X_i} $ and $product.co_(i in I) X_i$ is the disjoint union. 
 ]
 
 #remark[
-  We need to use tuples here for the ordering of elements; suppose we want to use sets only then it can be messy and arbitrary! This is an advatange of the language of category theory over that of set theory.
+  We need to use tuples here for the ordering of elements; suppose we want to use sets only, then it can be messy and arbitrary! This is an advatange of the language of category theory over that of set theory.
 ]
 
 #proposition[
@@ -298,25 +390,28 @@ Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')
     node((0, 0), [$A$]),
     node((0, 1), [$product.co C_i$]),
     node((1, 1), [$C_i$]),
-    arr((0, 1), (0, 0), [$f$]),
-    arr((1, 1), (0, 0), [$g_i$]),
-    arr((1, 1), (0, 1), [$i_i$]),
+    arr((0, 1), (0, 0), label-pos: -1em, [$f$]),
+    arr((1, 1), (0, 0),  label-pos: -1em, [$g_i$]),
+    arr((1, 1), (0, 1), label-pos: -1em, [$i_i$]),
   ))
-  Notice the asymmetry here! It's not coproduct on the right hand side because it's still a tuple of arrows.
+  Notice the asymmetry here. It is not coproduct on the right hand side because it is still a tuple of arrows.
 ]
 
 
 
-== Functors
+== Functors and Natural Transformations
 
 #definition[
-  A functor $F: cC -> cD$ is such that it maps objects $F: ob cC -> ob cD$ and morphisms $F: Hom(C) (C_1, C_2) -> Hom(D) (F(C_1), F(C_2))$, while preserving composition and identity morphisms.]
-
+  Let $cC$, $cD$ be categories.
+  A *functor* $F: cC -> cD$ consists of
+  - A map of objects $ob cC -> ob cD$;
+  - #fw[For every pair objects $C_1, C_2 in cC$, a map of morphisms $ Hom(C) (C_1, C_2) -> Hom(D) (F(C_1), F(C_2)) $ ]
+  subject to preserving morphism composition and identity morphisms. ]
 #definition[
   Now we can define $bd("Cat")$, the category of all (small) categories, where $ob bd("Cat")$ are small categories and $hom_Cat (cC, cD)$ are functors between $cC$ and $cD$. 
 ]
 #definition[
-  Suppose $F, G: cC -> cD$, then a natural transformation $alpha: F => G$ is defined by a collection of morphisms in $cD$ indexed by $x in ob cC$: $ {alpha_x: F(x) -> G(x)}_(x in ob cC) $ where the diagram commutes:
+  Suppose $F, G: cC -> cD$, then a *natural transformation* $alpha: F => G$ is defined by a collection of morphisms in $cD$ indexed by $x in ob cC$: $ {alpha_x: F(x) -> G(x)}_(x in ob cC) $ where the diagram commutes:
   // https://tikzcd-typst-editor.pages.dev/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEAKADwEoQAvqXSZc+QigCM5KrUYs2AcR78hI7HgJEyk2fWatEHHgHJVwkBg3ii03dX0Kjy7mcGyYUAObwioAGYAThAAtkhkIDgQSJJqIEGhMdRRSADMDvKGIMr+5gHBYYgRKYgATBkGbFy5ghYJheWR0YipAhQCQA
 #align(center, commutative-diagram(
   node((0, 0), [$F(x)$]),
@@ -331,20 +426,42 @@ Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')
 // #image("imgs/9.png", width: 50%)
 ]
 
-Then we see that $"Fun"(cC, cD)$ is a category (functor category) where the objects are functors and the morphisms are natural transformations. 
-
-Then we see that in $Cat$, the hom-sets are not only sets but also categories, which means that $Cat$ is a 2-category. 
-
-#endlec(2)
-
-== Adjoint functors 
 #definition[
-  Functors $L : cA arrows.rl cB : R$ are adjoint if for all $A in cA, B in cB$ there exists a bijection $ tau_(A B) : Hom(B)(L(A), B) bij Hom(A) (A, R(B)) $ such that for any $f: A-> A'$ and $g: B-> B'$, the diagram commutes:
- #image("imgs/10.png")
+The *functor category* $"Fun"(cC, cD)$ is a category where the objects are functors $cC -> cD$ and the morphisms are natural transformations. 
 ]
 
 #remark[
-  Recall in linear algebra we have $angle.l T v, w angle.r  = angle.l v, T^* w angle.r $ and that's where the name adjoint comes from.
+In $Cat$, the hom-sets are not only sets but also categories, which means that $Cat$ is a *2-category*. 
+]
+
+
+#endlec(2)
+
+== Adjoint Functors 
+#definition[
+  Functors $L : cA arrows.rl cB : R$ are *adjoint* if for all $A in cA, B in cB$ there exists a bijection $ tau_(A B) : Hom(B)(L(A), B) bij Hom(A) (A, R(B)) $ such that for any $f: A-> A'$ and $g: B-> B'$, the diagram commutes:
+//  #image("imgs/10.png")
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAkIBbACgCEAlAAIeAGR4BBAOQDSQwQJABfUuky58hFAEZyVWoxZtOvQSPETZ8xSrXY8BIgCY91es1aIO3fsLGSrPhllVRAMe00iMm19dyMvEwCRaTkAJV8bUPCNRx1SGLdDT29eS2S0jJC7HK1kFwKDD2MfMskKoIEbfRgoAHN4IlAAMwAnbiQyEBwIJG1bEFHxxF0pmcQnecWuCepppABmQqavHDomAH1JKUEqhbHt5d21gBYj+Kmzy4lrW62kF1WSAArG9iqcLpJ5MFNvcDk8kM8YUtXoDEEClBQlEA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
+  node((0, 0), [$Hom(B) (L(A'), B))$]),
+  node((0, 1), [$Hom(B) (L(A), B)$]),
+  node((0, 2), [$Hom(B) (L(A), B')$]),
+  node((1, 0), [$Hom(A) (A', R(B))$]),
+  node((1, 1), [$Hom(A) (A, R(B))$]),
+  node((1, 2), [$Hom(A) (A, R(B'))$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), []),
+  arr((0, 0), (1, 0), [$tau_(A'B)$]),
+  arr((0, 1), (1, 1), [$tau_(A B)$]),
+  arr((0, 2), (1, 2), [$tau_(A B')$]),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+))
+]
+
+#remark[
+  Recall in linear algebra we have $angle.l T v, w angle.r  = angle.l v, T^* w angle.r $, where the name "adjoint" comes from.
 ]
 
 Equivalently, $tau$ is a natural isomorphism between $Hom(B) (L(-), -)$ and $Hom(A) (-, R(-))$, both of which are functors $cA^op times cB -> Set$.
@@ -367,50 +484,86 @@ Forget: $Grp -> Set$. Free: $Set -> Grp$. Also happens.
 ]
 
 
-
-
-== Equivalence of categories
+== Equivalence of Categories
 
 #definition[
-  In a category $cC$, objects $X, Y$ are isomorphic if there exists $f: X-> Y$ and $g: Y -> X$ such that $f compose g = id_Y$ and $g compose f  = id_X$.
+  In a category $cC$, objects $X, Y$ are *isomorphic* if there exists $f: X-> Y$ and $g: Y -> X$ such that $f compose g = id_Y$ and $g compose f  = id_X$. We say that $f$ and $g$ are *isomorphisms*. 
 ]
+  In the functor category, an isomorphism (which is a natural transformation between functors) is often called a *natural isomorphism*.
 
-
-Consider $Cat$, then two small categories $cC$ and $cD$ are isomorphic if there are functors $F: cC-> cD$ and $G: cD-> cC$ such that $F compose G  = Id$ and $G compose F = Id$. However, this rarely happens.
+Consider $Cat$, then two small categories $cC$ and $cD$ are isomorphic if there are functors $F: cC-> cD$ and $G: cD-> cC$ such that $F compose G  = Id$ and $G compose F = Id$. However, this rarely happens. We hence introduce the following weaker condition.
 #definition[
-  Equivalence of categories. Two categories $cC$ and $cD$ are equivalent if there are functors $F: cC-> cD$ and $G: cD-> cC$ such that $F G => Id$ (natural isomorphism) and $G F => Id$. In this way $F(G(X)) iso X$ instead of $F(G(X))=X$.
+  Two categories $cC$ and $cD$ are *equivalent* if there are functors $F: cC-> cD$ and $G: cD-> cC$ such that there exist natural isomorphisms $epsilon: F G => Id$ and $eta: Id => G F$. In this way $F(G(X)) iso X$ instead of $F(G(X))=X$.
 ]
+  It does not really matter here if we write $F G => Id$ or $Id => F G$ (the same for $G F$) because it is a natural isomorphism, but the above way of writing is to ensure consistency with an alternative defintion of adjoint functors.
 
 #remark[
   Let $X, Y in Top$ and $f: X arrows.lr Y : g$ be continuous maps. If $f compose g tilde id $ and $g compose f tilde id$ then $X, Y$ are homotopy equivalent. Natural transformations are simiar to the notion of homotopy.
 ] 
 
-== Limits and colimits
+== Limits and Colimits
 
 #definition[
-Let $cal(I)$ be a small category and $F: cal(I) -> cA$ be a functor. Then $F$ is called a diagram. Denote $F(i)  = F_i$ for all $i in I$. The limit of $F$ is an object $L$ of $cA$ with morphisms $pi_i : L -> F_i$ such that for any $alpha : j -> i $  in $cal(I)$,
+Let $I$ be a small category and $F: I -> cA$ be a functor. Then $F$ is called a *diagram*. Denote $F(i)  = F_i$ for all $i in I$. 
 
-#image("imgs/11.png", width: 30%)
+A *cone* of $F$ is an object $C$ of $cA$ with morphisms ${f_i : C -> F_i}_(i in I)$, such that for any $alpha : j -> i $  in $I$,
 
-commutes and it is universal. (Any $L$ that makes the diagram commute is called a cone and being universal means that it's a final object in the category of cones.)
+// #image("imgs/11.png", width: 30%)
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABkQBfU9TXfIRRkAjFVqMWbAGIB9AFbdeIDNjwEiI0mOr1mrRCDlZu4mFADm8IqABmAJwgBbJGRA4ISLRP1s0WBSU7RxdENw8kACZdSQMVAJMeYOcvagjEaJ8pQ2kACkY0AAs6AEpTLiA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$C$]),
+  node((1, 0), [$F_j$]),
+  node((1, 1), [$F_i$]),
+  arr((0, 0), (1, 0), [$f_j$]),
+  arr((0, 0), (1, 1), [$f_i$]),
+  arr((1, 0), (1, 1), [$F(alpha)$]),
+))
 
-#image("imgs/12.png", width: 30%)
+commutes. 
 
-If such $L$ exists then we call it the limit of $F$ or $lim_cal(I) F$.
+A limit is a universal cone; namely, $L$ is a *limit* of $F$ if it is a cone of $F$ with ${pi_i : L -> F_i}_(i in I)$ and there exists a unique morphism $h : C -> L$ for any cone $C$ of $F$ with ${f_i : C-> F_i}_(i in I)$ such that $f_i = pi_i oo h$ for all $i in I$. We denote $L = lim_I F$.
+
+
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAZEAX1PU1z5CKMgCZqdJq3YAxAPoArHnxAZseAkXKlxNBizaIQ8rMv7qhRMsQn7pRgMI8JMKAHN4RUADMAThABbJDIQHAgkbUkDdjQsRTMQP0DgmjCkUT0pQ1U4014ffyDESLTEDKj7YwAKJjQAC3oASgSkooBmVPDimgAjGDAoJABaNpC7bO94mkZ6PsYABQENYRBfLDc6nBbCpA7QrvK+gd2xrPZJvJVW3c6UkEYsMGyoejg61xBM6KMYAA8sOA4OAAAgAhM5uEA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((1, 0), [$L$]),
+  node((2, 0), [$F_j$]),
+  node((2, 1), [$F_i$]),
+  node((0, 0), [$C$]),
+  arr((1, 0), (2, 0), [$pi_j$]),
+  arr((1, 0), (2, 1), [$pi_i$]),
+  arr((2, 0), (2, 1), [$F(alpha)$]),
+  arr((0, 0), (2, 0), [$f_j$], curve: -30deg, label-pos: right),
+  arr((0, 0), (2, 1), [$f_i$], curve: 30deg),
+  arr((0, 0), (1, 0), [$exists !$], "dashed"),
+))
+
+
+// (Any $L$ that makes the diagram commute is called a cone and being universal means that it's a final object in the category of cones.)
+
+// #image("imgs/12.png", width: 30%)
+
+// If such $L$ exists then we call it the limit of $F$ or $lim_cal(I) F$.
+]
+#notation[
+  Sometimes we write $L = lim F_i$ when $I$ is clear from the context or is not important.
 ]
 
-#definition[Dually, we define the colim of $F$. 
+#definition[Dually, we define the colimit of $F$, denoted as $colim_I F$.
 
-#image("imgs/13.png", width: 30%)]
+// #image("imgs/13.png", width: 30%)
+]
 
 #proposition[
-  If any limit or colimit exists then it is unique up to a unique isomorphism. 
+  If any limit or colimit exists, then it is unique up to a unique isomorphism. 
 ]
 
 #example[
-  If $cal(I)$ is a discrete category (to be defined), then $lim F = product F_i$ and $colim F = product.co F_i$.
+  If $I$ is a discrete category, then $lim_I F = product_(i in I) F_i$ and $colim_I F = product.co_(i in I) F_i$.
 ]
-#definition[Equalisers and coequalisers. Consider category $cal(I) = circle.filled arrows.rr circle.filled$.]
+#definition[Equalisers and coequalisers. Consider category $I = circle.filled arrows.rr circle.filled$.]
 
 #proposition[
   Equalisers are always monomorphisms. 
@@ -425,26 +578,31 @@ Coequaliser is just another direction.
 
 Note: $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
 
-#proposition[
+#proposition[ 
   Let $L : cA arrows.lr cB : R$ be an adjunction and $ L(colim A_i) iso colim L (A_i) \ R(lim B_i) iso lim R(B_i) $ 
 ]
 #proof[
-  
+  Take $X in cB$.
 
-  $ Hom (L(colim A_i), X) = Hom (colim A_i R(X)) =  lim Hom (A_i, R(X)) \ = lim Hom (L (A_i),  X)  =  Hom (colim L (A_i), X) $
+  $ hom_cB (L(colim A_i), X) = hom_cA (colim A_i,  R(X)) =  lim hom_cA (A_i, R(X)) \ = lim hom_cB (L (A_i),  X)  =  hom_cB (colim L (A_i), X) $
 
-Move colimit out of Hom and it becomes limit: this is seen for products and coproducts. 
+If we move colimit out of Hom, it becomes limit. This is seen for products and coproducts. 
 
 We then apply Yoneda Lemma to show $L(colim A_i) $ and $colim L(A_i)$ are isomorphic. 
 ]
 
-Left adjunction preserves colimits and right adjunction preserves limits. In particular, left adjunction preserves cokernels and are right exact and right adjunction preserves kernels and are left exact. 
+#remark[
+Left adjunction preserves colimits and right adjunction preserves limits.
+In particular, left adjunction preserves cokernels and are right exact; right adjunction preserves kernels and are left exact (to be defined later). 
+]
 
-== Abelian categories 
+
+== Abelian Categories 
 
 #definition[
-  We call a category $cC$ *Ab-enriched* if every $Hom(C)(x, y) in Ab$ (which means we can now add morphisms in $Hom(C)(x, y)$) and composition is bilinear, namely $(f + g) compose h  = f compose h + g compose h$ and $f compose (g + h) = f compose g + f compose h$.
+  We call a category $cC$ *$Ab$-enriched* if every $Hom(C)(x, y)$ in an abelian group and morphism composition is bilinear, namely $(f + g) compose h  = f compose h + g compose h$ and $f compose (g + h) = f compose g + f compose h$.
 ]
+The abelian group structure on hom-sets mean that we can now add morphisms in $Hom(C)(X, Y)$ for any $X, Y in cC$. In particular, there exists a zero morphism $0 in Hom(C)(X, Y)$ for any $X, Y in cC$.
 
 Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
 are group homomorphisms in each variable @borceux[Definition 1.2.1].
@@ -452,7 +610,7 @@ are group homomorphisms in each variable @borceux[Definition 1.2.1].
 #endlec(3)
 
 #definition[
-  If $cC, cD$ are Ab-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
+  If $cC, cD$ are $Ab$-enriched, we call $F : cC -> cD$ an *additive functor* if $ Hom(C)(x, y) -> Hom(D)(F(x), F(y)) $ is a group homomorphism for any $x, y in cC$.
 ]
 
 #definition[
@@ -535,13 +693,13 @@ We can show that $x union.sq y iso x times y$ and we use the notation of a bipro
 This extends to all finite products and coproducts. 
 
 #remark[
-  This doesn't extend to infinite products or coproducts. In the case of abelian groups, 
+  This does not extend to infinite products or coproducts. In the case of abelian groups, 
 $ union.sq.big _I M_i = plus.circle.big_I M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i} $
 $ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
 ]
 
 #definition[
-  An additive category $cC$ is pre-abelian if any morphism has a kernel and a cokernel. 
+  An additive category $cC$ is *pre-abelian* if any morphism has a kernel and a cokernel. 
 ]
 
 Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts) @li[Corollary 2.8.4].
@@ -1781,23 +1939,36 @@ See @weibel[Horseshoe Lemma 2.2.8].
 
 = $delta$-functors
 
-See @weibel[Section 2.1].
-
+See @weibel[Section 2.1]. The next two definitions are stated separately for clarity here.
 #definition[
-  Let $cA, cB$ be abelian categories. A *homological $delta$-functor* (resp. *cohomological $delta$-functor*) between $cA$ and $cB$ is a collection of of additive functors $T_n: cA -> cB$ (resp. $T^n : cA -> cB$)  for $n >= 0$ together with morphisms 
+  Let $cA, cB$ be abelian categories. A *homological $delta$-functor* between $cA$ and $cB$ is, defined for each #sest $ses(A, B, C)$ in $cA$, a collection of additive functors $ T_n: cA -> cB $ for $n >= 0$ together with morphisms 
   $ delta_n : T_n (C)  -> T_(n-1)(A) $ 
-  $ "(resp." quad delta^n : T^n (C)  -> T^(n+1)(A) ")" $
-   defined for each #sest $ses(A, B, C)$ in $cA$, such that 
+  for $n >= 1$
+  such that 
   #enum(block(width: 100%)[
     $ ... -> T_(n+1)(C) ->^delta T_n (A) -> T_n (B) -> T_n (C) rgt(delta) T_(n-1)(A) -> ... $
-    $ "(resp." ... -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... ")" $
-    is a #lest and $T_0$ is right exact (resp. $T^0$ is left exact);
+    is a #lest and $T_0$ is right exact;
   ],
   [
     For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s give a commutative diagram 
-    #align(center,image("imgs/2023-11-06-21-12-16.png",width:80%))
+    #align(center,image("imgs/2023-11-24-19-38-59.png",width:30%))
   ])
 ]
+
+#definition[
+  Let $cA, cB$ be abelian categories. A *cohomological $delta$-functor* between $cA$ and $cB$ is, defined for each #sest $ses(A, B, C)$ in $cA$, a collection of of additive functors $ T^n : cA -> cB $  for $n >= 0$ together with morphisms 
+  $ delta^n : T^n (C)  -> T^(n+1)(A) $
+  for $n >= 0$ such that 
+  #enum(block(width: 100%)[
+    $ ... -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... $
+    is a #lest and $T^0$ is left exact;
+  ],
+  [
+    For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s give a commutative diagram 
+    #align(center,image("imgs/2023-11-24-19-39-14.png",width:30%))
+  ])
+]
+
 
 #example[
   Homology gives a homological $delta$-functor
@@ -2174,9 +2345,9 @@ Applying cohomology to this total cochain complex yields $Ext^ast _R (M, N)$.
 A detailed proof can be seen @notes[Section 9.1]. 
 To see this intuitively, notice a chain map $P_cx -> Q_cx [-n]$ is a collection of 
 $hom (P_p, Q_(p - n))
-$ for all suitable index $p$, subject to being commutative with the differentials. 
+$ for all suitable index $p$, subject to commuting with the differentials. 
 Hence, it is an element of $[Tot^Pi (hom_R (P_cx, Q_cx))]^n =: T^n$.
-One can show that the commutative condition for a chain map is equivalent to being a cycle in $T^n$. 
+One can show that the commuting condition for a chain map is equivalent to being a cycle in $T^n$. 
 Further, the chain map is null homotopic if and only if it is a boundary in $T^n$.
 Cohomology is cycles quotient by boundaries, which is now the same as "chain maps" quotient by "null homotopic chain maps".
 
@@ -2409,12 +2580,12 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $
     ses(Z_cx tp M , P_cx tp M, d(P)_cx tp M)
   $
-  Note that the differentials on the complexes  $Z_cx$ and $d(P)_cx$ are all zero. We now look at the #lest induced by homology: 
+  We now look at the #lest induced by homology: 
   #math.equation(block: true, numbering: "(1)", supplement: "long exact sequence",
   $
     H_(n+1) (d(P)_cx tp M ) ->^diff H_n (Z_cx tp M) \ -> H_n (P_cx tp M) -> H_n (d(P)_cx tp M) ->^diff H_(n-1) (Z_cx tp M) 
   $) <eq1>
-  The differentials on $Z_cx tp M$ and $d(P)_cx tp M$ are also all zero, which gives 
+  Note that the differentials on the complexes  $Z_cx$ and $d(P)_cx$ are all zero, and hence the differentials on $Z_cx tp M$ and $d(P)_cx tp M$ are also all zero, which gives 
   $
     H_n (d(P)_cx tp M) = d(P_n) tp M quad "and" quad H_n (Z_cx tp M ) = Z_n tp M
   $
@@ -2424,7 +2595,7 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $
     d(P_(n+1)) tp M ->^(diff_(n+1)) Z_n tp M -> H_n (P_cx tp M) -> d(P_(n)) tp M ->^(diff_n) Z_(n-1) tp M
   $
-  Here by definition the connecting homomorphism $diff_(n+1) = i_n tp M$, where $i_n : d(P_(n+1)) -> Z_n$ is the inclusion map.
+  Here we can calculate the connecting homomorphism $diff_(n+1) = i_n tp M$, where $i_n : d(P_(n+1)) -> Z_n$ is the inclusion map.
   According to a theorem regarding exact sequences #TODO, we have a #sest
   $
     ses(coker(i_n tp M), H_n (P_cx tp M), ker(i_(n-1) tp M))

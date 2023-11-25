@@ -1,7 +1,7 @@
 #import "theorem.typ": *
 
 #let bd(term) = [ $bold(#term)$]
-#let veck = [$bold("Vec")_k$]
+#let veck = [$bold("Vect")_k$]
 #let homk = [$op("Hom")_k$]
 
 #let hom = [$op("Hom")$]
@@ -23,7 +23,7 @@
 #let Cat = [$bd("Cat")$]
 #let RMod = [$R$-$bd("Mod")$]
 #let ModR = [$bd("Mod")$-$R$]
-#let homr = [$op("Hom")_RMod$]
+#let homr = [$op("Hom")_R$]
 #let endr = [$op("End")_RMod$]
 #let Mod = [$bd("Mod")$]
 #let Ab = [$bd("Ab")$]
@@ -33,9 +33,9 @@
 
 #let colim = [$op("colim")$]
 #let coim = [$op("coim")$]
-#let Eq = [$op("Eq")$]
+#let Eq = [$op("eq")$]
 #let Fun = [$op("Fun")$]
-#let Coeq = [$op("Coeq")$]
+#let Coeq = [$op("coeq")$]
 #let coker = [$op("coker")$]
 #let ses(A, B, C, f: "", g: "") = [$0 -> #A ->^#f #B ->^#g #C -> 0$]
 #let rgt(A) = [$attach(->, t: #A)$]
@@ -113,6 +113,14 @@
 #let remark = thmbox(
   "theorem",
   "Remark",
+  // stroke: rgb("#aaaaff") + 1pt,
+  breakable: true,
+
+)
+
+#let notation = thmbox(
+  "theorem",
+  "Notation",
   // stroke: rgb("#aaaaff") + 1pt,
   breakable: true,
 
