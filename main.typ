@@ -115,6 +115,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 
 #proposition[
   If there is a zero object in the category, then for any $B, C in cC$ we have a *zero morphism* $0 in hom_cC (B, C)$.
+  <zero-factor>
 
   // https://tikzcd-typst-editor.pages.dev/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACEQBfU9TXfIRQAmclVqMWbAMLdeIDNjwEiARlKrx9Zq0Qhi3cTCgBzeEVAAzAE4QAtkjIgcEJKp5XbDxE5dJRIAxYYLogUHRwABbGcp72-tR+iOqBwaHhUTFcFFxAA
 // #image("imgs/4.png", width: 30%)
@@ -551,16 +552,28 @@ The dual concept of subobjects is *quotient objects*.
 
 == $Ab$-enriched Categories
 
-We have seen, for example, that in $veck$ every hom-set not only is a collection (or set) of morphisms but also has some "additional structures", i.e. a vector space. This leads to the idea of enriched categories, where enriching means equipping the hom-sets with "additional structures". The following is a speical case where every hom-set is an abelian group.
+We have seen, for example, that in $veck$ every hom-set not only is a collection (or set) of morphisms but also has some "additional structures", i.e. a vector space. This leads to the idea of enriched categories, where enriching means equipping the hom-sets with "additional structures". The following is an instance where every hom-set is an abelian group.
 
 #definition[
   We call a category $cC$ *$Ab$-enriched* if every $Hom(C)(X, Y)$ is a abelian group, subject to bilinear morphism composition, namely $ (f + g) compose h  = f compose h + g compose h quad "and" quad f compose (k + h) = f compose k + f compose h $
   for all $f, g : Y-> Z$ and $h, k : X->Y$. 
 ]
-The abelian group structure on hom-sets means that we are allowed to add two morphisms (as above) in $Hom(C)(X, Y)$ for any $X, Y in cC$. Also, there exists a zero morphism $0 in Hom(C)(X, Y)$ for any $X, Y in cC$ because every abelian group has an identity element. However, note that an $Ab$-enriched category needs not have a zero object. 
+#remark[
+An equivalent way to put the bilinearity is the following: the composition mappings $ c_(X Y Z): Hom(C)(X, Y) times Hom(C)(Y, Z) -> Hom(C)(X, Z), quad (f, g) mapsto g oo f $
+are group homomorphisms in each variable @borceux[Definition 1.2.1]. 
+]
 
-// Another way to put the bilinearity is the following: the composition mappings $ c_(x y z): Hom(C)(x, y) times Hom(C)(y, z) -> Hom(C)(x, z), quad (f, g) mapsto g oo f $
-// are group homomorphisms in each variable @borceux[Definition 1.2.1].
+// The abelian group structure on hom-sets means that we are allowed to add two morphisms (as above) in $Hom(C)(X, Y)$. 
+
+#definition[
+Let $cC$ be an $Ab$-enriched category and $X, Y in cC$. The *zero morphism* $0 in Hom(C)(X, Y)$ is defined as the identity of the abelian group $Hom(C) (X, Y)$.
+
+]
+However, note that an $Ab$-enriched category needs not have a zero object, so this is actually a redefinition of a zero morphism from #thmref(<zero-factor>)[Proposition]. We will see later that the two definitions match when the zero object is present. Since group homomorphisms map identity to identity, we have the following:
+
+#proposition[
+  In an *Ab*-enriched category, let $X->^g Y->^f Z->^h W$. If $f$ is a zero morphism, then $f oo g$ and $h oo f$ are zero morphisms. <zero-composition>
+]
 
 #endlec(3)
 
@@ -578,12 +591,13 @@ We can also define functors between $Ab$-enriched categories which respect the a
   The definition is self-dual. Namely, reversing all the arrows in $cC$ breaks neither the group structure on hom-sets nor the bilinear morphism composition. 
 ]
 
-We mentioned that an $Ab$-enriched category needs not have a zero object, but once it has an initial or final object, it has a zero object, as shown below.
+ An $Ab$-enriched category needs not have a zero object. Nevertheless, once it has an initial or final object, it has a zero object, as shown below.
 
 #proposition[Let $*$ be an object in an *Ab*-enriched category, then the followings are equivalent:
 + $*$ is a final object;
 + $*$ is an initial object;
-+ $*$ is a zero object.]
++ $*$ is a zero object.
+<ab-zero>]
 
 #proof[
   (3) $=>$ (1) and (3) $=>$ (2) is obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
@@ -599,7 +613,8 @@ In fact, a final object is an empty product and an initial object an empty copro
 #proposition[
   In an *Ab*-enriched category $cC$, let $X_1, X_2$ be two objects. Then
   + If the product $X_1 times X_2$ exists, then the coproduct $X_1 union.sq X_2$ also exists and is isomorphic to $X_1 times X_2$;
-  + If the coproduct $X_1 union.sq X_2$ exists, then the product $X_1 times X_2$ also exists and is isomorphic to $X_1 union.sq X_2$.
+  + If the coproduct $X_1 union.sq X_2$ exists, then the product $X_1 times X_2$ also exists and is isomorphic to $X_1 union.sq X_2$.'
+  <ab-product>
 ]
 
 #proof[@notes[Proposition 3.7], @li[Theorem 3.4.9] and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality.
@@ -660,88 +675,212 @@ $ union.sq.big _I M_i = plus.circle.big_I M_i = {(m_i) _(i in I) | m_i in M_i, m
 $ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
 ]
 
-== Additive Categories
+Being able to add and substract parallel morphisms means we can rephrase the definitions for a monomorphism and epimorphism.
 
-#definition[
-  An $Ab$-enriched category $cC$ is *additive* if it admits all finite coproducts and all finite products.  
+#proposition[
+  In an $Ab$-enriched category $cC$, $f : B-> C$ is a monomorphism if and only if  $f oo u = 0$ implies $u = 0$ for all $u : A -> B$. 
+
+  Dually, $f : B -> C$ is an epimorphism if and only if $v oo f = 0$ implies $v = 0$ for all $v : C -> D$. 
+  <ab-mono>
+]
+#proof[
+  if $f : B -> C$ is a monomorphism, then in
+  $
+    A arrows.rr_(u_1)^(u_2) B ->^f C
+  $
+  whenever $f oo u_1 = f oo u_2$, we have $u_1 = u_2$. This is equivalent to saying whenever $f oo (u_1 - u_2) = 0$, we have $u_1 - u_2 = 0$. On the one hand, take $u_1 = u$ and $u_2 = 0$ gives the "only if" direction; on the other, take $u = u_1 - u_2$ gives the "if" direction.
 ]
 
-Hence an additive category admits all biproducts, including the zero object. We note that all zero morphisms factor through the zero object. 
+== Additive Categories
+
+Inspired by #thmref(<ab-zero>)[Proposition] and #thmref(<ab-product>)[Proposition], we naturally define the following:
+
+#definition[
+  An $Ab$-enriched category $cC$ is *additive* if it has all finite coproducts and all finite products; in particular, it has a zero object.
+]
+
+Hence an additive category has all finite biproducts, and the zero object can be considered as the empty biproduct. Now we can reconcile the two definitions we have had for zero morphisms.
+
+#proposition[
+  In an additive category $cC$, let $f: A->B$. Then $f$ is the identity of $Hom(C) (A, B)$ if and only if it can be factored as $A -> 0 -> B$.
+]
+#proof[
+  Since $Hom(C) (A, 0)$ has an unique element $h$, it must be the identity of the group. Similarly, $Hom(C) (0, B)$ contains only the identity $g$. The composition $g oo h$ is the identity of $Hom(C) (A, B)$ by #thmref(<zero-composition>)[Proposition].
+]
+
 
 
 #proposition[
   In an additive category, if a monomorphism $i : A-> B$ is a zero morphism, then $A$ is the zero object. 
   
   Dually, if an epimorphism $p : C -> D$ is a zero morphism, then $D$ is the zero object.
+  <additive-mono-zero>
+]
+#proof[
+  Take any $X$ and $u : X -> A$, we have
+  $
+    X arrow^u A ->^i B
+  $
+  $i = 0$, so $i oo u = 0$; but since $i$ is monic, $u = 0$ by #thmref(<ab-mono>)[Proposition].
+  Therefore there is a unique (zero) morphism from any $X$ to $A$, so $A$ is final and thus zero.
 ]
 
 #proposition[@rotman[Proposition 5.89]. 
-Let $u colon A arrow.r B$ be a morphism in an additive
-category $cal(A)$.
-- If $ker u$ exists, then $u$ is monic if and only if $ker u eq 0$.
-- Dually, if coker $u$ exists, then $u$ is epic if and only if coker $u eq 0$.
+Let $f colon A arrow.r B$ be a morphism in an additive
+category $cal(C)$. If $ker f$ exists, then $f$ is monic if and only if $ker f eq 0$.
+
+Dually, if  $coker f$ exists, then $f$ is epic if and only  $coker f eq 0$.
+<additive-ker>
 ]
 #proof[
-We refer to the diagrams in the definitions of kernel and
-cokernel. Let ker $u$ be $iota colon K arrow.r A$, and assume that
-$iota eq 0$. If $g colon X arrow.r A$ satisfies $u g eq 0$, then the
-universal property of kernel provides a morphism
-$theta colon X arrow.r K$ with $g eq iota theta eq 0$ \(because
-$iota eq 0$). Hence, $u$ is monic. Conversely, if $u$ is monic,
-consider $ K arrows.rr^iota_0 A arrow.r^u B dot.basic $
+Let $ker f$ be $i : K -> A$. Suppose $i = 0$. Since we know a kernel is a monomorphism, by #thmref(<additive-mono-zero>)[Proposition], $K = 0$. To show that $f$ is monic, take any $u : X -> A$ such that $f oo u = 0$. Then by the universal property of a kernel, there exists a unique morphism $h : X -> K$ such that $u = i oo h$. Thus $u$ factors through $K = 0$, so $u = 0$, proving $f$ is monic by #thmref(<ab-mono>)[Proposition]. 
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGkQBfU9TXfIRQBGclVqMWbAILdeIDNjwEiAJjHV6zVohAAhOXyWCiZYeK1TdADW7iYUAObwioAGYAnCAFskAZmocCCQyEAYsMB0QKDo4AAsHEE1JKLjDEE8ff0DgxFEJbTYmdMzfPJykdQKrDJKvMtCgpHzLKKw7LiA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$K$]),
+  node((0, 1), [$A$]),
+  node((0, 2), [$B$]),
+  node((1, 0), [$X$]),
+  arr((1, 0), (0, 0), [$h$], label-pos: 1em, "dashed"),
+  arr((1, 0), (0, 1), [$u$], label-pos: -1em),
+  arr((0, 1), (0, 2), [$f$]),
+  arr((0, 0), (0, 1), [$i$]),
+))
 
-Since $u iota eq 0 eq u 0$, we have $iota eq 0$. The proof for
-epimorphisms and cokers is dual. 
-
-#TODO modify
+On the other hand, suppose $f$ is monic. Then $ker f = 0$ directly follows from #thmref(<ab-mono>)[Proposition].
+// We refer to the diagrams in the definitions of kernel and
+// cokernel. Let ker $u$ be $iota colon K arrow.r A$, and assume that
+// $iota eq 0$. If $g colon X arrow.r A$ satisfies $u g eq 0$, then the
+// universal property of kernel provides a morphism
+// $theta colon X arrow.r K$ with $g eq iota theta eq 0$ \(because
+// $iota eq 0$). Hence, $u$ is monic. Conversely, if $u$ is monic,
+// consider $ K arrows.rr^iota_0 A arrow.r^u B dot.basic $
+// Since $u iota eq 0 eq u 0$, we have $iota eq 0$. The proof for
+// epimorphisms and cokers is dual. 
+// #TODO modify
 ]
-
-
 
 == Pre-abelian Categories
 
-
+Now inspired by #thmref(<additive-ker>)[Proposition], we define the following:
 
 #definition[
   An additive category $cC$ is *pre-abelian* if any morphism has a kernel and a cokernel. 
 ]
 
-Note: $Eq(f, q) = ker(f - g)$ and hence it has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts) @li[Corollary 2.8.4].
+#corollary[
+  Let $f$ be a morphism in a pre-abelian category. $f$ is monic if and only if $ker f$ = 0. Dually, $f$ is epic if and only if $coker f = 0$. 
+  <pre-add-mono>
+]
 
-#definition[
-  If $cC$ is pre-abelian we get: 
+In fact, we get more than just kernels and cokernels:
 
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGsYAnAAgAoAZgEoQAX1LpMufIRQBGclVqMWbABpiJIDNjwEiAJkXV6zVohABNTZN0yiAZmPKzbAMYROXQSPG3p+vKkckqmqhYeXnxRwr5aOgGyyEYhJirmHNx8kVmxYkowUADm8ESgAlwQALZIZCA4EEhyfiAV1U3UDUhGLuGtNq2VNYg9XYgOLW3DCvWNiAAsk0NIAKydcwZL7Qvrq9QMWGAZUHRwABaFIGmuFjAAHlhwOHA8AIT5okA
+#proposition[
+  A pre-abelian category has all finite limits and colimits.
+]
+#proof[
+  Let $cC$ be a pre-abelian category. Since
+$Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts) @li[Corollary 2.8.4]. #TODO
+]
+
+#proposition[
+    If $cC$ is pre-abelian, for every morphism $f : X-> Y$, there exists a unique morphism $G -> D$ as shown below. 
+
+// // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGsYAnAAgAoAZgEoQAX1LpMufIRQBGclVqMWbABpiJIDNjwEiAJkXV6zVohABNTZN0yiAZmPKzbAMYROXQSPG3p+vKkckqmqhYeXnxRwr5aOgGyyEYhJirmHNx8kVmxYkowUADm8ESgAlwQALZIZCA4EEhyfiAV1U3UDUhGLuGtNq2VNYg9XYgOLW3DCvWNiAAsk0NIAKydcwZL7Qvrq9QMWGAZUHRwABaFIGmuFjAAHlhwOHA8AIT5okA
+// #align(center, commutative-diagram(
+//   node-padding: (50pt, 50pt),
+//   node((0, 0), [$ker (f)$]),
+//   node((0, 1), [$X$]),
+//   node((0, 2), [$Y$]),
+//   node((0, 3), [$coker(f)$]),
+//   node((1, 1), [$coker(ker(f))$]),
+//   node((1, 2), [$ker(coker(f))$]),
+//   arr((0, 0), (0, 1), []),
+//   arr((0, 1), (0, 2), [$f$]),
+//   arr((0, 2), (0, 3), []),
+//   arr((0, 1), (1, 1), []),
+//   arr((1, 2), (0, 2), []),
+//   arr((1, 1), (1, 2), [$exists !$], "dashed"),
+// ))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGkQBfU9TXfIRQBGclVqMWbABrdeIDNjwEiAJjHV6zVohABNOXyWCiAZg0TtbAMKGF-ZUOSjh4rVN0BxO4oEqU6q6akjogACLc4jBQAObwRKAAZgBOEAC2SGQgOBBIopYeIADWMMkAFIkAlHYp6XnUOUjqBaGJNakZiM2NiOYtbADGECXlVe11iPk9ACzBVrpDIwAEZcsVldU8SR1IAKwNuV1zhSNli6Xrm-K1nbPZh-sgDFhgoVB0cAAW0SDHoTAADywcBwcCWAEJIlwgA
 #align(center, commutative-diagram(
-  node((0, 0), [$ker (f)$]),
+  node((0, 0), [$K$]),
   node((0, 1), [$X$]),
   node((0, 2), [$Y$]),
-  node((0, 3), [$coker(f)$]),
-  node((1, 1), [$coker(ker(f))$]),
-  node((1, 2), [$ker(coker(f))$]),
-  arr((0, 0), (0, 1), []),
+  node((0, 3), [$C$]),
+  node((1, 1), [$G$]),
+  node((1, 2), [$D$]),
+  arr((0, 0), (0, 1), [$ker(f)$]),
   arr((0, 1), (0, 2), [$f$]),
-  arr((0, 2), (0, 3), []),
-  arr((0, 1), (1, 1), []),
-  arr((1, 2), (0, 2), []),
+  arr((0, 2), (0, 3), [$coker(f)$]),
+  arr((0, 1), (1, 1), [$coker (ker (f))$], label-pos: -3.5em),
+  arr((1, 2), (0, 2), [$ker(coker(f))$], label-pos: -3.5em),
   arr((1, 1), (1, 2), [$exists !$], "dashed"),
 ))
-
-where we define $coim (f) = coker(ker(f))$ and $im(f) = ker(coker(f))$.
-// #image("imgs/17.png")
-[See Definition 1.2.4, Li-2]
-
-We call $f$ strict if the map $coim (f) -> im f$ is an isomorphism. 
+<pre-ab-morphism>
 ]
+#proof[
+  Since $coker(f) oo f = 0$, by the universal property of kernel, there exists $c : X -> D$ such that $f = ker(coker(f)) oo c$. Since $f oo ker(f) = 0$, we have $ker(coker(f)) oo c oo ker(f) = 0$. Now notice $ker(coker(f))$ is monic, and hence by #thmref(<pre-add-mono>)[Corollary], $ker(ker(coker(f))) = 0$. By the universal property of kernel again, there exists $d : K -> 0$ such that $c oo ker(f) = ker(ker(coker(f))) oo d$. Thus $c oo ker(f)$ factors through the zero object and thus is $0$.  The desired morphism is obtained from the universal property of cokernel.
+  #align(center, commutative-diagram(
+  node((0, 0), [$K$]),
+  node((0, 1), [$X$]),
+  node((0, 2), [$Y$]),
+  node((0, 3), [$C$]),
+  node((1, 1), [$G$]),
+  node((1, 2), [$D$]),
+  node((2, 2), [$0$]),
+  arr((0, 0), (0, 1), [$ker(f)$]),
+  arr((0, 1), (0, 2), [$f$]),
+  arr((0, 2), (0, 3), [$coker(f)$]),
+  arr((0, 1), (1, 1), [$coker (ker (f))$], label-pos: 0),
+  arr((1, 2), (0, 2), [$ker(coker(f))$], label-pos: -3.5em),
+  arr((1, 1), (1, 2), [$exists !$], "dashed"),
+  arr((0, 1), (1, 2), [$c$]),
+  arr((2, 2), (1, 2), [$ker(ker(coker(f)))$], label-pos: -4.5em),
+  arr((0, 0), (2, 2), [$d$], curve: -40deg)
+))
+]
+
+#definition[We define $coim (f) = coker(ker(f))$ and $im(f) = ker(coker(f))$.
+// #image("imgs/17.png")
+// [See Definition 1.2.4, Li-2]
+
+We call $f$ *strict* if the map $coim (f) -> im f$ is an isomorphism. 
+]
+== Abelian Categories
+
 
 
 #definition[
-  A pre-ablian category is abelian if all morphisms are strict. 
+  A pre-ablian category is *abelian* if all morphisms are strict. 
+]
+#corollary[
+In an abelian category, every morphism $f : X-> Y$ has a factorisation 
+$
+  X ->^g im (f) ->^h Y
+$
+where $g$ is an epimorphism and $h$ is a monomorphism.
+]
+#proof[
+  Notice $g = coker(ker(f))$ and $h = ker(coker(f))$.
 ]
 
-Remark. This is equivalent to: every mono is a kernel and every epi is a cokernel. (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)
+#remark[
+  The followings are two equivalent definitions of an abelian category:
+  - A pre-abelian category where every monomorphism is a kernel and every epimorphism is a cokernel;
+  - A pre-abelian category where every monomorphism is the kernel of its cokernel and every epimorphism is the cokernel of its kernel.
+]
 
-#example[ $Ab$ and R-modules are abelian categories. ]
+#proposition[
+  In an abelian category, every monomorphism is the kernel of its cokernel, and every epimorphism is the cokernel of its kernel.
+]
+#proof[
+  Use the diagram in the proof of #thmref(<pre-ab-morphism>)[Proposition]. Let $f$ be a monomorphism, then $ker(f) = 0$ and $K = 0$. It is not to hard to find $G = X$ and $coker(ker(f)) = id_X$. Since $D$ and $G$ are isomorphic, we see that $X$ is isomorphic to $D$ and thus $f = ker(coker(f))$.
+]
+
+// Remark. This is equivalent to:  (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)
+
+#example[ $Ab$ and $RMod$ are abelian categories. ]
 
 #example[If $cA$ is an abliean category and $cC$ is any small category and then the category of functors $Fun(cC, cA)$ is abelian. [TODO]]
 
@@ -752,13 +891,7 @@ $Fun(cC^op, cA)$ are presheves from $cC$ to $cA$.
 This is an example of quasi-abelian categories. 
 ]
 
-#proposition[
-In an abelian category every morphism has a factorisation (epi-mono factorisation):
-
-#image("imgs/18.png", width: 30%)
-]
-
-= Exact sequences
+== Exact Sequences and Functors
 #definition[
   A sequence of maps $A attach(->, t: f) B attach(->, t: g) C $ is called exact at $B$ if $ker g = im f$ (as subobjects of $B$). 
 ]
@@ -794,6 +927,8 @@ Proof. TODO
 
 
 #endlec(4)
+
+== Projective and Injective Objects
 
 #definition[
    Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
@@ -839,7 +974,7 @@ The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto.
 
 
 #proposition[
-  If $P$ is a projective module, then any #sest 
+  If $P$ is a projective object, then any #sest 
   $
     ses(A, B, P)
   $
@@ -848,6 +983,8 @@ The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto.
 #proof[
   #TODO https://math.stackexchange.com/questions/3961643/why-does-the-short-exact-sequence-for-projective-module-split
 ]
+
+= The Category of $R$-Modules
 
 #example[
   $R$ ring. In the category of $RMod$ 
@@ -1006,7 +1143,7 @@ We have the following commutative diagram:
   See @li[Theorem 6.8.6].
 ]
 
-= Tensor products
+== Tensor products
 
 The functor $- tp_R M$ is left adjoint so it commutes with colimits. If we want to calcualte $N tp_R M$. Then we pick the relations and generators of $N$: 
 $ R^(ds J) -> R^(ds I) -> N -> 0 $
@@ -1062,7 +1199,7 @@ $ Hom_S (A tpr B, C) bij Hom_R (A, Hom_S (B, C)) $
   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 ]
 
-= Projective and Injective Modules
+== Projective and Injective Modules
 
 Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom(A)(-, I)$ is exact.
 
