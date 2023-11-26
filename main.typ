@@ -865,11 +865,16 @@ where $g$ is an epimorphism and $h$ is a monomorphism.
   Notice $g = coker(ker(f))$ and $h = ker(coker(f))$.
 ]
 
+We can thus consider $im(f)$ as a subobject of $Y$. 
+
+
 #remark[
   The followings are two equivalent definitions of an abelian category:
   - A pre-abelian category where every monomorphism is a kernel and every epimorphism is a cokernel;
   - A pre-abelian category where every monomorphism is the kernel of its cokernel and every epimorphism is the cokernel of its kernel.
 ]
+
+We prove part of the equivalence:
 
 #proposition[
   In an abelian category, every monomorphism is the kernel of its cokernel, and every epimorphism is the cokernel of its kernel.
@@ -877,6 +882,7 @@ where $g$ is an epimorphism and $h$ is a monomorphism.
 #proof[
   Use the diagram in the proof of #thmref(<pre-ab-morphism>)[Proposition]. Let $f$ be a monomorphism, then $ker(f) = 0$ and $K = 0$. It is not to hard to find $G = X$ and $coker(ker(f)) = id_X$. Since $D$ and $G$ are isomorphic, we see that $X$ is isomorphic to $D$ and thus $f = ker(coker(f))$.
 ]
+
 
 // Remark. This is equivalent to:  (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)
 
@@ -892,17 +898,31 @@ This is an example of quasi-abelian categories.
 ]
 
 == Exact Sequences and Functors
+
+#note[
+  All discussions in this section are limited to an abelian category.
+]
+
+We have trekked a long way to establish abelian categories.
+The key element that we seek from an abelian category is the notion of exactness:
+
 #definition[
-  A sequence of maps $A attach(->, t: f) B attach(->, t: g) C $ is called exact at $B$ if $ker g = im f$ (as subobjects of $B$). 
+  In an abelian category, a sequence of maps $A attach(->, t: f) B attach(->, t: g) C $ is called *exact* at $B$ if $ker g = im f$ (as equivalent subobjects of $B$).
 ]
 
 #definition[
-  A short exact sequence $0 -> A attach(->, t: f) B attach(->, t: g) C -> 0$ is exact everywhere. This means that $f$ is mono, $g$ is epi, and $ker g = im f$ (which indicates that $f = ker g$ and $g  = coker f$). (?)
+  In an abelian category, a *short exact sequence* $0 -> A attach(->, t: f) B attach(->, t: g) C -> 0$ is exact at $A$, $B$ and $C$, or "exact everywhere". 
+]
+
+#proposition[
+  $0 -> A attach(->, t: f) B attach(->, t: g) C -> 0$ is a #sest if and only if $f$ is monic, $g$ is epic, and $ker g = im f$. 
+  
+  In addition, if $ses(A, B, C, f:f, g:g)$ is a #sest, then $f = ker g$ and $g  = coker f$.
 ]
 
 #definition[
-  A split short exact sequence if $B$ is isomorphic to $A ds C$. ($ds$ is biproduct here.)
-  #image("imgs/19.png")
+  A #sest $ses(A, B, C)$ is *split* if $B$ is isomorphic to $A ds C$. 
+  // #image("imgs/19.png")
 ]
 
 Equivalently, exsistence of section or retract. 
