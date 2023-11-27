@@ -1128,7 +1128,7 @@ splits.
 
 = Categories of Modules
 
-== Morita's Theorem and Embedding Theorem
+== Embedding Theorems
 
 #proposition[
   Ring $R$ viewed as an object in $RMod$ is projective. 
@@ -1188,10 +1188,9 @@ For any $M in RMod$, we can find an epimorphism $R^(ds I) -> M -> 0$. (Any modul
 ]
 
 #theorem(name: "Morita's Theorem")[
-  Let $cA$ be an abelian category. Assume $cA$ has (small) coproducts. Assume that $P$ is a compact, projective generator. Let ring $S = End(A) (P)^op$, then the functor $ Hom(A)(P, -) : cA -> SMod $ is an equivalence of categories. 
+  Let $cA$ be an abelian category. Assume $cA$ has (small) coproducts. Assume that $P$ is a compact, projective generator. Let ring $R = End(A) (P)$, then the functor $ Hom(A)(P, -) : cA -> ModR $ is an equivalence of categories. 
 ]
 
-See @rotman[Theorem 5.55]. 
 
 #note[
 If $cA = RMod$, we have observed that $R$ (as an object of $RMod$) is a compact, projective generator. In this case, $end_R (R) = R^op$ because any module homomorphism $phi: R -> R$ is determined by $phi(1)$ with the oppsite composition; in other words, $phi(r) = r phi(1)$. Then $end_R (R)^op hyph Mod$ is just $RMod$ because $(R^op)^op = R$.
@@ -1202,11 +1201,16 @@ If $cA = RMod$, we have observed that $R$ (as an object of $RMod$) is a compact,
 ]
 
 #proof[
+@rotman[Theorem 5.55]. @pareigis[p. 211].
+
+
 https://cornellmath.wordpress.com/2008/04/10/abelian-categories-and-module-categories/
 
-We need a functor $G: SMod -> cA$. Inspired by the special case, we want to send $S |-> P$. This is right exact (?) so it must send $R^(ds I) |-> P^(ds I)$. 
+We need a functor $G: ModR -> cA$. Inspired by the special case, we want to send $R |-> P$. This is right exact (?) so it must send $R^(ds I) |-> P^(ds I)$. 
 
-For any $M in RMod$ we can find $ R^(ds J) -> R^(ds I) -> M -> 0 $ where $R^(ds J)$ represents the relations and $R^(ds I)$ the generators. 
+For any $M in ModR$ we can find a presentation $ R^(ds J) -> R^(ds I) -> M -> 0 $ 
+
+
 
 // #image("imgs/22.png", width: 50%)
 #TODO

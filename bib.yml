@@ -72,5 +72,12 @@ awodey:
   type: book
   title: Category Thoery
   date: 2010
-  author: Awodey,Steve 
+  author: Awodey, Steve 
   publisher: Oxford University Press
+
+pareigis:
+  type: book
+  title: Categories and Functors 
+  date: 1970
+  author: Pareigis, Bodo
+  publisher: Academic Press
