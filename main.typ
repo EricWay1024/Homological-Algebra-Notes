@@ -95,6 +95,8 @@ In general, a category is a "generalised" monoid because in a category you can o
 ]
 // [Any localisation in ring is epic? #TODO]
 
+== Categories with a Zero Object
+
 #definition[
   An *initial object* $I$ of category $cC$ is an object such that for any $A in ob cC$, there exists a unique map $I -> A$.  
   
@@ -114,7 +116,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 ]
 
 #proposition[
-  If there is a zero object in the category, then for any $B, C in cC$ we have a *zero morphism* $0 in hom_cC (B, C)$.
+  If there is a zero object in the category, then for any $B, C in cC$ we have a *zero morphism* $0 in hom_cC (B, C)$ which factors through the zero object.
   <zero-factor>
 
   // https://tikzcd-typst-editor.pages.dev/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACEQBfU9TXfIRQAmclVqMWbAMLdeIDNjwEiARlKrx9Zq0Qhi3cTCgBzeEVAAzAE4QAtkjIgcEJKp5XbDxE5dJRIAxYYLogUHRwABbGcp72-tR+iOqBwaHhUTFcFFxAA
@@ -141,54 +143,79 @@ In general, a category is a "generalised" monoid because in a category you can o
 ]
 
 #definition[
-  A *kernel* of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way. That is, for any $i' : A'-> B$ such that $f compose i' = 0$, there exists a unique morphism $h : A' -> A$ such that $i' = i oo h$. Diagrammatically,
-
-  #v(20pt)
-  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbAELdeIDNjwEiAJjHV6zVohABhOXyWCiZYeK1Td7AOTdxMKAHN4RUADMAThAC2SUSA4EEjqEtps7oYgXr5IZIHBiAGWOiBYUTF+iPFBIdQARjBgUEgALACcmpKpxBneWQDM1LnZ1AxYYKlQdHAAFo4gVeG6MAAeWHA4cAAEAIR1sYhNCf5DVml2PB71SMstoSlstVwUXEA
+  In a category with a zero object, a *kernel* of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way. That is, for any $i' : A'-> B$ such that $f compose i' = 0$, there exists a unique morphism $h : A' -> A$ such that $i' = i oo h$. We denote $i = ker(f)$. Diagrammatically,
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmUsKq1GLNgCFuvEBmx4CRAMzkJ9Zq0QgAwvL7LBRAAybq26XvYByI4v4qhyUWa1TdIM9wkwoAHN4IlAAMwAnCABbJDIQHAgkUUkdNjDHSJikCwSkxHjrbyxMqNjEDTyc6gYsMG8oOjgACwCQKy82GAAPLDgcOAACAEJS7IrqRLiOtL0sBx5wsuqqxAAWRZAs8rXJ-OFN7aRKqfWuCi4gA
 #align(center, commutative-diagram(
-  node-padding: (40pt, 40pt),
-  node((0, 0), [$A$]),
-  node((0, 1), [$B$]),
-  node((0, 2), [$C$]),
+  node-padding: (50pt, 50pt),
+  node((1, 1), [$A$]),
+  node((2, 2), [$B$]),
+  node((1, 3), [$C$]),
   node((1, 0), [$A'$]),
-  arr((0, 1), (0, 2), [$f$]),
-  arr((0, 0), (0, 1), [$i$]),
-  arr((0, 0), (0, 2), [$0$], curve: 35deg),
-  arr((1, 0), (0, 0), [$exists !$], label-pos: 1.5em, "dashed"),
-  arr((1, 0), (0, 1), [$i'$]),
-  arr((1, 0), (0, 2), [$0$], label-pos: -1em),
+  node((0, 2), [$0$]),
+  arr((2, 2), (1, 3), [$f$]),
+  arr((1, 1), (2, 2), [$i$]),
+  arr((1, 0), (1, 1), [$exists !$], "dashed"),
+  arr((1, 0), (2, 2), [$i'$], label-pos: -1em),
+  arr((1, 1), (0, 2), []),
+  arr((0, 2), (1, 3), []),
+  arr((1, 0), (0, 2), []),
 ))
+  // #v(20pt)
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbAELdeIDNjwEiAJjHV6zVohABhOXyWCiZYeK1Td7AOTdxMKAHN4RUADMAThAC2SUSA4EEjqEtps7oYgXr5IZIHBiAGWOiBYUTF+iPFBIdQARjBgUEgALACcmpKpxBneWQDM1LnZ1AxYYKlQdHAAFo4gVeG6MAAeWHA4cAAEAIR1sYhNCf5DVml2PB71SMstoSlstVwUXEA
+// #align(center, commutative-diagram(
+//   node-padding: (40pt, 40pt),
+//   node((0, 0), [$A$]),
+//   node((0, 1), [$B$]),
+//   node((0, 2), [$C$]),
+//   node((1, 0), [$A'$]),
+//   arr((0, 1), (0, 2), [$f$]),
+//   arr((0, 0), (0, 1), [$i$]),
+//   arr((0, 0), (0, 2), [$0$], curve: 35deg),
+//   arr((1, 0), (0, 0), [$exists !$], label-pos: 1.5em, "dashed"),
+//   arr((1, 0), (0, 1), [$i'$]),
+//   arr((1, 0), (0, 2), [$0$], label-pos: -1em),
+// ))
   // #image("imgs/5.png", width: 30%)
 ]
-#remark[
-  Sometimes, we might also say the object $A$ in the above definition is the kernel of $f$ when the map $i$ is clear.
+#notation[
+  Sometimes, people might also say the object $A$ in the above definition is the kernel of $f$ when the map $i$ is clear, and write $A = ker(f)$. However, this easily leads to confusion later on, so this note adapts the following non-standard notation: we write $A = Ker(f)$ (with a captical K) when we mean the object and $i = ker(f)$ when we mean the morphism. Hence, we would have 
+  $
+    Ker(f) -->^(ker(f)) B ->^f C
+  $
+  such that $f oo ker(f) = 0$ in a universal way.
+   Similar notations will be used for concepts we define later.
+   <ker-notation>
 ]
 
-#example[
-  In $Set$, a kernel of $f: X -> Y$ is the inclusion map
-  $
-    i: { x in X | f(x) = 0} arrow.hook X
-  $
-  Hence we might also say the set ${ x in X | f(x) = 0}$ is a kernel of $f$.
-]
+// #example[
+//   In $Set$, a kernel of $f: X -> Y$ is the inclusion map
+//   $
+//     i: { x in X | f(x) = 0} arrow.hook X
+//   $
+//   Hence we might also say the set ${ x in X | f(x) = 0}$ is a kernel of $f$.
+// ]
 
 #example[
   In $veck$, kernels are kernels.
 ]
 #theorem[
-  Kernels are monic. 
+  A kernel is a monomorphism. 
 ]
 
 // (This indicates that $A$ is the "biggest" subobject (to be defined!) of $B$ to be mapped to zero by $f$.)
 
-#definition[ A cokernel of $f: B->C$ is a map $j: C-> D$ such that $j compose f  = 0$ in a universal way.]
+#definition[ A *cokernel* of $f: B->C$ is a map $j: C-> D$ such that $j compose f  = 0$ in a universal way. We denote $j = coker(f)$ and $D = Coker(f)$.]
 
 #theorem[
-  Cokernels are epic.
+  A cokernel is an epimorphism.
 ]
 
 #example[
-  In $veck$, the cokernel of $T: V -> W$ is $W \/ im T$.
+  In $veck$, the cokernel of $T: V -> W$ is the quotient map $W -> W \/ im T$.
+]
+
+#lemma[
+  Let $A$ be any object. Then for the unique morphism $f: A -> 0$, we have $ker(f) = id_A$ and $coker(f) = id_0 = 0$. Dually, for $g: 0->A$, we have $ker(g) = 0$ and $coker(g) = id_A$.
 ]
 
 #definition[
@@ -476,17 +503,18 @@ A colimit is a universal cocone; namely, $L$ is a *colimit* of $F$ if it is a co
 $
    A arrows.rr^f_g B
 $
-in $cC$. Then we define the *equaliser* of $f$ and $g$ as $lim_I F$, denoted as $Eq(f, g)$, and *coequaliser* of $f$ and $g$ as $colim_I F$, denoted as $Coeq(f, g)$.
+in $cC$. Then we define the *equaliser* of $f$ and $g$ as $lim_I F$, denoted as $Eq(f, g)$, and *coequaliser* of $f$ and $g$ as $colim_I F$, denoted as $Coeq(f, g)$. #TODO
 ]
 
-#remark[
-  Again, $Eq(f, g)$ could mean either an object or a morphism whose domain is that object. So is the case with $Coeq(f, g)$. Welcome to the notation-abusing wonderland of mathematics.
+#notation[
+  Continuing with #thmref(<ker-notation>)[Notation], we have
   $
-  Eq(f, g) -> A arrows.rr^f_g B ->  Coeq(f, g)
+  EQ(f, g) -->^(Eq(f, g)) A arrows.rr^f_g B -->^(Coeq(f, g))  COeq(f, g)
 $
 ]
 
 #proposition[
+  In a category with a zero object,
 $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
 
 ]
@@ -546,7 +574,7 @@ This section offers some new vocabulary to describe things we already have seen.
 
 The dual concept of subobjects is *quotient objects*.
 
-
+#pagebreak()
 
 = Abelian Categories 
 
@@ -841,11 +869,11 @@ $Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers, and thus it h
 ))
 ]
 
-#definition[We define $coim (f) = coker(ker(f))$ and $im(f) = ker(coker(f))$.
+#definition[In a pre-abelian category, we define the *coimage* of a morphism $f$ as $ coim (f) = coker(ker(f)) $ and *image* of $f$ as $ im(f) = ker(coker(f)) $ Continuing with #thmref(<ker-notation>)[Notation], we have $G = Coim(f)$ and $D = IM(f)$ in the above diagram.
 // #image("imgs/17.png")
 // [See Definition 1.2.4, Li-2]
 
-We call $f$ *strict* if the map $coim (f) -> im f$ is an isomorphism. 
+We call $f$ *strict* if the map $Coim (f) -> IM f$ is an isomorphism. 
 ]
 == Abelian Categories
 
@@ -857,15 +885,15 @@ We call $f$ *strict* if the map $coim (f) -> im f$ is an isomorphism.
 #corollary[
 In an abelian category, every morphism $f : X-> Y$ has a factorisation 
 $
-  X ->^g im (f) ->^h Y
+  X ->^g IM (f) ->^h Y
 $
 where $g$ is an epimorphism and $h$ is a monomorphism.
 ]
 #proof[
-  Notice $g = coker(ker(f))$ and $h = ker(coker(f))$.
+  Notice $g = coker(ker(f)) = coim(f)$ and $h = ker(coker(f)) = im(f)$.
 ]
 
-We can thus consider $im(f)$ as a subobject of $Y$. 
+We can always write $f = im(f) oo coim(f)$ and consider $im(f)$ as a subobject of $Y$. 
 
 
 #remark[
@@ -897,6 +925,19 @@ $Fun(cC^op, cA)$ are presheves from $cC$ to $cA$.
 This is an example of quasi-abelian categories. 
 ]
 
+#remark[
+Now it is time to give a list of properties that abelian categories have, packing everything we have picked up along the way:
+- Every hom-set is an abelian group subject to bilinear morphism composition;
+- It has a zero object and has a zero morphism between any two objects, which is the identity of the abelian group and factors through $0$;
+- It has all limits and colimits;
+- Any finite product and coproduct coincide as the biproduct;
+- $f$ is monic if and only if $f oo u = 0$ implies $u = 0$, and $g$ is epic if and only if $v oo g = 0$ implies $v = 0$;
+- $f$ is monic and $f = 0$ implies the domain of $f$ is $0$, and $g$ is epic and $g = 0$ implies the codomain of $g$ is $0$;
+- $f$ is monic if and only if $ker f = 0$, and $g$ is epic if and only if $coker g = 0$;
+- $Coim(f) -> IM(f)$ is an isomorphism;
+- Any $f$ can be factorised as $f = ker(coker(f)) oo coker(ker(f)) = im(f) oo coim(f)$;
+- $f$ is monic if and only if $f = im(f)$, and $g$ is epic if and only if $g = colim(g)$.
+]
 == Exact Sequences and Functors
 
 #note[
@@ -914,10 +955,34 @@ The key element that we seek from an abelian category is the notion of exactness
   In an abelian category, a *short exact sequence* $0 -> A attach(->, t: f) B attach(->, t: g) C -> 0$ is exact at $A$, $B$ and $C$, or "exact everywhere". 
 ]
 
+#lemma[
+  $im (0 -> A) = 0$ and $im(A -> 0) = 0$.
+]
+
 #proposition[
   $0 -> A attach(->, t: f) B attach(->, t: g) C -> 0$ is a #sest if and only if $f$ is monic, $g$ is epic, and $ker g = im f$. 
-  
-  In addition, if $ses(A, B, C, f:f, g:g)$ is a #sest, then $f = ker g$ and $g  = coker f$.
+]
+#proof[
+  - Exactness at $A$ $<=>$ $ker f = im (0 -> A) = 0$ $<=>$ $f$ is monic.
+  - Exactness at $B$ $<=>$ $ker g = im f$.
+  - Exactness at $C$ $<=>$ $im g = ker (C -> 0) = id_C$ $<=>$ $g = coim (g )$ $<=>$ $g$ is epic.
+]
+
+#proposition[
+  If $ses(A, B, C, f:f, g:g)$ is a #sest, then $f = ker g$ and $g  = coker f$. 
+]
+#proof[
+  $f$ is monic, so $f = im(f) = ker(g)$. $g$ is epic, so $g = coim(g) = coker(ker(g)) = coker(f)$.
+]
+
+#corollary[
+  $ses(A, B, C, f:f, g:g)$ can be rewritten as 
+  $
+    ses(IM(f), B, Coker(f), f:f, g:coker(f))
+  $ or 
+  $
+    ses(Ker(g), B, Coim(g), f:ker(g), g:g)
+  $
 ]
 
 #definition[
@@ -925,23 +990,51 @@ The key element that we seek from an abelian category is the notion of exactness
   // #image("imgs/19.png")
 ]
 
-Equivalently, exsistence of section or retract. 
-
-#definition[
-  An additive functor $F: cC -> cD$ is called right exact if for every s.e.s. $0-> A-> B-> C-> 0$ the sequence $ F(A) -> F(B) -> F(C) ->  0 $ is exact; it is called left exact if   $ 0 -> F(A) -> F(B) -> F(C) $ is exact.
+#lemma(name: "Splitting Lemma")[
+  Let $ses(A, B, C, f:f, g:g)$ be a short exact sequence. The followings are equivalent:
+  + The short exact sequence is split;
+  + There exists a *retraction*#footnote[The terms "retraction" and "section" come from algebraic topology, but for our purpose they are nothing more than certain morphisms.] $r: B->A$ such that $r oo f = id_A$;
+  + There exists a *section* $s : C -> B$ such that $g oo s = id_C$.
+    <splitting-lemma>
 ]
 
+#proof[#TODO https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma] 
 
-Right exactness preserves cokernels: $C$ is the cokernel of the map $A -> B$ and $F(C)$ is the cokernel of the map $F(A) -> F(B)$. Left exactness preserves kernels. 
+#definition[
+  An additive functor $F: cC -> cD$ is called *right exact* if for every #sest $0-> A-> B-> C-> 0$ the sequence $ F(A) -> F(B) -> F(C) ->  0 $ is exact; $F$ is called *left exact* if   $ 0 -> F(A) -> F(B) -> F(C) $ is exact; $F$ is called *exact* if $F$ is both right and left exact, or
+  $
+    ses(F(A), F(B), F(C))
+  $
+  is exact.
+]
+
+#remark[
+  By definition, _right exactness preserves cokernels_, since $C$ is the cokernel of the map $A -> B$ and $F(C)$ is the cokernel of the map $F(A) -> F(B)$. Similarly, _left exactness preserves kernels_. 
+]
+
 
 #lemma[
   Let $cA$ be an abelian category. Let $M in cA$. The functor $ Hom(A)(M, -): cA -> Ab $ is left exact. 
-So if $ses(A, B, C)$ is a ses in $cA$ then 
-$ 0 -> Hom(A)(M, A) -> Hom(A)(M, B) -> Hom(A)(M, C) $
-is exact in $Ab$.
+  <hom-left-exact>
 ]
 
-Proof. TODO
+#proof[
+  Let $ses(A, B, C, f: f, g: g)$ be a #sest in $cA$, then we want to prove 
+$ 0 -> Hom(A)(M, A) ->^(f oo -) Hom(A)(M, B) ->^(g oo -) Hom(A)(M, C) $
+is exact in $Ab$.
+
+  Exactness at $Hom(A) (M, A)$ is equivalent to $(f oo -) $ being monic, so let us calculate $Ker(f oo -)$. Let $u in Hom(A)(M, A)$ such that $(f oo  -) (u) = 0$, i.e. $f oo u  = 0$. But $f$ is monic, so $u = 0$, and thus $Ker(f oo -) = 0$ and $(f oo -)$ is monic.
+
+  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. Let $ v in Ker(g oo -)$, in other words $v in Hom(A) (M, B)$ such that $(g oo -) (v) = 0$, i.e. $g oo v = 0$. Then by universal property of kernel, there exists $h : M -> Ker(g)$ such that $v = ker(g) oo h$. But $Ker(g) = IM(f)$ by exactness and $ker(g) = f$, so we have $v = f oo h = (f oo -)(h) in IM(f oo -)$. Hence $Ker(g oo -) subset.eq IM(f oo -)$. The other direction of the inclusion can be similarly proven. Hence $Ker(g oo -) = IM(f oo -)$. 
+]
+
+#TODO $Ker$ in abelian groups is the same as kernel in the group theory sense.
+
+#TODO how to understand $f oo -$
+
+#remark[
+  The functor $Hom(A) (M, -)$ fails to be exact in general because it does not necessarily send an epimorphism to an epimorphism. For a counterexample, let $cA = Ab$ (where an epimorphism is equivalent to a surjective homomorphism) and $M = ZZ over 2 ZZ$. The quotient map $h: ZZ -> ZZ over 4 ZZ $ is an surjective homomorphism. On the other hand, for any abelian group $A$, an element in $hom_Ab (ZZ over 2 ZZ, A)$ (i.e. a group homomorphism $ZZ over 2ZZ -> A$) is uniquely determined by an element in $A$ with order $2$. Hence $hom_Ab ( ZZ over 2 ZZ, ZZ) = 0$ and $hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) = ZZ over 2ZZ$, and we see the induced map $ (h oo -) : hom_Ab ( ZZ over 2 ZZ, ZZ) -> hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) $ cannot be surjective. 
+]
 
 #corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]
 
@@ -950,13 +1043,15 @@ Proof. TODO
 
 == Projective and Injective Objects
 
+
 #definition[
-   Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
+   Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. 
+   
+   Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
 ]
 
-So $P$ is projective if for any ses $ses(X, Y, Z)$ in $cA$ then $ ses(Hom(A)(P, X), Hom(A)(P, Y), Hom(A)(P, Z)) $
-
-The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto. 
+In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses(Hom(A)(P, X), Hom(A)(P, Y), Hom(A)(P, Z)) $ is a #sest.
+Thanks to #thmref(<hom-left-exact>)[Lemma], the only special part of the definition is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is surjective. 
 
 #proposition[
   $P$ is *projective* if and only if for any epimorphism $h: Y->Z$ and any $f: P->Z$, there exists (not necessarily unique) $g: P->Y$ such that the following commutes (which we refer to as the *lifting property*): 
@@ -975,10 +1070,39 @@ The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto.
 ]
 
 #proof[
-  This is just a paraphrase of the definition. By definition, $P$ is projective iff for any epimorphism $h: Y->Z$, we have $ h oo - : Hom(A)(P, Y) -> Hom(A)(P, Z) $ is onto, which means for any $f : P->Z$, there exists $g: P-> Y$ such that $f = h oo g$.
+  By definition, $P$ is projective if and only if for any epimorphism $h: Y->Z$, we have $ (h oo -) : Hom(A)(P, Y) -> Hom(A)(P, Z) $ is surjective, which means for any $f : P->Z$, there exists $g: P-> Y$ such that $f = h oo g$.
 ]
 
-#corollary[Dually, $I$ is injective iff for any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that the following commutes (which we refer to as the *extension property*):
+#corollary[
+  $P$ is a projective object, #iff any #sest 
+  $
+    ses(A, B, P)
+  $
+  splits.
+]
+#proof[
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohAAFOXyWCiAFg0TtbAAyGF-ZUOTWLWqbts8jAlSnXXxNx19bnEYKABzeCJQADMAJwgAWyQAVmocCCRRS3cQLCgAfQMvEATkpDIQTOzNSWCIu3KUxHTqrMQqhiwwYKg6OAALcJA6q10EUuakc3akaynElpc5zsWKxByaxFUuCi4gA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((1, 1), [$A$]),
+  node((1, 2), [$B$]),
+  node((1, 3), [$P$]),
+  node((1, 4), [$0$]),
+  node((1, 0), [$0$]),
+  node((0, 3), [$P$]),
+  arr((0, 3), (1, 3), [$id_P$]),
+  arr((1, 2), (1, 3), [$g$]),
+  arr((0, 3), (1, 2), [$s$], label-pos: -1em, "dashed"),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 3), (1, 4), []),
+))
+  Suppose $P$ is projective. Since $g : B-> P$ is an epimorphism, we can always find $s : P -> B$ such that $g oo s= id_P$ by the lifting property. Then just recall #thmref(<splitting-lemma>)[Splitting Lemma]. 
+  
+  The converse should also be clear.
+]
+
+#corollary[Dually, $I$ is injective #iff for any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that the following commutes (which we refer to as the *extension property*):
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEkQBfU9TXfIRQAGUsKq1GLNsO68QGbHgJEy46vWatEIABpy+SwUQBMYiZuk6AmtwkwoAc3hFQAMwBOEALZIzIHAgkUUktNjcDEE8fJDIAoMQTHncvX0TqQKQAZg0pbRAAC0jotJz44OoGLDB8qDo4AocQXLCdGAAPLDgcOAACRzsuIA
 #align(center, commutative-diagram(
   node((1, 1), [$I$]),
@@ -990,76 +1114,123 @@ The only interesting part is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is onto.
   arr((0, 1), (0, 2), [$h$]),
   arr((0, 2), (1, 1), [$exists g$], "dashed"),
 ))
+
+Also, $I$ is injective #iff any #sest 
+$
+  ses(I, A, B )
+$
+splits.
 ]
 
+
+
+// == 
+
+= Categories of Modules
+
+== Morita's Theorem and Embedding Theorem
 
 #proposition[
-  If $P$ is a projective object, then any #sest 
-  $
-    ses(A, B, P)
-  $
-  splits.
+  Ring $R$ viewed as an object in $RMod$ is projective. 
 ]
+
+#proof[ It is equivalent to say the functor $homr (R, -)$ is exact.  In fact,
+  $ homr (R, M) = M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ ses(M, M', M'') $ if we apply $homr (R, -)$, we get the same #sest, which is exact. 
+]
+
+#corollary[
+Any free module $R^(ds I)$ is projective. 
+]
+
 #proof[
-  #TODO https://math.stackexchange.com/questions/3961643/why-does-the-short-exact-sequence-for-projective-module-split
+  The proof is similar as above. #TODO
 ]
-
-= The Category of $R$-Modules
-
-#example[
-  $R$ ring. In the category of $RMod$ 
-  $ Hom_RMod (R, M) = M $ because any $phi $ is entirely determined by $phi(1_R)$. If $ses(M, M', M'')$ and we apply $Hom_RMod (R, -)$ to this we get the same ses $ses(M, M', M'')$ which is exact. 
-  
-  In a similar way, any free module $R^(ds I)$ is projective. 
+#note[In $RMod$, we have
+$ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big M_i = plus.circle.big_(i in I) homr (R, M_i) $
+This does not follow from the universal property of the direct sum; this is because $R$ is special. 
 ]
-
-
-Note: $ Hom_RMod (R, plus.circle.big_(i in I) M_i) = plus.circle.big M_i = plus.circle.big_(i in I) Hom_RMod (R, M_i) $
-
-This does not follow from the universal property; this is because $R$ is special. 
 
 #definition[
-  Let $cA$ be an additive category. We call an object $C$ compact if $ product.co_(i in I) Hom(A) (C, G_i) -> Hom(A)(C, product.co_(i in I) G_i) $
+  Let $cA$ be an additive category. We call an object $C$ *compact* if the canonical morphism $ product.co_(i in I) Hom(A) (C, G_i) -> Hom(A)(C, product.co_(i in I) G_i) $
   is an isomorphism for any family ${G_i}_(i in I)$ of objects in $cA$ such that $product.co_(i in I) G_i$ exists. 
 ]
 
-Remark. You might find different definitions for an arbitrary category (not necessarily additive), but it is equivalent under the additive context. 
-
-// #definition[
-//   Generators
-// ]
-
-Note. For any $RMod$ $M$ we can find an epi $R^(ds I) -> M -> 0$. (Any module has some generators.) This is not unique. We call $R$ a generator of $M$.
-
-#theorem[
-  Let $cA$ be an abelian category. Assume $cA$ has (small)(?) coproducts. Assume that $P$ is a compact, projective generator. Then the functor $Hom(A)(P, -) : cA -> End_cA (P)^op hyph Mod$ (not only an abelian group because any $f: P->P$ can act on it which makes it a module) is an equivalence of categories. 
+#remark[
+You might find different definitions for an arbitrary category (not necessarily additive), but they are equivalent under the additive context. 
 ]
 
-See @rotman[Theorem 5.55]. ?
 
-Note. If $cA = RMod$ we observe that $R$ (as an $RMod$) is a compact, projective generator with arbitrary coproducts (direct sums). In this case $End_RMod (R) = R^op$ because any module homomorphism $phi: R -> R$ is determined by $phi(1)$ but the composition is opposite. Then $End_RMod (R)^op hyph Mod$ is just $RMod$ because $(R^op)^op = R$.
+#definition[
+  In a category $cC$ with coproducts, an object $G$ is called a *generator* if for any $X in cC$, there is an epimorphism 
+  $product.co G -> X
+  $.
+  
+]
 
-Idea of proof. Using the definition of equivalence you want to construct another functor in the opposite direction and show their composites are natural isomprphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
+#note[
+For any $M in RMod$, we can find an epimorphism $R^(ds I) -> M -> 0$. (Any module has some generators.) This is not unique. We call $R$ a generator of $M$. Recall #thmref(<module-generator>)[Corollay]. 
 
-Let $R$ denote the ring $End(A) (P)^op$. We need a functor $G: RMod -> cA$. Inspired by the special case we want to send $R |-> P$. This is right exact (?) so it must send $R^(ds I) |-> P^(ds I)$. 
+]
+
+
+
+#lemma[
+  In an abelian category $cA$, any hom-set 
+  $hom_cA (X, Y)$ can be seen as a right module over ring $End(A)(X)$, or equivalently a left module over $End(A)(X)^op$.
+]
+#proof[
+  First notice $End(A)(X)$ is indeed a ring with composition as multiplication.
+  Take any $m in Hom(A)(X, Y)$ and $r in End(A)(X)$: 
+  $
+    X->^r X ->^m Y
+  $
+  define the multiplication $m r$ as $m oo r in Hom(A)(X, Y)$. It is easy to verify the this makes a right module.
+]
+
+#theorem(name: "Morita's Theorem")[
+  Let $cA$ be an abelian category. Assume $cA$ has (small) coproducts. Assume that $P$ is a compact, projective generator. Let ring $S = End(A) (P)^op$, then the functor $ Hom(A)(P, -) : cA -> SMod $ is an equivalence of categories. 
+]
+
+See @rotman[Theorem 5.55]. 
+
+#note[
+If $cA = RMod$, we have observed that $R$ (as an object of $RMod$) is a compact, projective generator. In this case, $end_R (R) = R^op$ because any module homomorphism $phi: R -> R$ is determined by $phi(1)$ with the oppsite composition; in other words, $phi(r) = r phi(1)$. Then $end_R (R)^op hyph Mod$ is just $RMod$ because $(R^op)^op = R$.
+]
+
+#remark[
+  Using the definition of equivalence, you want to construct another functor in the opposite direction and show their composites are natural isomprphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
+]
+
+#proof[
+https://cornellmath.wordpress.com/2008/04/10/abelian-categories-and-module-categories/
+
+We need a functor $G: SMod -> cA$. Inspired by the special case, we want to send $S |-> P$. This is right exact (?) so it must send $R^(ds I) |-> P^(ds I)$. 
 
 For any $M in RMod$ we can find $ R^(ds J) -> R^(ds I) -> M -> 0 $ where $R^(ds J)$ represents the relations and $R^(ds I)$ the generators. 
 
-#image("imgs/22.png", width: 50%)
-[TODO]
+// #image("imgs/22.png", width: 50%)
+#TODO
+]
 
-Note: $cA$ can have more than one compact, projective generator. Then $A = End(A) (P_1)^op hyph Mod = End(A) (P_2)^op hyph Mod$ where $End(A) (P_1)$ and $End(A) (P_2)$ are not necessarily equivalent. This is Morita equivalence of rings. 
+#remark[
+$cA$ can have more than one compact, projective generator, say $P_1$ and $P_2$. Then $A = End(A) (P_1)^op hyph Mod = End(A) (P_2)^op hyph Mod$, where rings $End(A) (P_1)$ and $End(A) (P_2)$ are not necessarily isomorphic. This is *Morita equivalence* of rings. 
 
-Note. Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. 
+Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. 
+]
+
+
 
 #theorem(name: "Freyd-Mitchell Embedding Theorem")[
   If $cA$ is a small abelian category, there is a ring $R$ and an exact, fully faithful embedding $cA -> RMod$.
 ]
 
+#proof[
+Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?)
+]
 
-Remark. We can embed an abstract category in a concrete one. We can prove any reasonable statements for $RMod$ and they will also hold for abelian categories because of this theorem. 
 
-Proof. Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?)
+We can embed an abstract category into a concrete one. From a practical perspective, we can prove any reasonable statements for $RMod$ and they will also hold for abelian categories because of this theorem. An example is the following.
+
 
 #lemma(name: "Snake Lemma")[
  Suppose we have a commutative diagram of objects in an abelian category or $RMod$ 
@@ -1163,9 +1334,13 @@ We have the following commutative diagram:
   See @li[Theorem 6.8.6].
 ]
 
-== Tensor products
+== Tensor Products
 
-The functor $- tp_R M$ is left adjoint so it commutes with colimits. If we want to calcualte $N tp_R M$. Then we pick the relations and generators of $N$: 
+#TODO hom-tensor adjoint
+
+The functor $- tp_R M$ is left adjoint so it commutes with colimits. In particular, it sends cokernels to cokernels and is right exact. It also preserves direct sums.
+
+ If we want to calcualte $N tp_R M$. Then we pick the relations and generators of $N$: 
 $ R^(ds J) -> R^(ds I) -> N -> 0 $
 Then we have
 $ R^(ds J) tp_R M -> R^(ds I) tp_R M  -> N tp_R M  -> 0 $

@@ -87,7 +87,7 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 
 
 #corollary[
-    Any $R$-module $M$ is isomorphic to a quotient of free modules. 
+    Any $R$-module $M$ is isomorphic to a quotient of a free module. <module-generator>
 ]
 
 #proof[
