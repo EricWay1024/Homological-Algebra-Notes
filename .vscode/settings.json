@@ -1,5 +1,19 @@
 {
     "pasteImage.path": "${currentFileDir}/imgs",
     "pasteImage.prefix": "#align(center,image(\"imgs/",
-    "pasteImage.suffix": "\",width:50%))"
+    "pasteImage.suffix": "\",width:50%))",
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "typst"
+    ],
+    "spellright.parserByClass": {
+        "typst": {
+            "parser": "latex"
+        }
+    }
 }
