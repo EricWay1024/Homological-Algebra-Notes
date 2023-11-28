@@ -2327,8 +2327,10 @@ The filling in of the \"horseshoe\" now proceeds by induction.
 See @weibel[Horseshoe Lemma 2.2.8].
 ]
 #endlec(8)
+#pagebreak()
+= Derived Functors
 
-= $delta$-functors
+== Homological $delta$-functors
 
 See @weibel[Section 2.1]. The next two definitions are stated separately for clarity here.
 #definition[
@@ -2516,7 +2518,7 @@ $ L_n (- tpr B) (A) iso L_n (A tpr -) (B) $
 This is called the balancing of $Tor$. We need two new tools to prove this: mapping cones and double complexes. 
 
 #TODO #lest induced by $Tor$ and $Ext$
-
+#pagebreak()
 = Balancing $Ext$ and $Tor$
 == Mapping Cones and Mapping Cylinders
 #remark[
@@ -2712,6 +2714,8 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
   #TODO review
 ]
 
+#pagebreak()
+
 = Ring Structures on $Ext$
 == Reinterpreting $Ext$
 #lemma[.
@@ -2764,6 +2768,7 @@ $Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any 
 
 #TODO alternative definition of Yoneda product, "gluing sequences"
 
+#pagebreak()
 = $Tor$ and Flatness
 
 == Flat Modules
@@ -3041,6 +3046,7 @@ Recall if $P_cx, Q_cx$ are complexes, we define $P_cx tpr Q_cx$.
 ]
 #endlec(12)
 
+#pagebreak()
 = Koszul Complexes
 
 @weibel[Section 4.5].
