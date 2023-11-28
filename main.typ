@@ -697,10 +697,8 @@ such $phi$ we have $ phi & eq phi compose id_(X_1 times X_2)\
 ]
 // We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
 
-#remark[This extends to all finite products and coproducts, but
-  this does not extend to infinite products or coproducts. In the case of abelian groups, 
-$ union.sq.big _I M_i = plus.circle.big_I M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i} $
-$ product _I M_i = {(m_i) _(i in I) | m_i in M_i} $
+#remark[This extends to all _finite_ products and coproducts but
+   does not extend to _infinite_ products or coproducts. 
 ]
 
 Being able to add and substract parallel morphisms means we can rephrase the definitions for a monomorphism and epimorphism.
@@ -724,10 +722,10 @@ Being able to add and substract parallel morphisms means we can rephrase the def
 Inspired by #thmref(<ab-zero>)[Proposition] and #thmref(<ab-product>)[Proposition], we naturally define the following:
 
 #definition[
-  An $Ab$-enriched category $cC$ is *additive* if it has all finite coproducts and all finite products; in particular, it has a zero object.
+  An $Ab$-enriched category $cC$ is *additive* if it has all finite coproducts.
 ]
 
-Hence an additive category has all finite biproducts, and the zero object can be considered as the empty biproduct. Now we can reconcile the two definitions we have had for zero morphisms.
+Hence an additive category has all finite biproducts, including the zero object which can be considered as the empty biproduct. Now we can reconcile the two definitions we have had for zero morphisms.
 
 #proposition[
   In an additive category $cC$, let $f: A->B$. Then $f$ is the identity of $Hom(C) (A, B)$ if and only if it can be factored as $A -> 0 -> B$.
@@ -912,19 +910,6 @@ We prove part of the equivalence:
 ]
 
 
-// Remark. This is equivalent to:  (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)
-
-#example[ $Ab$ and $RMod$ are abelian categories. ]
-
-#example[If $cA$ is an abliean category and $cC$ is any small category and then the category of functors $Fun(cC, cA)$ is abelian. [TODO]]
-
-$Fun(cC^op, cA)$ are presheves from $cC$ to $cA$.
-
-#example[
-  Non-example. Banach spaces over $RR$. We have $V attach(arrow.r.hook, t: i) W$ which are open. Then $coker i = W \/ overline(V)$. Then $ker coker i = overline(V) != V$. (The closure of $V$.)
-This is an example of quasi-abelian categories. 
-]
-
 #remark[
 Now it is time to give a list of properties that abelian categories have, packing everything we have picked up along the way:
 - Every hom-set is an abelian group subject to bilinear morphism composition;
@@ -938,6 +923,62 @@ Now it is time to give a list of properties that abelian categories have, packin
 - Any $f$ can be factorised as $f = ker(coker(f)) oo coker(ker(f)) = im(f) oo coim(f)$;
 - $f$ is monic if and only if $f = im(f)$, and $g$ is epic if and only if $g = colim(g)$.
 ]
+
+// Remark. This is equivalent to:  (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)
+
+We now introduce the most important member in the family of abelian categories.
+
+#proposition[
+  For any ring $R$, the category $RMod$ is an abelian category. In particular, $Ab$ is an abelian category.
+]
+#proof[
+  ($RMod$ is $Ab$-enriched.) For any $A, B in RMod$, the set $homr(A, B)$ of module homomorphisms $A -> B$ can be naturally seen as an abelian group under pointwise addition. It is easy to check that the composition is blinear.
+
+  ($RMod$ is additive.) We know that the direct sum exists as a coproduct for any finite family of modules $(M_i)_(i in I)$ in $RMod$.
+
+
+  ($RMod$ is pre-abelian.) Let $f : A -> B$ be a morphism in $RMod$. Then 
+  $
+    Ker(f) = {a in A : f(a) = 0}
+  $
+  with $ker(f) : Ker(f) -> A$ being the inclusion map, is a categorical kernel. Also,
+  $
+    Coker(f) = B over IM(f)
+  $
+  where $IM(f) = {f(a) in B : a in A}$, with $coker(f) : B -> Coker(f)$ being the quotient map, is a categorical cokernel. 
+
+  ($RMod$ is abelian.) We find 
+  $
+    Coker(ker(f)) = A over Ker(f) iso IM(f)
+  $
+  by the First Isomorphism Theorem and 
+  $
+    Ker(coker(f)) = IM(f)
+  $
+  by construction. Hence the image and coimage coincide up to isomorphism, i.e. any $f$ is strict.
+]
+
+#remark[
+  Note that the product and coproduct of a family $(M_i)_(i in I)$ coincide when $I$ is finite but differ when $I$ is infinite:
+$ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i} $
+  $ product _( i in I) M_i = {(m_i) _(i in I) | m_i in M_i} $
+]
+
+#proposition[
+  In $RMod$, a monomorphism is equivalent to an injective homomorphism and an epimorphism is equivalent to a surjective homomorphism.
+]
+
+
+#example[If $cA$ is an abliean category and $cC$ is any small category and then the category of functors $Fun(cC, cA)$ is abelian. [TODO]]
+
+$Fun(cC^op, cA)$ are presheves from $cC$ to $cA$.
+
+#example[
+  Non-example. Banach spaces over $RR$. We have $V attach(arrow.r.hook, t: i) W$ which are open. Then $coker i = W \/ overline(V)$. Then $ker coker i = overline(V) != V$. (The closure of $V$.)
+This is an example of quasi-abelian categories. 
+]
+
+
 == Exact Sequences and Functors
 
 #note[
@@ -1028,7 +1069,6 @@ is exact in $Ab$.
   Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. Let $ v in Ker(g oo -)$, in other words $v in Hom(A) (M, B)$ such that $(g oo -) (v) = 0$, i.e. $g oo v = 0$. Then by universal property of kernel, there exists $h : M -> Ker(g)$ such that $v = ker(g) oo h$. But $Ker(g) = IM(f)$ by exactness and $ker(g) = f$, so we have $v = f oo h = (f oo -)(h) in IM(f oo -)$. Hence $Ker(g oo -) subset.eq IM(f oo -)$. The other direction of the inclusion can be similarly proven. Hence $Ker(g oo -) = IM(f oo -)$. 
 ]
 
-#TODO $Ker$ in abelian groups is the same as kernel in the group theory sense.
 
 #TODO how to understand $f oo -$
 
@@ -1125,6 +1165,7 @@ splits.
 
 
 // == 
+#pagebreak()
 
 = Categories of Modules
 
@@ -1134,8 +1175,8 @@ splits.
   Ring $R$ viewed as an object in $RMod$ is projective. 
 ]
 
-#proof[ It is equivalent to say the functor $homr (R, -)$ is exact.  In fact,
-  $ homr (R, M) = M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ ses(M, M', M'') $ if we apply $homr (R, -)$, we get the same #sest, which is exact. 
+#proof[ It is equivalent to say the functor $ homr (R, -)$ is exact.  In fact,
+  $homr (R, M) = M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ses(M, M', M'') $, if we apply $homr (R, -)$, we get the same #sest, which is exact. 
 ]
 
 #corollary[
@@ -1146,7 +1187,7 @@ Any free module $R^(ds I)$ is projective.
   The proof is similar as above. #TODO
 ]
 #note[In $RMod$, we have
-$ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big M_i = plus.circle.big_(i in I) homr (R, M_i) $
+$ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big_(i in I) M_i = plus.circle.big_(i in I) homr (R, M_i) $
 This does not follow from the universal property of the direct sum; this is because $R$ is special. 
 ]
 
@@ -1362,7 +1403,7 @@ Assume $R$ is a commutative ring. The functor $- tp_R M$ is left adjoint which i
   Suppose $I$ is an ideal of $R$ generated by ${x_i}_(i in J)$, then we have ses $ ses(I, R, R \/ I) $ but we also have $ R^(ds J) -> I -> 0 $ and thus 
   $ R^(ds J) rgt((x_j)) R -> R \/ I -> 0 $
 
-  Thus if we want to calculate for some $M$ $ R over I tpr M iso coker (M^(ds J) rgt((x_j)) M) = M over I M$
+  Thus if we want to calculate for some $M$ $ (R over I )tpr M iso coker (M^(ds J) rgt((x_j)) M) = M over I M $
 ]
 [Check https://math.stackexchange.com/questions/175789/how-to-prove-that-r-i-otimes-r-m-cong-m-im]
 
@@ -1398,23 +1439,23 @@ $ Hom_S (A tpr B, C) bij Hom_R (A, Hom_S (B, C)) $
   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 ]
 
-== Projective and Injective Modules
+// == Projective and Injective Modules
 
-Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom(A)(-, I)$ is exact.
+// Recall $P$ is projective if $Hom(A)(P, -)$ is exact and $I$ is injective if $Hom(A)(-, I)$ is exact.
 
-#lemma[
-  $P$ is projective if and only if it has the lifting property (refer to earlier).
+// #lemma[
+//   $P$ is projective if and only if it has the lifting property (refer to earlier).
 
-  $I$ is injective if and only if it has the extension property.
-]
+//   $I$ is injective if and only if it has the extension property.
+// ]
+
+== $RMod$ has Enough Projectives
 
 #definition[
-  An abelian category $cA$ has enough projectives (injectives) if for any object $M$ there is an epi $P-> M -> 0$ where $P$ is projective ($0->M->I$ where $I$ is injective). 
+  An abelian category $cA$ is said to *have enough projectives* (resp. *injectives*) if for any object $M$ there is an epimorphism $P-> M -> 0$ where $P$ is projective (resp. a monomorphism $0 -> M->I$ where $I$ is injective). 
 ]
 
 For most of our homological algebra to work a category needs to have enough projectives and injectives. We show that $RMod$ has enough projectives and injectives.
-
-== Projective Modules
 
 #lemma[Free $R$-modules are projective.]
 
@@ -1446,6 +1487,7 @@ $ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo al
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAxEAX1PU1z5CKchWp0mrdgAUefEBmx4CRAExiaDFm0Qhic-kqFFRxcVqm7Z3cTCgBzeEVAAzAE4QAtkjIgcEJHJeVw9vRFE-AMRVYJB3LyQAZhp-HxpGLDAdECh6OAALOxBNSWyYAA8sOBwEWPiw5MjAku12LCgeSm4gA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((1, 0), [$F$]),
   node((1, 1), [$P$]),
   node((1, 2), [$0$]),
@@ -1474,6 +1516,7 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$.
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQAhEAX1PU1z5CKchWp0mrdgAYefEBmx4CRaWJoMWbRCACCc-kqFEyxcZqk6ACgAIocG1YDkBhQOXCSpaecnaQVjziMFAA5vBEoABmAE4QALZIoiA4EEjSvNFxiYhqKWmIxJkgsQlIACw0qekafuxRIDQARjBgUEgAzBnypTkdVQV5Fv5RLs2t7bnFvZ0DSTSMWGD+UPRwABYhjRJa7Exo6-RjIC1t6dPZFXOIyYvL7KsbW7W7OvuH26eTALRdF2WISr5TrcSjcIA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((2, 1), [$B$]),
   node((2, 2), [$0$]),
   node((2, 0), [$A$]),
@@ -1497,7 +1540,7 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$.
 ]
 
 
-== Injective Modules
+== $RMod$ has Enough Injectives
 
 #lemma(name: "Baer's criterion")[
   A right $R$-module $M$ is injective iff for every right ideal $I$ of $R$, every module homomorphism $I -> M$ can be extended to $R -> M$.
@@ -1508,6 +1551,7 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$.
 
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbdgHJuvEBmx4CRAExjq9Zq0QcZcnn2WCiAZk0SdbAELzjA1SjLDx2qXoCy3cTCgBzeCJQADMAJwgAWyQyEBwIJFE4uiwGNgALCAgAa3sQcKjE6nikDWTUjKzco3yI6MQyksQLcrS9TJy8gvrYpoAWLUldfK66oriExAGQBiwwYag6OHS-EEHrPUY0dLpDBW7S4snp92GtnYM1mbmFpZWoUcLmo6Rp2fm2ReXVrgouIA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((0, 0), [$A$]),
   node((0, 1), [$A'$]),
   node((0, 2), [$A''$]),
@@ -1709,6 +1753,7 @@ This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful fun
   Hence we only need to find some $phi : M -> QQ over ZZ$ in $Ab$ so that $phi(m) != 0$. This is the same case as before.
 ]
 
+#pagebreak()
 = Chain Complexes
 
 Let $cA$ be an abelian category. 
@@ -1766,11 +1811,11 @@ Let $cA$ be an abelian category.
 ]
 #proof[Trivial.]
 
-#definition[
-  A cochain complex is given by ${C^n}_(n in ZZ)$ and $d^n : C^n -> C^(n+1)$ with $d^2 = 0$.
+// #definition[
+//   A cochain complex is given by ${C^n}_(n in ZZ)$ and $d^n : C^n -> C^(n+1)$ with $d^2 = 0$.
 
-  ... Just dual. TODO
-]
+//   ... Just dual. TODO
+// ]
 
 #definition[
   A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n := ker d^n $ and the *$n$-coboundaries* are $ B^n := im d^(n+1) $
