@@ -938,7 +938,7 @@ We now introduce the most important member in the family of abelian categories.
   For any ring $R$, the category $RMod$ is an abelian category. In particular, $Ab$ is an abelian category.
 ]
 #proof[
-  ($RMod$ is $Ab$-enriched.) For any $A, B in RMod$, the set $homr(A, B)$ of module homomorphisms $A -> B$ can be naturally seen as an abelian group under pointwise addition. It is easy to check that the composition is blinear.
+  ($RMod$ is $Ab$-enriched.) For any $A, B in RMod$, the set $homr(A, B)$ of module homomorphisms $A -> B$ can be naturally seen as an abelian group under pointwise addition. It is easy to check that the composition is bilinear.
 
   ($RMod$ is additive.) We know that the direct sum exists as a coproduct for any finite family of modules $(M_i)_(i in I)$ in $RMod$.
 
@@ -1410,6 +1410,7 @@ Assume $R$ is a commutative ring. The functor $- tp_R M$ is left adjoint which i
   $ R^(ds J) rgt((x_j)) R -> R \/ I -> 0 $
 
   Thus if we want to calculate for some $M$ $ (R over I )tpr M iso coker (M^(ds J) rgt((x_j)) M) = M over I M $
+  <tensor-ideal>
 ]
 [Check https://math.stackexchange.com/questions/175789/how-to-prove-that-r-i-otimes-r-m-cong-m-im]
 
@@ -2167,7 +2168,7 @@ Instead of working with a complicated object $M$, we are working with a complex 
   $
     d_1(P_1) = M_0 = ker epsilon_0
   $
-  Thus the chain in exact at $P_0$. The precedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
+  Thus the chain in exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
   // Set $d_0 = epsilon_0$.
 
   // Suppose we now have monomorphism $i_(n-1) : M_(n-1) -> P_(n-1)$ and $d_(n-1) : P_(n-1) -> P_(n-2)$ 
@@ -3553,19 +3554,19 @@ $A^G tilde.equiv "Hom"_(Ab) lr((bb(Z) comma A^G)) tilde.equiv$
 $"Hom"_G lr((bb(Z) comma A))$.
  ]
 
+ #remark[
+    In other words, $(-_G) = (ZZ tpzg -) = (- tpzg ZZ)$ (because the ring $ZZ G$ is commutative) and $(-^G )= hom_(ZZ G) (ZZ, -)$.
+ ]
+
 #definition[
-Let $A$ be a $G$-module. We write
-$H_ast.basic lr((G semi A))$ for the left derived functors
-$L_ast.basic lr((minus^ G)) lr((A))$ and call them the *homology groups of
-$G$ with coefficients in $A$*; by the lemma above,
-$H_ast.basic lr((G semi A)) tilde.equiv "Tor"_ast.basic^(bb(Z) G) lr((bb(Z) comma A))$.
+Let $A$ be a $G$-module. We define the *homology groups of
+$G$ with coefficients in $A$* as the left derived functors of $(-^G)$:
+$ H_ast lr((G ; A)) = L_ast lr((minus^ G)) lr((A)) tilde.equiv "Tor"_ast^(bb(Z) G) lr((bb(Z) comma A)) $ 
 By definition, $H_0 lr((G semi A)) eq A_G$. 
 
-Similarly, we write
-$H^ast.basic lr((G semi A))$ for the right derived functors
-$R^ast.basic lr((-_G)) lr((A))$ and call them the *cohomology groups of
-$G$ with coefficients in $A$*; by the lemma above,
-$H^ast.basic lr((G semi A)) tilde.equiv "Ext"_(bb(Z) G)^ast.basic lr((bb(Z) comma A))$.
+Similarly, we define the *cohomology groups of
+$G$ with coefficients in $A$* as the right derived functors of $(-_G)$:
+$ H^ast lr((G semi A)) = R^ast lr((-_G)) lr((A)) tilde.equiv "Ext"_(bb(Z) G)^ast lr((bb(Z) comma A)) $ 
 By definition, $H^0 (G; A) = A^G$. 
 ]
 
@@ -3573,9 +3574,103 @@ By definition, $H^0 (G; A) = A^G$.
   #TODO
 ]
 
-== First Homology
+== The First Homology with Integer Coefficients
+
+Recall the *commutator subgroup* of a group $G$ is defined as 
+$
+  [G, G] := angle.l g^(-1) h^(-1) g h : g , h in G angle.r
+$
+and the *abelianisation* of $G$ is $G over [G, G]$.
+
+The aim is of this section is to show that $H_1 (G; ZZ) iso G over [G, G]$ for any group $G$. 
+
+#definition[
+  The *augmentation ideal* $frak(J)$ of $ZZ G$ is defined as the kernel of the ring map 
+  $
+    epsilon: ZZ G  &-> ZZ  \
+    sum_(g in G) f_g  g &|-> sum_(g in G) f_g  
+  $
+]
+
+#lemma[
+  $frak(J)$ is a free $ZZ$-module with basis ${g - 1 : g in G without {1} }$ (where $1$ is the group identity of $G$).
+]
+#proof[
+  Simply notice that $ZZ G$ as a free $ZZ$-module has a basis ${1} union {g - 1: g in G without {1}}$ and that $epsilon(g - 1) = 0$ for any $g in G$.
+]
+
+#lemma[
+  $ fJ over fJ^2 iso G over [G, G] $ where $fJ^2$ is the free $ZZ$-module with basis ${(g -1) (h - 1) : g, h in G without {1}}$.
+]
+#proof[
+  Define map $
+  theta : G &-> fJ over fJ^2 \ 
+  g &|-> g - 1 + fJ^2
+  $
+
+  Take any $a, b in G$, then we have 
+  $
+    theta(a b) = a b - 1 + fJ^2 = a b - 1 - (a - 1) (b - 1) + fJ^2 = (a - 1)  + (b-1) +fJ^2  = theta(a) +theta(b)
+  $
+  so $theta$ is a group homomorphism. Since $fJ over fJ^2$ is abelian, we have 
+  $
+    theta(a b a^(-1) b^(-1)) = theta(a) + theta(b) - theta(a) - theta(b) = 0
+  $
+  so $[G, G] subset.eq Ker theta$, and $theta$  descends to a homomorphism 
+  $macron(theta) : G over [G, G] -> fJ over fJ^2$.
+
+  Define group homomorphism $sigma : fJ  &-> G over [G, G]$ linearly expanded by
+  $
+    g - 1 &|-> g +[G, G ]
+  $
+  Then for $a, b in G$, we have 
+  $
+    sigma((a - 1) (b - 1)) = sigma(a b - 1 - (a-1) - (b-1)) = a b a^(-1) b^(-1) + [G, G] = [G, G]
+  $
+  So $sigma$ descends to a homomorphism $macron(sigma) : fJ over fJ^2 -> G over [G, G]$. 
+  The result thus follows from the obvious fact that $macron(sigma)$ and $macron(theta)$ are mutual inverses.
+]
 
 
+
+#lemma[  Regard $fJ$ as a $ZZ G$-module and apply $-_G$, we have
+  $
+    fJ_G iso fJ over fJ^2
+  $
+]
+#proof[ 
+  $ fJ_G iso ZZ tpzg fJ iso (ZZ G over fJ) tpzg fJ iso fJ over fJ^2 $
+  where we use the definition of $fJ$ and #thmref(<tensor-ideal>)[Example].
+]
+
+#theorem[
+  As promised, we have 
+  $
+    H_1 (G ; ZZ) iso G over [G, G]
+  $
+
+]
+#proof[
+We have a short exact sequence
+
+$ 0 arrow.r fJ arrow.r bb(Z) G arrow.r^epsilon bb(Z) arrow.r 0 $
+
+of $G$-modules, where $ZZ$ is viewed as a trivial $G$-module. Since $"Tor"_ast.basic^(bb(Z) G)$ is a homological
+$delta$-functor, we obtain an exact sequence
+
+$ H_1 lr((G ; bb(Z) G)) arrow.r H_1 lr((G ; bb(Z))) arrow.r fJ_G arrow.r lr((bb(Z) G))_G arrow.r^(epsilon_ast) bb(Z)_G arrow.r 0 $
+
+Since $bb(Z) G$ is a projective $bb(Z) G$-module, we have
+$H_1 lr((G comma bb(Z) G)) eq 0$. Notice $ZZ_G = ZZ$, and 
+
+// $ (bb(Z) G)_G tilde.equiv bb(Z) G slash fJ tilde.equiv bb(Z) $
+$ (bb(Z) G)_G tilde.equiv ZZ tpzg ZZ G tilde.equiv bb(Z) $
+since $epsilon_ast$ is a surjection, we see $epsilon_ast$ must be an isomorphism $ZZ -> ZZ$. So we have
+
+$ H_1 lr((G ; bb(Z))) tilde.equiv fJ_G eq fJ slash fJ^2 tilde.equiv G slash lr([G comma G]) $
+
+#TODO according to weibel, $(bb(Z) G)_G tilde.equiv bb(Z) G slash fJ $. why ??
+]
 
 #pagebreak()
 #bibliography("bib.yml", style: "chicago-author-date")
