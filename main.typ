@@ -3574,7 +3574,7 @@ By definition, $H^0 (G; A) = A^G$.
   #TODO
 ]
 
-== The First Homology with Integer Coefficients
+== First Homology with Integer Coefficients
 
 Recall the *commutator subgroup* of a group $G$ is defined as 
 $
@@ -3597,6 +3597,20 @@ The aim is of this section is to show that $H_1 (G; ZZ) iso G over [G, G]$ for a
 ]
 #proof[
   Simply notice that $ZZ G$ as a free $ZZ$-module has a basis ${1} union {g - 1: g in G without {1}}$ and that $epsilon(g - 1) = 0$ for any $g in G$.
+]
+
+#lemma[
+  For any $G$-module $A$,
+  $
+    H_0(G; A) = A_G iso A over fJ A
+  $
+]
+#proof[
+  $A_G iso ZZ tpzg A iso (ZZ G over fJ) tpzg A iso A over fJ A$, where we use the definition of $fJ$ and #thmref(<tensor-ideal>)[Example].
+]
+#example[
+  Regarding $ZZ$, $ZZ G$ and $fJ$ as $G$-modules, we have $H_0 (G; ZZ) = ZZ over fJ ZZ = ZZ$, $H_0 (G; ZZ G) = ZZ G over fJ iso ZZ$, and $H_0 (G; fJ) = fJ over fJ^2$.
+  <group-h0>
 ]
 
 #lemma[
@@ -3633,16 +3647,6 @@ The aim is of this section is to show that $H_1 (G; ZZ) iso G over [G, G]$ for a
 
 
 
-#lemma[  Regard $fJ$ as a $ZZ G$-module and apply $-_G$, we have
-  $
-    fJ_G iso fJ over fJ^2
-  $
-]
-#proof[ 
-  $ fJ_G iso ZZ tpzg fJ iso (ZZ G over fJ) tpzg fJ iso fJ over fJ^2 $
-  where we use the definition of $fJ$ and #thmref(<tensor-ideal>)[Example].
-]
-
 #theorem[
   As promised, we have 
   $
@@ -3661,15 +3665,11 @@ $delta$-functor, we obtain an exact sequence
 $ H_1 lr((G ; bb(Z) G)) arrow.r H_1 lr((G ; bb(Z))) arrow.r fJ_G arrow.r lr((bb(Z) G))_G arrow.r^(epsilon_ast) bb(Z)_G arrow.r 0 $
 
 Since $bb(Z) G$ is a projective $bb(Z) G$-module, we have
-$H_1 lr((G comma bb(Z) G)) eq 0$. Notice $ZZ_G = ZZ$, and 
-
-// $ (bb(Z) G)_G tilde.equiv bb(Z) G slash fJ tilde.equiv bb(Z) $
-$ (bb(Z) G)_G tilde.equiv ZZ tpzg ZZ G tilde.equiv bb(Z) $
-since $epsilon_ast$ is a surjection, we see $epsilon_ast$ must be an isomorphism $ZZ -> ZZ$. So we have
+$H_1 lr((G ; bb(Z) G)) eq 0$. Notice that $ZZ_G = ZZ$ and 
+$ (bb(Z) G)_G iso ZZ$ by #thmref(<group-h0>)[Example].
+Since $epsilon_ast$ is a surjection, we see $epsilon_ast$ must be an isomorphism $ZZ -> ZZ$. So we have
 
 $ H_1 lr((G ; bb(Z))) tilde.equiv fJ_G eq fJ slash fJ^2 tilde.equiv G slash lr([G comma G]) $
-
-#TODO according to weibel, $(bb(Z) G)_G tilde.equiv bb(Z) G slash fJ $. why ??
 ]
 
 #pagebreak()
