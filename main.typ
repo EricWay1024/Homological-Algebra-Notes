@@ -3452,4 +3452,130 @@ $Ext ^n$ and the standard $"Ext"^n$.]
 
 #pagebreak()
 
+
+= Group (Co)homology
+
+== Definitions
+
+#definition[
+  Let $G$ be a group. A *(left) $G$-module* is an abelian group $A$ together with a left group action $rho: G times A -> A$, with $rho(g, a)$ denoted as $g dot a$, such that 
+  $
+    g dot (a_1 + a_2) = g dot a_1 + g dot a_2
+  $
+  for all $g in G$ and $a_1, a_2 in A$. 
+
+  A *morphism* $A -> B$ of $G$-modules is a group homomorphism (i.e. $ZZ$-linear map) $phi: A -> B$ such that 
+  $
+    phi(g dot a) = g dot phi (a)
+  $
+  for all $g in G$ and $a in A$.
+
+  The category of $G$-modules is denoted as $GMod$, where we write $hom_GMod$ as $homg$.
+]
+
+  Recall that for any group $G$, $ZZ G$ is the integral group ring which consists of formal sums of elements of $G$ with integer coefficients:
+  $
+    sum_(g in G) f_g g
+  $
+  where $f_g in ZZ$ is non-zero for only fintely many $g in G$. $ZZ G$ is a ring because the product of two elements of $ZZ G$ is well-defined.
+
+  #lemma[
+    There is an equivalence of categories $GMod iso ZGMod$.
+  ]
+
+  This indicates that $GMod$ is also an abelian category (which we love).
+
+  #definition[
+    A $G$-module is *trivial* if $g dot a  = a$ for all $g in G$ and $a in A$. 
+
+    We define a functor $triv: Ab -> GMod$ by sending an abelian group $A$ to a trivial $G$-module $A$.
+  ]
+
+  #definition[
+    Let $A in GMod$. Then the submodule of *invariants* of $A$ is 
+    $
+      A^G = {a in A : g dot a = a "for all" g in G}
+    $ 
+    and the module of *coinvariants* of $A$ is 
+    $
+      A_G = A over angle.l g dot a - a : g in G, a in A angle.r 
+    $    
+  ]
+
+  #lemma[
+    $-^G$ and $-_G$ are functors $GMod -> Ab$. 
+  ]
+
+  #lemma[
+    We have adjunctions 
+    $
+      -_G tack.l triv tack.l -^G.
+    $
+  ]
+  #proof[
+    We first show 
+    $
+      hom_G (triv(A), B) iso hom_Ab (A, B^G)
+    $
+    Take any $f : triv(A) -> B$, then $f$ is a group homomorphism $A -> B$ such that $f(g dot a) = g dot f(a)$ for all $g in G$ and $a in A$. But $g dot a = a$ due to triviality and hence $f(a) = g dot f(a)$, i.e. $f(a) in B^G$ for all $a$. Then $f$ is equivalent to a group homomorphism $A -> B^G$. 
+
+    Now we prove 
+    $
+      hom_Ab (A_G, B) iso homg (A, triv(B))
+    $
+    Take any $h : A -> triv(B)$, then $h$ is a group homomorphism $A -> B$ such that for all $g in G$ and $a in A$, $ h (g dot a) = g dot h(a) = h(a) <=> h(g dot  a - a) = 0 <=> g dot a - a in Ker(h) $
+    which means $h$ is equivalent to a group homomorphism $A_G -> B$. 
+  ]
+
+  #corollary[
+    The functor $-_G : GMod -> Ab$ is right exact and the functor $-^G : GMod -> Ab$ is left exact. 
+  ]
+
+  #lemma[
+    Let $A$ be any $G$-module and let $ZZ$ be the trivial $G$-module. Then 
+    $
+      A_G iso ZZ tpzg A 
+    $
+    and 
+    $
+      A^G iso hom_(ZZ G) (ZZ , A)
+    $
+  ]
+  #proof[
+ Considering $bb(Z)$ as a $bb(Z)$-$ bb(Z) G$ bimodule, the trivial module functor $ZMod -> ZGMod$ is the functor
+$"Hom"_(bb(Z)) lr((bb(Z) comma minus))$. We have seen that
+$bb(Z) times.circle_(bb(Z) G) -$  is its left adjoint; this functor must
+agree with its other left adjoint $minus_G$. (See alternative proof in @notes[Lemma 13.9].)
+
+For the second
+equation, we use adjointness:
+$A^G tilde.equiv "Hom"_(Ab) lr((bb(Z) comma A^G)) tilde.equiv$
+$"Hom"_G lr((bb(Z) comma A))$.
+ ]
+
+#definition[
+Let $A$ be a $G$-module. We write
+$H_ast.basic lr((G semi A))$ for the left derived functors
+$L_ast.basic lr((minus^ G)) lr((A))$ and call them the *homology groups of
+$G$ with coefficients in $A$*; by the lemma above,
+$H_ast.basic lr((G semi A)) tilde.equiv "Tor"_ast.basic^(bb(Z) G) lr((bb(Z) comma A))$.
+By definition, $H_0 lr((G semi A)) eq A_G$. 
+
+Similarly, we write
+$H^ast.basic lr((G semi A))$ for the right derived functors
+$R^ast.basic lr((-_G)) lr((A))$ and call them the *cohomology groups of
+$G$ with coefficients in $A$*; by the lemma above,
+$H^ast.basic lr((G semi A)) tilde.equiv "Ext"_(bb(Z) G)^ast.basic lr((bb(Z) comma A))$.
+By definition, $H^0 (G; A) = A^G$. 
+]
+
+#example[
+  #TODO
+]
+
+== First Homology
+
+
+
+#pagebreak()
 #bibliography("bib.yml", style: "chicago-author-date")
