@@ -3123,7 +3123,7 @@ $p$.
 
 #lemma(name: "Künneth Formula for Koszul Complexes")[
 If
-$C eq C_ast.basic$ is a chain complex of $R$-modules and $x in R$, there
+$C eq C_ast$ is a chain complex of $R$-modules and $x in R$, there
 are exact sequences
 $ 0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle_R C)) arrow.r H_1 lr((x comma H_(q minus 1) lr((C)))) arrow.r 0 $
 <kunneth-koszul>
@@ -3659,7 +3659,7 @@ We have a short exact sequence
 
 $ 0 arrow.r fJ arrow.r bb(Z) G arrow.r^epsilon bb(Z) arrow.r 0 $
 
-of $G$-modules, where $ZZ$ is viewed as a trivial $G$-module. Since $"Tor"_ast.basic^(bb(Z) G)$ is a homological
+of $G$-modules, where $ZZ$ is viewed as a trivial $G$-module. Since $"Tor"_ast^(bb(Z) G)$ is a homological
 $delta$-functor, we obtain an exact sequence
 
 $ H_1 lr((G ; bb(Z) G)) arrow.r H_1 lr((G ; bb(Z))) arrow.r fJ_G arrow.r lr((bb(Z) G))_G arrow.r^(epsilon_ast) bb(Z)_G arrow.r 0 $
@@ -3795,8 +3795,60 @@ $
 
 #corollary[
    We have
-$  & H_n lr((C_m ; bb(Z))) eq cases(bb(Z) quad & "if " n eq 0, bb(Z) slash m  quad & "if " n gt.eq 1 upright(" is odd ") comma, 0 quad & "else. ")\
- & H^n lr((C_m ; bb(Z))) eq cases(bb(Z) quad& "if " n eq 0, bb(Z) slash m quad & "if " n gt.eq 2 upright(" is even, "), 0  quad & " else. ") $]
+$  & H_n lr((C_m ; bb(Z))) eq cases(bb(Z) quad & "if " n eq 0, bb(Z) slash m  quad & "if " n gt.eq 1 "is odd " comma, 0 quad & "else. ")\
+ & H^n lr((C_m ; bb(Z))) eq cases(bb(Z) quad& "if " n eq 0, bb(Z) slash m quad & "if " n gt.eq 2 "is even, ", 0  quad & "else. ") $]
 
+ == Free Groups
+@weibel[p. 169].
+
+#proposition[
+Let $G$ be the free group on the set $X$, and consider
+the augmentation ideal $frak(J)$ of $bb(Z) G$. Then $frak(J)$ is a free
+$bb(Z) G$-module with basis the set
+$X minus 1 eq brace.l x minus 1 colon x in X brace.r$.
+]
+
+#proof[
+We have seen that $frak(J)$ is a free abelian group with
+$bb(Z)$-basis $brace.l g minus 1 colon g in G$, $g eq.not 1 brace.r$. We
+claim that another $bb(Z)$-basis is
+$brace.l g lr((x minus 1)) colon g in G comma x in X brace.r$. Every
+$g in$ $G$ may be written uniquely as a reduced word in the symbols
+$lr({x comma x^(minus 1) colon x in X})$; write $G lr((x))$ \(resp.
+$G lr((x^(minus 1)))$ ) for the subset of all $g in G$ ending in the
+symbol $x$ \(resp. in $x^(minus 1)$ ) so that
+$G minus brace.l 1 brace.r$ is the disjoint union \(over all $x in X$ )
+of the sets $G lr((x))$ and $G lr((x^(minus 1)))$. The formulas
+$ lr((g x minus 1)) & eq g lr((x minus 1)) plus lr((g minus 1)) quad upright(" if ") g x in G lr((x))\
+lr((g x^(minus 1) minus 1)) & eq minus lr((g x^(minus 1))) lr((x minus 1)) plus lr((g minus 1)) quad upright(" if ") g x^(minus 1) in G lr((x^(minus 1))) $
+and induction on word length allow us to uniquely rewrite the basis
+$brace.l g minus 1$ : $g eq.not 1 brace.r$ in terms of the set
+$brace.l g lr((x minus 1)) brace.r$, and vice versa. Therefore
+$brace.l g lr((x minus 1))$ : $g in G comma x in X brace.r$ is a
+$bb(Z)$-basis of $frak(J)$, and
+$X minus 1 eq brace.l x minus 1 colon x in X brace.r$ is a
+$bb(Z) G$-basis.
+]
+
+#corollary[
+ If $G$ is a free group on $X$, then $bb(Z)$ has the free
+resolution
+$ 0 arrow.r frak(J) arrow.r bb(Z) G arrow.r bb(Z) arrow.r 0 dot.basic $
+
+Consequently, 
+$H_n lr((G semi A)) eq H^n lr((G semi A)) eq 0$ for
+$n eq.not 0 comma 1$. Moreover,
+$H_0 lr((G semi bb(Z))) tilde.equiv H^0 lr((G semi bb(Z))) tilde.equiv bb(Z)$,
+while
+$ H_1 lr((G semi bb(Z))) tilde.equiv xor.big_(x in X) bb(Z) quad upright(" and ") quad H^1 lr((G semi bb(Z))) tilde.equiv product_(x in X) bb(Z) dot.basic $
+]
+
+#proof[
+$H_ast lr((G semi A))$ is the homology of
+$0 arrow.r frak(J) times.circle_(bb(Z) G) A arrow.r A arrow.r 0$, and
+$H^ast lr((G semi A))$ is the cohomology of
+$0 arrow.r A arrow.r "Hom"_G lr((frak(J) comma A)) arrow.r 0$. For
+$A eq bb(Z)$, the differentials are zero.
+]
 #pagebreak()
 #bibliography("bib.yml", style: "chicago-author-date")
