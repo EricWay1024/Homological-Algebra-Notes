@@ -3760,7 +3760,9 @@ $ 0 eq sigma^m minus 1 eq lr((sigma minus 1)) N $
    $
     epsilon((sigma- 1)a) = sum_(j=0)^(m-1) (n_(j -1) - n_j) = 0
    $
-   we see that $(sigma - 1) a in fJ$. On the other hand, $(sigma - 1) a = 0$ if and only if $n_(j-1) = n_j$ for all $j$, which means that all $n_j$ are equal, and thus $(sigma - 1) a in ZZ dot N$. 
+   we see that $(sigma - 1) a in fJ$. On the other hand, for any $b = sum_(k=0)^(m-1) f_k sigma^k in fJ$ such that $sum_(k=0)^(m-1) f_k = 0$, we can find $a$ such that $n_j = - sum_(k=0)^j f_k$ for $j = 0, ..., m-1$ (notice that $n_(m-1) = n_(-1) = 0$) so that $n_(j-1) - n_j = f_j$, or $(sigma - 1)a = b$. This shows that $IM(bb(Z) C_m arrow.r^(sigma minus 1) ZZ C_m) = fJ$.
+   
+  For the kernel, $(sigma - 1) a = 0$ if and only if $n_(j-1) = n_j$ for all $j$, which means that all $n_j$ are equal, and thus $(sigma - 1) a in ZZ dot N$. 
 ]
 #lemma[
 The chain complex
