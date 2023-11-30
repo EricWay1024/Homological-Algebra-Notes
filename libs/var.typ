@@ -4,7 +4,7 @@
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {
-  align(center, image("imgs/cat/" + path + ".jpg", width: width))
+  align(center, image("../imgs/cat/" + path + ".jpg", width: width))
 }
 
 #let bd(term) = [ $bold(#term)$]
