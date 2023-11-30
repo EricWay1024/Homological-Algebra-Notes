@@ -28,6 +28,10 @@
 
   // Main body.
   set par(justify: true)
+  set heading(numbering: "1.1.")
+  set enum(numbering: "(1)")
 
   body
 }
+
+#import "var.typ": *

@@ -1,19 +1,5 @@
 #import "libs/template.typ": *
-#import "libs/var.typ": *
-#import "libs/commute.typ": node, arr, commutative-diagram
 
-#set heading(numbering: "1.1.")
-#set enum(numbering: "(1)")
-
-#let textwidth = 100%;
-#let img(path, width: textwidth) = {
-  align(center, image("imgs/ha/" + path + ".jpg", width: width))
-}
-
-
-
-// Take a look at the file `template.typ` in the file panel
-// to customize this template and discover how it works.
 #show: project.with(
   title: "Homological Algebra",
   authors: (
@@ -3592,6 +3578,10 @@ The aim is of this section is to show that $H_1 (G; ZZ) iso G over [G, G]$ for a
   $
 ]
 
+#remark[
+  This is the start of a resolution of $ZZ$. 
+]
+
 #lemma[
   $frak(J)$ is a free $ZZ$-module with basis ${g - 1 : g in G without {1} }$ (where $1$ is the group identity of $G$).
 ]
@@ -3654,6 +3644,9 @@ The aim is of this section is to show that $H_1 (G; ZZ) iso G over [G, G]$ for a
   $
 
 ]
+#remark[
+  We can define topological space $B G$, the classifying space of $G$ (there is a simplicial object $B . G$ ...?), $H^ast (G, A) = H^ast_"sing" (B G , A)$, because $pi_1(B G, ast) = G$ and $H_1 = pi_1^Ab = G over [G, G] = G^Ab$. This is the meaning of the theorem.
+]
 #proof[
 We have a short exact sequence
 
@@ -3671,6 +3664,8 @@ Since $epsilon_ast$ is a surjection, we see $epsilon_ast$ must be an isomorphism
 
 $ H_1 lr((G ; bb(Z))) tilde.equiv fJ_G eq fJ slash fJ^2 tilde.equiv G slash lr([G comma G]) $
 ]
+
+$ A_G = ZZ tpzg A = coker(fJ tpzg A -> ZZ G tpzg A) = coker(fJ tpzg A -> A) $ so $(ZZ G)_G = ZZ G over fJ iso ZZ$. 
 
 == Norm Element
 #definition[
@@ -3734,6 +3729,9 @@ We observe
 
 $ 0 eq sigma^m minus 1 eq lr((sigma minus 1)) N $
 
+#remark[
+  The group ring can be also viewed as $ZZ [sigma] over (sigma ^ m - 1)$.
+]
 // #lemma[
 // ]
 // #proof[
@@ -3800,6 +3798,10 @@ $
 $  & H_n lr((C_m ; bb(Z))) eq cases(bb(Z) quad & "if " n eq 0, bb(Z) slash m  quad & "if " n gt.eq 1 "is odd " comma, 0 quad & "else. ")\
  & H^n lr((C_m ; bb(Z))) eq cases(bb(Z) quad& "if " n eq 0, bb(Z) slash m quad & "if " n gt.eq 2 "is even, ", 0  quad & "else. ") $]
 
+ #remark[
+  Galois homology? Tate homology?
+ ]
+
  == Free Groups
 @weibel[p. 169].
 
@@ -3852,5 +3854,27 @@ $H^ast lr((G semi A))$ is the cohomology of
 $0 arrow.r A arrow.r "Hom"_G lr((frak(J) comma A)) arrow.r 0$. For
 $A eq bb(Z)$, the differentials are zero.
 ]
+
+#TODO change the notation $H_ast (G, A)$ (comma not semicolon.)
+
+== The Bar Resolution
+
+We have adjunction
+$
+  ZZ G tp_ZZ - ： Ab arrows.lr ZGMod : "Forget"
+$
+
+
+$
+  ... -> B^n_2 -> B^n_1 -> B^n_0 -> ZZ -> 0
+$
+$B^n_n$ is the free $ZZ G$-module on basis $[g_1 tp ... tp g_n]$ for $g_i in G$. 
+
+$d: B^n_n -> B^n_(n-1)$
+
+#theorem[
+  The bar complexes form a free resolution of the $ZZ G$-module $ZZ$.
+]
+
 #pagebreak()
 #bibliography("bib.yml", style: "chicago-author-date")
