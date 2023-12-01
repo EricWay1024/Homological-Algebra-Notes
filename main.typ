@@ -11,9 +11,8 @@
 
 #outline(indent: true)
 #pagebreak()
+
 #include "module.typ"
-
-
 
 #pagebreak()
 
@@ -1195,14 +1194,14 @@ You might find different definitions for an arbitrary category (not necessarily 
 
 #definition[
   In a category $cC$ with coproducts, an object $G$ is called a *generator* if for any $X in cC$, there is an epimorphism 
-  $product.co G -> X
-  $.
-  
+  $product.co_I G -> X -> 0$.
 ]
 
-#note[
-For any $M in RMod$, we can find an epimorphism $R^(ds I) -> M -> 0$. (Any module has some generators.) This is not unique. We call $R$ a generator of $M$. Recall #thmref(<module-generator>)[Corollary]. 
-
+#lemma[
+  $R$ is a generator of $RMod$.
+]
+#proof[
+Recall #thmref(<module-generator>)[Corollary].
 ]
 
 
@@ -1213,11 +1212,8 @@ For any $M in RMod$, we can find an epimorphism $R^(ds I) -> M -> 0$. (Any modul
 ]
 #proof[
   First notice $End(A)(X)$ is indeed a ring with composition as multiplication.
-  Take any $m in Hom(A)(X, Y)$ and $r in End(A)(X)$: 
-  $
-    X->^r X ->^m Y
-  $
-  define the multiplication $m r$ as $m oo r in Hom(A)(X, Y)$. It is easy to verify the this makes a right module.
+  Take any $m in Hom(A)(X, Y)$ and $r in End(A)(X)$.
+  Define the multiplication $m r$ as $m oo r in Hom(A)(X, Y)$. It is easy to verify that this makes $Hom(A) (X, Y)$ a right module over $End(A)(X)$.
 ]
 
 #theorem(name: "Morita's Theorem")[
@@ -1226,27 +1222,69 @@ For any $M in RMod$, we can find an epimorphism $R^(ds I) -> M -> 0$. (Any modul
 
 
 #note[
-If $cA = RMod$, we have observed that $R$ (as an object of $RMod$) is a compact, projective generator. In this case, $end_R (R) = R^op$ because any module homomorphism $phi: R -> R$ is determined by $phi(1)$ with the opposite composition; in other words, $phi(r) = r phi(1)$. Then $end_R (R)^op hyph Mod$ is just $RMod$ because $(R^op)^op = R$.
+If $cA = SMod$ for some ring $S$, we have observed that $S$ (as an object of $SMod$) is a compact, projective generator. In this case, $R = end_S (S)$. We observe that any module homomorphism $phi: S -> S$ is uniquely determined by $phi(1) in S$ with $phi(s) = s phi(1)$, and the composition of two homomorphisms $phi_1 , phi_2 : S-> S$ is in the opposite direction of multiplication in $S$: $ phi_1 (phi_2(s)) = s phi_2(1) phi_1(1) $
+Therefore, $R = end_S (S) = S^op$. Thus, indeed, we have $SMod$ is equivalent to $ModR$, which is $Mod$-$S^op$.
 ]
 
-#remark[
-  Using the definition of equivalence, you want to construct another functor in the opposite direction and show their composites are natural isomprphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
-]
+// #remark[
+//   Using the definition of equivalence, you want to construct another functor in the opposite direction and show their composites are natural isomprphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
+// ]
 
 #proof[
-@rotman[Theorem 5.55]. @pareigis[p. 211].
+@rotman[Theorem 5.55] and @pareigis[p. 211].
+// https://cornellmath.wordpress.com/2008/04/10/abelian-categories-and-module-categories/
+Denote $ F:=Hom(A)(P, -) : cA -> ModR$.
+Using the definition of categorical equivalence, we want to construct another functor $G : ModR -> cA$ and show $F G$ and $G F$ are naturally isomorphic to identity functors. We see that in this way $G$ should be left adjoint to $F$, so $G$ must preserves colimits and in particular be right exact.
 
+Inspired by the discussion above, we define $G$ in the following way. We first set $G(R) = P$ and $G(R^(ds I)) = P^(ds I)$. Any morphism $f: R^(ds J) -> R^(ds I)$ can be represented by a (possibly infinite) matrix with entries $a_(i j) in R$ for all $i in I$ and $j in J$. However, notice that $R = End(A) (P)$ by definition and thus the same matrix $(a_(i j))_(i in I, j in J)$ can also be seen as a morphism $P^(ds J) -> P^(ds I)$, which is defined to be $G(f)$. 
+Now, for any $R$-module $M$, we can find a presentation 
+$
+  R^(ds J) ->^f R^(ds I) -> M -> 0 
+$
+Under $G$, this becomes 
+$
+  P^(ds J) ->^(G(f)) P^(ds I) -> G(M) -> 0 
+$
+where we define $G(M) = Coker(G(f))$.
 
-https://cornellmath.wordpress.com/2008/04/10/abelian-categories-and-module-categories/
+#TODO It can be verified that $G$ is a functor.
 
-We need a functor $G: ModR -> cA$. Inspired by the special case, we want to send $R |-> P$. This is right exact (?) so it must send $R^(ds I) |-> P^(ds I)$. 
+Since $P$ is a projective object, $F$ is exact and preserves cokernels; since $P$ is compact, $F$ preserves direct sums. On the other hand, $G$ is right exact and preserves direct sums by construction. Hence the composites $F G$ and $G F$ are right exact and preserves direct sums. 
+Now we check $F G$ and $G F$ are naturally isomorphic to identity functors. 
 
-For any $M in ModR$ we can find a presentation $ R^(ds J) -> R^(ds I) -> M -> 0 $ 
+For $F G : ModR -> ModR$, we have $ F G (R) = F (P) = hom_cA (P, P) = R $
+and hence $F G(R^(ds I)) = R^(ds I)$. Now for any $M in ModR$, there is a commutative diagram 
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACUA9ACijgAIAUgEoQAX1LpMufIRQBGclVqMWbLrwEBJURKnY8BIgCYl1es1aIQAWXGSQGA7KJl5yi2usAxfgHF+bn4NPiFhfl0HJxkjBVJ3c1UrEF8A7hDtYUj9GLlkUwSVSzZUwJtsx2lDPIBmMyKvEGJ7HOqiOsLPZOaxZRgoAHN4IlAAMwAnCABbJDIQHAgkGr0QCemkRXnFxAAWFbWZxFMtpABWfcnDuYWNi-XETZuju8Pjp4A2F6XqJ72HA6QOx+23O-0uZ2BSAA7L0xEA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$R^(ds J)$]),
+  node((0, 1), [$R^(ds I)$]),
+  node((0, 2), [$M$]),
+  node((1, 0), [$F G ( R^(ds J) )$]),
+  node((1, 1), [$F G (R^(ds I))$]),
+  node((1, 2), [$F G (M)$]),
+  node((0, 3), [$0$]),
+  node((1, 3), [$0$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), []),
+  arr((0, 2), (0, 3), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+))
+Since $F G$ preserves cokernels, we see that $F G(M) iso M$. Hence $F G$ is naturally isomorphic to the identity functor of $ModR$.
 
-
-
-// #image("imgs/22.png", width: 50%)
-#TODO
+For $G F: cA -> cA$, we have 
+$G F (P) = G( R) = P
+$,
+so $ G F (P^(ds I)) =P^( ds I)$. Now take any $X in cA$, since $P$ is a generator, we can find 
+$
+  P^(ds J) -> P^(ds I) -> X -> 0
+$
+A similar argument as before gives the result. #TODO review 
 ]
 
 #remark[
@@ -1262,11 +1300,11 @@ Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, project
 ]
 
 #proof[
-Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?)
+// Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?) 
+#TODO
 ]
 
-
-We can embed an abstract category into a concrete one. From a practical perspective, we can prove any reasonable statements for $RMod$ and they will also hold for abelian categories because of this theorem. An example is the following.
+This theorem indicates that we can embed an abstract category into a concrete one. From a practical perspective, we can prove any reasonable statements for $RMod$ and they will also hold for abelian categories. An example is the following.
 
 
 #lemma(name: "Snake Lemma")[
@@ -1274,6 +1312,7 @@ We can embed an abstract category into a concrete one. From a practical perspect
 
  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohABhOXyWCiZAAzitU3ewDkhhf2VDkoi5sk6Q0+zyMCVFHV3CW02PV95RQCXABZSEKsvMwdo5yIzDVDrEBSucRgoAHN4IlAAMwAnCABbJHUQHAgkTOyvcocq2qR4xubEMja2Is7qusQAVmompFEh3QALUe7EBpnEXqS2LEiKsZ7p-qn5hV2QLvHj9YA2P3P9xAB2Q5a7i5aXgY8w3Sxl8cG6zmW10aBA1AYWDAXjgEEhUG4FC4QA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((1, 1), [$A$]),
   node((1, 2), [$B$]),
   node((1, 3), [$C$]),
@@ -1306,6 +1345,7 @@ We have the following commutative diagram:
 #v(20pt)
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQBBEAX1PU1z5CKchWp0mrdgCEefEBmx4CRAMxiaDFm0QgAwnP5KhRMsXFapujgHJDCgcuHJR5zZJ0hpd3kcEqUdTcJbXY9H3lFf2cyAAYLD3YAaxgAJwACADN7KKciUXj3UN0UjIBzHMcTQNJCkKsQUvSAC0rjAJJSVQTikABjCCbs3wd251FuooaBpoqR3OrkdUn6zxm0lrboogAWUmDLT1itvJRYjVX2Y+5xGCgy+CJQTNSIAFskADYaHAgkVRGL3e-x+f0Q50uumG8iBH3BoKQAE5Aa84QB2BGIHYo4FYzFkSEgOYw1FIAm-MmxHFwgAcmIArNSkPTMaJCa0mYg2RTEMRiJz1CAeXtCVgIs9SXihWCWYS0OKQLDmfjyJziIKeVSSbiITyCYd2Fh7Ereaypp40CAaIwsGBPFB6HBmndjZK6dKkdbbfbHc6oFaQAAjGBgf2IAC0aP52rhiPxWoluOIurBfM53w9iDRnIxmZpN24QA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((2, 1), [$A$]),
   node((2, 2), [$B$]),
   node((2, 3), [$C$]),
