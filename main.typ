@@ -1290,7 +1290,7 @@ A similar argument as before gives the result. #TODO review
 #remark[
 $cA$ can have more than one compact, projective generator, say $P_1$ and $P_2$. Then $A = End(A) (P_1)^op hyph Mod = End(A) (P_2)^op hyph Mod$, where rings $End(A) (P_1)$ and $End(A) (P_2)$ are not necessarily isomorphic. This is *Morita equivalence* of rings. 
 
-Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. 
+Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. #TODO
 ]
 
 
@@ -1412,8 +1412,6 @@ We have the following commutative diagram:
 ]
 
 == Tensor Products
-
-#TODO hom-tensor adjoint
 
 The functor $- tp_R M$ is left adjoint so it commutes with colimits. In particular, it sends cokernels to cokernels and is right exact. It also preserves direct sums.
 
