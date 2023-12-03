@@ -34,6 +34,7 @@
 #let ZMod = [$ZZ$-$bd("Mod")$]
 #let SMod = [$S$-$bd("Mod")$]
 #let ModR = [$bd("Mod")$-$R$]
+#let ModS = [$bd("Mod")$-$S$]
 #let homr = [$op("Hom")_R$]
 #let homg = [$op("Hom")_G$]
 #let endr = [$op("End")_RMod$]
