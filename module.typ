@@ -116,7 +116,7 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
   Any #lrm is an $R$-$ZZ$-bimodule, and any #rrm is a $ZZ$-$R$-bimodule. 
 ]
 #example[
-  When $R$ is commutative, $R$ can be seen as an $R$-$R$-bimodule.
+  When $R$ is commutative, any $R$-module can be seen as an $R$-$R$-bimodule.
 ]
 #let Bil = [$"Bil"$]
 #definition[
@@ -204,96 +204,112 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 ]
 
 #corollary[
-    
+  $(phi' oo phi) tp (psi' oo psi) = (phi' tp psi') oo (phi tp psi)$ for any $M ->^phi M' ->^(phi') M''$ and $N ->^psi N' ->^(psi') N''$.
 ]
+#proof[Both send $m tp n$ to $phi'(phi(m)) tp psi'(psi(n))$, but such a homomorphism should be unique. ]
 
 #corollary[
-    $M tpr N$ is a functor to both $M$ and $N$.
-
+  Let $M$ be a #rrm and $N$ be a #lrm, then we have functors 
+  $
+    M tpr - : RMod &-> Ab \
+    B   &|-> M tpr B \
+    (g:B-> B') &mapsto id_M tp g 
+  $
+  $
+    - tpr N : ModR &-> Ab \
+    A &|-> A tpr N \
+    (f: A -> A') &mapsto f tp id_N
+  $
 ]
+
+
 #proposition[
-    Let $Q, R, S$ be rings, $M$ be a $(Q, R)$-bimodule, and $N$ be a $(R, S)$-bimodule. Then $M tpr N$ is a $(Q, S)$-bimodule. 
+    Let $Q, R, S$ be rings, $M$ be a $Q$-$R$-bimodule, and $N$ be a $R$-$ S$-bimodule. Then $M tpr N$ is a $Q$-$S$-bimodule. 
 ]
 #proof[
-    See @li[Proposition 6.5.9].
-]
+    // See @li[Proposition 6.5.9].
+    Let $q in Q$ and $s in S$. Then $f: m |-> q m$ is a homomorphism $M -> M$ and $g: n |-> n s$ is a homomorphism $N -> N$. Then $f tp id_N$ gives a left multiplication on $M tpr N$ and $id_M tp g$ gives a right multiplication on $M tpr N$, which satisfies $(f tp id_N) oo (id_M tp g) = f tp g =  (id_M tp g) oo (f tp id_N)$.
+    ]
 
-In this case we know $M tpr N$ is not merely an abelian group.
+// In this case we know $M tpr N$ is not merely an abelian group.
 
 #proposition[
-    Let $R$ be a commutative ring and $A, B$ be $R$-modules. Then $A tpr B$ is an $R$-module and $h: A times B -> A tpr B$ is $R$-bilinear.  Morever, $A tpr B$ is an initial object in the category of all $R$-bilinear maps.
+    Let $R$ be a commutative ring and $A, B$ be $R$-modules. Then $A tpr B$ is an $R$-module and $h: A times B -> A tpr B$ is $R$-bilinear.  Further, for any $R$-bilinear map $g : A times B -> C$, there exists an $R$-homomorphism $hat(g) : A tpr B -> C$ such that $g = hat(g) oo h$. 
 ]
 #proof[
-    See @rotman[Proposition 2.55].
+    // See @rotman[Proposition 2.55].
+  We view $A$, $B$ as $R$-$R$-bimodules, then we easily see that $A tpr B$ is also an $R$-$R$-bimodule (i.e. an $R$-module) with (left) multiplication given by $(a |-> r a) tp id_B$, hence $r(a tp b) = (r a) tp b = a tp (r b)$ and $h$ is $R$-bilinear. 
+
+  Suppose $g : A times B -> C$ is an $R$-bilinear map.  Then $g$ is $R$-biadditive and $g$ induces a $ZZ$-homomorphism $hat(g) : A tpr B -> C$ such that $g = hat(g) oo h$. We only need to show that $hat(g)$ is also an $R$-homomorphism. Let $r in R$. Then $hat(g) (r (a tp b)) = hat(g) ((r a) tp b) = g(r a, b) = r g(a, b) = r hat(g) (a tp b)$. 
 ]
 
-In this section, let $R$ be a commutative ring unless stated otherwise.
+// In this section, let $R$ be a commutative ring unless stated otherwise.
 
-#definition[
-  Let $M, N, P$ be $R$-modules. A map $f : M times N -> P$ is called *bilinear* if the following identities are satisfied:
+// #definition[
+//   Let $M, N, P$ be $R$-modules. A map $f : M times N -> P$ is called *bilinear* if the following identities are satisfied:
   
-  $
-    f(m + m', n) = f(m, n) + f(m', n) \
-    f(m, n + n') = f(m, n) + f(m, n') \
-    f(r m, n) = r f(m, n) = f(m, r n)
-  $
+//   $
+//     f(m + m', n) = f(m, n) + f(m', n) \
+//     f(m, n + n') = f(m, n) + f(m, n') \
+//     f(r m, n) = r f(m, n) = f(m, r n)
+//   $
   
-]
+// ]
 
 
-Let $k$ be a field and let $veck$ denote the category of $k$-vector spaces. Let $V, W, L in veck$, denote by $"Bilin"(V, W; L)$ the set of bilinear transformations $V times W -> L$. Let $T in "Bilin"(V, W; L)$, then can we write $T$ in terms of linear algebra?
+// Let $k$ be a field and let $veck$ denote the category of $k$-vector spaces. Let $V, W, L in veck$, denote by $"Bilin"(V, W; L)$ the set of bilinear transformations $V times W -> L$. Let $T in "Bilin"(V, W; L)$, then can we write $T$ in terms of linear algebra?
 
-Denote
-$ "Hom"_k (V, W) := "Hom"_veck (V, W) $ as the set of linear transformations $V -> W$, and it is a $k$-vector space (in a natural way).
-//  We denote the same set by $#underline("Hom") (V, W)$ to emphasise the vector space structure. 
+// Denote
+// $ "Hom"_k (V, W) := "Hom"_veck (V, W) $ as the set of linear transformations $V -> W$, and it is a $k$-vector space (in a natural way).
+// //  We denote the same set by $#underline("Hom") (V, W)$ to emphasise the vector space structure. 
 
-We see that
+// We see that
 
-$
-"Bilin"(V, W; L) tilde.eq homk (V, homk (W, L)) tilde.eq homk(V, homk(V, L))
-$
+// $
+// "Bilin"(V, W; L) tilde.eq homk (V, homk (W, L)) tilde.eq homk(V, homk(V, L))
+// $
 
-#remark[This is currying in computer science.]
+// #remark[This is currying in computer science.]
 
-Is $"Bilin"(V, W; -): veck -> bd("Set")$ _representable_? In other words, is there a $k$-vector space $V times.circle_k W$ with a _natural_ isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
-where naturality means that the isomorphism is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
+// Is $"Bilin"(V, W; -): veck -> bd("Set")$ _representable_? In other words, is there a $k$-vector space $V times.circle_k W$ with a _natural_ isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
+// where naturality means that the isomorphism is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
 
-Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any blinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
+// Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any blinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
 
-// #image("imgs/1.png", width: 50%)
+// // #image("imgs/1.png", width: 50%)
 
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOQrU6TVuwAyo8SAzY8BInOIKGLNok480AayGiFMKAHN4RUADMAThF5IyIHBCTkYq4eXog+fkgATEEg7p5RNBGIciCMWGAmIFD0cAAWdiA0RsqmMAAeWHA4cFwAhDYiQA
-#align(center, commutative-diagram(
-  node((1, 0), [$V times W$]),
-  node((1, 1), [$L$]),
-  node((0, 1), [$V tpk W$]),
-  arr((1, 0), (1, 1), []),
-  arr((1, 0), (0, 1), []),
-  arr((0, 1), (1, 1), [$exists !$], "dashed"),
-))
-
-
-Remark: it is also equivalent to asking for an adjoint functor.
-
-For any $(v, w) in V times W$ we want to find $v times.circle w in V tpk W$. This is a bilinear map, so for example:
-
-$
-(v+v') tp w = v tp w + v' tp w
-$
+// // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOQrU6TVuwAyo8SAzY8BInOIKGLNok480AayGiFMKAHN4RUADMAThF5IyIHBCTkYq4eXog+fkgATEEg7p5RNBGIciCMWGAmIFD0cAAWdiA0RsqmMAAeWHA4cFwAhDYiQA
+// #align(center, commutative-diagram(
+//   node((1, 0), [$V times W$]),
+//   node((1, 1), [$L$]),
+//   node((0, 1), [$V tpk W$]),
+//   arr((1, 0), (1, 1), []),
+//   arr((1, 0), (0, 1), []),
+//   arr((0, 1), (1, 1), [$exists !$], "dashed"),
+// ))
 
 
-Note: $V tpk W$ is defined up to a unique isomorphism. This follows from the universal property (ref. category theory). 
+// Remark: it is also equivalent to asking for an adjoint functor.
 
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOVLFqdJq3bccaANZDR4kBmx4CROQCZFDFm0ScemgOTaRimFADm8IqABmAJwi8kMhAcCCRyMW8-AMQgkKQTCJBff3iaOMQ5EEYsMCsQKHo4AAsXEBoAIxgwKCQAZiCLFWsYAA8sOBw4LgBCHUiUjLTQxBMKqprEepps3PYC4tKaRrzW9s6e0UoRIA
-#align(center, commutative-diagram(
-  node((1, 0), [$V times W$]),
-  node((0, 1), [$V tpk W$]),
-  node((2, 1), [$V tpk' W$]),
-  arr((1, 0), (0, 1), []),
-  arr((1, 0), (2, 1), []),
-  arr((2, 1), (0, 1), [$exists !$], curve: 30deg, "dashed"),
-  arr((0, 1), (2, 1), [$exists !$], curve: 30deg, "dashed"),
-))
+// For any $(v, w) in V times W$ we want to find $v times.circle w in V tpk W$. This is a bilinear map, so for example:
+
+// $
+// (v+v') tp w = v tp w + v' tp w
+// $
+
+
+// Note: $V tpk W$ is defined up to a unique isomorphism. This follows from the universal property (ref. category theory). 
+
+// // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQA1AAjwFt4uAdRABfUuky58hFOVLFqdJq3bccaANZDR4kBmx4CROQCZFDFm0ScemgOTaRimFADm8IqABmAJwi8kMhAcCCRyMW8-AMQgkKQTCJBff3iaOMQ5EEYsMCsQKHo4AAsXEBoAIxgwKCQAZiCLFWsYAA8sOBw4LgBCHUiUjLTQxBMKqprEepps3PYC4tKaRrzW9s6e0UoRIA
+// #align(center, commutative-diagram(
+//   node((1, 0), [$V times W$]),
+//   node((0, 1), [$V tpk W$]),
+//   node((2, 1), [$V tpk' W$]),
+//   arr((1, 0), (0, 1), []),
+//   arr((1, 0), (2, 1), []),
+//   arr((2, 1), (0, 1), [$exists !$], curve: 30deg, "dashed"),
+//   arr((0, 1), (2, 1), [$exists !$], curve: 30deg, "dashed"),
+// ))
 
 // #image("imgs/2.png")
 
