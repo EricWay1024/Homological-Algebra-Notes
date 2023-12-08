@@ -1,4 +1,4 @@
-#import "libs/template.typ": *
+#import "../libs/template.typ": *
 
 
 = Module Theory Prerequisites
@@ -69,7 +69,7 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 #proposition[
     For any $R$-module $M$ and map between sets $phi.alt:  X -> M$, there exists a unique module homomorphism $phi : R^(ds X) -> M$ that make the following commute: 
 
-    #align(center,image("imgs/2023-10-28-21-16-04.png",width:30%))
+    #align(center,image("../imgs/2023-10-28-21-16-04.png",width:30%))
 ]
 
 #definition[
@@ -84,8 +84,9 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 
 
 #corollary[
-    Any $R$-module $M$ is isomorphic to a quotient of a free module. <module-generator>
+    Any $R$-module $M$ is isomorphic to a quotient of a free module. 
 ]
+    <module-generator>
 
 #proof[
     Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
@@ -97,8 +98,9 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 ]
 
 #proposition[
-    Any submodule of a free module over a PID is free. <sub-pid>
+    Any submodule of a free module over a PID is free. 
 ]
+    <sub-pid>
 #proof[
     TODO
 ]
