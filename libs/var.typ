@@ -1,5 +1,6 @@
 #import "theorem.typ": *
-#import "commute.typ": node, arr, commutative-diagram
+// #import "commute.typ": node, arr, commutative-diagram
+#import "@preview/commute:0.2.0": node, arr, commutative-diagram
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {
@@ -29,6 +30,7 @@
 #let Set = [$bd("Set")$]
 #let Cat = [$bd("Cat")$]
 #let RMod = [$R$-$bd("Mod")$]
+#let kMod = [$k$-$bd("Mod")$]
 #let GMod = [$G$-$bd("Mod")$]
 #let ZGMod = [$ZZ G$-$bd("Mod")$]
 #let ZMod = [$ZZ$-$bd("Mod")$]

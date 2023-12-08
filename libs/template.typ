@@ -35,4 +35,3 @@
 }
 
 #import "var.typ": *
-#bibliography("../bib.yml")

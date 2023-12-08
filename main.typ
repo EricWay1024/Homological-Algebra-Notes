@@ -1704,17 +1704,76 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 
 // Remark: we now have $(veck, - tpk -)$ which also preserves liner maps. If we have $T: V-> V'$ and $S: W-> W'$ then $T tpk S: V tpk W -> V' tpk W$. (This is heavily used in quntum computing.) This is a symmetric monoidal category.
 
+== Monoidal Categories and $k$-algebras
 #definition[
-  #TODO
-  A $k$-algebra is a monoid object in $(veck, tpk)$; namely, $A in veck$ with multiplication $m: A tpk A -> A$ and a unit $i: k -> A$ which are associative and unital. Namely, $m$ is a multiplication that takes two elements in $A$ and is bilinear; $i$ just sends $1 in K$ to $i(1)$ which is the unit element in $A$. Associativity of $m$ is shown in commuting diagram:
-
-  #image("imgs/3.png")
+  A *monoidal category* is a category $cC$ equipped with a bifunctor $tp: cC times cC -> cC$ associative up to a natural isomorphism, and an object $I$ that is both a left and right identity for $tp$ up to a natural isomorphism.
 ]
+
+#proposition[
+  Let $k$ be a commutative ring, then the category $(kMod, tpk)$ is a monoidal category.
+]
+#definition[
+  A *monoid object* in a monoid category $(cC, tp, I)$ is an object $M$ with two morphisms:
+  - $mu: M tp M -> M$ called *multiplication*,
+  - $eta: I -> M$ called *unit*,
+
+  such that the following diagrams commute:
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAoBZAAhzW84BKXv04gAvqXSZc+QigCM5KrUYs2PPty4iBgiVJAZseAkQBMy6vWatEITaIPSTci6QUqb6+2MkvZMxQyT2s1OwddPxUYKABzeCJQADMAJwgAWyQAFmocCCQAZjDbNgymZxA0zKRLEHyikp8QcsrqrMQyeoLEXNVS+3LdLCgAfT9DdqQuhsQlfubGNAALOjb0jvnZuu8IkfHuXVbxCnEgA
+#align(center, commutative-diagram(
+  node-padding: (70pt, 50pt),
+  node((0, 0), [$(M tp M) tp M$]),
+  node((0, 1), [$M tp (M tp M)$]),
+  node((0, 2), [$M tp M$]),
+  node((1, 2), [$M$]),
+  node((1, 0), [$M tp M$]),
+  arr((1, 0), (1, 2), [$mu$]),
+  arr((0, 2), (1, 2), [$mu$]),
+  arr((0, 0), (1, 0), [$mu tp id_M$]),
+  arr((0, 0), (0, 1), [$alpha$]),
+  arr((0, 1), (0, 2), [$id_M  tp mu$]),
+))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEkACHNTgWRABfUuky58hFAEZyVWoxZs+3XgOGjseAkQBMs6vWatEIZT07shIkBk0SiMqXMOKTauTCgBzeEVAAzACcIAFskMhAcCCQZeSM2GBw6FU4sKAB9NWsg0KQ9SOjEWJdjEDTMlMS6KwDgsKLqKKQAZgMFUpCmGpAc+oimxFa41xAGOhCAIyhq9R66vMbCoZK2QIALaMEKQSA
+#align(center, commutative-diagram(
+  node-padding: (70pt, 50pt),
+  node((0, 0), [$I tp M$]),
+  node((0, 1), [$M tp M$]),
+  node((0, 2), [$M tp I$]),
+  node((1, 1), [$M$]),
+  arr((0, 0), (0, 1), [$eta tp id_M$]),
+  arr((0, 2), (0, 1), label-pos:-.8em, [$id_M tp eta$]),
+  arr((0, 1), (1, 1), [$mu$]),
+  arr((0, 0), (1, 1), [$lambda$]),
+  arr((0, 2), (1, 1), label-pos:-0.8em, [$rho$]),
+))
+  where $alpha$, $lambda$, $rho$ are natural isomorphisms for the associativity, the left identity and the right identity, respectively. 
+]
+#definition[
+  Let $k$ be a commutative ring. A (unital associative) *$k$-algebra* is a monoid object in $(kMod, tpk)$.
+]
+#remark[
+  Let $M$ be a $k$-algebra, then
+$M in kMod$ with multiplication $mu: M tpk M -> M$ which is bilinear and unit $eta: k -> M$ which sends $1 in k$ to $i(1) in M$, the unit element in $M$. 
+
+An equivalent definition: $M$ is a $k$-module as well as a ring, where the ring multiplication satisfies 
+$
+  a (x y) = (a x) y = x( a y) \
+$
+for all $a in k$ and $x,y in M$.
+]
+
+// #definition[
+//   #TODO
+//   A $k$-algebra is a monoid object in $(veck, tpk)$; namely, Associativity of $m$ is shown in commuting diagram:
+
+//   // #image("imgs/3.png")
+// ]
 
 
 
 // == Non-linear version
-
+#remark[
+  $(veck, tpk)$ is a *symmetric monoidal category*, where the tensor product is commutative.
+]
 #remark[
 In  $Set$, 
 $ hom(X times Y, Z) = hom(X, hom (Y, Z)) $ 
@@ -1788,7 +1847,7 @@ $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)) $
 //   This coequaliser basically just makes sure $m r tp n = m tp r n$.
 // ]
 
-== Computational Consequences
+== Computations
 
 
 #example[
@@ -1824,14 +1883,14 @@ $ R^(ds J) -> R^(ds I) -> N -> 0 $
  
   <tensor-ideal>
 ]
-[Check https://math.stackexchange.com/questions/175789/how-to-prove-that-r-i-otimes-r-m-cong-m-im]
+// [Check https://math.stackexchange.com/questions/175789/how-to-prove-that-r-i-otimes-r-m-cong-m-im]
 
-#definition[
-  A *localisation* of ring $R$ is defined as $R[t] over (t x - 1)$, denoted as $R[x^(-1)]$.
-]
 
-#example[
-  $R[x^(-1)] tpr M iso M[x^(-1)]$.
+
+#example[  The *localisation* of a commutative ring $R$ at element $x$ is defined as $R[t] over (t x - 1)$, denoted as $R[x^(-1)]$. 
+
+For $R$-module $M$, we have
+  $ R[x^(-1)] tpr M iso M[x^(-1)] $
 ]
 
 #proof[
@@ -1852,21 +1911,22 @@ $ R^(ds J) -> R^(ds I) -> N -> 0 $
 #pagebreak()
 = Enough Projectives and Injectives 
 
-== $RMod$ has Enough Projectives
-
 #definition[
   An abelian category $cA$ is said to *have enough projectives* (resp. *injectives*) if for any object $M$ there is an epimorphism $P-> M -> 0$ where $P$ is projective (resp. a monomorphism $0 -> M->I$ where $I$ is injective). 
 ]
 
-For most of our homological algebra to work a category needs to have enough projectives and injectives. We show that $RMod$ has enough projectives and injectives.
+For most of our homological algebra to work, a category needs to have enough projectives and injectives. We will show that $RMod$ has enough projectives and injectives.
+== $RMod$ has Enough Projectives
+
 
 #lemma[Free $R$-modules are projective.]
 
 #proof[
 Let $F eq plus.circle.big_(i in I) R x_i$ be a free $R$-module with basis
-$lr({x_i colon i in I})$. Suppose that we have a diagram
+$lr({x_i colon i in I})$. Suppose $pi:A-> B$ is an epimorphism and $f : F->B$ is a morphism, as in the following diagram:
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRACEQBfU9TXfIRQAmclVqMWbAAzdeIDNjwEi0sdXrNWiEAEE5fJYKJlp4zVJ0AxbuJhQA5vCKgAZgCcIAWyQBmajgQSGoSWmyuBiAe3sEBQYjEPG6ePoiiIIGxoZYKWJHRqf4Z8ekMWGDaIFB0cAAW9iAakpWMaLV0tlxAA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((1, 1), [$B$]),
   node((1, 2), [$0$]),
   node((1, 0), [$A$]),
@@ -1878,7 +1938,7 @@ $lr({x_i colon i in I})$. Suppose that we have a diagram
 ))
 
 Since $pi$ is surjective, for each $i$ there is some $a_i in A$ with
-$pi lr((a_i)) eq f lr((e_i))$. Define map
+$pi lr((a_i)) eq f lr((x_i))$. Define map
 $ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo alpha$.
 ]
 
@@ -1897,14 +1957,14 @@ $ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo al
   node((0, 1), [$P$]),
   arr((1, 0), (1, 1), [$g$]),
   arr((1, 1), (1, 2), []),
-  arr((0, 1), (1, 0), [$exists$], "dashed"),
+  arr((0, 1), (1, 0), label-pos:-1em, [$exists$], "dashed"),
   arr((0, 1), (1, 1), [$id$]),
 ))
 
-So there exists a section $P-> F$ in the ses $ ses(K, F, P) $
-and hence $F iso K ds P$, where $K = ker(g)$. This shows that $P$ is a direct summand of a free module.
+So there exists a section $P-> F$ in the #sest $ ses(K, F, P) $
+and hence $F iso K ds P$, where $K = Ker(g)$. This shows that $P$ is a direct summand of a free module.
 
-[This is equivalent to find some idempotent $p: R^(ds I) -> R^(ds I)$ such that $p^2= p$. ? ]
+// [This is equivalent to find some idempotent $p: R^(ds I) -> R^(ds I)$ such that $p^2= p$. ? ] #TODO
 
 Now we show a direct summand of a free module is projective. 
 Suppose that $P$ is a direct summand of a free module. Then there
@@ -1915,7 +1975,7 @@ $f^prime lr((p comma p^prime)) eq f lr((p))$. Since $P xor P^prime$ is
 free, hence projective, $f^prime$ has a lift
 $alpha^prime colon P xor P^prime arrow.r A$. Now define
 $alpha colon P arrow.r A$ by
-$alpha lr((p)) eq alpha^prime lr((p comma 0))$.
+$alpha lr((p)) eq alpha^prime lr((p comma 0))$ and it lifts $f$, showing that $P$ is projective.
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQAhEAX1PU1z5CKchWp0mrdgAYefEBmx4CRaWJoMWbRCACCc-kqFEyxcZqk6ACgAIocG1YDkBhQOXCSpaecnaQVjziMFAA5vBEoABmAE4QALZIoiA4EEjSvNFxiYhqKWmIxJkgsQlIACw0qekafuxRIDQARjBgUEgAzBnypTkdVQV5Fv5RLs2t7bnFvZ0DSTSMWGD+UPRwABYhjRJa7Exo6-RjIC1t6dPZFXOIyYvL7KsbW7W7OvuH26eTALRdF2WISr5TrcSjcIA
 #align(center, commutative-diagram(
