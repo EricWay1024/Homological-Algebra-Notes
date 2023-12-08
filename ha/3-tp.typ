@@ -178,7 +178,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 // Is $"Bilin"(V, W; -): veck -> bd("Set")$ _representable_? In other words, is there a $k$-vector space $V times.circle_k W$ with a _natural_ isomorphism $ "Bilin"(V, W; -) tilde.eq homk (V times.circle_k W, -) $
 // where naturality means that the isomorphism is compatible with changes in $L$: if there is a linear map $T: L -> L'$ then this isomorphism should be compatible with $T$.
 
-// Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any blinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
+// Also equivalent to: is there a vector space $V times.circle_k W$ with a bilinear map $V times W -> V times.circle_k W$ which is universal? We want to find bilinear map $V times W -> V times.circle_k W$ such that for any bilinear map $V times W -> L$, there exists a unique linear map $V times.circle_k W -> L$ such that the diagram commutes:
 
 // // #image("imgs/1.png", width: 50%)
 
@@ -274,6 +274,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
     r tp m &|-> r m
   $
 ]
+<r-tp-m>
 #proof[
   $f : R times M -> M$ defined by $(r, m) mapsto r m$ is $R$-biadditive and thus induces an $R$-homomorphism $phi: R tpr M -> M$ with $r tp m |-> r m$. Now $g : M -> R tpr M$ defined by $g : m mapsto 1 tp m$ satisfies that $phi g$ and $g phi$ are identity maps, so $phi$ is an $R$-isomorphism. 
 ]
@@ -388,7 +389,7 @@ An alternative definition of the tensor product: let $V$ be a vector space with 
 #proposition[
   If $B$ is an $R$-$S$-bimodule and $C$ is a right $S$-module, then $hom_S (B, C)$ is a right $R$-module.
 ]
-
+<hom-module>
 #proof[
   Take any $f in hom_S (B, C)$ and $r in R$, define right multiplication $f r : B -> C$ by $f r(b) = f(r b)$.
   Then we see that $(f r) (b s) = f (r b s) = f (r b) s = (f r) (b) s$ which indicates that $f r$ still an $S$-homomorphism $B -> C$.
@@ -397,13 +398,14 @@ An alternative definition of the tensor product: let $V$ be a vector space with 
 Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 
 #theorem[
-  Let $R$, $S$ be rings. Let $A$ be a #rrm, $B$ be a $R$-$S$-bimodule, and $C$ be a right $S$-module. Then we have a cannoical isomorphism 
+  Let $R$, $S$ be rings. Let $A$ be a #rrm, $B$ be a $R$-$S$-bimodule, and $C$ be a right $S$-module. Then we have a canonical isomorphism 
 $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)) $
   where for $f : A tpr B -> C$, $a in A$, and $b in B$,
   $
     tau(f)(a)(b) = f(a tp b)
   $
 ]
+<tensor-hom>
 #proof[
   $tau$ is a group homomorphism because for any $a in A$ and $b in B$, $ tau(f + g)(a)(b) = (f+g)(a tp b) = f(a tp b) + g(a tp b) = tau(f)(a)(b) + tau(g)(a)(b) $
   and hence $tau(f+g) = tau(f) + tau(g)$.
@@ -452,7 +454,7 @@ $ R^(ds J) -> R^(ds I) -> N -> 0 $
 
 // The functor $- tp_R M$ is left adjoint so it commutes with colimits. In particular, it sends cokernels to cokernels and is right exact. It also preserves direct sums.
 
-//  If we want to calcualte $N tp_R M$. 
+//  If we want to calculate $N tp_R M$. 
 // Then we have
 // $ R^(ds J) tp_R M -> R^(ds I) tp_R M  -> N tp_R M  -> 0 $
 

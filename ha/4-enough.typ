@@ -44,7 +44,7 @@ $ alpha colon F arrow.r A$ by $alpha lr((x_i)) eq a_i$ and we have $f = pi oo al
 
 #proposition[$P$ is a projective $R$-module if and only if $P$ is a direct summand of a free module.
 ]
-
+<projective-summand>
 #proof[
   Assume $P$ is a projective. Then we can always find a free module $F=R^(ds I)$ such that $g: F -> P$ is onto. Using the lifting property,
 
@@ -99,19 +99,22 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$ and it lifts $f$, showing that $P
     $RMod$ has enough projectives. 
 ]
 #proof[
-  For any module $M$ we can find a free (and thus projective) module $F$ with a surjection $ F-> M-> 0 $
+  For any module $M$, we can find a free (and thus projective) module $F$ with a surjection $ F-> M-> 0 $
 ]
 
 
-== $RMod$ has Enough Injectives
+== $Ab$ has Enough Injectives
 
-#lemma("Baer's criterion")[
-  A right $R$-module $M$ is injective iff for every right ideal $I$ of $R$, every module homomorphism $I -> M$ can be extended to $R -> M$.
+#lemma("Baer's Criterion")[
+  A right (resp. left) $R$-module $M$ is injective #iff for every right (resp. left) ideal $I$ of $R$, every module homomorphism $I -> M$ can be extended to $R -> M$.
 ]
+<baer-cri>
 
-#proof[
-  One direction easily follows from definition. We focus on the other.
+#proof[@notes[Theorem 5.8] and @rotman[Theorem 3.30].
 
+  "$=>$". Since any right ideal $I$ is a submodule of $R$, we can extend $I -> M$ to $R ->M$ simply by the definition of injectivity of $M$.
+
+  "$arrow.double.l$".
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbdgHJuvEBmx4CRAExjq9Zq0QcZcnn2WCiAZk0SdbAELzjA1SjLDx2qXoCy3cTCgBzeCJQADMAJwgAWyQyEBwIJFE4uiwGNgALCAgAa3sQcKjE6nikDWTUjKzco3yI6MQyksQLcrS9TJy8gvrYpoAWLUldfK66oriExAGQBiwwYag6OHS-EEHrPUY0dLpDBW7S4snp92GtnYM1mbmFpZWoUcLmo6Rp2fm2ReXVrgouIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -131,43 +134,51 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$ and it lifts $f$, showing that $P
 
   Fix some injection $i colon A arrow.r B$ of
 $R$-modules, and some map $f colon A arrow.r M$. Without loss of
-generality, assume that $A subset.eq B$ and $i$ is the inclusion. 
+generality, assume that $A subset.eq B$ and $i$ is the inclusion. We would like to extend $f$ to some map $B -> M$.
 
 
 [Construction of $A'$ and $alpha' : A' -> M$.] Let
 $Sigma$ be the set whose elements are $R$-module maps
 $alpha^prime colon A^prime arrow.r M$, where
-$A subset.eq A^prime subset.eq B$ and $alpha^prime$ extends $f$. We may give this set a partial order by
+$A subset.eq A^prime subset.eq B$ and $alpha^prime$ extends $f$. 
+We may give this set a partial order by
 saying that $alpha^prime lt.eq alpha^(prime prime)$ when
 $A^prime subset.eq A^(prime prime)$ and $alpha^(prime prime)$ extends
-$alpha^prime$. Suppose that $alpha_1 lt.eq alpha_2 lt.eq dots.h$ is an
+$alpha^prime$. 
+Suppose that $alpha_1 lt.eq alpha_2 lt.eq dots.h$ is an
 ascending chain in $Sigma$, with corresponding modules
-$A_1 subset.eq A_2 subset.eq dots.h$. Let $A^prime eq union A_n$, and
+$A_1 subset.eq A_2 subset.eq dots.h$. 
+Let $A^prime eq union.big A_n$, and
 define $alpha^prime colon A^prime arrow.r M$ by
-$alpha^prime lr((a)) eq alpha_i lr((a))$ for $a in A_i$. It is easy to
+$alpha^prime lr((a)) eq alpha_i lr((a))$ for $a in A_i$. 
+It is easy to
 check that $alpha^prime$ is a well-defined element of $Sigma$, and it is
-an upper bound on the chain \(n.b. we are really just taking the colimit
+an upper bound on the chain \(in other words, we take the colimit
 of the chain).
 Since $Sigma$ is a partially ordered set in which every ascending chain
-has an upper bound, by Zorn’s Lemma it has a maximal element,
+has an upper bound, by Zorn’s Lemma $Sigma$ has a maximal element,
 which we call $alpha^prime colon A^prime -> M$. 
 
 To show that $M$
 is injective, we need to show that $A^prime eq B$, since we then have an
 extension $alpha$ of $f$ to $B$. 
 
-[Construction of $phi : R-> M$.] Suppose that $A^prime eq.not B$. Let $b in B without A^prime$, and
-define 
-$ A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B $ Let
-$I eq brace.l r in R$ : $b r in A^prime}$. Then $I$ is a right ideal of
+[Construction of $phi : R-> M$.] Suppose that $A^prime eq.not B$. Let $b in B without A^prime$. Let
+$ I eq { r in R:b r in A^prime} $ Then $I$ is a right ideal of
 $R$, and we have a map
-$ I arrow.r M comma quad r arrow.r.bar alpha^prime lr((b r)) $
+
+$
+  tilde(phi):I  &->M  \
+  r &|-> alpha^prime lr((b r))
+$
+
 
 By assumption, this extends to a map $phi colon R arrow.r M$. 
 
-[Construction of $alpha'' : A'' -> M$.] We
+[Construction of $alpha'' : A'' -> M$.] Define 
+$ A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B $  We
 claim that there is a well-defined map
-$ alpha^(prime prime) colon A^(prime prime) arrow.r M comma quad a plus b r arrow.r.bar alpha^prime lr((a)) plus phi lr((r)) comma $
+$ alpha^(prime prime) colon A^(prime prime) &arrow.r M  \ a plus b r &arrow.r.bar alpha^prime lr((a)) plus phi lr((r))  $
 where $a in A^prime$ and $r in R$. To see that this is well-defined,
 suppose that $a plus b r eq a^prime plus b r^prime$
 where $a, a' in A'$ and $r, r' in R$.
@@ -182,13 +193,12 @@ Therefore, it follows that
 $alpha^prime lr((a)) plus phi lr((r)) eq alpha^prime lr((a^prime)) plus phi lr((r^prime))$
 so $alpha^(prime prime)$ is well-defined. But then $alpha^(prime prime)$
 strictly extends $alpha^prime$, contradicting maximality of
-$alpha^prime$. Hence $A^prime eq B$.
-
-See @notes[Theorem 5.8] and @rotman[Theorem 3.30].]
+$alpha^prime$. Hence $A^prime eq B$, so $M$ is injective.
+]
 
 #definition[
-  Let $R$ be an integral domain. A $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be \"divided\"
-by $r$, in the sense that there is an element $m^prime$ in $M$ such that
+  Let $R$ be an integral domain. A $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be "divided"
+by $r$, in the sense that there exists an element $m^prime$ in $M$ such that
 $m eq r m^prime$. 
 ]
 This condition can be reformulated by saying that the
@@ -201,7 +211,7 @@ multiplication by $r$ defines a surjective map from $M$ to $M$.
 
 That is, for all $m in M$ and
   $r in R without brace.l 0 brace.r$ there exists $m' in M$ such that
-  $m eq r m'$. Also recall that a PID is an integral domain in which every ideal is principal, i.e., can be generated by a single element.
+  $m eq r m'$. Also recall that a PID is an integral domain in which every ideal is principal, or can be generated by a single element.
 
   // [Unfortunately the notations are confusing, because we use $I$ to represent an ideal in the last theorem but the same letter for an $R$-module here.]
 
@@ -209,7 +219,7 @@ That is, for all $m in M$ and
 // is quite simple. Maybe try proving it yourself before reading on \(use
 // Baer’s Criterion).
 
-#proof[
+#proof[@rotman[Corollary 3.35] and @notes[Corollary 5.9].
 Let $M$ be an injective $R$-module, and let $m in M$ and
 $r in R without brace.l 0 brace.r$. Set $J eq r R$ (which is an ideal of $R$) and define
 $f colon J arrow.r M$ by $f lr((r)) eq m$. By Baer’s Criterion, we may
@@ -226,48 +236,70 @@ $m eq f lr((r))$. Then since $M$ is divisible, there is some $m' in M$
 such that $m eq r m'$. Define $tilde(f) colon R arrow.r M$ by
 $tilde(f) lr((1)) eq m'$. Clearly $tilde(f)$ is an extension of $f$, so
 $M$ is injective by Baer’s Criterion.
+]
 
-See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
+#corollary[
+  In $Ab$, $QQ, ZZ_(p^ infinity) = ZZ[1 / p] over ZZ, QQ over ZZ$ are injective.
+]
 
-#example[
-  In $Ab = ZZ hyph Mod$, we have that $QQ, ZZ_(p^ infinity) = ZZ[1 / p] over ZZ, QQ over ZZ$ are injective.
-
+#remark[
   Every injective abelian group $I = I_"tor" ds I_"free"$, where $I_"free"$ is a $QQ$-vector space and $I_"tor"$ (torsion part) is a direct sum copies of $ZZ_(p^ infinity)$.
+  #TODO
 ]
 
 #lemma[
-    Direct sums of projectives are projectives, and   products of injectives are injectives. 
+    Direct sums of projectives are projectives.
+    
+    Dually, products of injectives are injectives. 
 ]
 
 #proof[
-  The first half is easily seen from 
-  $ Hom (ds P_i, -) = product Hom (P_i, -) $
-  The second half is dual.
+  Suppose ${P_i :  i in I}$ is a family of projective modules. Then for each $i in I$, by @projective-summand we can write $F_i = P_i xor Q_i$ for some free $R$-module $F_i$ and $R$-module $Q_i$. Then 
+  $
+    plus.circle.big_(i in I) F_i = plus.circle.big_(i in I) P_i xor plus.circle.big_(i in I) Q_i
+  $
+  Since $plus.circle.big_(i in I) F_i$ is also a free module, $plus.circle.big_(i in I) P_i$ is also projective.
+  // The first half is easily seen from 
+  // $ hom (plus.circle.big_i P_i, -) = product_i hom (P_i, -) $
+  // The second half is the dual statement.
 ]
 #proposition[
   $Ab$ has enough injectives. 
 ]
+<ab-enough>
 
 #proof[
-  For any $A in Ab$, define a map $I : Ab -> Ab$ by $ I(A) := product_(Hom_Ab (A, QQ over ZZ)) QQ over ZZ $
+  Define a map 
+  $
+    I : Ab  &-> Ab  \
+    A  &|-> product_(hom_Ab (A, QQ over ZZ)) QQ over ZZ 
+  $
+  
+  For any $A in Ab$, $I(A)$ is injective as a product of injectives $QQ over ZZ$.
 
-  The RHS is injective as a product of injectives $QQ over ZZ$.
+  Consider canonical map 
+  
+  $
+    e_A: A &-> I(A) \
+    a &|-> (phi(a))_(phi in hom_Ab (A, QQ over ZZ))
+  $
+  
+  where (because $I(A)$ is a product) we need to define for each $phi  in hom_Ab (A, QQ over ZZ)$ the component $e_(a, phi) : A -> QQ  over ZZ$, which we just define to be $phi$ itself. 
 
-  Consider canonical map $e_A: A -> I(A)$, where (because $I(A)$ is a product) we need to define for each $phi  in hom_Ab (A, QQ over ZZ)$ the component $e_(a, phi) : A -> QQ  over ZZ$, which we just define to be $phi$ itself. Explicitly, for any $a in A$, 
-  $ e_A (a) = (phi(a))_(phi in hom_Ab (A, QQ over ZZ)) $
-
-  We claim that $e_A$ is injective. We need to show that for any $0 != a in A$ there exists $phi in Hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$.
+  We claim that $e_A$ is injective (as a function). We need to show that for any $0 != a in A$ there exists $phi in hom_Ab (A, QQ over ZZ)$ such that $phi(a) != 0$.
   //  (using that $QQ over ZZ$ is injective). 
 
   - If $a$ has an infinite order, then set $phi(a)$ as any nonzero element of $QQ over ZZ$ and we obtain a group homomorphism $phi$ such that $phi(a) != 0$;
   - If $a$ has order $m$ for some integer $m > 1$, then we set $phi(a) = 1/m + ZZ$ and this is a well defined group homomorphism. 
 
-  [See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
+  Thus we have $0 -> A ->^(e_A) I(A)$ with $I(A)$ injective for any $A in Ab$, showing that $Ab$ has enough injectives. 
+  // [See https://math.stackexchange.com/questions/4071941/category-of-abelian-groups-has-enough-injectives.]
 ]
 
 #endlec(6)
 
 // = injective and projective and adjoints 
+== $RMod$ has Enough Injectives
 
 #proposition[
   If an additive functor $R: cB -> cA$ between abelian categories is right adjoint to an exact functor and $I$ is injective in $cB$, then $R(I)$ is injective in $cA$. 
@@ -275,25 +307,26 @@ See @rotman[Corollary 3.35] and @notes[Corollary 5.9].]
   Dually, if an additive functor $L: cA -> cB$ is left adjoint to an exact functor and $P$ is projective in $cA$, then $L(P)$ is projective in $cB$. 
 ]
 #proof[
+  @notes[Lemma 5.25] and @weibel[Proposition 2.3.10].
   We want to show that 
   $ Hom(A)(-, R(I)) $ is exact. 
   We have
   $ Hom(A)(-, R(I)) iso Hom(B)(L(-), I ) $
-  but $L$ is exact and $Hom(B)(-, I)$ is exact, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact.
-
-  See @notes[Lemma 5.25] and @weibel[Proposition 2.3.10].
+  but $L$ is exact by assumption and $Hom(B)(-, I)$ is exact because $I$ is injective in $cB$, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact.
 ]
-With this proposition, we can construct adjunctions to prove if there is enough proj/inj.
+With this proposition, we can prove that an abelian category has enough projectives or injectives by constructing adjunctions.
+
 
 #corollary[
   If $I$ is an injective abelian group, then $hom_Ab (R, I)$ is an injective #rrm.
 ]
 #proof[
+  First recall that by @hom-module, $hom_Ab (R, I)$ is indeed a right $R$-module.
   // Notice that $hom_Ab (R, A)$ is a #lrm.
-Assume $R$ is a ring and $M$ is a #rrm. $ hom_Ab ("Forget"(M), A) bij hom_Ab (M tpr R, A ) bij hom_ModR (M, hom_Ab (R, A)) $
-using hom-tensor adjunction, where $"Forget": ModR -> Ab$ is the forgetful functor and we view $R$ as a left $R$-module here (instead of an $R, R$-bimodule). 
+Assume that $R$ is a ring and $M$ is a #rrm. $ hom_Ab ("Forget"(M), A) bij hom_Ab (M tpr R, A ) bij homr (M, hom_Ab (R, A)) $
+ where $"Forget": ModR -> Ab$ is the forgetful functor, and we view $R$ as an $R$-$ZZ$-bimodule and use @tensor-hom and @r-tp-m.
 
-This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful functor is clearly exact.
+This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful functor is clearly exact, therefore $hom_Ab (R, I)$ is injective in $RMod$.
 ]
 
 #example[
@@ -305,13 +338,21 @@ This shows that $"Forget"$ is left adjoint to $hom_Ab (R, -)$. The forgetful fun
 ]
 
 #proof[
-  Let $M$ be a left $R$-module. 
-  We define
-  $ I(M) = product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ) $
-  $I(M)$ is injective as a product of injectives, and there is a canonical morphism $e_M : M -> I(M)$. We only need to construct $ e_(M, phi) : ModR ->hom_Ab (R, QQ over ZZ), quad M mapsto phi(M) $ for all $phi in homr(M, hom_Ab (R, QQ over ZZ))$.
-
+  Define map 
+  $
+    I : RMod  &-> RMod  \
+    M  &|-> product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ)
+  $
+  
+  For any left $R$-module $M$,
+  $I(M)$ is injective as a product of injectives, and there is a canonical morphism 
+  $
+    e_M: M  &-> I(M ) \
+    m &|-> (phi(m))_(phi in homr(M, hom_Ab (R, QQ over ZZ)))
+  $
   // Exercise: $e_M$ is one-to-one (mono). (like what we did before.) [TODO]
-
+  We would like to show that $e_M$ is an injective function.
   We only need to show that for any $0 != m in M$, there exists $phi : M -> hom_Ab (R, QQ over ZZ)$ such that $phi(m) != 0$. Notice that we have $ phi in homr(M, hom_Ab (R, QQ over ZZ)) iso hom_Ab (M, QQ over ZZ) $
-  Hence we only need to find some $phi : M -> QQ over ZZ$ in $Ab$ so that $phi(m) != 0$. This is the same case as before.
+  as before.
+  Hence we only need to find some $phi : M -> QQ over ZZ$ in $Ab$ so that $phi(m) != 0$. This has become the same situation as in the proof of @ab-enough.
 ]

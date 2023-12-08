@@ -2,20 +2,29 @@
 
 = Chain Complexes
 
+== Definitions
+
 Let $cA$ be an abelian category. 
 
 #definition[
-  A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$ (or $d^2 = 0$), where $d_n$ are called *differentials*. The *$n$-cycles* of $Ccx$ are $ Z_n := ker d_n $ and the *$n$-boundaries* are $ B_n := im d_(n+1) $
+  A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$, where $d_n$ are called *differentials*. 
+  The *$n$-cycles* of $Ccx$ are defined as $ Z_n := Ker d_n $ and 
+  the *$n$-boundaries* are defined as $ B_n := IM d_(n+1) $
  
   We have $ B_n arrow.hook Z_n arrow.hook C_n $ (as subobjects) for all $n$.
 
-  The *$n$-th homology* are defined as $ H_n (C_cx) := coker(B_n arrow.hook Z_n) $
+  The *$n$-th homology* are defined as $ H_n (C_cx) := Coker(B_n arrow.hook Z_n) $
 ]
 
-#align(center,image("../imgs/2023-11-03-12-27-08.png",width:80%))
+#notation[
+  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$.
+]
+
+
+// #align(center,image("../imgs/2023-11-03-12-27-08.png",width:80%))
 
 #definition[
-    We can form a category $"Ch"(cA)$ with objects as chain complexes and morphisms as *chain maps* $u_cx : C_cx -> D_cx$ which
+    We can form a category $"Ch"(cA)$ where objects are chain complexes and morphisms are *chain maps* $u_cx : C_cx -> D_cx$ which
   commutes with differentials, namely for all $n in ZZ$,
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9QgX1PUy58hFAEZyVWoxZsuACjABaUQEoQfAdjwEiZUZPrNWiEABFu6-iAxbhRcfuqGZJ8wuVqekmFADm8IlAAMwAnCABbJDIQHAgkcSkjNihLYLDIxAAmalikAGYnaWMQFI0QUIionLiswqSTJgsyioyE3MQCxJcQRvdVdQoeIA
 #align(center, commutative-diagram(
@@ -50,7 +59,7 @@ Let $cA$ be an abelian category.
 // ]
 
 #proposition[
-  Tfae: 
+  The followings are equivalent: 
   - $C_cx$ is exact at every $C_n$;
   - $C_cx$ is *acyclic*, i.e. $H_n (C_cx) = 0$ for all $n$;
   - $0 -> C_cx$ is a quasi-isomorphism. 

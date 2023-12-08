@@ -1,5 +1,6 @@
 #import "@preview/ctheorems:1.1.0": *
 #import "@preview/commute:0.2.0": node, arr, commutative-diagram
+#import "@preview/cetz:0.1.2"
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {
