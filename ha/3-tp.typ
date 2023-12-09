@@ -292,7 +292,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 
 // Remark: in category theory, we think of things by their properties not their definition.
 
-// Remark: we now have $(veck, - tpk -)$ which also preserves liner maps. If we have $T: V-> V'$ and $S: W-> W'$ then $T tpk S: V tpk W -> V' tpk W$. (This is heavily used in quntum computing.) This is a symmetric monoidal category.
+// Remark: we now have $(veck, - tpk -)$ which also preserves liner maps. If we have $T: V-> V'$ and $S: W-> W'$ then $T tpk S: V tpk W -> V' tpk W$. (This is heavily used in quantum computing.) This is a symmetric monoidal category.
 
 == Monoidal Categories and $k$-algebras
 #definition[

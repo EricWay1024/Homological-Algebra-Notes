@@ -46,7 +46,7 @@ This section is a crash course in Category Theory. The reader is advised to take
 In general, a category is a "generalised" monoid because in a category you can only compose two morphisms $f, g$ in certain situations (namely, when the codomain of $f$ and the domain of $g$ match), whereas composition is allowed for any two elements of a monoid.
 // ]
 
-#example[ The following are the main cateogries we will be working with.
+#example[ The following are the main categories we will be working with.
   - The category $Set$ has objects which are sets and morphisms which are functions between sets. Notice in category theory we avoid talking directly about elements of a set, because a set, which is an object of the category $Set$, is "atomic" or inseparable.
   - Let $k$ be a field. The category $veck$ has objects which are vector spaces over $k$ and morphisms which are linear transformations between vector spaces. We often denote $hom_veck$ as $homk$. In particular, for any $V, W in veck$, $homk (V, W)$ is also a vector space.
   - Let $R$ be a ring. The category $RMod$ has objects which are #lrms and morphisms which are module homomorphisms. Similarly, we have the category $ModR$ of #rrms. We often denote $hom_RMod$ or $hom_ModR$ as $homr$; it should be clear from the context which one we are referring to.
@@ -200,7 +200,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 
 #proposition[A morphism $f: B->C$ is monic in $cC$ if and only if $f^op : C -> B$ is epic in $cC^op$.]
 
-We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects" and "final objects" are dual; "kernels" and "cokerels" are dual.
+We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects" and "final objects" are dual; "kernels" and "cokernels" are dual.
 
 == Products and Coproducts
 
@@ -259,7 +259,7 @@ $ product_(i in I) X_i = {(x_i)_(i in I) | x_i in X_i} $ and $product.co_(i in I
     arr((0, 0), (1, 1), [$g_i$]),
     arr((0, 1), (1, 1), [$pi_i$]),
   ))
-Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')_i$ for some unique $f': A -> product C_i$ due to the universal property of the product. The existence of $f'$ ensures the surjectivity of $phi$ and uniqueness injectivity. Thus $phi$ is a bijection.
+Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')_i$ for some unique $f': A -> product C_i$ due to the universal property of the product. The existence of $f'$ ensures that $phi$ is surjective and the uniqueness of $f$ ensures injectivity. Thus $phi$ is a bijection.
   // #image("imgs/8.png", width: 50%)
 ]
 
@@ -380,7 +380,7 @@ Consider $Cat$, then two small categories $cC$ and $cD$ are isomorphic if there 
   It does not really matter here if we write $F G => Id$ or $Id => F G$ (the same for $G F$) because it is a natural isomorphism, but the above way of writing is to ensure consistency with an alternative definition of adjoint functors.
 
 #remark[
-  Let $X, Y in Top$ and $f: X arrows.lr Y : g$ be continuous maps. If $f compose g tilde id $ and $g compose f tilde id$ then $X, Y$ are homotopy equivalent. Natural transformations are simiar to the notion of homotopy.
+  Let $X, Y in Top$ and $f: X arrows.lr Y : g$ be continuous maps. If $f compose g tilde id $ and $g compose f tilde id$ then $X, Y$ are homotopy equivalent. Natural transformations are similar to the notion of homotopy.
 ] 
 
 == Limits and Colimits
@@ -531,7 +531,7 @@ This section offers some new vocabulary to describe things we already have seen.
 #definition[
   Let $A$ be an object of category $cC$. A *subobject* of $A$ is a monomorphism $u : S -> A$. 
   
-  Give two subobjects $u : S-> A$ and $v : T->A$ of $A$, we define the relation of *inclusion* of subobjects by $u subset.eq v$ if and only if there exists $f : S -> T$ such that $u = v oo f$. Such $f$ is unqiue if it exists, since $v$ is a monomorphism.
+  Give two subobjects $u : S-> A$ and $v : T->A$ of $A$, we define the relation of *inclusion* of subobjects by $u subset.eq v$ if and only if there exists $f : S -> T$ such that $u = v oo f$. Such $f$ is unique if it exists, since $v$ is a monomorphism.
 
   We say two subobjects $u : S-> A$ and $v : T->A$ of $A$ are *equivalent* if $u subset.eq v$ and $v subset.eq u$.
 ]

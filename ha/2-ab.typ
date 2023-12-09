@@ -398,7 +398,7 @@ $ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) |
 
 #example[If $cA$ is an abliean category and $cC$ is any small category and then the category of functors $Fun(cC, cA)$ is abelian. [TODO]]
 
-$Fun(cC^op, cA)$ are presheves from $cC$ to $cA$.
+$Fun(cC^op, cA)$ are presheaves from $cC$ to $cA$.
 
 #example[
   Non-example. Banach spaces over $RR$. We have $V attach(arrow.r.hook, t: i) W$ which are open. Then $coker i = W \/ overline(V)$. Then $ker coker i = overline(V) != V$. (The closure of $V$.)
@@ -659,7 +659,7 @@ Therefore, $R = end_S (S) = S^op$. Thus, indeed, we have $SMod$ is equivalent to
 ]
 
 // #remark[
-//   Using the definition of equivalence, you want to construct another functor in the opposite direction and show their composites are natural isomprphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
+//   Using the definition of equivalence, you want to construct another functor in the opposite direction and show their composites are natural isomorphic to identity functors. Alternatively, you might also prove that the functor is fully faithful and essentially surjective, if you can.
 // ]
 
 #proof[

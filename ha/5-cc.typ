@@ -8,16 +8,20 @@ Let $cA$ be an abelian category.
 
 #definition[
   A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$, where $d_n$ are called *differentials*. 
-  The *$n$-cycles* of $Ccx$ are defined as $ Z_n := Ker d_n $ and 
-  the *$n$-boundaries* are defined as $ B_n := IM d_(n+1) $
+  The *$n$-cycles* of $Ccx$ are defined as $  Z_n C := Ker d_n $ and 
+  the *$n$-boundaries* are defined as $ B_n C := IM d_(n+1) $
  
-  We have $ B_n arrow.hook Z_n arrow.hook C_n $ (as subobjects) for all $n$.
+  Since  $d_n oo d_(n-1) = 0$, we have $ B_n C arrow.hook Z_n C arrow.hook C_n $ (as subobjects) for all $n$.
 
-  The *$n$-th homology* are defined as $ H_n (C_cx) := Coker(B_n arrow.hook Z_n) $
+  The *$n$-th homology* is defined as $ H_n (C_cx) := Coker(B_n C arrow.hook Z_n C) $
 ]
 
 #notation[
-  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$.
+  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n C$ and $B_n = B_n C$.
+]
+
+#remark[
+  In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. An $n$-boundary must be an $n$-cycle because $d^2= 0$. The $n$-th homology becomes a quotient module#footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], $ H_n (C_cx) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)) $  An element in $H_n (C_n)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
 ]
 
 
@@ -25,7 +29,11 @@ Let $cA$ be an abelian category.
 
 #definition[
     We can form a category $"Ch"(cA)$ where objects are chain complexes and morphisms are *chain maps* $u_cx : C_cx -> D_cx$ which
-  commutes with differentials, namely for all $n in ZZ$,
+  commutes with differentials 
+  $
+    u d = d u
+  $
+  Namely, for all $n in ZZ$,
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9QgX1PUy58hFAEZyVWoxZsuACjABaUQEoQfAdjwEiZUZPrNWiEABFu6-iAxbhRcfuqGZJ8wuVqekmFADm8IlAAMwAnCABbJDIQHAgkcSkjNihLYLDIxAAmalikAGYnaWMQFI0QUIionLiswqSTJgsyioyE3MQCxJcQRvdVdQoeIA
 #align(center, commutative-diagram(
   node-padding: (30pt, 50pt),
@@ -40,18 +48,35 @@ Let $cA$ be an abelian category.
   arr((0, 1), (1, 1), [$u_(n-1)$]),
 )) commutes.
 ]
-#example[
-  Show that $u_cx : Ccx -> Dcx$ induces a morphism $H_n (u_cx) : H_n (Ccx) -> H_n (Dcx)$ and thus $H_n : "Ch"(cA) -> cA$ is a functor. 
+#proposition[
+$Ch(cA)$ is an abelian category if $cA$ is an abelian category.
+]
+#proof[
+@rotman[Proposition 5.100]. 
 ]
 
+#proposition[
+  A chain map $u_cx : Ccx -> Dcx$ induces a morphism $ H_n (u_cx) : H_n (Ccx) -> H_n (Dcx) $
+]
+#proof[
+  It suffices to assume $cA = RMod$. First we show that $u_n : C_n -> D_n$ sends boundaries to boundaries. Take boundary $b in C_n$, then there exists $c in C_(n+1)$ such that $d(c) = b$. Thus $u(b) = u d(c) = d u (c)$, showing that $u(b)$ is a boundary in $D_n$. 
+
+  Next we show that $u_n : C_n -> D_n$ sends cycles to cycles. Take cycle $z in C_n$ such that $d(z) = 0$. Then $d u(z) = u d(z) = u(0) = 0$, showing that $u(z)$ is a cycle in $D_n$. 
+
+  Therefore, $u_n$ induces a function $H_n (Ccx) -> H_n (Dcx)$.
+]
+
+#corollary[
+  $H_n : "Ch"(cA) -> cA$ is an additive functor.
+]
 
 #definition[
-  A chain map  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C_cx) -> H_n (D_cx)$ are all isomorphisms. 
+  A chain map  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C_cx) -> H_n (D_cx)$ are  isomorphisms for all $n$. 
 ]
 
 // #remark[
 // (Remark here, connection to topology)
-//   Derived category of an abelien category $cA$ is $ D(A) = Ch(A) ["qiso"^(-1)]$. Compare to $R[s^(-1)]$ for some $s in R$ and non-commutative $R$. 
+//   Derived category of an abelian category $cA$ is $ D(A) = Ch(A) ["qiso"^(-1)]$. Compare to $R[s^(-1)]$ for some $s in R$ and non-commutative $R$. 
   
 //   Non-linear version: homotopy types. $Top[W^(-1)]$
 
@@ -191,12 +216,7 @@ See @weibel[Translation 1.2.8].
 // $f: Ccx -> Dcx$ => $f[p]_n = f_(n+p)$ 
 
 == Exact Sequences
-#proposition[
-$Ch(cA)$ is an abelian category if $cA$ is an abelian category.
-]
-#proof[
-See @rotman[Proposition 5.100]. 
-]
+
 
 
 We can form short exact sequences with chain complexes, and they naturally induce long exact sequences in (co)homology.
