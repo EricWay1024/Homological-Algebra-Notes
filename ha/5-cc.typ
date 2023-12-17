@@ -8,20 +8,20 @@ Let $cA$ be an abelian category.
 
 #definition[
   A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$, where $d_n$ are called *differentials*. 
-  The *$n$-cycles* of $Ccx$ are defined as $  Z_n C := Ker d_n $ and 
-  the *$n$-boundaries* are defined as $ B_n C := IM d_(n+1) $
+  The *$n$-cycles* of $Ccx$ are defined as $  Z_n (C) := Ker d_n $ and 
+  the *$n$-boundaries* are defined as $ B_n (C) := IM d_(n+1) $
  
-  Since  $d_n oo d_(n-1) = 0$, we have $ B_n C arrow.hook Z_n C arrow.hook C_n $ (as subobjects) for all $n$.
+  Since  $d_n oo d_(n-1) = 0$, we have $ B_n (C) arrow.hook Z_n (C) arrow.hook C_n $ (as subobjects) for all $n$.
 
-  The *$n$-th homology* is defined as $ H_n (C_cx) := Coker(B_n C arrow.hook Z_n C) $
+  The *$n$-th homology* is defined as $ H_n (C) := Coker(B_n (C) arrow.hook Z_n (C)) $
 ]
 
 #notation[
-  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n C$ and $B_n = B_n C$.
+  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
 ]
 
 #remark[
-  In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. An $n$-boundary must be an $n$-cycle because $d^2= 0$. The $n$-th homology becomes a quotient module#footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], $ H_n (C_cx) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)) $  An element in $H_n (C_n)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
+  In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. An $n$-boundary must be an $n$-cycle because $d^2= 0$. The $n$-th homology becomes a quotient module#footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], $ H_n (C) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)) $  An element in $H_n (C)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
 ]
 
 
@@ -56,14 +56,14 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 ]
 
 #proposition[
-  A chain map $u_cx : Ccx -> Dcx$ induces a morphism $ H_n (u_cx) : H_n (Ccx) -> H_n (Dcx) $
+  A chain map $u_cx : Ccx -> Dcx$ induces a morphism $ H_n (u) : H_n (C) -> H_n (D) $
 ]
 #proof[
   It suffices to assume $cA = RMod$. First we show that $u_n : C_n -> D_n$ sends boundaries to boundaries. Take boundary $b in C_n$, then there exists $c in C_(n+1)$ such that $d(c) = b$. Thus $u(b) = u d(c) = d u (c)$, showing that $u(b)$ is a boundary in $D_n$. 
 
   Next we show that $u_n : C_n -> D_n$ sends cycles to cycles. Take cycle $z in C_n$ such that $d(z) = 0$. Then $d u(z) = u d(z) = u(0) = 0$, showing that $u(z)$ is a cycle in $D_n$. 
 
-  Therefore, $u_n$ induces a function $H_n (Ccx) -> H_n (Dcx)$.
+  Therefore, $u_n$ induces a function $H_n (C) -> H_n (D)$.
 ]
 
 #corollary[
@@ -71,7 +71,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 ]
 
 #definition[
-  A chain map  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C_cx) -> H_n (D_cx)$ are  isomorphisms for all $n$. 
+  A chain map  $C_cx -> D_cx$ is called a *quasi-isomorphism* if the induced maps $H_n (C) -> H_n (D)$ are  isomorphisms for all $n$. 
 ]
 
 // #remark[
@@ -86,7 +86,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 #proposition[
   The followings are equivalent: 
   - $C_cx$ is exact at every $C_n$;
-  - $C_cx$ is *acyclic*, i.e. $H_n (C_cx) = 0$ for all $n$;
+  - $C_cx$ is *acyclic*, i.e. $H_n (C) = 0$ for all $n$;
   - $0 -> C_cx$ is a quasi-isomorphism. 
 ]
 #proof[Trivial.]
@@ -98,11 +98,11 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 // ]
 
 #definition[
-  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n := ker d^n $ and the *$n$-coboundaries* are $ B^n := im d^(n+1) $
+  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n+1) $
  
-  We have $ B^n arrow.hook Z^n arrow.hook C^n $ (as subobjects) for all $n$.
+  We have $ B^n ( C) arrow.hook Z^n (C) arrow.hook C^n $ (as subobjects) for all $n$.
 
-  The *$n$-th cohomology* are defined as $ H^n (C^cx) := coker(B^n arrow.hook Z^n) $
+  The *$n$-th cohomology* are defined as $ H^n (C) := Coker(B^n (C) arrow.hook Z^n (C)) $
 ]
 
 #example[
@@ -143,8 +143,25 @@ See @weibel[Application 1.1.4].
   A chain map $f: Ccx -> Dcx$ is *null homotopic* if there are maps $s_n : C_n -> D_(n+1)$ such that $f = d s + s d$, or more rigorously,
   $ f_n = d_(n+1) s_n + s_(n+1) d_n $
   for all $n$.
-  #align(center,image("../imgs/2023-10-31-00-07-24.png",width:50%))
-  (This is not a commutative diagram.) We denote $f tilde 0$ in this case.
+  // #align(center,image("../imgs/2023-10-31-00-07-24.png",width:50%))
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ACjAGoAjAEoQAX1LpMufIRQDyVWoxZsuhcZOx4CRAEwLq9Zq0QceYALTCxEkBi0yiZAYqMrTAEXOCRGu1O1ZZHkXQ2UTEC91W3tpHRR9UKVjNi9eHzFFGCgAc3giUAAzACcIAFskMhAcCCR5ZPcQKBsi0orEepqkfQaI5r8S8rrqLsQAZmoGLDA+ujgAC2yQMJTTBAG24eraxAAWFcbClpBB9p7R-ZApmbYoOcXmg4j121OkCe2kS7c+47e9kY7ACsT1umVEQA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$C_(n+1)$]),
+  node((0, 1), [$C_n$]),
+  node((0, 2), [$C_(n-1)$]),
+  node((1, 0), [$D_(n+1)$]),
+  node((1, 1), [$D_n$]),
+  node((1, 2), [$D_(n+1)$]),
+  arr((0, 0), (0, 1), [$d$]),
+  arr((0, 1), (0, 2), [$d$]),
+  arr((0, 1), (1, 0), label-pos:-1em, [$s$], "dashed"),
+  arr((0, 1), (1, 1), [$f$]),
+  arr((0, 2), (1, 1), label-pos:-1em, [$s$], "dashed"),
+  arr((1, 0), (1, 1), [$d$]),
+  arr((1, 1), (1, 2), [$d$]),
+))
+  (Only the solid lines commute.) We denote $f tilde 0$ in this case.
 ]
 #definition[
   Two chain maps $f$ and $g$ from $Ccx$ to $Dcx$ are *chain homotopic* if $f - g$ is null homotopic. We denote $f tilde g$.
@@ -162,7 +179,7 @@ $f_* comma g_* colon H_n lr((C)) arrow.r H_n lr((D))$
 are equal. In particular, if $f: Ccx-> Dcx$ is null homotopic, then $f_* = 0 : H_n (C) -> H_n (D)$. 
 ]
 
-#proof[ Let $h$ be a chain homotopy from $f$ to $g$. We have
+#proof[@notes[Lemma 2.32], @weibel[Lemma 1.4.5]. Let $h$ be a chain homotopy from $f$ to $g$. We have
 
 $ f_n minus g_n eq s_(n minus 1) compose d_n^(lr((C))) plus d_(n plus 1)^(lr((D))) compose s_n $
 
@@ -175,12 +192,11 @@ $ f_* lr((x)) minus g_* lr((x)) & eq lr([f_n lr((c)) minus g_n lr((c))])\
  & eq 0 comma $
 
 The third equality is because $c$ is an $n$-cycle  in $C$ and last equality is because $d_(n plus 1)^(lr((D))) compose s_n lr((c))$ is an $n$-boundary in $D$.
-
-See @notes[Lemma 2.32] and @weibel[Lemma 1.4.5].]
+ ]
 
 #endlec(7)
 
-#definition[
+#definition[@weibel[Translation 1.2.8].
 If $C = Ccx$
 is a chain complex (resp. cochain complex) and $p$ an integer, we form a new complex $C lr([p])$ as
 follows:
@@ -197,7 +213,6 @@ That is, if $f colon C arrow.r D$ is a chain map, then
 $f lr([p])$ is the chain map given by the formula
 $ f lr([p])_n eq f_(n plus p) quad lr((upright("resp. ") f lr([p])^n eq f^(n minus p))) $
 
-See @weibel[Translation 1.2.8].
 ]
 
 // #definition[
@@ -217,27 +232,26 @@ See @weibel[Translation 1.2.8].
 
 == Exact Sequences
 
-
-
-We can form short exact sequences with chain complexes, and they naturally induce long exact sequences in (co)homology.
+Recall that if $cA$ is an abelian category, then $Ch(cA)$ is also an abelian category.
+Therefore, we can form short exact sequences with chain complexes, and it turns out that they naturally induce long exact sequences in (co)homology.
 
 #definition[ For chain complexes $A_cx, B_cx, Ccx$,
-$ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, C_n)$ is a short exact sequence for all $n$.
+$ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is a short exact sequence for all $n$.
 ]
 
 // Long exact sequence. 
 
 #theorem[
-  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of chain complexes, there is a natural map (for each $n$) $ diff: H_n (C) -> H_(n-1) (A) $ (which we call the *connecting homomorphism*) making 
+  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of chain complexes, then there is a natural map for each $n$ $ diff_n: H_n (C) -> H_(n-1) (A) $ which we call the *connecting homomorphism*, making 
   $ ... -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) -> H_(n-1)(B) -> ... $
-  a long exact sequence. 
-
-  Same with cochain complexes, with the connecting homomorphism 
-  $ diff : H^n\(C) -> H^(n+1)(A) $
+  a long exact sequence. Further, $diff_n$ is explicitly given by the well-defined expression  $ diff_n = f^(-1) d_B g^(-1) $
+  
+  The same holds for cochain complexes with the connecting homomorphism 
+  $ diff^n : H^n\(C) -> H^(n+1)(A) $
 ]
 
 #proof[
-  This is an application of the Snake Lemma. 
+  Again, we can safely assume the context of $RMod$. This is an application of the @snake[Snake Lemma]. 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBBAPqFuvbHgJEATKOr1mrRCABCcrjxAYlAogGYN47WwDChhSb7LByACzWtk3Ryen+FRQyITFvHXYjRUC3EVDNCQjZAAowAFohAEoo5zMg5HV4mx99GVSM7P8XcxQrIvD7MvSsnIDXIk96xLY-MRgoAHN4IlAAMwAnCABbJDIQHAgkIScJ6aXqBaRVFcmZxHV5xcQLHbXjjaP3U72RQ6QANgTbXSgc1b2DzcQAdieS1+uSCsd0QAA5qAw6AAjGAMAAK1SCIAYMFGOBAfwiAOM7yQAFYLg9AYhHiDvsTfiDQcTwSCAJycCicIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -255,23 +269,23 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, 
   arr((0, 1), (0, 2), []),
   arr((0, 2), (0, 3), []),
   arr((0, 3), (0, 4), []),
-  arr((0, 1), (1, 1), [$d$]),
-  arr((0, 2), (1, 2), [$d$]),
-  arr((0, 3), (1, 3), [$d$], label-pos: left),
+  arr((0, 1), (1, 1), [$d_A$]),
+  arr((0, 2), (1, 2), [$d_B$]),
+  arr((0, 3), (1, 3), [$d_C$], label-pos: left),
   arr((1, 0), (1, 1), []),
   arr((1, 1), (1, 2), []),
   arr((1, 2), (1, 3), []),
   arr((1, 3), (1, 4), []),
 ))
-  Using the Snake Lemma, if we write the cokernels (and shifting up the index by $1$), we get 
+  Using the Snake Lemma, if we write the cokernels (and shift up the index by $1$), we get 
   $
     A_n / (d A_(n+1)) -> B_n / (d B_(n+1)) -> C_n / (d C_(n+1)) -> 0
   $
-  is exact, where $d A_(n+1) = im d$; if we write the kernels, we get
+  is exact, where $d A_(n+1) = IM d$; if we write the kernels, we get
   $
     0-> Z_(n-1)(A) -> Z_(n-1)(B) -> Z_(n-1)(C) 
   $
-  is also exact. Notice $d A_n subset.eq Z_(n-1)(A)$ so we can use $d$ to connect the rows again:
+  is also exact. Notice that $d A_n subset.eq Z_(n-1)(A)$, so we can use $d$ to connect the rows again:
   
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQBBAfTAAIB6XgAoovbkLABqYgEoZIAL6l0mXPkIoATBWp0mrdgCEeA4aOMTpcxcpAZseAkQDMOmgxZtEIAMInBIrx+lrLySioO6kQALG56nuzkNhFqTijkpMS6HgbeSeF2qo4aJJnZ+l4gAFpcEgC0skIcYbb2qSXaWe4V7DX1jYYtKcUuZd0J3n1gDTJCPmG6MFAA5vBEoABmAE4QALZIGSA4EEjEBdt7pzTHSJrnO-uI2kcniM73l4ixL0gArB+PX7XV4ANgBSBBwKQAHZwYhDjdEED4rkQFBkiALo8yD9EJCUZV0XDnojoeNUUTKAogA
 #align(center, commutative-diagram(
@@ -290,40 +304,104 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence (s.e.s.)* if $ses(A_n, B_n, 
   arr((1, 0), (1, 1), []),
   arr((1, 1), (1, 2), []),
   arr((1, 2), (1, 3), []),
-  arr((0, 1), (1, 1), [$d$]),
-  arr((0, 2), (1, 2), [$d$]),
-  arr((0, 3), (1, 3), [$d$]),
+  arr((0, 1), (1, 1), [$d_A$]),
+  arr((0, 2), (1, 2), [$d_B$]),
+  arr((0, 3), (1, 3), [$d_C$]),
 ))
 
-  Notice $ ker ( A_n / (d A_(n+1)) rgt(d) Z_(n-1) (A)) = H_n\(A) $ and 
+  Notice that $ Ker ( A_n / (d A_(n+1)) rgt(d) Z_(n-1) (A)) = H_n\(A) $ and 
   $
-    coker ( A_n / (d A_(n+1)) rgt(d) Z_(n-1) (A)) = H_(n-1) (A)
+    Coker ( A_n / (d A_(n+1)) rgt(d) Z_(n-1) (A)) = H_(n-1) (A)
   $
   and the other two columns are similar.
   By the Snake Lemma again, we have the connecting map:
   $
-    H_n (A) -> H_n (B) -> H_n (C) rgt(diff) H_(n-1) (A) ->  H_(n-1) (B) ->  H_(n-1) (C)
+    H_n (A) -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) ->  H_(n-1) (B) ->  H_(n-1) (C)
   $
 
   // #align(center,image("imgs/2023-11-03-11-53-54.png",width:80%))
 
   Putting all these exact sequences together, we get the desired long exact sequence.
 
-  See https://web.northeastern.edu/suciu/MATH7221/les_homology.pdf.
-]
-#remark[
-  The connecting morphism can be written as $diff = f^(-1) d_B g^(-1)$. This is well defined in the same way as in the proof of the Snake Lemma. 
+  The explicit expression for $diff_n$ follows directly from the Snake Lemma.
+  // See https://web.northeastern.edu/suciu/MATH7221/les_homology.pdf.
 ]
 
-#example[
-  Show that there exists a functor 
+#theorem([Naturality of $diff$])[
+  Given a morphism between short exact sequences of chain complexes, i.e. a commutative diagram
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBBAPoBjAB5ceIDNjwEiAJlHV6zVohAAheUu691AogGZd4g2wDCZ5Zf6aUAFnv7JRjgtVPg1BElIhMT9Ddjdgq09kEUi9CRipAHJXILUPMJ0Uh38TLMU43NDbCKi051LzFQrrb2rUxwCuMRgoAHN4IlAAMwAnCABbJDIQHAgkISCR8bnqGaQdIpjBuMWJxHXVxDsNth7t0d2jg68F8+Xp2cQANhulvZWHgHYXi-ekAA5vkgAKy-J6Ap6gj5tYqDDJnV5Q+7-aExHpw8F-UEATk4FE4QA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$0$]),
+  node((0, 1), [$A_cx$]),
+  node((0, 2), [$B_cx$]),
+  node((0, 3), [$C_cx$]),
+  node((0, 4), [$0$]),
+  node((1, 0), [$0$]),
+  node((1, 1), [$A'_cx$]),
+  node((1, 2), [$B'_cx$]),
+  node((1, 3), [$C'_cx$]),
+  node((1, 4), [$0$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), [$f$]),
+  arr((0, 2), (0, 3), [$g$]),
+  arr((0, 3), (0, 4), []),
+  arr((0, 1), (1, 1), [$alpha$]),
+  arr((0, 2), (1, 2), [$beta$]),
+  arr((0, 3), (1, 3), [$gamma$]),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), [$f'$]),
+  arr((1, 2), (1, 3), [$g'$]),
+  arr((1, 3), (1, 4), []),
+))
+  then there is a morphism between long exact sequence, i.e. a commutative diagram
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAJAfTAAIAKAIIBKEAF9S6TLnyEUAJgrU6TVu259+AIVESp2PASIBmJTQYs2iTjwEBhXZJAYDsogBYzKy+q78wALTEwgIi4k4uMkYoZMTKFmrWGqEA5I76UXLIinHmqlY2mlpp4RmGWaa53omF9iV6ztLlHqRVCQXc-kEh-Hb1EU1uKORe7ewAdJOlja7RyACso-kTUw2RzcOt8cvWk+PT60MLW3k+u6vKMFAA5vBEoABmAE4QALZIABw0OBBI5A3PN5-b6-RBkaoFB5cehwHDTQHvMEgpCKCHsa7Q2Hwl6I1E-JCmNHWKBYB4PbFAxCE-GIACcAJxSGIIxANPcDMpnlZoMWRJADxSmLhHMRvJpADZTjVroKYcKnAikJLuUgAOxSgokskUxHqlVg4gi4H69kKxlI-XzI2IPGg8XW6mg1ViShiIA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 1), [$H_n (A)$]),
+  node((0, 2), [$H_n (B)$]),
+  node((0, 3), [$H_n (C)$]),
+  node((0, 4), [$H_(n-1) (A)$]),
+  node((1, 1), [$H_n (A')$]),
+  node((1, 2), [$H_n (B')$]),
+  node((1, 3), [$H_n (C')$]),
+  node((1, 4), [$H_(n-1) (A')$]),
+  node((0, 0), [$...$]),
+  node((0, 5), [$...$]),
+  node((1, 0), [$...$]),
+  node((1, 5), [$...$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 1), (0, 2), [$f_ast$]),
+  arr((0, 2), (0, 3), [$g_ast$]),
+  arr((0, 3), (0, 4), [$diff$]),
+  arr((0, 4), (0, 5), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), [$f'_ast$]),
+  arr((1, 2), (1, 3), [$g'_ast$]),
+  arr((1, 3), (1, 4), [$diff'$]),
+  arr((1, 4), (1, 5), []),
+  arr((0, 1), (1, 1), [$alpha_ast$]),
+  arr((0, 2), (1, 2), [$beta_ast$]),
+  arr((0, 3), (1, 3), [$gamma_ast$]),
+  arr((0, 4), (1, 4), [$alpha_ast$]),
+))
+]
+#proof[@rotman[Theorem 6.13].
+  Since $H_n$ is a functor, the leftmost two squares commute. Take $[c] in H_n (C)$ for some $c in Z_n (C)$, we need to show that $alpha_ast diff ([c]) = diff' gamma_ast ([c])$. 
+  
+  Let $b in B_n$ be a lifting of $c$, i.e. $g(b) = c$. Then $diff([c]) = [a]$, where $f(a) = d_B (b)$. Therefore, $alpha_ast diff([c]) = [alpha (a)]$. 
+  
+  On the other hand, since $gamma$ is a chain map, we have $g' beta (b)= gamma g (b) = gamma (c)$. We see that $b' := beta(b) in B'_n$ is a lifting of $c'$ because $g'(b') = g'(beta(b)) = gamma(g(b)) = gamma(c) = c'$. Hence $diff' gamma_ast ([c]) = diff' ([gamma(c)]) = [a']$, where $f'(a') = d_(B') (b') = d_(B') (beta (b))$. 
+  
+  But 
+  $
+    f'(alpha(a)) = beta(f(a)) = beta(d_B (b)) = d_(B') (beta(b)) = f'(a')
+  $
+  and $f'$ is injective, so $alpha(a) = a'$.
+]
 
-  category of ses of complexes in $cA$
-  $->$
-  category of les in $cA$
-
-  We just construct the object maps, still need to verify it works on the morphisms and thus it is a functor.
-  #TODO
+#corollary[Let $cA$ be an abelian category.
+  Then there exists a functor from the category of #sess of complexes in $cA$ to the category of #less in $cA$.
 ]
 
 == Resolutions

@@ -771,6 +771,7 @@ $ ker f -> ker g -> ker h attach(->, t: diff)  coker f -> coker g -> coker h $
 Further, if $A' -> B'$ is monic, so is $ker f -> ker g$.
 If $B -> C$ is epic, so is $coker g -> coker h$.
 ]
+<snake>
 #proof[
   [See https://faculty.etsu.edu/gardnerr/5410/notes/Snake-Lemma.pdf.]
 We have the following commutative diagram: 
