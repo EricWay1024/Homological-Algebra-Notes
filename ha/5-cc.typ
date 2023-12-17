@@ -86,7 +86,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 #proposition[
   The followings are equivalent: 
   - $C_cx$ is exact at every $C_n$;
-  - $C_cx$ is *acyclic*, i.e. $H_n (C) = 0$ for all $n$;
+  - $C_cx$ is *acyclic*, i.e., $H_n (C) = 0$ for all $n$;
   - $0 -> C_cx$ is a quasi-isomorphism. 
 ]
 #proof[Trivial.]
@@ -328,7 +328,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 ]
 
 #theorem([Naturality of $diff$])[
-  Given a morphism between short exact sequences of chain complexes, i.e. a commutative diagram
+  Given a morphism between short exact sequences of chain complexes, i.e., a commutative diagram
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBBAPoBjAB5ceIDNjwEiAJlHV6zVohAAheUu691AogGZd4g2wDCZ5Zf6aUAFnv7JRjgtVPg1BElIhMT9Ddjdgq09kEUi9CRipAHJXILUPMJ0Uh38TLMU43NDbCKi051LzFQrrb2rUxwCuMRgoAHN4IlAAMwAnCABbJDIQHAgkISCR8bnqGaQdIpjBuMWJxHXVxDsNth7t0d2jg68F8+Xp2cQANhulvZWHgHYXi-ekAA5vkgAKy-J6Ap6gj5tYqDDJnV5Q+7-aExHpw8F-UEATk4FE4QA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -354,7 +354,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
   arr((1, 2), (1, 3), [$g'$]),
   arr((1, 3), (1, 4), []),
 ))
-  then there is a morphism between long exact sequence, i.e. a commutative diagram
+  then there is a morphism between long exact sequence, i.e., a commutative diagram
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAJAfTAAIAKAIIBKEAF9S6TLnyEUAJgrU6TVu259+AIVESp2PASIBmJTQYs2iTjwEBhXZJAYDsogBYzKy+q78wALTEwgIi4k4uMkYoZMTKFmrWGqEA5I76UXLIinHmqlY2mlpp4RmGWaa53omF9iV6ztLlHqRVCQXc-kEh-Hb1EU1uKORe7ewAdJOlja7RyACso-kTUw2RzcOt8cvWk+PT60MLW3k+u6vKMFAA5vBEoABmAE4QALZIABw0OBBI5A3PN5-b6-RBkaoFB5cehwHDTQHvMEgpCKCHsa7Q2Hwl6I1E-JCmNHWKBYB4PbFAxCE-GIACcAJxSGIIxANPcDMpnlZoMWRJADxSmLhHMRvJpADZTjVroKYcKnAikJLuUgAOxSgokskUxHqlVg4gi4H69kKxlI-XzI2IPGg8XW6mg1ViShiIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -389,7 +389,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 #proof[@rotman[Theorem 6.13].
   Since $H_n$ is a functor, the leftmost two squares commute. Take $[c] in H_n (C)$ for some $c in Z_n (C)$, we need to show that $alpha_ast diff ([c]) = diff' gamma_ast ([c])$. 
   
-  Let $b in B_n$ be a lifting of $c$, i.e. $g(b) = c$. Then $diff([c]) = [a]$, where $f(a) = d_B (b)$. Therefore, $alpha_ast diff([c]) = [alpha (a)]$. 
+  Let $b in B_n$ be a lifting of $c$, i.e., $g(b) = c$. Then $diff([c]) = [a]$, where $f(a) = d_B (b)$. Therefore, $alpha_ast diff([c]) = [alpha (a)]$. 
   
   On the other hand, since $gamma$ is a chain map, we have $g' beta (b)= gamma g (b) = gamma (c)$. We see that $b' := beta(b) in B'_n$ is a lifting of $c'$ because $g'(b') = g'(beta(b)) = gamma(g(b)) = gamma(c) = c'$. Hence $diff' gamma_ast ([c]) = diff' ([gamma(c)]) = [a']$, where $f'(a') = d_(B') (b') = d_(B') (beta (b))$. 
   
@@ -405,8 +405,10 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 ]
 
 == Resolutions
+
+
 #definition[
-  Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$ with $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
+  Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$, where $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
   $ ... -> P_2 rgt(d) P_1 rgt(d) P_0 rgt(epsilon) M -> 0 $
   is exact.
 
@@ -416,11 +418,11 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 
   In the same way, we define *right resolutions* and *injective resolutions*, only reversing all the arrows. 
 ]
-
 #proposition[
   $P_cx$ is a resolution if and only if the following chain map $f: P_cx -> M[0]$
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADpOQBfU9TXPkIoAjOSq1GLNgAUA+gCYefEBmx4CRBeOr1mrRCHkjl-dUKIBmHZP2y5xU6oEbhyACw290w495nBTRRPEQlvAxA-FTVAt2tQ3SkIgFknGNctUgTbH0i0lwtRLLCktiiAjJQybPC2TnYeCRgoAHN4IlAAMwAnCABbJDIQHAgkMRyIqCce-rHqEaRtCbYp-xAZgcQlhcRrZcNVlQ2kPZ33NePEAE550cQADgvezfvbpAB2J9nEd7fEADYvpt-n8AKxAubDO6vfZ5CFbP6-WHldbPE5-EGwmBobAMTTwoY7G4gBhYMAROAQUlTRJ2Qz1RrcIA
 #align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
   node((0, 0), [$...$]),
   node((0, 1), [$P_2$]),
   node((0, 2), [$P_1$]),
@@ -449,22 +451,26 @@ is a quasi-isomorphism.
 
 #proof[
   By definition, $P_cx$ is a resolution if and only if 
-  (a) $P_cx$ is exact at $P_n$ for $n>=1$ and 
-  (b) $M = coker(P_1 rgt(d) P_0)$. 
+  
+  1. $P_cx$ is exact at $P_n$ for $n>=1$ and 
+  2. $M = Coker(P_1 rgt(d) P_0)$. 
+
   On the other hand, $f$ is quasi-isomorphism if and only if 
-  (a') $H_n (P_cx) iso H_n\(M[0]) iso 0$ for $n>=1$ and 
-  (b') $ H_0(P_cx) iso H_0(M[0]) iso M$. 
-  (a) is obviously equivalent to (a'); (b') is equivalent to $M = P_0 over im(d) = coker(P_1 rgt(d) P_0)$ and thus  equivalent to (b).
+  3. $H_n (P) iso H_n\(M[0]) iso 0$ for $n>=1$ and 
+  4. $ H_0(P) iso H_0(M[0]) iso M$. 
+  
+  (1) is obviously equivalent to (3). (4) is equivalent to $M iso P_0 over IM(d) = Coker(P_1 rgt(d) P_0)$ and thus  equivalent to (2).
 ]
 // (Some more remark...?)
-
-Instead of working with a complicated object $M$, we are working with a complex of "simple" objects.
+By finding a resolution of a potentially "complicated" object $M$, we can work with a chain complex of "simple" objects, e.g. projective or injective objects.
 
 #lemma[
   If $cA$ has enough projectives, then every object has a projective resolution.
+
+  Dually, if $cA$ has enough injectives, then every object has an injective resolution.
 ]
 
-#proof[
+#proof[@notes[Lemma 5.20].
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAdgBoAmAXVJADcBDAGwFcYkQBZEAX1PU1z5CKABwVqdJq3YAGHnxAZseAkQBs4mgxZtEIAAoB9Ob37KhRACybJO9kYCM8s4NUoArKQDME7dL0cxs6KAirCyBqWvlK6ICYKSq7h1lFaMbLBiWFEXqQO0XYBhk6mIeZuyOSkMgX+cZmhFihVVGmFBobkDeXJ1bWx8S7ZKA7e-eyBXaVZTcgypKm2dYNlSUSjrUuxAHS7PBIwUADm8ESgAGYAThAAtkjWIDgQSFVb7FhBpVe3SLmPz4gHn5YjA0NhGARisFvndATQnkh3F9rrC-gjEK9gewoFDkT8MfCAfM3npQeDISsYUhieiHHjYRp-vd6UgyEzEH8sXoPiUFFTEGJ2cQWYgAJyE1ltOpkrAQsCdaEopDi9mc9J6HFTPlKxBs2kyEUOUbslVckAfLUXHUOV60una-EONEA0XcSjcIA
 #align(center, commutative-diagram(
   node-padding: (40pt, 40pt),
@@ -500,46 +506,70 @@ Instead of working with a complicated object $M$, we are working with a complex 
 ))
   Let $M in cA$.
   By definition of having enough projectives, let $epsilon_0: P_0 -> M$ be an epimorphism where $P_0$ is projective.
-  Let $M_0 := ker epsilon_0$, and we have short exact sequence
+  Let $M_0 := Ker epsilon_0$, and we have short exact sequence
 
   $
     0 -> M_0 -> P_0 -> M -> 0
   $
 
-  Now we can let $epsilon_1: P_1 -> M_0$ be an epimorphism and $M_1 := ker epsilon_1$, obtaining the short exact sequence
+  Now we can let $epsilon_1: P_1 -> M_0$ be an epimorphism and $M_1 := Ker epsilon_1$, obtaining the short exact sequence
   $
     ses(M_1, P_1, M_0)
   $
   We define $d_1 = i_0 epsilon_1 : P_1 -> P_0$ and then 
   $
-    d_1(P_1) = M_0 = ker epsilon_0
+    d_1(P_1) = M_0 = Ker epsilon_0
   $
   Thus the chain in exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
   // Set $d_0 = epsilon_0$.
-
   // Suppose we now have monomorphism $i_(n-1) : M_(n-1) -> P_(n-1)$ and $d_(n-1) : P_(n-1) -> P_(n-2)$ 
-  
   // By induction, givenlet $epsilon_n: P_n -> M_(n-1)$ be an epimorphism, where $P_n$ is projective, and let $M_n = ker epsilon_n$. Thus we have
   // $ 0 -> M_n -> P_n -> M_(n-1) -> 0 $
-
   // Define $d_n = i_(n-1) epsilon_n$, which is the composite $P_n -> M_(n-1) -> P_(n-1)$. The image of $d_n$ is $ d_(n) (P_n) = M_(n-1) = ker d_(n-1) $ and hence exact.
-
   // (TODO A very nice commutative diagram!!)
-  See @notes[Lemma 5.20].
 ]
 
 // (Some remarks...)
 
-Dually, we get the same construction for injective resolutions. 
-
 // In the case of $RMod$, we can work with free resolutions instead of just projective ones. 
 
-#theorem("Comparison theorem")[
-  Let $P_cx rgt(epsilon) M$ be a projective resolution of $M$ (enough to assume $P_cx$ is a complex with projective objects). Let $f': M->N$. Then for every resolution $eta: Q_cx -> N$, there is a chain map $f: P_cx -> Q_cx$ lifiting $f'$, i.e. $ eta oo f_0 = f' oo epsilon $
-  which is unique up to a chain homotopy equivalence. (Any two choices of lifting are homotopic.)
+#theorem("Comparison Theorem")[ In an abelian category $cA$, let $f': M->N$. Consider the commutative diagram, where the rows are chain complexes:
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAFgBoAGAXVJADcBDAGwFcYkQBZEAX1PU1z5CKMgEZqdJq3YA5HnxAZseAkQCsFCQxZtEIcvP7Kh60uJrbpeg7yODVKAMyaLU3SAAKAfRsKl94WQAJhdJHXZvUUNFARVA0VDLd28g6P84omdzMKsQAEUfNNiTFBDspPYCqNsY4wdkBPK3Sq9UmvSS5HJE5r0iusDupvC+7gkYKABzeCJQADMAJwgAWyQANhocCCQNHPcoaMWVnc3txDI99gOao9Xz06Ruy70YNGxGVRulu6etpCCvsdEAkQH9EI5AXcAOwPYGuEYgGA4eiHb5IAAcsJhzxAUAA5KigQBOWGYnH4wl3US-M5rSFIUQgsFE+mIDags4knFzVqUk4cjHw3I86oKW5IC5g7EVPQ83zzNGIGkMoXuOYEsbcIA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 4), [$M$]),
+  node((1, 4), [$N$]),
+  node((0, 5), [$0$]),
+  node((1, 5), [$0$]),
+  node((0, 3), [$P_0$]),
+  node((0, 2), [$P_1$]),
+  node((0, 1), [$P_2$]),
+  node((1, 3), [$Q_0$]),
+  node((1, 2), [$Q_1$]),
+  node((1, 1), [$Q_2$]),
+  node((0, 0), []),
+  node((1, 0), []),
+  arr((0, 1), (0, 2), [$d$]),
+  arr((0, 2), (0, 3), [$d$]),
+  arr((0, 3), (0, 4), [$epsilon$]),
+  arr((0, 4), (0, 5), []),
+  arr((1, 4), (1, 5), []),
+  arr((1, 3), (1, 4), [$eta$]),
+  arr((1, 2), (1, 3), [$d'$]),
+  arr((1, 1), (1, 2), [$d'$]),
+  arr((0, 0), (0, 1), []),
+  arr((1, 0), (1, 1), []),
+  arr((0, 1), (1, 1), [$f_2$], "dashed"),
+  arr((0, 2), (1, 2), [$f_1$], "dashed"),
+  arr((0, 3), (1, 3), [$f_0$], "dashed"),
+  arr((0, 4), (1, 4), [$f'$]),
+))
+  Assume that $P_n$ is projective for all $n >= 0$ and that $eta: Q_cx -> N$ is a resolution (i.e., the bottom row is exact), then there is a chain map $f_cx: P_cx -> Q_cx$ lifting $f'$ (i.e., $f_cx$ makes the above diagram commutative).
+  // i.e. $ eta oo f_0 = f' oo epsilon $
+  Further, $f_cx$ is unique up to a chain homotopy equivalence. 
 ]
 
-#proof[// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAUB9ACjAGoAjAEoQAX1LpMufIRQDyVWoxZsAWpzAACbuxHjJ2PASLyBi+s1aIQ6rdwCKeiSAyGZRAEykz1CyuvEYs6u0sYoZD5Klmz2PPzCYoowUADm8ESgAGYAThAAtkhkIDgQSPJR-iBQQVm5BYjlJUheFVYgmRo17XXN1E2IAMz63fmFfaWIACzUDFhgbVB0cAAWySC+ym0wAB5YcDgIwzmjU+O9rWzVohSiQA
+#proof[@weibel[Comparison Theorem 2.26], @rotman[Theorem 6.16]. // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAUB9ACjAGoAjAEoQAX1LpMufIRQDyVWoxZsAWpzAACbuxHjJ2PASLyBi+s1aIQ6rdwCKeiSAyGZRAEykz1CyuvEYs6u0sYoZD5Klmz2PPzCYoowUADm8ESgAGYAThAAtkhkIDgQSPJR-iBQQVm5BYjlJUheFVYgmRo17XXN1E2IAMz63fmFfaWIACzUDFhgbVB0cAAWySC+ym0wAB5YcDgIwzmjU+O9rWzVohSiQA
 #align(center, commutative-diagram(
   node((0, 0), [$P_(n+1)$]),
   node((0, 1), [$Z_n (P)$]),
@@ -552,10 +582,10 @@ Dually, we get the same construction for injective resolutions.
   arr((0, 0), (1, 0), [$exists f_(n+1)$], "dashed"),
   arr((1, 0), (1, 1), [$d'_(n+1)$]),
 )) Set   $f_(-1) = f'$.
-  Suppose $f_n$ has been constructed, we have
-  $d_(n+1)$ mapping $P_(n+1)$ to $B_n (P)$ which is contained in $Z_n (P)$. 
+  By induction, suppose that $f_n$ has been constructed. We have
+  $d_(n+1)$ mapping $P_(n+1)$ to $B_n (P) subset.eq Z_n (P)$. 
   Take any $a in Z_n (P)$, then $ d'_n (f_n (a)) = f_(n-1) (d_n (a)) = f_(n-1) (0) = 0 $
-  hence $f_n (a) in Z_n (Q)$, or $f_n$ sends $Z_n (P)$ to $Z_n (Q)$. Now due to the exactness of $Q_cx$, $d'_(n+1)
+  hence $f_n (a) in Z_n (Q)$, or $f_n : Z_n (P) -> Z_n (Q)$. Now due to the exactness of $Q_cx$, $d'_(n+1)
   : Q_(n+1) -> Z_n (Q)$ is an epimorphism. Since $P_(n+1)$ is an projective object,
   the morphism $f_(n+1) : P_(n+1) -> Q_(n+1)$ exists such that the above diagram commutes.
 
@@ -629,19 +659,50 @@ Now $
 $
 
   Hence $(h_(n+1) - f_(n+1) - s_n d_(n+1))$ sends $P_(n+1)$ to $Z_(n+1) (Q)$.
-
   // The uniqueness is an exercise. 
-  See @weibel[Comparison Theorem 2.26], @rotman[Theorem 6.16].
 ]
 
-#lemma("Horseshoe Lemma")[Suppose given a commutative diagram
-#align(center,image("../imgs/2023-11-04-13-51-57.png",width:50%))
+#lemma("Horseshoe Lemma")[Suppose we have a commutative diagram
+// #align(center,image("../imgs/2023-11-04-13-51-57.png",width:50%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAAUByAfQCYQAvqXSZc+Qil7kqtRizZduxQcJAZseAkQDM06vWatEHHgAYVIjeKIAWPbMNsAgpwtrRmicju8ZB+cZObupiWih22n5yRiAurkKWoV52plGOxuYJ7lZh3qQ2aQEgmaohnjqkkfrRCpxmwR7WkpWFMVw8ylllTSQt1ekmPPxdjbmm9v4xAHQzDTle41UORTNTc0lEAKwTNRnr5SjbS5NsmTIwUADm8ESgAGYAThAAtkjjIDgQSMRZjy-f1E+SF4vyer0QUg+X0QumWMRgaGwDAI8VUf3BxDIULeoP+iGIkKB+NMuIx7yJAE5SUgKYDoQAOamIel0pDbOFsBFIlGo+5gpAANlZMKZsKJdg5xiw3CCTIlRPZJ2MaGlsrR-MQ7KJAHZRcLiNomVrocQbAIKAIgA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
+  node((1, 1), [$P'_2$]),
+  node((1, 2), [$P'_1$]),
+  node((1, 3), [$P'_0$]),
+  node((1, 4), [$A'$]),
+  node((2, 4), [$A$]),
+  node((3, 4), [$A''$]),
+  node((0, 4), [$0$]),
+  node((4, 4), [$0$]),
+  node((3, 3), [$P''_0$]),
+  node((3, 2), [$P''_1$]),
+  node((3, 1), [$P''_2$]),
+  node((1, 0), [$...$]),
+  node((3, 0), [$...$]),
+  node((1, 5), [$0$]),
+  node((3, 5), [$0$]),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((1, 3), (1, 4), [$epsilon'$]),
+  arr((1, 0), (1, 1), []),
+  arr((3, 0), (3, 1), []),
+  arr((3, 1), (3, 2), []),
+  arr((3, 2), (3, 3), []),
+  arr((3, 3), (3, 4), [$epsilon''$]),
+  arr((0, 4), (1, 4), []),
+  arr((1, 4), (2, 4), [$i_A$]),
+  arr((2, 4), (3, 4), [$pi_A$]),
+  arr((3, 4), (4, 4), []),
+  arr((1, 4), (1, 5), []),
+  arr((3, 4), (3, 5), []),
+))
  where the
 column is exact and the rows are projective resolutions. Set $P_n eq$
 $P_n^prime xor P_n^(prime prime)$. Then the $P_n$ assemble to form a
-projective resolution $P$ of $A$, and the right-hand column lijts to an
+projective resolution $P$ of $A$, and the right-hand column lifts to an
 exact sequence of complexes
-$ 0 arrow.r P' arrow.r^i P arrow.r^pi P'' arrow.r 0 comma $
+$ 0 arrow.r P'_cx arrow.r^(i_cx) P_cx arrow.r^(pi_cx) P''_cx arrow.r 0 comma $
 where $i_n colon P_n^prime arrow.r P_n$ and
 $pi_n colon P_n arrow.r P_n^(prime prime)$ are the natural inclusion and
 projection, respectively.
@@ -657,20 +718,94 @@ projection, respectively.
   // is a #sest of complexes where $i$ is the canonical inclusion (mono) and $pi$ is the canonical proj.
 ]
 // (Some remark...)
-#proof[
-  Lift $epsilon.alt^(prime prime)$ to a map
-$P_0^(prime prime) arrow.r A$; the direct sum of this with the map
-$i_A epsilon.alt^prime colon P_0^prime arrow.r A$ gives a map
-$epsilon.alt colon P_0 arrow.r A$. The diagram $lr((ast.basic))$ below
-commutes.
-#align(center,image("../imgs/2023-11-04-13-59-23.png",width:80%))
-The right two columns of $lr((ast.basic))$ are short exact sequences.
-The Snake Lemma shows that the left column is exact and that
-$"coker"lr((epsilon.alt)) eq 0$, so that $P_0$ maps onto $A$. This
-finishes the initial step and brings us to the situation
-#align(center,image("../imgs/2023-11-04-13-56-51.png",width:40%))
-The filling in of the \"horseshoe\" now proceeds by induction.
+#proof[@weibel[Horseshoe Lemma 2.2.8].
+  Since $P''_0$ is projective and $pi_A : A -> A''$ is an epimorphism, we can lift $epsilon^(prime prime) : P''_0 -> A''$ to a map 
+$tilde(epsilon^(prime prime)) : P_0^(prime prime) arrow.r A$. The direct sum of $tilde(epsilon^(prime prime))$ and
+$i_A epsilon^prime colon P_0^prime arrow.r A$ gives a map
+$epsilon colon P_0 arrow.r A$. Then the diagram  below
+commutes：
+// #align(center,image("../imgs/2023-11-04-13-59-23.png",width:80%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAGkYAnAChjWwMCAcgCUIAL6l0mXPkIoyAJiq1GLNp179BBcVJnY8BImQDMq+s1aIO3PgKxCwwsZOkgMR+USXlL6jYgAArCAPoADO6GciYofirUVhq2wZHRnrLGCsh+FkmBbKHhUQaZ3nHIZv4F1mwAgsIZXrE51Ylqdbb1zVk+KNX5nSkgjU1lLdlEETXDQaUek-3IACyzyfO9FTkzHRtsCzFTKGt7hbaH5a3TpEP7F1vXJ7cBXSCXS5VkEa8jH31fUgrX6bCYAnJ+H61P6PY65IEgg6w5bVKFzJFg7ZEarA6Gg1QwKAAc3gRFAADMuBAALZIACc1BwECQETKlJpLMZzMQZjZVNpPK5SAAbHi2DonCIMuyBaKQEykMRWR4ZYqyPLucQ+RzEOqFYgVtqBWsNUgAOxi2wS5zS-nmoW6pRGxXVU2IJ0qu3uh0AVmdiB9DoAHJaQNaRONPTqQ27iIaowLiIG3cqKV6ZrH-XruR60zq-LHhVmLW7eQmkK79fG88bff7k-riEH-SX9c3y4g5fqzVmGW6ix2Y-qlKyKBIgA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
 
-See @weibel[Horseshoe Lemma 2.2.8].
+  node((1, 1), [$Ker(epsilon')$]),
+  node((2, 1), [$Ker(epsilon)$]),
+  node((3, 1), [$Ker(epsilon'')$]),
+  node((1, 2), [$P'_0$]),
+  node((2, 2), [$P_0$]),
+  node((3, 2), [$P''_0$]),
+  node((1, 3), [$A'$]),
+  node((2, 3), [$A$]),
+  node((3, 3), [$A''$]),
+  node((1, 0), [$0$]),
+  node((1, 4), [$0$]),
+  node((2, 0), [$0$]),
+  node((2, 4), [$0$]),
+  node((3, 0), [$0$]),
+  node((3, 4), [$0$]),
+  node((0, 1), [$0$]),
+  node((4, 1), [$0$]),
+  node((0, 2), [$0$]),
+  node((4, 2), [$0$]),
+  node((0, 3), [$0$]),
+  node((4, 3), [$0$]),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), [$epsilon'$]),
+  arr((1, 3), (1, 4), []),
+  arr((2, 0), (2, 1), []),
+  arr((2, 1), (2, 2), []),
+  arr((2, 2), (2, 3), [$epsilon$]),
+  arr((2, 3), (2, 4), []),
+  arr((3, 0), (3, 1), []),
+  arr((3, 1), (3, 2), []),
+  arr((3, 2), (3, 3), [$epsilon''$]),
+  arr((3, 3), (3, 4), []),
+  arr((0, 1), (1, 1), []),
+  arr((1, 1), (2, 1), []),
+  arr((2, 1), (3, 1), []),
+  arr((3, 1), (4, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (2, 2), []),
+  arr((2, 2), (3, 2), []),
+  arr((3, 2), (4, 2), []),
+  arr((2, 3), (3, 3), []),
+  arr((1, 3), (2, 3), []),
+  arr((0, 3), (1, 3), []),
+  arr((3, 3), (4, 3), []),
+))
+
+where the right two columns are short exact sequences, and
+the @snake[Snake Lemma] shows that the left column is exact and that
+$"Coker"lr((epsilon)) eq 0$, so that $P_0$ maps onto $A$. This
+finishes the initial step and brings us to the situation
+// #align(center,image("../imgs/2023-11-04-13-56-51.png",width:40%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoAGAXVJADcBDAGwFcYkRyQBfU9TXfIRRkAjNTpNW7ANIwATgAoYabIwIByAJTdeIDNjwEiZYuIYs2iELMXLVBbTz4HBx0gGYzky9flKVWGpg6lo6zgJGKCKkYjTmUlYACuoA+iJhevyGQsjRnnHe7Mmp6U6ZLpHI5DFeFuwAdI0Z+hE57jUFdVacZS3ZRNX5El0gjfXNWa7CpAAstQkcExVtHvM+PeIwUADm8ESgAGZyEAC2SABsNDgQSDNlR6e3VzeI0cMLUOoZD2evz0gAdnux1+1RA1yQImBjz+4JexGhvzIcKQ7kRSAAHP9EABWdG47Htd4+T5ffFEiGIACc5OxInIXEoXCAA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
+  node((0, 2), [$0$]),
+  node((1, 2), [$Ker(epsilon')$]),
+  node((2, 2), [$Ker(epsilon)$]),
+  node((3, 2), [$Ker(epsilon'')$]),
+  node((1, 1), [$P'_1$]),
+  node((3, 1), [$P''_1$]),
+  node((1, 0), [$...$]),
+  node((1, 3), [$0$]),
+  node((3, 0), [$...$]),
+  node((4, 2), [$0$]),
+  node((3, 3), [$0$]),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), [$d'$]),
+  arr((1, 2), (1, 3), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (2, 2), []),
+  arr((2, 2), (3, 2), []),
+  arr((3, 0), (3, 1), []),
+  arr((3, 1), (3, 2), [$d''$]),
+  arr((3, 2), (4, 2), []),
+  arr((3, 2), (3, 3), []),
+))
+The filling in of the "horseshoe" now proceeds by induction.
 ]
 #endlec(8)

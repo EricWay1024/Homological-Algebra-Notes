@@ -142,7 +142,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 ]
 #proof[
     // See @rotman[Proposition 2.55].
-  We view $A$, $B$ as $R$-$R$-bimodules, then we easily see that $A tpr B$ is also an $R$-$R$-bimodule (i.e. an $R$-module) with (left) multiplication given by $(a |-> r a) tp id_B$, hence $r(a tp b) = (r a) tp b = a tp (r b)$ and $h$ is $R$-bilinear. 
+  We view $A$, $B$ as $R$-$R$-bimodules, then we easily see that $A tpr B$ is also an $R$-$R$-bimodule (i.e., an $R$-module) with (left) multiplication given by $(a |-> r a) tp id_B$, hence $r(a tp b) = (r a) tp b = a tp (r b)$ and $h$ is $R$-bilinear. 
 
   Suppose $g : A times B -> C$ is an $R$-bilinear map.  Then $g$ is $R$-biadditive and $g$ induces a $ZZ$-homomorphism $hat(g) : A tpr B -> C$ such that $g = hat(g) oo h$. We only need to show that $hat(g)$ is also an $R$-homomorphism. Let $r in R$. Then $hat(g) (r (a tp b)) = hat(g) ((r a) tp b) = g(r a, b) = r g(a, b) = r hat(g) (a tp b)$. 
 ]
