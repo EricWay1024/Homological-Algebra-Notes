@@ -1,6 +1,6 @@
 #import "libs/template.typ": *
-#import "libs/var.typ": *
-#import "libs/commute.typ": node, arr, commutative-diagram
+#show: thmrules
+
 
 #set heading(numbering: "1.a.")
 
@@ -319,9 +319,10 @@ $ C_"simplicial"^n ( X; R) = product_(alpha in I_n) R $
 
 = Homotopy Invariance 
 The next is the main theorem in this section.
-#theorem(name: "Homotopy Invariance")[
-If two maps $f, g: X -> Y$ are homotopic, then they induce the same map in homology and cohomology, i.e. $f_ast = g_ast : H_ast (X) -> H_ast (Y)$ and $f^ast = g^ast : H^ast (X) -> H^ast (Y)$. <hmtp-inv>
+#theorem("Homotopy Invariance")[
+If two maps $f, g: X -> Y$ are homotopic, then they induce the same map in homology and cohomology, i.e. $f_ast = g_ast : H_ast (X) -> H_ast (Y)$ and $f^ast = g^ast : H^ast (X) -> H^ast (Y)$. 
 ]
+<hmtp-inv>
 Once the main theorem is proven we can have the following corollary:
 #corollary[
   If $X iso Y$, then $H_n (X) iso H_n (Y)$ and $H^n (X) iso H^n (Y)$.
@@ -335,7 +336,7 @@ Once the main theorem is proven we can have the following corollary:
 
 Now to prove the main theorem we need some reductions. 
 #proposition[ Let $I = [0, 1]$.
-  To prove #thmref(<hmtp-inv>)[Theorem], it is enough to prove the special case where $Y = X times I$, $f = i : x mapsto (x, 0)$ and $g = j : x mapsto (x, 1)$. 
+  To prove @hmtp-inv[Theorem], it is enough to prove the special case where $Y = X times I$, $f = i : x mapsto (x, 0)$ and $g = j : x mapsto (x, 1)$. 
 ]
 #proof[
   // Let $i(x) = (x, 0)$ and $j(x) = (x, 1)$.
@@ -440,7 +441,7 @@ $
 
 From which we finally conclude
 $ diff h (sigma) = g_ast (sigma) - f_ast (sigma) - h diff (sigma) $
-which makes us very happy because we have proven #thmref(<hmtp-inv>)[Theorem].]
+which makes us very happy because we have proven @hmtp-inv[Theorem].]
 #endlec(7)
 
 The following is a simple application.
@@ -494,16 +495,15 @@ $ ... -> H_n (A) -> H_n (X) -> H_n (X, A) -> H_(n-1) (A) -> ... $
 where $H_n (X, A)$ is the relative homology. We also have for the cohomology:
 
 $ ... <- H^n (A) <- H^n (X) <- H^n (X, A) <- H^(n-1) (A) <- ... $
-<les-relative>
 ]
-
+<les-relative>
 The maps $ H_n (A) -> H_n (X) -> H_n (X, A) $ are clear because they are induced by the inclusion and quotient maps, i.e. the short exact sequence of chain complexes:
 $
   0-> Ccx(A) arrow.hook Ccx(X) arrow Ccx(X) over Ccx(A) -> 0
 $
 
 For the remaining map, $H_n (X, A) -> H_(n-1) (A)$, we need to work on a general theorem about short exact sequence of chain complexes, the Snake Lemma.
-#lemma(name: "Snake Lemma")[
+#lemma( "Snake Lemma")[
   Every #sest of chain complexes has an associated #lest of homology groups.
   
   In diagrams, suppose all the rows are exact and each column is a chain complex:
@@ -511,8 +511,8 @@ For the remaining map, $H_n (X, A) -> H_(n-1) (A)$, we need to work on a general
 We claim that we can always get the following:
 #align(center,image("imgs/2023-11-19-11-05-03.png",width:50%))
 where the zigzagging arrow is the *boundary homomorphism*. 
-<snake>
 ]
+<snake>
 #proof[
   For $[c] in H_(n+1) (Ccx)$, define $diff [c]$ to be $[a]$ for $a in A_n$... #TODO Digram Chasing
 
@@ -522,8 +522,8 @@ where the zigzagging arrow is the *boundary homomorphism*.
   - depends on $c$ within $[c]$?
 ]
 
-#proof(title: [Proof of #thmref(<les-relative>)[Theorem]])[
-With the #thmref(<snake>)[Snake Lemma], one can easily show the homology part of the claim.
+#proof(title: [Proof of @les-relative[Theorem]])[
+With the @snake[Snake Lemma], one can easily show the homology part of the claim.
 To dualise the argument, we can get the short exact sequence 
 $ 0<- C^cx (A) <- C^cx (X) <- C^cx (X, A) <- 0 $
 by applying $hom(-, ZZ)$.
@@ -547,7 +547,7 @@ The next is a special case of the relative homology when $A$ is a single point.
 ]
 
 The next example makes use of a theorem we shall discuss later.
-#theorem(name: "Excision Theorem")[
+#theorem( "Excision Theorem")[
   Let $A subset X$ and $macron(E) subset circle(A)$, then 
   $ H_ast (X, A) iso H_ast (X \\ E, A \\ E) $
 ]
@@ -563,13 +563,14 @@ The next example makes use of a theorem we shall discuss later.
 
 = Computing Homology Groups
 
-#theorem(name: "Small Simplices Theorem")[
+#theorem( "Small Simplices Theorem")[
   Let $X = union.big_alpha U_alpha $ be an open cover, denoted as $cal(U)$. Set 
   $ C_n^cal(U) (X) = plus.circle.big_(sigma: Delta^n -> X \ sigma(Delta^n) subset.eq U_alpha "for some" alpha )  ZZ subset.eq C_n (X) $
-  which is a subchain complex. Then $C_n^cal(U) (X) -> C_n (X)$ induces an isomorphism in homology. <small-simp>
+  which is a subchain complex. Then $C_n^cal(U) (X) -> C_n (X)$ induces an isomorphism in homology. 
 ]
+<small-simp>
 The proof is delayed later. We will first present some consequences of this theorem; but before doing that, we need the following lemma, a tool from homological algebra to prove isomorphisms using long exact sequences.
-#lemma(name: "The Five Lemma")[
+#lemma( "The Five Lemma")[
   Assume we are given a diagram of modules:
   #align(center,image("imgs/2023-11-19-12-18-27.png",width:50%))
   such that 
@@ -578,8 +579,8 @@ The proof is delayed later. We will first present some consequences of this theo
   - $l$ is surjective;
   - $q$ is injective.
   Then $n$ is an isomorphism. 
-  <five>
 ]
+  <five>
 #remark[
 We are usually only concerned with a weaker form, where we assume $m, p, l, n$ are all isomorphisms.
 ]
@@ -590,12 +591,11 @@ We are usually only concerned with a weaker form, where we assume $m, p, l, n$ a
 == Excision Theorem
 
 The reader is reminded that $macron(E)$ is the closure of $E$ and $circle(A)$, also denoted as $A^circle.small$, is the interior of $A$. 
-#theorem(name: "Excision Theorem")[
+#theorem( "Excision Theorem")[
   Let $A subset X$ and $macron(E) subset circle(A)$, then 
   $ H_ast (X, A) iso H_ast (X \\ E, A \\ E) $
-  <excision>
 ]
-
+  <excision>
 #proof[
   Consider the open cover $X = circle(A) union (X \\ macron(E))$. We observe that given a simplex $sigma: Delta^n -> X$ landing in $circle(A)$ or $X \\ macron(E)$, $sigma$ is either disjoint from $E$ or $sigma$ is contained in $circle(A)$.
   This implies that $ C_cx^cal(U) (X \\ E, A \\ E) = C^cal(U)_cx (X, A) $
@@ -634,8 +634,8 @@ The reader is reminded that $macron(E)$ is the closure of $E$ and $circle(A)$, a
 ))
   Passing to homology, we get a map of long exact sequences:
   #align(center,image("imgs/2023-11-19-12-41-03.png",width:80%))
-  By #thmref(<small-simp>)[Small Simplices Theorem], maps 1, 2, 4, 5 are isomorphisms.
-  By #thmref(<five>)[Five Lemma], map 3 is an isomorphism, i.e. 
+  By @small-simp[Small Simplices Theorem], maps 1, 2, 4, 5 are isomorphisms.
+  By @five[Five Lemma], map 3 is an isomorphism, i.e. 
   $
     H_ast^cal(U) (X, A) iso H_ast (X ,A)
   $
@@ -671,7 +671,7 @@ $i colon lr((A comma A)) arrow.r lr((U comma A))$ is the inclusion).
 
 Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if $x, y in A$ or $x = y$. The next corollary equates the relative homology of a good pair with the reduced homology of their quotient space. 
 
-#corollary(name: "Collapsing a Pair")[
+#corollary( "Collapsing a Pair")[
   If $A subset.eq X$ is a good pair, then $H_ast (X, A) = tilde(H)_ast (X over A)$.
 ]
   Before we proceed with the proof, the reader is kindly reminded of the potential confusion between symbols $\\$ (for set-theoretic exclusion or 'without') and $over$ (for forming a quotient space).
@@ -715,14 +715,14 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
   arr((0, 4), (1, 4), []),
   arr((0, 5), (1, 5), []),
 ))
-  By #thmref(<five>)[Five Lemma], $H_ast (X, A) -> H_ast (X, V)$ is an isomorphism.
+  By @five[Five Lemma], $H_ast (X, A) -> H_ast (X, V)$ is an isomorphism.
 
   Since $ast = A over A$ is a deformation retract of $V over A$, in the same way as above, the long exact sequence associated with $(A over A arrow.hook X over A) -> (V over A arrow.hook X over A)$ shows that $ H_ast (X over A, ast) = H_ast (X over A, V over A)  $
   but $ H_ast (X over A, ast) = tilde(H)_ast (X over A)$ by definition.
 
-  By #thmref(<excision>)[Excision Theorem], for $A subset.eq V subset.eq X$, 
+  By @excision[Excision Theorem], for $A subset.eq V subset.eq X$, 
   $ H_ast (X, V) iso H_ast (X \\ A, V \\ A) $
-  Apply #thmref(<excision>)[Excision Theorem] again to $ A over A subset.eq V over A subset.eq X over A$,
+  Apply @excision[Excision Theorem] again to $ A over A subset.eq V over A subset.eq X over A$,
   $ H_ast (X over A, V over A) iso H_ast (X \\ A, V \\ A)  $
   Putting together all the pieces gives
   $
@@ -735,17 +735,17 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
   $ H_ast (S^1 or S^1, S^1) = tilde(H)_ast (S^1) $
 ]
 == Mayer-Vietoris Theorem
-#theorem(name: "Mayer-Vietoris Theorem")[
+#theorem( "Mayer-Vietoris Theorem")[
   Let $X = A union B$ be an open cover by two sets. Then there is a #lest 
   $ ...-> H_n (A sect B) -> H_n (A) xor H_n (B) -> H_n (X) -> H_(n-1) (A sect B) -> ... $
 #align(center,image("imgs/2023-11-19-13-11-54.png",width:80%))
-<mv>
 ]
+<mv>
 #proof[
   Consider the open cover $cal(U) = {A, B}$. Then we get a #sest 
   $ ses(Ccx(A sect B), Ccx (A) xor Ccx (B), C_cx^cal(U) (X), f: i, g: pi) $
   where $i: sigma mapsto (sigma , -sigma)$ and $pi : (alpha, beta) mapsto alpha + beta$. (The minus sign in $f$ is to make the sequence exact.)
-  We then obtain a #lest on homology groups. Apply #thmref(<small-simp>)[Small Simplices Theorem] to replace $H_ast^cal(U) (X) $ by $H_ast (X)$. 
+  We then obtain a #lest on homology groups. Apply @small-simp[Small Simplices Theorem] to replace $H_ast^cal(U) (X) $ by $H_ast (X)$. 
 ]
 #endlec(9)
 #definition[
@@ -761,7 +761,7 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
   Cover $X or Y$ by $A = X union U_y$, where $U_y $ is an open neighborhood of $ast in Y$ as in the definition of good pair, and $B = Y union U_x$, where $U_x$ is defined similarly.
   Notice $A sect B = U_x union U_y$.
 
-  Apply #thmref(<mv>)[Mayer-Vietoris Theorem] to get a #lest
+  Apply @mv[Mayer-Vietoris Theorem] to get a #lest
   $
     ...-> H_n (U_x union U_y) -> H_n (X union U_y) xor H_n (Y union U_x) -> H_n (X or Y) ->  H_(n-1) (U_x union U_y) ->...
   $
@@ -778,7 +778,7 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
 
 #example[
   $X = S^2$. We define $A$ as "the northen hemisphere plus $epsilon$" (a narrow band across the equator) and $B$ as "the southern hemisphere plus $epsilon$". Note that $ A iso ast iso B$ and $A sect B = S^1$. #align(center,image("imgs/2023-11-19-13-36-38.png",width:15%))
-  By #thmref(<mv>)[Mayer-Vietoris Theorem],
+  By @mv[Mayer-Vietoris Theorem],
   #align(center,image("imgs/2023-11-19-13-42-37.png",width:50%))
   Recall that $H_n (S_1) = ZZ$ for $n = 0, 1$ and $H_n (S_1) = 0$ for $n >= 2$. 
   We can compute that
@@ -794,7 +794,7 @@ Let $A subset.eq X$ be spaces. The quotient space  $X over A$ has $[x] = [y]$ if
 = Proving Small Simplices Theorem
 https://www.dpmms.cam.ac.uk/~or257/teaching/IIIAlgTop2016/SmallSx.pdf
 
-Now we work on proving #thmref(<small-simp>)[Small Simplices Theorem], which states that $C^cal(U)_cx (X) -> C_cx (X)$ induces an isomphism in homology for any open cover $cal(U)$ of $X$. The strategy of the proof:
+Now we work on proving @small-simp[Small Simplices Theorem], which states that $C^cal(U)_cx (X) -> C_cx (X)$ induces an isomphism in homology for any open cover $cal(U)$ of $X$. The strategy of the proof:
 + Define a "subdivision operator" $S : C_cx (X) -> C_cx (X)$. For example: #align(center,image("imgs/2023-11-19-14-20-27.png",width:50%))
 + Prove that $S$ is chain homotopic to $id : C_cx (X) -> Ccx (X)$;
 + Prove for all $c in C_n (X)$, there exists $N$ such that $S^N (c) in C^cal(U)_n (X) $.
@@ -967,7 +967,7 @@ written our
 $sum_i x_i times.circle b_i in bb(Z)^(xor I ) times.circle B$ as
 something in $bb(Z)^(xor J) times.circle B$. #TODO]
 
-#theorem(name: "Universal coefficient theorem")[
+#theorem( "Universal coefficient theorem")[
   There exsit natural, split #sess:
   $ ses(H_n (X, ZZ) tp R, H_n (X, R), Tor(H_(n-1) (X, ZZ), R)) $
   $ ses(Ext(H_(n-1) (X, ZZ), R), H^n (X, R), hom (X_n (X, ZZ), R))  $
@@ -1194,7 +1194,7 @@ LES of a triple $A subset B subset C$ #TODO
   $
     ZZ = tilde(H)_n (S^n) =  H_n (S^n, S^n \\ {x}) iso H_n (U, U \\ {x}) ->^(f_ast) H_n (S^n, S^n \\ {f(x)}) = ZZ
   $
-  where $U$ is a neighborhood of $x$ which isolates it in  $f^(-1) (f(x))$. #thmref(<excision>)[Excision Theorem] is used.
+  where $U$ is a neighborhood of $x$ which isolates it in  $f^(-1) (f(x))$. @excision[Excision Theorem] is used.
 ]
 
 #proposition[

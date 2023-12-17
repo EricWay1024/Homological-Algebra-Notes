@@ -3,9 +3,9 @@
 
 == Homological $delta$-functors
 
-See @weibel[Section 2.1]. The next two definitions are stated separately for clarity here.
+@weibel[Section 2.1]. The next two definitions are stated separately for clarity.
 #definition[
-  Let $cA, cB$ be abelian categories. A *homological $delta$-functor* between $cA$ and $cB$ is, defined for each #sest $ses(A, B, C)$ in $cA$, a collection of additive functors $ T_n: cA -> cB $ for $n >= 0$ together with morphisms 
+  Let $cA, cB$ be abelian categories. A *homological $delta$-functor* between $cA$ and $cB$ is defined for each #sest $ses(A, B, C)$ in $cA$ as a collection of additive functors $ T_n: cA -> cB $ for $n >= 0$ together with morphisms 
   $ delta_n : T_n (C)  -> T_(n-1)(A) $ 
   for $n >= 1$
   such that 
@@ -15,12 +15,24 @@ See @weibel[Section 2.1]. The next two definitions are stated separately for cla
   ],
   [
     For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s give a commutative diagram 
-    #align(center,image("../imgs/2023-11-24-19-38-59.png",width:30%))
+    // #align(center,image("../imgs/2023-11-24-19-38-59.png",width:30%)
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUB9MAAgAoAwgHIAlCAC+pdJlz5CKAIzkqtRizZc+YALQKR-AIKiJUkBmx4CRMgpX1mrRB278BYydItyiS29XvqTpo6eobuKjBQAObwRKAAZgBOEAC2SGQgOBBIAEweIEmpSEqZ2YgAzPmFaYg51FlI5f5qjiCwDDh0JgnJNRkNiCUBre2dEhTiQA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$T_n (C')$]),
+  node((0, 1), [$T_(n-1) (A')$]),
+  node((1, 0), [$T_n (C)$]),
+  node((1, 1), [$T_(n-1) (A)$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((1, 0), (1, 1), [$delta$]),
+  arr((0, 0), (0, 1), [$delta$]),
+))
   ])
 ]
 
 #definition[
-  Let $cA, cB$ be abelian categories. A *cohomological $delta$-functor* between $cA$ and $cB$ is, defined for each #sest $ses(A, B, C)$ in $cA$, a collection of of additive functors $ T^n : cA -> cB $  for $n >= 0$ together with morphisms 
+  Let $cA, cB$ be abelian categories. A *cohomological $delta$-functor* between $cA$ and $cB$ is defined for each #sest $ses(A, B, C)$ in $cA$ as a collection of additive functors $ T^n : cA -> cB $  for $n >= 0$ together with morphisms 
   $ delta^n : T^n (C)  -> T^(n+1)(A) $
   for $n >= 0$ such that 
   #enum(block(width: 100%)[
@@ -29,7 +41,19 @@ See @weibel[Section 2.1]. The next two definitions are stated separately for cla
   ],
   [
     For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s give a commutative diagram 
-    #align(center,image("../imgs/2023-11-24-19-39-14.png",width:30%))
+    // #align(center,image("../imgs/2023-11-24-19-39-14.png",width:30%))
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUA9MAAgAoAwgHIAlCAC+pdJlz5CKAIzkqtRizZc+YANQKR-AIKiJUkBmx4CRMgpX1mrRB278BYydItyiS29XvqTpo6eobuKjBQAObwRKAAZgBOEAC2SGQgOBBIAEweIEmpSEqZ2YgAzPmFaYg51FlI5f5qjiCwDDh0JgnJNRkNiCUBre2dEhTiQA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$T^n (C')$]),
+  node((0, 1), [$T^(n+1) (A')$]),
+  node((1, 0), [$T^n (C)$]),
+  node((1, 1), [$T^(n+1) (A)$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((1, 0), (1, 1), [$delta$]),
+  arr((0, 0), (0, 1), [$delta$]),
+))
   ])
 ]
 
@@ -40,7 +64,7 @@ See @weibel[Section 2.1]. The next two definitions are stated separately for cla
     H_ast : Ch_(>= 0)(cA) -> cA
   $
 
-  Cohomology gives a cohomologicla $delta$-functor $ H^ast : Ch^(>= 0) (cA) -> cA $
+  Cohomology gives a cohomological $delta$-functor $ H^ast : Ch^(>= 0) (cA) -> cA $
 ]
 
 #example[

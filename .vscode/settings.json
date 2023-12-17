@@ -8,8 +8,7 @@
     "spellright.documentTypes": [
         "markdown",
         "latex",
-        "plaintext",
-        "typst"
+        "plaintext"
     ],
     "spellright.parserByClass": {
         "typst": {
