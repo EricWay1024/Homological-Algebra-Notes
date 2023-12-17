@@ -401,7 +401,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 ]
 
 #corollary[Let $cA$ be an abelian category.
-  Then there exists a functor from the category of #sess of complexes in $cA$ to the category of #less in $cA$.
+  Then there exists a functor from the category of #sess of chain complexes in $cA$ to the category of #less in $cA$.
 ]
 
 == Resolutions
