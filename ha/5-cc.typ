@@ -469,6 +469,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
 
   Dually, if $cA$ has enough injectives, then every object has an injective resolution.
 ]
+<enough-resolution>
 
 #proof[@notes[Lemma 5.20].
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAdgBoAmAXVJADcBDAGwFcYkQBZEAX1PU1z5CKABwVqdJq3YAGHnxAZseAkQBs4mgxZtEIAAoB9Ob37KhRACybJO9kYCM8s4NUoArKQDME7dL0cxs6KAirCyBqWvlK6ICYKSq7h1lFaMbLBiWFEXqQO0XYBhk6mIeZuyOSkMgX+cZmhFihVVGmFBobkDeXJ1bWx8S7ZKA7e-eyBXaVZTcgypKm2dYNlSUSjrUuxAHS7PBIwUADm8ESgAGYAThAAtkjWIDgQSFVb7FhBpVe3SLmPz4gHn5YjA0NhGARisFvndATQnkh3F9rrC-gjEK9gewoFDkT8MfCAfM3npQeDISsYUhieiHHjYRp-vd6UgyEzEH8sXoPiUFFTEGJ2cQWYgAJyE1ltOpkrAQsCdaEopDi9mc9J6HFTPlKxBs2kyEUOUbslVckAfLUXHUOV60una-EONEA0XcSjcIA
@@ -568,6 +569,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
   // i.e. $ eta oo f_0 = f' oo epsilon $
   Further, $f_cx$ is unique up to a chain homotopy equivalence. 
 ]
+<comparison>
 
 #proof[@weibel[Comparison Theorem 2.26], @rotman[Theorem 6.16]. // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAUB9ACjAGoAjAEoQAX1LpMufIRQDyVWoxZsAWpzAACbuxHjJ2PASLyBi+s1aIQ6rdwCKeiSAyGZRAEykz1CyuvEYs6u0sYoZD5Klmz2PPzCYoowUADm8ESgAGYAThAAtkhkIDgQSPJR-iBQQVm5BYjlJUheFVYgmRo17XXN1E2IAMz63fmFfaWIACzUDFhgbVB0cAAWySC+ym0wAB5YcDgIwzmjU+O9rWzVohSiQA
 #align(center, commutative-diagram(
