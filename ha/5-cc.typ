@@ -249,6 +249,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
   The same holds for cochain complexes with the connecting homomorphism 
   $ diff^n : H^n\(C) -> H^(n+1)(A) $
 ]
+<connecting>
 
 #proof[
   Again, we can safely assume the context of $RMod$. This is an application of the @snake[Snake Lemma]. 
@@ -719,6 +720,7 @@ projection, respectively.
   // $
   // is a #sest of complexes where $i$ is the canonical inclusion (mono) and $pi$ is the canonical proj.
 ]
+<horseshoe>
 // (Some remark...)
 #proof[@weibel[Horseshoe Lemma 2.2.8].
   Since $P''_0$ is projective and $pi_A : A -> A''$ is an epimorphism, we can lift $epsilon^(prime prime) : P''_0 -> A''$ to a map 
