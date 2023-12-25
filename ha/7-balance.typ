@@ -1,5 +1,105 @@
 #import "../libs/template.typ": *
 = Balancing $Ext$ and $Tor$
+== Defining $Ext$ and $Tor$ 
+
+#definition[
+  Let $cA$ be an abelian category. Let $A, B in cA$ and let $B -> I_cx$ be an injective resolution.
+Recall that $Hom(A)(A, -): cA -> Ab$ is left exact by @hom-left-exact.
+  If $cA$ has enough injectives, we define the right derived functor $Ext_cA^i (A, -)$ of $Hom(A)(A, -)$ as
+  // #footnote[While $Ext_cA^i (A, -)(B)$ (as well as $Ext_cA^i (-, B)(A)$ defined below) is not a common way of writing, it emphasizes the asymmetry of the construction.]
+  $ Ext_cA^i (A, B) = Ext_cA^i (A, -)(B) := R^i Hom(A)(A, -)(B) = H^i (Hom(A) (A, I^cx)) $
+  In particular, $Ext_cA^0 (A, B) = Hom(A) (A, B)$.
+]
+
+Notice that the contravariant functor $Hom(A)(-, B): cA^op -> Ab$ is also left exact by @hom-left-exact-2. Assume that $cA$ has enough projectives, so $A^op$ has enough injectives. Let $P_cx -> A$ be an projective resolution in $cA$, which can be seen as an injective resolution in $cA^op$. We can thus define another right derived functor $Ext_cA^i (-, B)$, given by
+$
+  Ext_cA^i (-, B)(A) := R^i Hom(A)(-, B) (A) = H^i (Hom(A)(P_cx, A))
+$
+
+The above two constructions are in fact isomorphic, i.e., $Ext_cA^i (A, -)(B) iso Ext_cA^i (-, B)(A)$. In other words,
+$
+  Ext_cA^i (A, B) := R^i Hom(A)(A, -)(B) iso R^i Hom(A)(-, B) (A)
+$
+This isomorphism is called the *balancing of $Ext$*. Before proving the balancing of $Ext$, we present some properties of $Ext$ that the balancing gives.
+
+#proposition[
+  Let $ses(K, L, M)$ be a short exact sequence in $cA$ and let $A, B in cA$. Then we have the induced long exact sequences
+  $
+    0 -> Hom(A) (A, K) ->  Hom(A) (A, L) ->  Hom(A) (A, M) -> \ Ext_cA^1 (A, K) ->  Ext_cA^1 (A, L) ->  Ext_cA^1 (A, M) -> ...
+  $
+  and 
+  $
+    0 -> Hom(A) (K, B) ->  Hom(A) (L, B) ->  Hom(A) (M, B) -> \ Ext_cA^1 (K, B) ->  Ext_cA^1 (L, B) ->  Ext_cA^1 (M, B) -> ...
+  $
+]
+#proof[
+  Simply notice that ${Ext_cA^i (A, -)}_(i>=0)$ and ${Ext_cA^i (-, B)}_(i>=0)$ form two cohomological $delta$-functors.
+]
+
+#proposition[
+  The followings are equivalent:
+  + $B$ is injective;
+  + $Hom(A)(-, B)$ is exact;
+  + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $A$;
+  + $Ext_cA^1 (A, B) = 0$ for all $A$.]
+
+#proof[
+  (1) $<=>$ (2) by the definition of injective objects.
+
+  (1) $=>$ (3) by applying the dual of @projective-left-zero to $Ext_cA^i (A, -)$. 
+
+  (3) $=>$ (4) is trivial.
+
+  (4) $=>$ (2). Let $ses(A', A, A'')$ be a short exact sequence in $cA$, which induces the #lest 
+  $
+    0 -> Hom(A) (A', B) -> Hom(A) (A, B) -> Hom(A) (A'', B) -> Ext^1_cA (A', B) -> ...
+  $
+  Since $Ext^1_cA (A', B) = 0$ by assumption,  $Hom(A) (-, B)$ is an exact functor.
+]
+#proposition[
+  The followings are equivalent:
+  + $A$ is projective;
+  + $Hom(A)(A, -)$ is exact;
+  + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $B$;
+  + $Ext_cA^1 (A, B) = 0$ for all $B$.
+]
+#proof[
+  Similar as above.
+]
+
+#definition[
+  Let $R$ be a ring and $B$ be a left $R$-module. Since $(- tpr B) : ModR -> Ab$ is right exact by @tensor-right-exact and $RMod$ has enough projectives, we can define the left derived functor $Tor_i^R (-, B)$:
+  $ Tor_i^R (A, B) = Tor_i^R (-, B)(A) := L_i (- tpr B) (A) $
+]
+
+Similarly, let $A$ be a right $R$-module, and $(A tpr - ): RMod -> Ab$ is right exact by @tensor-right-exact-2. We can thus define the left derived functor $Tor_i^R (A, -)$: 
+$
+  Tor_i^R (A, -)(B) := L_i (A tpr -) (B)
+$
+
+The two constructions are again isomorphic, i.e., 
+
+$ Tor_i^R (A, B) := L_i (- tpr B) (A) iso L_i (A tpr -) (B) $
+
+This isomorphism is called *the balancing of $Tor$*, which gives the following property.
+
+#proposition[
+  Let $ses(K, L, M)$ be a #sest in $ModR$ and let $B in RMod$. Then we have the induced long exact sequence 
+  $
+    ... -> Tor_1^R (K, B) -> Tor_1^R (L, B) ->  Tor_1^R (M, B) -> K tpr B -> L tpr B -> M tpr B -> 0
+  $
+  
+  If $ses(K, L, M)$ is instead a #sest in $RMod$ and let $A in ModR$, then we have the induced #lest 
+  $
+    ... -> Tor_1^R (A, K) -> Tor_1^R (A, L) ->  Tor_1^R (A, M) -> A tpr K -> A tpr L -> A tpr M -> 0
+  $
+  
+]
+
+In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mapping cones and double complexes, introduced in the following sections.
+
+// #TODO #lest induced by $Tor$ and $Ext$
+
 == Mapping Cones and Mapping Cylinders
 #remark[
 In topology,  let $f: X-> Y  $ be a continuous map between two topological spaces. 
@@ -12,7 +112,7 @@ In topology,  let $f: X-> Y  $ be a continuous map between two topological space
   #align(center,image("../imgs/Mapping_cone.svg",width:30%))
 ]
 
-On the level of complexes, let $f : B_cx -> Ccx$ be a map of chain complexes.
+On the level of chain complexes, let $f : B_cx -> Ccx$ be a chain map.
 #definition[
  Define the *mapping cone* of $f$ as the complex chain $ cone(f)_n = B_(n-1) plus.circle C_n $ 
  with differential given by $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B_(n-1)$ and $c in C_n$.

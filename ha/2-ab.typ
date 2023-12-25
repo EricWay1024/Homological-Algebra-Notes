@@ -116,16 +116,34 @@ such $phi$ we have $ phi & eq phi compose id_(X_1 times X_2)\
 
 
 #definition[
-  Let $cC$ be an $Ab$-enriched category and let $X, Y in cC$. If $X$ and $Y$ has a product (or a coproduct) in $cC$, then it is called the *biproduct* of $X$ and $Y$, denoted as $X xor Y$.
+  Let $cC$ be an $Ab$-enriched category and let $X_1, X_2 in cC$. The *biproduct* of $X_1$ and $X_2$ is an object $X_1 xor X_2$ with morphisms $p_k : X_1 xor X_2 -> X_k$ and $i_k : X_k ->  X_1 xor X_2 $ for $k = 1, 2$, such that 
+  - $p_k oo i_k = 1_(X_k)$;
+  - $p_j oo i_k = 0 $ for  $k != j$;
+  - $i_1 oo p_1 + i_2 oo p_2 = 1_(X_1 xor X_2)$.
+  // - $X_1 xor X_2$ with $(p_1, p_2)$ is a product of $X_1$ and $X_2$;
+  // - $X_1 xor X_2$ with $(i_1, i_2)$ is a coproduct of $X_1$ and $X_2$.
+  // If $X$ and $Y$ has a product (or a coproduct) in $cC$, then it is called the *biproduct* of $X$ and $Y$, denoted as $X xor Y$.
 ]
 
 #corollary[
-  In an $Ab$-enriched category, a binary biproduct is both a product and a coproduct. 
+In an $Ab$-enriched category, a binary biproduct is both a product and a coproduct, and a binary product (or a binary coproduct) is a biproduct.
 ]
+#proof[
+  This follows from the proof of @ab-product.
+]
+
 // We can show that $x union.sq y iso x times y$ and we use the notation of a biproduct $x ds y$ to denote both. 
 
 #remark[This extends to all _finite_ products and coproducts but
    does not extend to _infinite_ products or coproducts. 
+]
+
+#lemma[
+  In an $Ab$-enriched category, an additive functor preserves biproducts. 
+]
+<additive-preserve-biproduct>
+#proof[
+  Notice that an additive functor preserves identity morphisms, zero morphisms, morphism compositions and morphism additions, and they are all we need in the definition of biproducts.
 ]
 
 Being able to add and subtract parallel morphisms means we can rephrase the definitions for a monomorphism and epimorphism.
@@ -457,6 +475,13 @@ The key element that we seek from an abelian category is the notion of exactness
   A #sest $ses(A, B, C)$ is *split* if $B$ is isomorphic to $A ds C$. 
   // #image("imgs/19.png")
 ]
+// #lemma[
+//   An additive functor preserves split short exact sequences.
+// ]
+// <additive-preserve-split>
+// #proof[
+//   This follows from @additive-preserve-biproduct.
+// ]
 
 #lemma("Splitting Lemma")[
   Let $ses(A, B, C, f:f, g:g)$ be a short exact sequence. The followings are equivalent:
@@ -503,7 +528,7 @@ is exact in $Ab$.
   The functor $Hom(A) (M, -)$ fails to be exact in general because it does not necessarily send an epimorphism to an epimorphism. For a counterexample, let $cA = Ab$ (where an epimorphism is equivalent to a surjective homomorphism) and $M = ZZ over 2 ZZ$. The quotient map $h: ZZ -> ZZ over 4 ZZ $ is an surjective homomorphism. On the other hand, for any abelian group $A$, an element in $hom_Ab (ZZ over 2 ZZ, A)$ (i.e., a group homomorphism $ZZ over 2ZZ -> A$) is uniquely determined by an element in $A$ with order $2$. Hence $hom_Ab ( ZZ over 2 ZZ, ZZ) = 0$ and $hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) = ZZ over 2ZZ$, and we see the induced map $ (h oo -) : hom_Ab ( ZZ over 2 ZZ, ZZ) -> hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) $ cannot be surjective. 
 ]
 
-#corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]
+#corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]   <hom-left-exact-2>
 
 
 #endlec(4)

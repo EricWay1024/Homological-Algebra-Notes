@@ -240,7 +240,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 // ]
 
 #corollary[
-  If $R$ is a commutative ring and $M$, $N$ are $R$-modules, then there is a natural $R$-isormophism 
+  If $R$ is a commutative ring and $M$, $N$ are $R$-modules, then there is a natural $R$-isomorphism 
   $
     tau: M tpr N &-> N tpr M \
     m tp n &mapsto n tp m 
@@ -423,12 +423,26 @@ $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)) $
     (- tpr B) tack.l hom_S (B, -)
   $
   where $(- tpr B) : ModR -> ModS$ and $hom_S (B, -) : ModS -> ModR$.
-  
 ]
 
 #corollary[
-  The functor $(- tpr B) : ModR -> ModS$ preserves colimits. In particular, it preserves cokernels and is right exact. It also preserves direct sums.
+  The functor $(- tpr B) : ModR -> ModS$ preserves colimits. In particular, it preserves cokernels and is thus right exact; it also preserves direct sums.
 ]
+<tensor-right-exact>
+
+#theorem[
+  Let $A$ be a left $R$-module, $B$ be a $S$-$R$-bimodule, and $C$ be a left $S$-module, then there is a canonical isomorphism 
+  $
+    hom_S (B tpr A, C) bij hom_R (A, hom_S (B, C))
+  $
+  Thus $(B tpr -): RMod -> SMod$ and $hom_S (B, -): SMod -> RMod$ form an adjunction 
+  $
+    (B tpr -) tack.l hom_S (B, -)
+  $
+  Hence $(B tpr -)$ preserves colimits and in particular is right exact.
+]
+<tensor-right-exact-2>
+
 //  which is right adjoint to $ - tpr B : Mod hyph S -> Mod hyph R $,
 
 // #remark[

@@ -206,6 +206,7 @@ $ g_* oo f_* = (g oo f)_* = (id_P)_* $
 #corollary[
   If $A$ is projective, then $L_i F (A) = 0$ for $i != 0$.
 ]
+<projective-left-zero>
 
 #proof[
   Simply notice that $ ... -> 0 -> A -> A -> 0 $
@@ -240,7 +241,7 @@ Now we complete the definition of $L_i F$ and prove that it is indeed a functor.
 #proof[
   @weibel[Theorem 2.4.6 and Theorem 2.4.7].
    First notice that $L_0 F = F$ is right exact.
-  Given a #sest $ ses(A', A, A'') $ and projective resolutions $P'_cx -> A'$ and $P''_cx -> A''$, by the @horseshoe[Horseshoe Lemma], there is a projective resolution $P_cx -> A$ such that $ses(P'_cx, P_cx, P''_cx)$ is a #sest of chain complexes and for each $n$, $ses(P'_n, P_n, P''_n)$ is split. As $F$ is additive (which means that it preserves split exact sequences #TODO), $
+  Given a #sest $ ses(A', A, A'') $ and projective resolutions $P'_cx -> A'$ and $P''_cx -> A''$, by the @horseshoe[Horseshoe Lemma], there is a projective resolution $P_cx -> A$ such that $ses(P'_cx, P_cx, P''_cx)$ is a #sest of chain complexes and for each $n$, $ses(P'_n, P_n, P''_n)$ is split. Since $F$ is additive, by @additive-preserve-biproduct, $F$ preserves biproducts and thus preserves split exact sequences, so $
     ses(F(P'_n), F(P_n), F(P''_n))
   $
   is split exact in $cB$. (Notice that $F$ is not necessarily an exact functor, so $ses(P'_n, P_n, P''_n)$ being split is crucial.) Hence 
@@ -267,43 +268,7 @@ Now we complete the definition of $L_i F$ and prove that it is indeed a functor.
 // If $F : cA  -> cB$ is left exact, we can define the right derived functor $R^i F(A) = H^i F(I)$ for $A -> I^cx$.
 
 #note[ $R^i F(A) = (L_i F^op)^op (A)$.]
-== Defining $Ext$ and $Tor$ 
 
-#definition[
-  Let $cA$ be an abelian category. Let $A, B in cA$ and $B -> I_cx$ be an injective resolution.
-Recall that $Hom(A)(A, -): cA -> Ab$ is left exact.
-  If $cA$ has enough injectives, we define 
-  $ Ext_cA^i (A, B):= R^i Hom(A)(A, -)(B) = H^i (Hom(A) (A, I^cx)) $
+#corollary[
+  Let $F: cA -> cB$ be a left exact functor, then ${R^i F}_(i >= 0)$ forms a universal cohomological $delta$-functor.
 ]
-#proposition[
-  We have the following equivalences:
-  - $B$ is injective;
-  - $Hom(A)(-, B)$ is exact;
-  - $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $A$;
-  - $Ext_cA^1 (A, B) = 0$ for all $A$.
-
-  Similarly,
-  - $A$ is projective;
-  - $Hom(A)(A, -)$ is exact;
-  - $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $B$;
-  - $Ext_cA^1 (A, B) = 0$ for all $B$.
-]
-#proof[
-  We need to prove $
-    Ext^*_cA (A, B) iso R^ast Hom(A) (-, B)(A)
-  $
-]
-
-#definition[
-  Let $R$ be a ring and $B$ be a left $R$-module. $- tpr B : ModR -> Ab$ is right exact, so we can define  
-  $ Tor_n^R (A, B) = L_n (- tpr B) (A) $
-]
-
-
-We will prove: 
-
-$ L_n (- tpr B) (A) iso L_n (A tpr -) (B) $
-
-This is called the balancing of $Tor$. We need two new tools to prove this: mapping cones and double complexes. 
-
-#TODO #lest induced by $Tor$ and $Ext$
