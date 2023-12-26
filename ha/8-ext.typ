@@ -2,18 +2,57 @@
 
 = Ring Structures on $Ext$
 == Reinterpreting $Ext$
-#lemma[.
+#lemma[
   Let $P_cx -> M$ and $Q_cx -> N$ be projective resolutions, then
   $
-    Ext^ast_R (M, N) = H^ast Tot^Pi (hom_R (P_cx, Q_cx))
+    Ext^ast_R (M, N) = H^ast Tot^Pi (hom_R (P, Q))
   $
 ]
-The proof is similar to above and can be seen @notes[Lemma 8.16]. A useful diagram is 
-#align(center,image("../imgs/2023-11-23-22-22-07.png",width:80%))
+The proof is similar to above and can be seen @notes[Lemma 8.16]. 
 
-Note that the $n$-th term of the total _cochain_ complex can be written explicitly as 
+We first draw the (non-canonically ordered) double complex $hom_R (P, Q)$:
+// #align(center,image("../imgs/2023-11-23-22-22-07.png",width:80%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAoAFAPpkABAEVhAShABfUuky58hFAEYK1Ok1bsufIevFTZ8kBmx4CRAEwaaDFm0SceAwbaPFpchReVEya00HHWc9N1EJVW9TcyUrNVIg+20nF31BQyiY33iVZFtkrUddVyEPbJNcy3yyVWDU0ozI9xyzRRqidXqUkrCyzNIjaza4zpRbHuLQ9LcK1qr2vwSSUmIGvpAAOh3Fsf9E9d6Zna29joOCtY2T3Z8lvKJyUimQtNPz5fznorf2D-u+xWzyox3ed00MCgAHN4ERQAAzABOPCQZBAOAgSFU92RqMQ6gxWMQ1lxKO4SGeRKQABYyfiaTRMUgAKz0imIABsTOJAHZ2UheTykAAOAVc4WIcjiqnMxDEcVC6mIOmmPEcxnKnFq8miyVsnX4lmS0mGjkATklnPFqnRcv5ZuxhLlYsdiBFktUpsRusQxq10rdti1dMoMiAA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((3, 0), text(blue)[$hom(P_0, Q_0)$]),
+  node((3, 1), text(red)[$hom(P_1, Q_0)$]),
+  node((3, 2), text(green)[$hom(P_2, Q_0)$]),
+  node((2, 0), text(orange)[$hom(P_0, Q_1)$]),
+  node((2, 1), text(blue)[$hom(P_1, Q_1)$]),
+  node((2, 2), text(red)[$hom(P_2, Q_1)$]),
+  node((1, 0), text(navy)[$hom(P_0, Q_2)$]),
+  node((1, 1), text(orange)[$hom(P_1, Q_2)$]),
+  node((1, 2), text(blue)[$hom(P_2, Q_2)$]),
+  node((0, 0), [$...$]),
+  node((0, 1), [$...$]),
+  node((0, 2), [$...$]),
+  node((1, 3), [$...$]),
+  node((2, 3), [$...$]),
+  node((3, 3), [$...$]),
+  arr((3, 0), (3, 1), []),
+  arr((3, 1), (3, 2), []),
+  arr((2, 0), (2, 1), []),
+  arr((2, 1), (2, 2), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 0), (2, 0), []),
+  arr((2, 0), (3, 0), []),
+  arr((1, 1), (2, 1), []),
+  arr((2, 1), (3, 1), []),
+  arr((1, 2), (2, 2), []),
+  arr((2, 2), (3, 2), []),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((2, 2), (2, 3), []),
+  arr((3, 2), (3, 3), []),
+))
+
+Note that the $n$-th term of the total complex can be written explicitly as 
 $
-  [Tot^Pi (hom_R (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n))
+  [Tot^Pi (hom_R (P_cx, Q_cx))]_n = product_(p >= max{0, -n}) hom (P_p, Q_(p + n))
 $
 Applying cohomology to this total cochain complex yields $Ext^ast _R (M, N)$. 
 

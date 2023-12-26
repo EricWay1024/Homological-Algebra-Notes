@@ -16,11 +16,11 @@ $
   Ext_cA^i (-, B)(A) := R^i Hom(A)(-, B) (A) = H^i (Hom(A)(P_cx, A))
 $
 
-The above two constructions are in fact isomorphic, i.e., $Ext_cA^i (A, -)(B) iso Ext_cA^i (-, B)(A)$. In other words,
+The above two constructions are in fact isomorphic, i.e., $Ext_cA^i (A, -)(B) iso Ext_cA^i (-, B)(A)$, or
 $
   Ext_cA^i (A, B) := R^i Hom(A)(A, -)(B) iso R^i Hom(A)(-, B) (A)
 $
-This isomorphism is called the *balancing of $Ext$*. Before proving the balancing of $Ext$, we present some properties of $Ext$ that the balancing gives.
+This isomorphism is called the *balancing of $Ext$*. Before proving the balancing of $Ext$, we present some properties of $Ext$ that it gives.
 
 #proposition[
   Let $ses(K, L, M)$ be a short exact sequence in $cA$ and let $A, B in cA$. Then we have the induced long exact sequences
@@ -118,17 +118,29 @@ In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mappi
  with differential $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B_(n-1)$ and $c in C_n$.
 We could also write the differential in the form of a matrix:
 $
-mat(-d_b, 0; -f, d_c) : vec(B_(n-1), C_n) -> vec(B_(n-2), C_(n-1))
+mat(-d_B, 0; -f, d_C) : vec(B_(n-1), C_n) -> vec(B_(n-2), C_(n-1))
 $
+
+Dually, let $g : B^cx -> C^cx$ be a cochain map, then the mapping cone of $g$ is the cochain complex $cone(g)^cx$ given by 
+$
+  cone(g)^n = B^(n+1) plus.circle C^n
+$
+with differential $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B^(n+1)$ and $c in C^n$.
 ]
 
 #lemma[
   Let $f: B_cx -> C_cx$ be a chain map. Then there is a long exact sequence in homology
   $ 
- ... -> H_(n+1) (cone(f)) ->^(delta_ast)  H_n (B) ->^diff H_n (C) -> H_n (cone(f)) -> ...
+ ... -> H_(n+1) (cone(f)) ->  H_n (B) ->^diff H_n (C) -> H_n (cone(f)) -> ...
 $
   where the connecting morphism 
   $ diff = f_ast $
+  // Dually, let $g : B^cx -> C^cx$ be a cochain map, then there is a #lest in cohomology 
+  // $
+  //   ... -> H^(n-1) (cone(f)) ->  H^n (B) ->^diff H^n (C) -> H^n (cone(f)) -> ...
+  // $
+  // with $diff = g^ast$.
+  
 ]
 #proof[
 There is a #sest of chain complexes:
@@ -139,7 +151,7 @@ where $i: c mapsto (0, c)$ and $pi : (b, c) |-> -b$. Notice that $H_(n+1)(B[-1])
   Let $b in B_n$ be a cycle. We can lift it to $(-b, 0)$ in $cone(f)$. Apply the differential of $cone(f)$ to get $d_(cone(f)) ( -b, 0) = (d (b), f (b)) = (0, f (b))$. Thus $diff[b] = [f (b)] = f_ast [b]$.
 ]
 #corollary[
-  $f: B_cx -> C_cx$ is a quasi-isomorphism if and only if $cone(f)$ is acyclic.
+  A chain map $f: B_cx -> C_cx$ is a quasi-isomorphism if and only if $cone(f)$  is acyclic.
 ]
    <cone-qi>
 #proof[
@@ -160,6 +172,10 @@ $cone(f)$ is acyclic.
 acyclic, then $H_n ("cone"(f)) = 0$ and we have an exact sequence
 $ 0 arrow.r H_n (B) arrow.r^(f_ast) H_n ("cone"(f)) arrow.r 0  $
 which indicates that $f_ast$ is an isomorphism.
+]
+
+#remark[
+  The same result can be obtained for cochain maps. 
 ]
 
 
@@ -414,6 +430,12 @@ $ b = (..., b_(-1, 2), b_(0, 1), b_(1, 0)) in product C_(-p, p+1) = Tot^Pi (C)_(
   This lemma is also a consequence of spectral sequences. 
 ]
 
+A variant of the above lemma is the following, whose proof is similar @notes[Lemma 8.8]. 
+#lemma[
+  Let $C$ be a double complex such that for every $n$, there exist only finitely many pairs $(p, q)$ such that $p + q = n$ and $C_(p, q) != 0 $. If $C$ has exact rows (or if $C$ has exact columns), then $Tot^(xor) (C)$ is acyclic. 
+]
+  <aal-2>
+
 
 == Balancing $Tor$
 #definition[
@@ -437,6 +459,7 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
 #theorem([Balancing of $Tor$])[ Let $A in ModR$ and $B in RMod$. For all $n$,
   $ Tor_n^R (A, B) = L_n (A tpr -)(B) iso L_n (- tpr B)(A)  $ 
 ]
+<balance-tor>
 #proof[ @weibel[Theorem 2.7.2].
   // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
   (We drop the dots for chain complexes in this proof.) 
@@ -477,10 +500,10 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   arr((1, 3), (2, 3), [$1 tp d_Q$]),
   arr((0, 1), (1, 1), [$1 tp d_Q$]),
   arr((0, 2), (1, 2), [$-1 tp d_Q$]),
-  arr((0, 0), (1, 0), [$1 tp d_Q$]),
+  arr((0, 0), (1, 0), [$-1 tp d_Q$]),
   arr((0, 3), (0, 2), [$d_P tp 1$]),
   arr((0, 3), (1, 3), [$1 tp d_Q$]),
-  arr((1, 0), (2, 0), [$1 tp d_Q$]),
+  arr((1, 0), (2, 0), [$-1 tp d_Q$]),
   arr((0, 1), (0, 0), [$epsilon tp 1$], "dashed"),
   arr((1, 1), (1, 0), [$epsilon tp 1$], "dashed"),
   arr((2, 1), (2, 0), [$epsilon tp 1$], "dashed"),
@@ -488,16 +511,16 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   where $C_(-1, q) = A tp Q_q$ and $C_(p, q) = P_p tp Q_q$ for any $p, q >= 0$.
   Then 
   $
-    Tot^xor (C)_n  = Tor^xor (P tpr Q)_n xor  (A tp Q_(n+1)) 
+    (Tot^xor (C)[-1])_n  = Tot^xor (C)_(n-1) = Tor^xor (P tpr Q)_(n-1) xor  (A tp Q_(n)) 
   $
   
-  Meanwhile, the mapping cone of $f : Tot^xor (P tpr Q) -> A tpr Q $ is  
+  Meanwhile, the mapping cone of $f : Tot^xor (P tpr Q) -> A tpr Q $ has
   $
     cone(f)_n = Tot^xor (P tpr Q)_(n-1) xor (A tp Q_(n))
   $
-  
-  Hence we observe that $cone(f) = Tot^xor (C)[1]$.
-  To show that $f$ is a quasi-isomorphism, we need to show $cone(f)$ is acyclic by @cone-qi. As any $Q_p$ is projective, $(- tpr Q_p)$ is exact  by @projective-flat-1. Since $P_cx -> A$ is a resolution, every row of $C$ is exact. Since $C$ is upper half-plane, $Tot^xor (C)$ is exact by @aal. So $f$ is a quasi-isomorphism. 
+  Also $ d_(cone(f)) = (-(d^P tp 1 + (-1)^p tp d^Q), 1 tp d_Q - epsilon tp 1) = -d_(Tot^xor (C)[-1]) $
+  hence $cone(f) iso Tot^xor (C)[-1]$.
+  To show that $f$ is a quasi-isomorphism, we need to show $cone(f)$ is acyclic by @cone-qi. As any $Q_p$ is projective, $(- tpr Q_p)$ is exact  by @projective-flat-1. Since $P_cx -> A$ is a resolution, every row of $C$ is exact. Since $C$ is upper half-plane, $Tot^xor (C)$ is acyclic by @aal. So $f$ is a quasi-isomorphism. 
   
   Similarly, we can show that $g$ is a quasi-isomorphism by forming a double complex $C'$ obtained from adding $B tpr P$ in the row $q = -1$ of $P tpr Q$.
   // ($Q$ means $id_Q$ in proper places)
@@ -506,21 +529,71 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
 == Balancing $Ext$
 
 #definition[
-Given a chain complex $P_cx$ and a cochain complex $I^cx$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
+Given a chain complex $P_cx$ and a cochain complex $I^cx$, we can form the *Hom double complex* as $ hom(P, I) = {hom (P_p, I^q)}_(p, q) $
+with differentials
+ $ (d^h f) (a) &= f (d_P (a)) \ (d^v f)(a) &= (-1)^(p+q+1) d^I (f(a)) $
+for $f : P_p -> I^q$, $a in P_p$.
 
-For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$. 
+Then we define the *Hom cochain complex* as
 
-Then we define
-
-  $ Tot^Pi (hom(P, I)) $ as the *$hom$ cochain complex*.
+  $ Tot^Pi (hom(P, I)) $
 ]
 
-#remark[If $C, D$ are chain complexes and we reindex $D$ to be a cochain complex. Then $H^n Tot^Pi hom (C, D)$ is the group of chain homotopy eq classes of morphisms $C -> D[-n]$.]
+#remark[
+  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards or to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards or to the right:
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMma5i5djwEiZAIw6GLNok48BIsVIsKlIBg2akQOpE40Lvruhl7CYWZ+VoEqturIYdqRem4eRiIJUg6WAUGqdihhVNmuBp7GhdIl1uXpmhTOOXX5wu1msv4taUTtWbq1MfUifUXNKcEVyO0R49F5cTPmc2XDGqTEnRMgAHSng-OtofuHa6fH5zshKO0HNbdnyY+L5OE3uXcPVJPZA-MZRf4fUpA74dN4Q+7yHQwKAAc3gRFAADMAE48JBkEA4CBIACsyRxeMQJJoRKQADZybjuPiacTEA5GZTqYS2QAWTnMxB01lIADsAqQYR5SE0EsQ7WliHIcp+ioAHHLeSKlXLRdqNQEKYKpbTEPzDUykFrFeKLZSFaaAJwq7UOYhytWujl2wWexUOWU+sWu5VBoWu-mUeRAA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((3, 0), text(green)[$hom (P_0, I^0)$]),
+  node((2, 0), text(red)[$hom (P_0, I^1)$]),
+  node((1, 0), text(blue)[$hom (P_0, I^2)$]),
+  node((1, 1), text(orange)[$hom (P_1, I^2)$]),
+  node((2, 1), text(blue)[$hom (P_1, I^1)$]),
+  node((3, 1), text(red)[$hom (P_1, I^0)$]),
+  node((3, 2), text(blue)[$hom (P_2, I^0)$]),
+  node((2, 2), text(orange)[$hom (P_2, I^1)$]),
+  node((1, 2), text(navy)[$hom (P_2, I^2)$]),
+  node((0, 0), [$...$]),
+  node((0, 1), [$...$]),
+  node((0, 2), [$...$]),
+  node((1, 3), [$...$]),
+  node((2, 3), [$...$]),
+  node((3, 3), [$...$]),
+  arr((3, 0), (3, 1), []),
+  arr((3, 1), (3, 2), []),
+  arr((3, 0), (2, 0), []),
+  arr((3, 1), (2, 1), []),
+  arr((3, 2), (2, 2), []),
+  arr((2, 0), (1, 0), []),
+  arr((1, 0), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((2, 1), (1, 1), []),
+  arr((2, 2), (1, 2), []),
+  arr((2, 0), (2, 1), []),
+  arr((2, 1), (2, 2), []),
+  arr((1, 0), (0, 0), []),
+  arr((1, 1), (0, 1), []),
+  arr((1, 2), (0, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((2, 2), (2, 3), []),
+  arr((3, 2), (3, 3), []),
+))
+Thus this is, strictly speaking, neither a upper half-plane complex nor a right half-plane complex, because if we would like to turn the diagram into a canonically ordered one, we would need to reflect it to the "fourth quadrant". This ordering matters mainly because in this case, it would be more convenient to apply @aal-2 instead of @aal[Acyclic Assembly Lemma].
 
-Check: #TODO
+Another confusion that can easily arise from a non-canonical ordering is how to form the corresponding total complex. 
+Apart from converting the diagram to a canonically ordered one by reflection, a simple method is to select any object $A$ in the grid and draw a line $l$ connecting the arrowheads of the two arrows departing from $A$. Then every "diagonal slice", which makes up a term in the total complex, must be parallel to this line $l$. This is simply because each arrow must point from one diagonal slice to another. For example, each diagonal slice of the Hom double complex has a distinct colour in the above diagram, and hence we see 
+$
+  Tot^Pi (hom (P, I))_n = product_(p + q = n) hom(P_p, I^q)
+$
 
+]
+
+// #remark[If $C, D$ are chain complexes and we reindex $D$ to be a cochain complex. Then $H^n Tot^Pi hom (C, D)$ is the group of chain homotopy eq classes of morphisms $C -> D[-n]$.] (shown in the next section)
+
+#remark[
+  Let $I^cx$ be a cochain complex of abelian groups and let $P_cx$ (resp. $Q_cx$) be a chain complex of right (resp. left) $R$-modules, then there is a natural isomorphism
 $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
-$I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/left $R$-modules.
+]
 
 
 #endlec(11)
@@ -528,14 +601,63 @@ $I$ cochain complex of abelian groups and $P, Q$ are chain complexes of right/le
 #theorem[ For all $n$,
   $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A) $
 ] 
-#proof[
-  #align(center,image("../imgs/2023-11-23-03-27-44.png",width:80%))
-  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentracted at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. Then we need to show 
-  $ hom(A, I) -> Tot^Pi hom(P, I) $ and 
-  $ hom(P, B) -> Tot^Pi hom(P, I) $ are quasi-isomorphisms. This is equivalent to the cones of the maps being acyclic. 
+#proof[@weibel[Theorem 2.7.6, p.63].
+  // #align(center,image("../imgs/2023-11-23-03-27-44.png",width:80%))
+  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentrated at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. As in the proof of @balance-tor,  we need to show the maps on Hom cochain complexes
+  $ f: hom(A, I) -> Tot^Pi hom(P, I) \ g: hom(P, B) -> Tot^Pi hom(P, I) $ are quasi-isomorphisms. This is equivalent to $cone(f)$ and $cone(g)$ being acyclic by (the dual of) @cone-qi. 
 
-  We observe that $cone(hom (A, I) -> Tot^Pi hom (P, I))$ is the total complex of the double complex $hom(P, I)$ with $hom(A, I)[-1]$ added.  For this augumented double complex, we see that $Tot^Pi$ is exact by @aal since $hom(P_p, -)$ is exact and $hom(-, I^q)$ is exact. Then 
+  Let $C$ be the double complex $hom(P, I)$ with $hom(A, I)$ added to the column $p=-1$.
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9AAyleASQB6ogJQgAvqXSZc+QijIAmanSat2XPkLESZxBctXY8BImWJ6GLNok48BI8VOnarKiAYthpE2qRONC6G7sZewmS+-kqBwer2KOG6UQZuHiYiiRYBNumayOFUOa5GnqZFsiVBanbl5BTOubUFwuG+8imlrUTt2fo1sXUifcWDzSEZyO2R4zH58TN+TWnDWqSinRMgAHSnczuhmfuHa6fH5y2XS9fVt2fW82VEACwRN3l3B4Lcq-MbRAHvVKPRa-KqrCH3D4XRbiFbg7r8ACC5i2QK+KHEYK6k24WJxljxu2Q4jh6JJZP622h5XEB1eCKUehgUAA5vAiKAAGYAJx4SHEIBwECQAFYPiKxYgZTQpUgAGzy0XccUq6WIYiaxXKyV676G7WINW6pAAdnNSDIJqQ2ntiHCTsQ5Fd7Q9AA5Xb8PV7AgqLTbrYh-SGtQ6I2bo4rA6rEHaExb3cmAJzeiPEUSu325g1ppCFj3EF0llO54NCmOW3PxuuK4jhj0SxhYMB5KD0OAcblzUMOq3lmid7vsXv9weu4jG5Puic9vsDqBD+ut3MaqvEUfJ+dzhd64j+yiKIA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 40pt),
+  node((3, 1), [$hom (P_0, I^0)$]),
+  node((2, 1), [$hom (P_0, I^1)$]),
+  node((1, 1), [$hom (P_0, I^2)$]),
+  node((1, 2), [$hom (P_1, I^2)$]),
+  node((2, 2), [$hom (P_1, I^1)$]),
+  node((3, 2), [$hom (P_1, I^0)$]),
+  node((3, 3), [$hom (P_2, I^0)$]),
+  node((2, 3), [$hom (P_2, I^1)$]),
+  node((1, 3), [$hom (P_2, I^2)$]),
+  node((0, 1), [$...$]),
+  node((0, 2), [$...$]),
+  node((0, 3), [$...$]),
+  node((1, 4), [$...$]),
+  node((2, 4), [$...$]),
+  node((3, 4), [$...$]),
+  node((1, 0), [$hom(A, I^2)$]),
+  node((2, 0), [$hom(A, I^1)$]),
+  node((3, 0), [$hom(A, I^0)$]),
+  node((0, 0), [$...$]),
+  arr((3, 1), (3, 2), []),
+  arr((3, 2), (3, 3), []),
+  arr((3, 1), (2, 1), []),
+  arr((3, 2), (2, 2), []),
+  arr((3, 3), (2, 3), []),
+  arr((2, 1), (1, 1), []),
+  arr((1, 1), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((2, 2), (1, 2), []),
+  arr((2, 3), (1, 3), []),
+  arr((2, 1), (2, 2), []),
+  arr((2, 2), (2, 3), []),
+  arr((1, 1), (0, 1), []),
+  arr((1, 2), (0, 2), []),
+  arr((1, 3), (0, 3), []),
+  arr((1, 3), (1, 4), []),
+  arr((2, 3), (2, 4), []),
+  arr((3, 3), (3, 4), []),
+  arr((3, 0), (3, 1), [], "dashed"),
+  arr((2, 0), (2, 1), [], "dashed"),
+  arr((1, 0), (1, 1), [], "dashed"),
+  arr((3, 0), (2, 0), []),
+  arr((2, 0), (1, 0), []),
+  arr((1, 0), (0, 0), []),
+))
+  We observe that $cone(f) iso Tot^Pi (C)$. Every $hom(-, I^q)$ is exact, so every row of $C$ is exact, then we can see that $Tot^Pi (C)$ is acyclic by @aal-2 . Similarly, we can show that $cone(g)$ is acyclic. 
+   Then applying cohomology yields
 
-  $ R^ast hom(A, -) (B) = H^ast hom (A, I) = H^ast Tot^Pi ( hom(P, I))  \ iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
-  #TODO review
+  $ R^ast hom(A, -) (B) &= H^ast hom (A, I) \ &iso H^ast Tot^Pi ( hom(P, I))  \ &iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
 ]
+
+// #TODO mapping cone of a *cochain* complex
