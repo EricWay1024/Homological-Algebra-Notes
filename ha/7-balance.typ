@@ -428,7 +428,7 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   Notice that $(d_P tp 1) oo (1 tp d_Q) = d_P tp d_Q = (1 tp d_Q) oo (d_P tp 1)$ by @tp-composition, and alternating the signs for adjacent columns makes each square anticommute. 
 ]
 #lemma[
-  If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This is the same as saying "every projective module is flat", but we have yet to define flat modules.]
+  If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This lemma is the same as saying "every projective module is flat", but we have yet to define flat modules.]
 ]
 <projective-flat-1>
 #proof[
@@ -441,10 +441,10 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
   (We drop the dots for chain complexes in this proof.) 
   Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$. 
-  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q_cx$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_  $epsilon tp id_Q: P tpr Q -> A tpr Q$ and $id_Q tp eta: P tpr Q -> P tpr B$, which induce chain maps on the total complexes:
-  $ f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
-  $ g : Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
-  We claim that $f$ and $g$
+  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi):  $ epsilon tp id_Q: P tpr Q -> A tpr Q \ id_Q tp eta: P tpr Q -> P tpr B $ which induce chain maps on the total complexes:
+  $ f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q \
+   g : Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
+  We claim that $f$ and $g$ 
   are quasi-isomorphisms, which would give isomorphisms on homology and thus prove the result, i.e.
 
   $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $ 

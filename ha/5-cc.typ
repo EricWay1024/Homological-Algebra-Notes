@@ -449,6 +449,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 ))
 is a quasi-isomorphism. 
 ]
+<resolution-qi>
 
 #proof[
   By definition, $P_cx$ is a resolution if and only if 
