@@ -235,9 +235,9 @@ In other words, a double complex is an infinite two-dimensional grid of objects 
 ))
 
 // #align(center,image("../imgs/2023-11-12-16-01-47.png",width:50%))
-
+#remark[
   Because the differentials anticommute, $d^v$ cannot be seen as chain maps between rows. 
-  We need to replace $d^v_(p, q)$ by $f_(p, q) := (-1)^p d^v_(p, q)$ (so that the signs alternate through the columns) to make the squares commute. For example, the following is a commutative diagram:
+  We need to replace $d^v_(p, q)$ by $f_(p, q) := (-1)^p d^v_(p, q)$ (so that the signs alternate for adjacent columns) to make the squares commute. For example, the following is a commutative diagram:
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBhAfQAoziAlCAC+pdJlz5CKchWp0mrdtx6zBIsSAzY8BIgCY5NBizaJOvQ+tHidUov3kml5lWXJCbWibunI1TopmnKoUnpraknooVoGmypZhGrZRfgDMpMRxLhY8GR7J3nbRyPnZwSoZ1vIwUADm8ESgAGYAThAAtkgALDQ4EEgZCvHmUAB6ABaFbZ1IAKx9A4i9wznjU14zXYiyIP1IZKvB69Pt24Z7S7vOx5Ons4hD+4iHN+zjtPfbK8-XQewAWg+X3miyQFzeozGn02ZyQADYwYgFkd3ndYQ8AOxIiH-KEbTRbBFI7Go8xA6EiSjCIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -261,7 +261,7 @@ In other words, a double complex is an infinite two-dimensional grid of objects 
   arr((0, 3), (1, 3), [$-d^v$]),
 ))
 Therefore, $f_(cx, q) : C_(cx, q) -> C_(cx, q-1)$ is a chain map between two adjacent rows.
-This also gives an isomorphism between the category of bicomplexes in $cA$ and $Ch(Ch(cA))$.
+This also gives an isomorphism between the category of bicomplexes in $cA$ and $Ch(Ch(cA))$.] <sign-trick>
 
 #definition[
   Let $C_(bullet bullet)$ be a double complex. We say that
@@ -279,7 +279,7 @@ such that $C_(p q) eq 0$ for all $p lt p_0$.
   with differential $ d = d^h + d^v $
 ]
 #lemma[
-  In a total complex $Tot^Pi (C)_cx$, we have that $d^2 = 0$, so the total complex is indeed a chain complex. 
+  In a total complex, we have that $d^2 = 0$, so the total complex is indeed a chain complex. 
 ]
 #proof[
   @rotman[Lemma 10.5]. 
@@ -361,68 +361,152 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
   then $Tot^xor (C)$ is acyclic.
 ]
   <aal>
-#proof[
-  We only prove (1) here and the other conditions follow similarly.
-  Let $C$ be an upper half-plane bicomplex with exact columns. We will show that 
+#proof[@weibel[Lemma 2.7.3] explains why proving (1) is sufficient to prove all four conditions, so we work on (1) only.
+  Let $C$ be an upper half-plane bicomplex with exact columns, where we assume $C_(p, q) = 0$ when $q < 0$ (by translating $C$ up or down). It is sufficient to show that 
   $ H_0 (Tot^Pi (C)) = 0 $
-  and by translating $C$ left and right, this will indicate that $H_n (Tot^Pi (C)) = 0$ for all $n$ and hence prove the result.
-  Let $ c = (..., c_(-2, 2), c_(-1, 1), c_(0, 0)) in product C_(-p, p) = Tot^Pi (C)_0 $ be a $0$-cycle (i.e. $d(c) = 0$).
-  We will use indcution to find elements $b_(-p, p+1)$ such that $ d^v (b_(-p, p+1)) + d^h (b_(-p+1, p)) = c_(-p, p) $
+  since by translating $C$ left and right, this will indicate that $H_n (Tot^Pi (C)) = 0$ for all $n$.
+  
+  Let $ c = (..., c_(-2, 2), c_(-1, 1), c_(0, 0)) in product C_(-p, p) = Tot^Pi (C)_0 $ be a $0$-cycle, i.e., $d(c) = 0$.
+  We will use induction to find elements $b_(-p, p+1) in C_(-p, p+1)$ for $p >= -1$ such that $ d^v (b_(-p, p+1)) + d^h (b_(-p+1, p)) = c_(-p, p) $
 
-  Let $b_(10) = 0$ for $p = -1$. Since the $0$-th column is exact, there is a $b_01 in C_01$ so that $d^v (b_01) = c_00$. 
+  For the base case, let $b_(1,0) = 0$ for $p = -1$. Since the $0$-th column is exact, there exists $b_(0,1) in C_(0,1)$ such that $d^v (b_(0,1)) = c_(0,0)$. 
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ACjIEYAlCAC+pdJlz5CKflVqMWbLr3JDR47HgJE+pPnPrNWiDj13E1YkBk1SiZAEwGFxkMRFyYUAObwioADMAJwgAWyRdEBwIJABmakNFEygAPRoRK2CwpDIomMRIxNdU9PUQLPDEB2poiISXNlSACw9hIA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$C_(0,1)$]),
+  node((1, 0), [$C_(0,0)$]),
+  node((1, 1), [$C_(1,0)$]),
+  node((2, 0), [$0$]),
+  arr((1, 0), (2, 0), [$d^v$]),
+  arr((0, 0), (1, 0), [$d^v$]),
+  arr((1, 1), (1, 0), [$d^h$]),
+))
+  By induction, suppose we have found $b_(-p+1, p)$ and want to find $b_(-p, p+1)$.
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ACgFo1SAAjQBqAIwBKEAF9S6TLnyEUZMVVqMWbLnwFops+djwEiY0mur1mrRBx79xpfTLkgMxpUTIAmdda07HX5ncQN1GCgAc3giUAAzACcIAFskcxAcCCQAZitNWxAoAD0aVwTktMQyTOzEDIDCkrLDECTUpB9qLPT8mzYSgAsZCmkgA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((0, 0), [$C_(-p, p+1)$]),
+  node((1, 0), [$C_(-p,p)$]),
+  node((1, 1), [$C_(-p+1,p)$]),
+  node((2, 0), [$C_(-p,p-1)$]),
+  arr((1, 0), (2, 0), [$d^v$]),
+  arr((0, 0), (1, 0), [$d^v$]),
+  arr((1, 1), (1, 0), [$d^h$]),
+))
 
-  By induction, suppose we have found $b_(-p+1, p)$ and want to find $b_(-p, p+1)$. We compute that 
+ We compute that 
 $ d^v lr((c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))))) & eq d^v lr((c_(minus p, p))) plus d^h d^v lr((b_(minus p plus 1 comma p)))\
  & eq d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) minus d^h d^h \(b_(minus p plus 2 comma p minus 1 )) \
  & eq 0 dot.basic $
 
- where $d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) = 0$ because $d(c) = 0$.
-
-Since the $(minus p)$-th  column is exact, there is a
-$b_(minus p comma p plus 1)$ so that
+ where $d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) = 0$ because $d(c) = 0$. Thus 
+ $ c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))) in Ker(d^v : C_(-p, p) -> C_(-p, p-1)) = IM (d^v : C_(-p, p+1) -> C_(-p, p)) $
+ 
+ since the $(minus p)$-th  column is exact. So there exists
+$b_(minus p comma p plus 1)$ such that
 $ d^v lr((b_(minus p comma p plus 1))) eq c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))) $
 as desired. Now assembling all $b_(-p, p+1)$ gives 
 
 $ b = (..., b_(-1, 2), b_(0, 1), b_(1, 0)) in product C_(-p, p+1) = Tot^Pi (C)_(1) $ such that $d (b) =  c$, which proves that $H_0 (Tot^Pi (C)) = 0$. 
-
-See @weibel[Lemma 2.7.3].
 ]
 
 #remark[
-  Spectral sequences. This lemma is a consequence of sepectral sequences. 
+  This lemma is also a consequence of spectral sequences. 
 ]
 
 
 == Balancing $Tor$
 #definition[
-Suppose $P_cx$ and $Q_cx$ are complexes of right/left-$R$ modules. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$. The sign trick is to make this anticommute. ]
+Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RMod$. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$. 
+// The sign trick is to make this anticommute. 
+]
 
-
-#theorem[ For all $n$,
-  $ L_n (A tpr -)(B) iso L_n (- tpr B)(A) = Tor_n^R (A, B) $ 
+#lemma[
+  The differentials of $P_cx tpr Q_cx$ anticommute, so $P_cx tpr Q_cx$ is a double complex. 
+]
+#proof[
+  Notice that $(d_P tp 1) oo (1 tp d_Q) = d_P tp d_Q = (1 tp d_Q) oo (d_P tp 1)$ by @tp-composition, and alternating the signs for adjacent columns makes each square anticommute. 
+]
+#lemma[
+  If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This is the same as saying "every projective module is flat", but we have yet to define flat modules.]
+]
+<projective-flat-1>
+#proof[
+  @rotman[Proposition 3.46, p. 132]. We (very concisely) work on the first half of the claim. First notice that $(R tpr -)$ is an isomorphism by @r-tpr, so the functor $(R tpr -)$ is exact. Then tensor product preserves direct sums by @tensor-right-exact, so for a family of right $R$-modules $M_i$, $((plus.circle.big M_i) tpr -)$ is exact, if and only if $plus.circle.big (M_i tpr -)$ is exact, if and only if each $(M_i tpr -)$ is exact. Now any free module $F$, being a direct sum of $R$'s, must have that $(F tpr -)$ is exact. Finally, $P$ is projective, hence $P$ is a direct summand of some free module by @projective-summand, which indicates that $(P tpr -)$ is also exact.
+]
+#theorem([Balancing of $Tor$])[ Let $A in ModR$ and $B in RMod$. For all $n$,
+  $ Tor_n^R (A, B) = L_n (A tpr -)(B) iso L_n (- tpr B)(A)  $ 
 ]
 #proof[ @weibel[Theorem 2.7.2].
-  #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
+  // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
+  (We drop the dots for chain complexes in this proof.) 
   Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$. 
-  We can view $A, B$ as complexes concentrated in degree $0$. Look at the double complexes $P_cx tpr Q_cx$, $A_cx tpr Q_cx$ and $P_cx tpr B_cx$, and we get morphisms of bicomplexes $epsilon tp Q: P tpr Q -> A tpr Q$ and $Q tp eta: P tpr Q -> P tpr B$. Now we want to show that maps
-  $ epsilon tp Q : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
-  $ P tp eta: Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
-  are quasi-isomoprhisms, which would give isomorphisms on homology and thus prove the result, i.e.
+  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q_cx$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_  $epsilon tp id_Q: P tpr Q -> A tpr Q$ and $id_Q tp eta: P tpr Q -> P tpr B$, which induce chain maps on the total complexes:
+  $ f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q $ and
+  $ g : Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B $
+  We claim that $f$ and $g$
+  are quasi-isomorphisms, which would give isomorphisms on homology and thus prove the result, i.e.
 
   $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $ 
   $ H_ast (Tot^xor (P tpr Q)) iso H_ast (P tpr B) = L_ast (- tpr B ) (A) $  
 
-  If we look at the double complex $C$ obtained from $P tpr Q$ by adding $A tpr Q[-1]$ in the column $p = -1$ using the augmentation, we get that $Tot(C)[1]$ is the mapping cone of $ epsilon tp Q : Tot(P tpr Q) -> A tpr Q $
-
-  To show that $epsilon tp Q$ is a quasi-isomorphism, we need to show $cone(epsilon tp Q) = Tot(C)[1]$ is acyclic by @cone-qi. Note that $- tpr Q_p$ is exact as $Q_p$ are projective. So every row of $C$ is exact and so $Tot^xor (C)$ is exact by @aal. So $epsilon tp Q$ is a quasi-isomorphism. 
-  Similarly, we can show that $P tp eta$ is also a quasi-isomorphism.
+  Now we form a double complex $C$, obtained from $P tpr Q$ by adding $A tpr Q$ in the column $p = -1$ using the augmentation $epsilon: P_0 -> A$,
+  
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAAUB9ABgAIc0vAIqdiIAL6l0mXPkIoyAJiq1GLNlz4DhPCVJAZseAkUWll1es1aIOo-oJHc90o3KIBmcyqvrbXRQcdZ0lXWRMUM0pLNRs7YiCRMVCDGWN5ZC9o1WsNTkDtJJdUtwiSUm4fWLytR3ziw3CMs0qY3P97QvqUxvSibnIq9pAAQUTRBrT3FAHWnL9R8cVJ0oyBi3m4sa6Q-V7pzIqhhYCliRUYKABzeCJQADMAJwgAWyQAdmocCCQANjaFlBOOwgsl9E9XkgACxfH6IAabNhAkHaMEPZ5vRAAVlh0IBcWRoOKEMxZhA3yQZERtkJqOJGKQXnJcLJvgJwKJKRJSARFMQVLZbAS2iBQnpkMQMOZSFZ1VsAFphYJReLMTjpYgmYLbEreCquQzEP8NQjtSBdfrwYbPhqpWbFUFLeiJQBOXGIAAc+KFjs4YoNEuIVL5NrNtMEaJA3P5wbh6rNFr9qqQXo1xFNcvNvv9Volxr5bpADCwYAJdDgAAtLiBvbYYGhsAwCJzc5jeXDU8XS0jy1WoDXqSB643m3SA5jY5SEV2y5Xq7Whw2sE2wJyKOIgA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((1, 1), [$P_0 tp Q_1$]),
+  node((2, 1), [$P_0 tp Q_0$]),
+  node((2, 2), [$P_1 tp Q_0$]),
+  node((2, 3), [$P_2 tp Q_0$]),
+  node((1, 2), [$P_1 tp Q_1$]),
+  node((1, 3), [$P_2 tp Q_1$]),
+  node((0, 1), [$P_0 tp Q_2$]),
+  node((0, 2), [$P_1 tp Q_2$]),
+  node((1, 0), [$A tp Q_1$]),
+  node((0, 0), [$A tp Q_2$]),
+  node((2, 0), [$A tp Q_0$]),
+  node((0, 3), [$P_2 tp Q_2$]),
+  arr((0, 2), (0, 1), [$d_P tp 1$]),
+  arr((1, 2), (1, 1), [$d_P tp 1$]),
+  arr((1, 3), (1, 2), [$d_P tp 1$]),
+  arr((2, 2), (2, 1), [$d_P tp 1$]),
+  arr((2, 3), (2, 2), [$d_P tp 1$]),
+  arr((1, 1), (2, 1), [$1 tp d_Q$]),
+  arr((1, 2), (2, 2), [$-1 tp d_Q$]),
+  arr((1, 3), (2, 3), [$1 tp d_Q$]),
+  arr((0, 1), (1, 1), [$1 tp d_Q$]),
+  arr((0, 2), (1, 2), [$-1 tp d_Q$]),
+  arr((0, 0), (1, 0), [$1 tp d_Q$]),
+  arr((0, 3), (0, 2), [$d_P tp 1$]),
+  arr((0, 3), (1, 3), [$1 tp d_Q$]),
+  arr((1, 0), (2, 0), [$1 tp d_Q$]),
+  arr((0, 1), (0, 0), [$epsilon tp 1$], "dashed"),
+  arr((1, 1), (1, 0), [$epsilon tp 1$], "dashed"),
+  arr((2, 1), (2, 0), [$epsilon tp 1$], "dashed"),
+))
+  where $C_(-1, q) = A tp Q_q$ and $C_(p, q) = P_p tp Q_q$ for any $p, q >= 0$.
+  Then 
+  $
+    Tot^xor (C)_n  = Tor^xor (P tpr Q)_n xor  (A tp Q_(n+1)) 
+  $
+  
+  Meanwhile, the mapping cone of $f : Tot^xor (P tpr Q) -> A tpr Q $ is  
+  $
+    cone(f)_n = Tot^xor (P tpr Q)_(n-1) xor (A tp Q_(n))
+  $
+  
+  Hence we observe that $cone(f) = Tot^xor (C)[1]$.
+  To show that $f$ is a quasi-isomorphism, we need to show $cone(f)$ is acyclic by @cone-qi. As any $Q_p$ is projective, $(- tpr Q_p)$ is exact  by @projective-flat-1. Since $P_cx -> A$ is a resolution, every row of $C$ is exact. Since $C$ is upper half-plane, $Tot^xor (C)$ is exact by @aal. So $f$ is a quasi-isomorphism. 
+  
+  Similarly, we can show that $g$ is a quasi-isomorphism by forming a double complex $C'$ obtained from adding $B tpr P$ in the row $q = -1$ of $P tpr Q$.
   // ($Q$ means $id_Q$ in proper places)
 ]
 
 == Balancing $Ext$
 
 #definition[
-Given a chain complex $P$ and a cochain complex $I$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
+Given a chain complex $P_cx$ and a cochain complex $I^cx$, we can form a double complex $ hom(P, I) = {hom (P_p, I^q)} $
 
 For $f : P_p -> I^q$, $a in P_p$ we have $(d^h f) (a) = f (d a)$ and $(d^v f)(a) = (-1)^(p+q+1) d f(a)$. 
 

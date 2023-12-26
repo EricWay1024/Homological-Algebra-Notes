@@ -89,6 +89,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 #corollary[
   $(phi' oo phi) tp (psi' oo psi) = (phi' tp psi') oo (phi tp psi)$ for any $M ->^phi M' ->^(phi') M''$ and $N ->^psi N' ->^(psi') N''$.
 ]
+<tp-composition>
 #proof[Both send $m tp n$ to $phi'(phi(m)) tp psi'(psi(n))$, but such a homomorphism should be unique. ]
 
 #corollary[
@@ -246,6 +247,7 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
     m tp n &mapsto n tp m 
   $
 ]
+<r-tpr>
 
 #proposition[
   Given #rrm $A$, $R$-$S$-bimodule $B$, and left $S$-module $C$, there is an isomorphism 

@@ -420,7 +420,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
   In the same way, we define *right resolutions* and *injective resolutions*, only reversing all the arrows. 
 ]
 #proposition[
-  $P_cx$ is a resolution if and only if the following chain map $f: P_cx -> M[0]$
+  $P_cx -> M$ is a resolution if and only if the following chain map $f: P_cx -> M[0]$
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADpOQBfU9TXPkIoAjOSq1GLNgAUA+gCYefEBmx4CRBeOr1mrRCHkjl-dUKIBmHZP2y5xU6oEbhyACw290w495nBTRRPEQlvAxA-FTVAt2tQ3SkIgFknGNctUgTbH0i0lwtRLLCktiiAjJQybPC2TnYeCRgoAHN4IlAAMwAnCABbJDIQHAgkMRyIqCce-rHqEaRtCbYp-xAZgcQlhcRrZcNVlQ2kPZ33NePEAE550cQADgvezfvbpAB2J9nEd7fEADYvpt-n8AKxAubDO6vfZ5CFbP6-WHldbPE5-EGwmBobAMTTwoY7G4gBhYMAROAQUlTRJ2Qz1RrcIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
