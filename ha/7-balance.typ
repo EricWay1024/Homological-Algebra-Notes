@@ -439,7 +439,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
 
 == Balancing $Tor$
 #definition[
-Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RMod$. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h = d_P tp 1$ and $d^v = (-1)^p tp d_Q$. 
+Suppose $(P_cx, d^((P)))$ is a chain complex in $ModR$ and $(Q_cx, d^((Q)))$ is a chain complex in $RMod$. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h_(p, q) = d^((P))_p tp 1$ and $d^v_(p, q) = (-1)^p tp d^((Q))_q$. 
 // The sign trick is to make this anticommute. 
 ]
 
@@ -447,7 +447,7 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   The differentials of $P_cx tpr Q_cx$ anticommute, so $P_cx tpr Q_cx$ is a double complex. 
 ]
 #proof[
-  Notice that $(d_P tp 1) oo (1 tp d_Q) = d_P tp d_Q = (1 tp d_Q) oo (d_P tp 1)$ by @tp-composition, and alternating the signs for adjacent columns makes each square anticommute. 
+  Notice that $(d^((P)) tp 1) oo (1 tp d^((Q))) = d^((P)) tp d^((Q)) = (1 tp d^((Q))) oo (d^((P)) tp 1)$ by @tp-composition, and alternating the signs for adjacent columns makes each square anticommute. 
 ]
 #lemma[
   If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This lemma is the same as saying "every projective module is flat", but we have yet to define flat modules.]
@@ -518,7 +518,7 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
   $
     cone(f)_n = Tot^xor (P tpr Q)_(n-1) xor (A tp Q_(n))
   $
-  Also $ d_(cone(f)) = (-(d^P tp 1 + (-1)^p tp d^Q), 1 tp d_Q - epsilon tp 1) = -d_(Tot^xor (C)[-1]) $
+  Also $ d_(cone(f)) = (-(d^((P)) tp 1 + (-1)^p tp d^((Q))), 1 tp d^((Q)) - epsilon tp 1) = -d_(Tot^xor (C)[-1]) $
   hence $cone(f) iso Tot^xor (C)[-1]$.
   To show that $f$ is a quasi-isomorphism, we need to show $cone(f)$ is acyclic by @cone-qi. As any $Q_p$ is projective, $(- tpr Q_p)$ is exact  by @projective-flat-1. Since $P_cx -> A$ is a resolution, every row of $C$ is exact. Since $C$ is upper half-plane, $Tot^xor (C)$ is acyclic by @aal. So $f$ is a quasi-isomorphism. 
   
@@ -529,21 +529,21 @@ Suppose $P_cx$ is a chain complex in $ModR$ and $Q_cx$ is a chain complex in $RM
 == Balancing $Ext$
 
 #definition[
-Given a chain complex $P_cx$ and a cochain complex $I^cx$, we can form the *Hom double complex* as $ hom(P, I) = {hom (P_p, I^q)}_(p, q) $
-with differentials
- $ (d^h f) (a) &= f (d_P (a)) \ (d^v f)(a) &= (-1)^(p+q+1) d^I (f(a)) $
-for $f : P_p -> I^q$, $a in P_p$.
+Given a chain complex $(P_cx, d^((P)))$ and a cochain complex $(I^cx, d_((I)))$, we can form the *Hom double complex* $ hom(P_cx, I^cx) = {hom (P_p, I^q)}_(p, q) $
+with differentials#footnote[Here we alternate the signs for adjacent rows instead of adjacent columns as in the tensor double complex. The sign convention is different in @weibel[p. 62]; I choose to use the current one, following @notes[p. 76], because it makes my life easier.]
+ $ d^h_(p, q) (f)  &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , I^q)  \ d^v_(p, q) (f) &=  d_((I))^q oo f in hom (P_p, I^(q+1)) $
+for $f in hom ( P_p , I^q )$.
 
-Then we define the *Hom cochain complex* as
+Then we define the *Hom cochain complex*#footnote[@weibel[p. 62] writes this as $Tor^Pi (hom (P, I))$, but as we will see in this case any diagonal slice has only finite terms, so their product and direct sum are the same.] as
 
-  $ Tot^Pi (hom(P, I)) $
+  $ Tot^xor (hom(P, I)) $
 ]
 
-#remark[
-  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards or to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards or to the right:
-  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMma5i5djwEiZAIw6GLNok48BIsVIsKlIBg2akQOpE40Lvruhl7CYWZ+VoEqturIYdqRem4eRiIJUg6WAUGqdihhVNmuBp7GhdIl1uXpmhTOOXX5wu1msv4taUTtWbq1MfUifUXNKcEVyO0R49F5cTPmc2XDGqTEnRMgAHSng-OtofuHa6fH5zshKO0HNbdnyY+L5OE3uXcPVJPZA-MZRf4fUpA74dN4Q+7yHQwKAAc3gRFAADMAE48JBkEA4CBIACsyRxeMQJJoRKQADZybjuPiacTEA5GZTqYS2QAWTnMxB01lIADsAqQYR5SE0EsQ7WliHIcp+ioAHHLeSKlXLRdqNQEKYKpbTEPzDUykFrFeKLZSFaaAJwq7UOYhytWujl2wWexUOWU+sWu5VBoWu-mUeRAA
+An (anticommutative) diagram for the Hom double complex is as follows. The placeholder in function compositions is written as $square$ (instead of $-$ as in most parts of these notes) so that it is not confused with the minus sign. Note particularly the signs and indices in the horizontal differentials. Also note that each row and each column is a cochain complex.
+
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMkBGOYuXY8BImXM6GLNok48BIsVM1WlIBi2akTmpE40Lvruhl7CYWZ+CgFBqvYoYdqRem4eRiIJUpbJNmnqyGFU2a4GnsaF0v6lduWaFM45tfnCbWayJYEqLURtWbo1MXUivUVNg8HpyG0R49F5cTOSSdbzZQ6kxB0TIAB0ZwOpwxkHR2tnJxdDIShth9V35zuXz8jk4be5e6PBblP5jKKAz4pJ6LP5VVaQh7yHQwKAAc3gRFAADMAE48JBkEA4CBIACs71ycAAjsx6LiYLwIBBeFBJPwhDIZPEBniCYgKcTSYgAGyU9g0ukMpkstkcwRcnq8-HcQk0ElIMII9hQYQc8Rc6Qy3iS+lsHZ81UC9XCgAs4vcuv1huIxtNDOV-LFQqQAHYHSAnfwDTIjcyTbSzZ6rVqNYg2trHXrg4bzG7Ix6LSqkAm439EyB3Yzw3LOdzzNGkPm4wAOANF42lhXczSVxD2n2IfMQnXJkMWdNS80BS1+m1IOsFoP9tPhott2N2gMAWgbJfZZZ5Wf5Hbj-oLq4zxdlG+bSu3VtzwoAnBeq+PEOZiHfEJO4+ZzC+38LzJoX-v33IF9vXfW1kXkIA
 #align(center, commutative-diagram(
-  node-padding: (50pt, 50pt),
+  node-padding: (60pt, 60pt),
   node((3, 0), text(green)[$hom (P_0, I^0)$]),
   node((2, 0), text(red)[$hom (P_0, I^1)$]),
   node((1, 0), text(blue)[$hom (P_0, I^2)$]),
@@ -559,18 +559,18 @@ Then we define the *Hom cochain complex* as
   node((1, 3), [$...$]),
   node((2, 3), [$...$]),
   node((3, 3), [$...$]),
-  arr((3, 0), (3, 1), []),
-  arr((3, 1), (3, 2), []),
-  arr((3, 0), (2, 0), []),
-  arr((3, 1), (2, 1), []),
-  arr((3, 2), (2, 2), []),
-  arr((2, 0), (1, 0), []),
-  arr((1, 0), (1, 1), []),
-  arr((1, 1), (1, 2), []),
-  arr((2, 1), (1, 1), []),
-  arr((2, 2), (1, 2), []),
-  arr((2, 0), (2, 1), []),
-  arr((2, 1), (2, 2), []),
+  arr((3, 0), (3, 1), [$square oo d^((P))_1$]),
+  arr((3, 1), (3, 2), [$square oo d^((P))_2$]),
+  arr((3, 0), (2, 0), [$d_((I))^0 oo square$]),
+  arr((3, 1), (2, 1), [$d_((I))^0 oo square$]),
+  arr((3, 2), (2, 2), [$d_((I))^0 oo square$]),
+  arr((2, 0), (1, 0), [$d_((I))^1 oo square$]),
+  arr((1, 0), (1, 1), [$square oo d^((P))_1$]),
+  arr((1, 1), (1, 2), [$square oo d^((P))_2$]),
+  arr((2, 1), (1, 1), [$d_((I))^1 oo square$]),
+  arr((2, 2), (1, 2), [$d_((I))^1 oo square$]),
+  arr((2, 0), (2, 1), [$-square oo d^((P))_1$]),
+  arr((2, 1), (2, 2), [$-square oo d^((P))_2$]),
   arr((1, 0), (0, 0), []),
   arr((1, 1), (0, 1), []),
   arr((1, 2), (0, 2), []),
@@ -578,14 +578,57 @@ Then we define the *Hom cochain complex* as
   arr((2, 2), (2, 3), []),
   arr((3, 2), (3, 3), []),
 ))
+#remark[
+  There are a few technicalities to be addressed here. They are not conceptually difficult but can be bewildering when first encountered. 
+
+  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards or to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards or to the right:
+//   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMma5i5djwEiZAIw6GLNok48BIsVIsKlIBg2akQOpE40Lvruhl7CYWZ+VoEqturIYdqRem4eRiIJUg6WAUGqdihhVNmuBp7GhdIl1uXpmhTOOXX5wu1msv4taUTtWbq1MfUifUXNKcEVyO0R49F5cTPmc2XDGqTEnRMgAHSng-OtofuHa6fH5zshKO0HNbdnyY+L5OE3uXcPVJPZA-MZRf4fUpA74dN4Q+7yHQwKAAc3gRFAADMAE48JBkEA4CBIACsyRxeMQJJoRKQADZybjuPiacTEA5GZTqYS2QAWTnMxB01lIADsAqQYR5SE0EsQ7WliHIcp+ioAHHLeSKlXLRdqNQEKYKpbTEPzDUykFrFeKLZSFaaAJwq7UOYhytWujl2wWexUOWU+sWu5VBoWu-mUeRAA
+// #align(center, commutative-diagram(
+//   node-padding: (50pt, 50pt),
+//   node((3, 0), text(green)[$hom (P_0, I^0)$]),
+//   node((2, 0), text(red)[$hom (P_0, I^1)$]),
+//   node((1, 0), text(blue)[$hom (P_0, I^2)$]),
+//   node((1, 1), text(orange)[$hom (P_1, I^2)$]),
+//   node((2, 1), text(blue)[$hom (P_1, I^1)$]),
+//   node((3, 1), text(red)[$hom (P_1, I^0)$]),
+//   node((3, 2), text(blue)[$hom (P_2, I^0)$]),
+//   node((2, 2), text(orange)[$hom (P_2, I^1)$]),
+//   node((1, 2), text(navy)[$hom (P_2, I^2)$]),
+//   node((0, 0), [$...$]),
+//   node((0, 1), [$...$]),
+//   node((0, 2), [$...$]),
+//   node((1, 3), [$...$]),
+//   node((2, 3), [$...$]),
+//   node((3, 3), [$...$]),
+//   arr((3, 0), (3, 1), []),
+//   arr((3, 1), (3, 2), []),
+//   arr((3, 0), (2, 0), []),
+//   arr((3, 1), (2, 1), []),
+//   arr((3, 2), (2, 2), []),
+//   arr((2, 0), (1, 0), []),
+//   arr((1, 0), (1, 1), []),
+//   arr((1, 1), (1, 2), []),
+//   arr((2, 1), (1, 1), []),
+//   arr((2, 2), (1, 2), []),
+//   arr((2, 0), (2, 1), []),
+//   arr((2, 1), (2, 2), []),
+//   arr((1, 0), (0, 0), []),
+//   arr((1, 1), (0, 1), []),
+//   arr((1, 2), (0, 2), []),
+//   arr((1, 2), (1, 3), []),
+//   arr((2, 2), (2, 3), []),
+//   arr((3, 2), (3, 3), []),
+// ))
 Thus this is, strictly speaking, neither a upper half-plane complex nor a right half-plane complex, because if we would like to turn the diagram into a canonically ordered one, we would need to reflect it to the "fourth quadrant". This ordering matters mainly because in this case, it would be more convenient to apply @aal-2 instead of @aal[Acyclic Assembly Lemma].
 
 Another confusion that can easily arise from a non-canonical ordering is how to form the corresponding total complex. 
-Apart from converting the diagram to a canonically ordered one by reflection, a simple method is to select any object $A$ in the grid and draw a line $l$ connecting the arrowheads of the two arrows departing from $A$. Then every "diagonal slice", which makes up a term in the total complex, must be parallel to this line $l$. This is simply because each arrow must point from one diagonal slice to another. For example, each diagonal slice of the Hom double complex has a distinct colour in the above diagram, and hence we see 
+Apart from converting the diagram to a canonically ordered one by reflection, a simple method is to select any object $A$ in the grid and draw a line $l$ connecting the arrowheads of the two arrows departing from $A$. Then every "diagonal slice", whose direct sum is a term of the total complex, must be parallel to this line $l$. This is simply because each arrow must point from one diagonal slice to another. For example, each diagonal slice of the Hom double complex has a distinct colour in the above diagram, and hence we see 
 $
-  Tot^Pi (hom (P, I))_n = product_(p + q = n) hom(P_p, I^q)
+  Tot^xor (hom (P, I))^n = plus.circle.big_(p + q = n) hom(P_p, I^q)
 $
-
+This total complex is a _cochain_ complex#footnote[In fact, whether a total complex is a chain complex or a cochain complex can seem arbitrary, because this actually depends on how we index the diagonals. Here we see the Hom total complex as a cochain complex because it is more convenient in later proofs.
+// because later on we would like to establish an isomorphism between the total complex and the cone complex of a cochain map (which is a cochain complex).
+] because the differentials point from $Tot^xor (hom (P, I))^n$ to $Tot^xor (hom (P, I))^(n+1)$.
 ]
 
 // #remark[If $C, D$ are chain complexes and we reindex $D$ to be a cochain complex. Then $H^n Tot^Pi hom (C, D)$ is the group of chain homotopy eq classes of morphisms $C -> D[-n]$.] (shown in the next section)
@@ -598,18 +641,19 @@ $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
 
 #endlec(11)
 
-#theorem[ For all $n$,
+#theorem([Balancing of $Ext$])[ For all $n$,
   $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A) $
 ] 
+<balance-ext>
 #proof[@weibel[Theorem 2.7.6, p.63].
   // #align(center,image("../imgs/2023-11-23-03-27-44.png",width:80%))
-  Take projective resolution $P_cx -> A$ and injective resolution $B -> I^cx$. We can view $A$ and $B$ as complexes concentrated at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. As in the proof of @balance-tor,  we need to show the maps on Hom cochain complexes
-  $ f: hom(A, I) -> Tot^Pi hom(P, I) \ g: hom(P, B) -> Tot^Pi hom(P, I) $ are quasi-isomorphisms. This is equivalent to $cone(f)$ and $cone(g)$ being acyclic by (the dual of) @cone-qi. 
+  Take projective resolution $P_cx ->^epsilon A$ and injective resolution $B ->^eta I^cx$. We can view $A$ and $B$ as complexes concentrated at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. As in the proof of @balance-tor,  we need to show the maps on Hom cochain complexes
+  $ f: hom(A, I) -> Tot^xor ( hom(P, I)) \ g: hom(P, B) -> Tot^xor (hom(P, I)) $ are quasi-isomorphisms. This is equivalent to $cone(f)$ and $cone(g)$ being acyclic by (the dual of) @cone-qi. 
 
-  Let $C$ be the double complex $hom(P, I)$ with $hom(A, I)$ added to the column $p=-1$.
-  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9AAyleASQB6ogJQgAvqXSZc+QijIAmanSat2XPkLESZxBctXY8BImWJ6GLNok48BI8VOnarKiAYthpE2qRONC6G7sZewmS+-kqBwer2KOG6UQZuHiYiiRYBNumayOFUOa5GnqZFsiVBanbl5BTOubUFwuG+8imlrUTt2fo1sXUifcWDzSEZyO2R4zH58TN+TWnDWqSinRMgAHSnczuhmfuHa6fH5y2XS9fVt2fW82VEACwRN3l3B4Lcq-MbRAHvVKPRa-KqrCH3D4XRbiFbg7r8ACC5i2QK+KHEYK6k24WJxljxu2Q4jh6JJZP622h5XEB1eCKUehgUAA5vAiKAAGYAJx4SHEIBwECQAFYPiKxYgZTQpUgAGzy0XccUq6WIYiaxXKyV676G7WINW6pAAdnNSDIJqQ2ntiHCTsQ5Fd7Q9AA5Xb8PV7AgqLTbrYh-SGtQ6I2bo4rA6rEHaExb3cmAJzeiPEUSu325g1ppCFj3EF0llO54NCmOW3PxuuK4jhj0SxhYMB5KD0OAcblzUMOq3lmid7vsXv9weu4jG5Puic9vsDqBD+ut3MaqvEUfJ+dzhd64j+yiKIA
+  Let $C$ be the double complex $hom(P, I)$ with $hom(A, I)$ added to the column $p=-1$ using $epsilon : P_0 -> A$. We make it so that every added differential has a minus sign, as shown in the diagram.
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9AAyleASQB6ogJQgAvqXSZc+QijIAmanSat2XPkLESZxBctXY8BImWJ6GLNok48BI8VOnarKiAYthpE2qRONC6G7sZewmS+-kqBwer2KOG6UQZuHiYiiRYBNumayOFUOa5GnqZFsiVBanbl5BTOubUFwuG+8imlrUTt2fo1sXUifcWDzSEZyO2R4zH58TN+TWnDWqSinRMgAHSnczuhmfuHa6fH5y2XS9fVt2fW82VEACwRN3l3B4Lcq-MbRAHvVKPRa-KqrCH3D4XRbiOHg7r8ACC5kaQK+KHEYK6k24WJxljxu2Q4hW6JJZKS22h5XEB1eCKUehgUAA5vAiKAAGYAJx4SHEIBwECQAFZ2ew4ABHZj0YUwXgQCC8KDSfhCORyBJzEVixByyXSxAANnl7iVKrVGq1Or1ggNvWNou44poUqQZHh7Cgwj1kgNsidvHtqrYHxN3rNvstv0D7mDofDokj0bVntNNotSAA7LaQOn+GG5BHNVHlTG8wmA37EOFU2WQxXw8Rs3Xc3GvUhW832m2c+qay79YbiA2kCPmwAOUtjyOTt2G7SzxAp4el8uV6TdmtjrclwuIJdt-ddnsO2OBeP+pNIFN0kAAWhXE91U6N-dNO6Wmeb6fr247Oj+64ev+CZDpaACcMFzs+iDEKISEXihxDEBhl7NsQ2gYWe+HkBhBb4d8GHEOa+EFm+15Vlmx5gVuxDkZaxDAcS7YZlWR5aieVHERxC5CShrZvl+WowGg2CMPYNCMFgYB5FA9BwBw3KsexT5tqBd6RjJckKSASkqUG6maVArE0ZaEqSWBhmyVg8mEIolCKEAA
 #align(center, commutative-diagram(
-  node-padding: (50pt, 40pt),
+  node-padding: (50pt, 50pt),
   node((3, 1), [$hom (P_0, I^0)$]),
   node((2, 1), [$hom (P_0, I^1)$]),
   node((1, 1), [$hom (P_0, I^2)$]),
@@ -625,39 +669,209 @@ $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
   node((1, 4), [$...$]),
   node((2, 4), [$...$]),
   node((3, 4), [$...$]),
-  node((1, 0), [$hom(A, I^2)$]),
-  node((2, 0), [$hom(A, I^1)$]),
   node((3, 0), [$hom(A, I^0)$]),
+  node((2, 0), [$hom(A, I^1)$]),
+  node((1, 0), [$hom(A, I^2)$]),
   node((0, 0), [$...$]),
-  arr((3, 1), (3, 2), []),
-  arr((3, 2), (3, 3), []),
-  arr((3, 1), (2, 1), []),
-  arr((3, 2), (2, 2), []),
-  arr((3, 3), (2, 3), []),
-  arr((2, 1), (1, 1), []),
-  arr((1, 1), (1, 2), []),
-  arr((1, 2), (1, 3), []),
-  arr((2, 2), (1, 2), []),
-  arr((2, 3), (1, 3), []),
-  arr((2, 1), (2, 2), []),
-  arr((2, 2), (2, 3), []),
+  arr((3, 1), (3, 2), [$square oo d^((P))_1$]),
+  arr((3, 2), (3, 3), [$square oo d^((P))_2$]),
+  arr((3, 1), (2, 1), [$d_((I))^0 oo square$]),
+  arr((3, 2), (2, 2), [$d_((I))^0 oo square$]),
+  arr((3, 3), (2, 3), [$d_((I))^0 oo square$]),
+  arr((2, 1), (1, 1), [$d_((I))^1 oo square$]),
+  arr((1, 1), (1, 2), [$square oo d^((P))_1$]),
+  arr((1, 2), (1, 3), [$square oo d^((P))_2$]),
+  arr((2, 2), (1, 2), [$d_((I))^1 oo square$]),
+  arr((2, 3), (1, 3), [$d_((I))^1 oo square$]),
+  arr((2, 1), (2, 2), [$-square oo d^((P))_1$]),
+  arr((2, 2), (2, 3), [$-square oo d^((P))_2$]),
   arr((1, 1), (0, 1), []),
   arr((1, 2), (0, 2), []),
   arr((1, 3), (0, 3), []),
   arr((1, 3), (1, 4), []),
   arr((2, 3), (2, 4), []),
   arr((3, 3), (3, 4), []),
-  arr((3, 0), (3, 1), [], "dashed"),
-  arr((2, 0), (2, 1), [], "dashed"),
-  arr((1, 0), (1, 1), [], "dashed"),
-  arr((3, 0), (2, 0), []),
-  arr((2, 0), (1, 0), []),
+  arr((3, 0), (2, 0), [$-d_((I))^0 oo square$]),
+  arr((2, 0), (1, 0), [$-d_((I))^1 oo square$]),
   arr((1, 0), (0, 0), []),
+  arr((1, 0), (1, 1), [$-square oo epsilon$], "dashed"),
+  arr((2, 0), (2, 1), [$-square oo epsilon$], "dashed"),
+  arr((3, 0), (3, 1), [$-square oo epsilon$], "dashed"),
 ))
-  We observe that $cone(f) iso Tot^Pi (C)$. Every $hom(-, I^q)$ is exact, so every row of $C$ is exact, then we can see that $Tot^Pi (C)$ is acyclic by @aal-2 . Similarly, we can show that $cone(g)$ is acyclic. 
+  We observe that $cone(f) iso Tot^xor (C)$ (both their terms and differentials match). Every $hom(-, I^q)$ is exact, so every row of $C$ is exact, then we can see that $Tot^xor (C)$ is acyclic by @aal-2. Similarly, we can show that $cone(g)$ is acyclic. 
    Then applying cohomology yields
 
-  $ R^ast hom(A, -) (B) &= H^ast hom (A, I) \ &iso H^ast Tot^Pi ( hom(P, I))  \ &iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
+  $ R^ast hom(A, -) (B) &= H^ast hom (A, I) \ &iso H^ast Tot^xor ( hom(P, I))  \ &iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
 ]
 
+// #TODO Tot and everything should be cochain instead of chain complex !!! => so that we can take cohomology...
 // #TODO mapping cone of a *cochain* complex
+
+Now that we have gained some experience with non-canonically ordered double complexes, we introduce another form of a Hom double complex. 
+#definition[
+  Given two chain complexes $(P_cx, d^((P)))$ and $(Q_cx, d^((Q)))$, we can form  the *Hom double complex* 
+  $
+    hom (P_cx, Q_cx) = { hom(P_p, Q_q) }_(p, q)
+  $
+  with differentials 
+   $ d^h_(p, q) (f)  &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , Q_q)  \ d^v_(p, q) (f) &=  d^((Q))_q oo f in hom (P_p, Q_(q-1)) $
+for $f in hom ( P_p , Q_q )$.
+
+Then we define the *Hom cochain complex* as
+
+  $ Tot^Pi (hom(P, Q)) $
+]
+
+We draw the (non-canonically ordered) double complex $hom (P, Q)$ as follows. Note that each row is a cochain complex, while each column is a chain complex. 
+
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAoAFAPpkABAEVhAShABfUuky58hFAEYK1Ok1bsufIevFTZ8kBmx4CRAEwaaDFm0SceAwbaPFpchReVEya00HHWc9N1EJVW9TcyUrNVIg+20nF31BQyiY33iVZFtkrUddVyEPbJNcy3yyVWDU0ozI9xyzRRqidXqUkrCyzNIjaza4zpRbHuLQ9LcK1qr2vwSSUmIGvpAAOh3Fsf9E9d6Zna29joOCtY2T3Z8lvKJyUimQtNPz5fznorf2D-u+xWzyox3ed00MCgAHN4ERQAAzABOPCQZBAOAgSHU0zScAAjsx6EiYCIIBARFAAHq8ASSSSZRbI1GIHGYpC2XHsAlEklkinU2n8enuJko7hIZ4YrGIAAsYPYAFoecTSeTKTS6QzVGKWfLpUgAKw0Rj0ABGMEY-AuCRAjBgCJwIAVzmVhNV-I1QpF1l1EsQADYaOzEAB2F0gFV89WCrWM+7M-3hg2IAAcEajaoFmuFDN9CfFSCDKalf2csbEPs9mb9kuDMvRZZAFZFqmr7pJtbD9aQ+qbLbz7d5bALep7rIjA8yQ9VXfTKeNXPLmsrg-VNdH-sXIc5-ZXrZnnc3SAAnOOA8fWeiQ6HL6o2TLU5f5yHVNZL9uZapyJfOa-ZTIlAyEAA
+#align(center, commutative-diagram(
+  node-padding: (60pt, 60pt),
+  node((3, 0), text(blue)[$hom(P_0, Q_0)$]),
+  node((3, 1), text(red)[$hom(P_1, Q_0)$]),
+  node((3, 2), text(green)[$hom(P_2, Q_0)$]),
+  node((2, 0), text(orange)[$hom(P_0, Q_1)$]),
+  node((2, 1), text(blue)[$hom(P_1, Q_1)$]),
+  node((2, 2), text(red)[$hom(P_2, Q_1)$]),
+  node((1, 0), text(navy)[$hom(P_0, Q_2)$]),
+  node((1, 1), text(orange)[$hom(P_1, Q_2)$]),
+  node((1, 2), text(blue)[$hom(P_2, Q_2)$]),
+  node((0, 0), [$...$]),
+  node((0, 1), [$...$]),
+  node((0, 2), [$...$]),
+  node((1, 3), [$...$]),
+  node((2, 3), [$...$]),
+  node((3, 3), [$...$]),
+  arr((3, 0), (3, 1), [$square oo d^((P))_1$]),
+  arr((3, 1), (3, 2), [$square oo d^((P))_2$]),
+  arr((2, 0), (2, 1), [$-square oo d^((P))_1$]),
+  arr((2, 1), (2, 2), [$-square oo d^((P))_2$]),
+  arr((1, 0), (1, 1), [$square oo d^((P))_1$]),
+  arr((1, 1), (1, 2), [$square oo d^((P))_2$]),
+  arr((1, 0), (2, 0), [$d^((Q))_2 oo square$]),
+  arr((2, 0), (3, 0), [$d^((Q))_1 oo square$]),
+  arr((1, 1), (2, 1), [$d^((Q))_2 oo square$]),
+  arr((2, 1), (3, 1), [$d^((Q))_1 oo square$]),
+  arr((1, 2), (2, 2), [$d^((Q))_2 oo square$]),
+  arr((2, 2), (3, 2), [$d^((Q))_1 oo square$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((2, 2), (2, 3), []),
+  arr((3, 2), (3, 3), []),
+))
+// #align(center,image("../imgs/2023-11-23-22-22-07.png",width:80%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAoAFAPpkABAEVhAShABfUuky58hFAEYK1Ok1bsufIevFTZ8kBmx4CRAEwaaDFm0SceAwbaPFpchReVEya00HHWc9N1EJVW9TcyUrNVIg+20nF31BQyiY33iVZFtkrUddVyEPbJNcy3yyVWDU0ozI9xyzRRqidXqUkrCyzNIjaza4zpRbHuLQ9LcK1qr2vwSSUmIGvpAAOh3Fsf9E9d6Zna29joOCtY2T3Z8lvKJyUimQtNPz5fznorf2D-u+xWzyox3ed00MCgAHN4ERQAAzABOPCQZBAOAgSFU92RqMQ6gxWMQ1lxKO4SGeRKQABYyfiaTRMUgAKz0imIABsTOJAHZ2UheTykAAOAVc4WIcjiqnMxDEcVC6mIOmmPEcxnKnFq8miyVsnX4lmS0mGjkATklnPFqnRcv5ZuxhLlYsdiBFktUpsRusQxq10rdti1dMoMiAA
+// #align(center, commutative-diagram(
+//   node-padding: (50pt, 50pt),
+//   node((3, 0), text(blue)[$hom(P_0, Q_0)$]),
+//   node((3, 1), text(red)[$hom(P_1, Q_0)$]),
+//   node((3, 2), text(green)[$hom(P_2, Q_0)$]),
+//   node((2, 0), text(orange)[$hom(P_0, Q_1)$]),
+//   node((2, 1), text(blue)[$hom(P_1, Q_1)$]),
+//   node((2, 2), text(red)[$hom(P_2, Q_1)$]),
+//   node((1, 0), text(navy)[$hom(P_0, Q_2)$]),
+//   node((1, 1), text(orange)[$hom(P_1, Q_2)$]),
+//   node((1, 2), text(blue)[$hom(P_2, Q_2)$]),
+//   node((0, 0), [$...$]),
+//   node((0, 1), [$...$]),
+//   node((0, 2), [$...$]),
+//   node((1, 3), [$...$]),
+//   node((2, 3), [$...$]),
+//   node((3, 3), [$...$]),
+//   arr((3, 0), (3, 1), []),
+//   arr((3, 1), (3, 2), []),
+//   arr((2, 0), (2, 1), []),
+//   arr((2, 1), (2, 2), []),
+//   arr((1, 0), (1, 1), []),
+//   arr((1, 1), (1, 2), []),
+//   arr((1, 0), (2, 0), []),
+//   arr((2, 0), (3, 0), []),
+//   arr((1, 1), (2, 1), []),
+//   arr((2, 1), (3, 1), []),
+//   arr((1, 2), (2, 2), []),
+//   arr((2, 2), (3, 2), []),
+//   arr((0, 0), (1, 0), []),
+//   arr((0, 1), (1, 1), []),
+//   arr((0, 2), (1, 2), []),
+//   arr((1, 2), (1, 3), []),
+//   arr((2, 2), (2, 3), []),
+//   arr((3, 2), (3, 3), []),
+// ))
+
+Note that the $n$-th term of the total cochain complex#footnote[Again, it may also be seen as a chain complex by replacing $n$ with $-n$.] is 
+$
+  [Tot^Pi (hom (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n))
+$
+which is the product of infinitely many objects. 
+
+It turns out that this construction leads to a further way to compute $Ext$:
+
+#theorem[
+  Let $P_cx -> A$ and $Q_cx -> B$ be projective resolutions, then
+  $
+    Ext^ast_R (A, B) = H^ast Tot^Pi (hom_R (P, Q))
+  $
+]
+#proof[
+  @notes[Lemma 8.16]. The proof is similar to previous ones, so we present it briefly here.
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAoAFAPpkABAEVhAShABfUuky58hFAEYK1Ok1bsufIevFTZ8kBmx4CRAEwaaDFm0SceAwbaPFpchReVEya00HHWc9N1EJVW9TcyUrNVIg+20nF31BQyiY33iVZFtkrUddVyEPbJNcy3yyVWDU0ozI9xyzRRqidXqUkrCyzNIjaza4zpRbHuLQ9LcK1qr2vwSSUmIGvpAAOh3Fsf9E9d6Zna29joOCtY2T3Z8lvKJyUimQtNPz5fznorf2D-u+xWzyox3ed1iFxWZAALDc0noRBEhgAhUZQ-LqOFgppIgyo9FfGykbHTBE8PHuAmfR4oZ6kv7OWSaGBQADm8CIoAAZgAnHhIMggHAQJDqMnsOAAR2Y9F5MBEEAgIigAD1eAJJJJMos+QLEOKRUhbBLnNLZfLFcq1Rr+Fr3Lr+dwkM9haLEDCcc4ALTmuUKpUq9Wa7WqR36z1upAAVhojHoACMYIx+Bj2IwYNycCAvSBfTL-Vag7b7dZw87EAA2GhGxAAdlzfstgZtIZ19z1FYbUcQAA5GwXm9bg3btWWO06kNWe67GSBW2JS0Wm2wJ-rXbWhXOF-bVMvB6vTJ2kN3a5Ht8HF2P9xbDzzJx6a+7xReNVfMjf-eWkP2e7HTfOl5LoGK7fog-61iar68O+e4gQeYEAJxPlOa4VqoQq1nWaFioa7q9jhfYoQa1iERBz7kIRJq1qoMKEZhz7-owWBgGkUD0HAHCsjmAEwDg9CfvKYF4WK07Max7DsZx3G5nxAnwbeYHUc+3biWxHFcVAPFznJgl3iAx4GuRom5vmt5Fq2o7tkeD6qNONHdnOZmFi2I6lsJp7PgRlAyEAA
+#align(center, commutative-diagram(
+  node-padding: (50pt, 50pt),
+  node((3, 0), [$hom(P_0, Q_0)$]),
+  node((3, 1), [$hom(P_1, Q_0)$]),
+  node((3, 2), [$hom(P_2, Q_0)$]),
+  node((2, 0), [$hom(P_0, Q_1)$]),
+  node((2, 1), [$hom(P_1, Q_1)$]),
+  node((2, 2), [$hom(P_2, Q_1)$]),
+  node((1, 0), [$hom(P_0, Q_2)$]),
+  node((1, 1), [$hom(P_1, Q_2)$]),
+  node((1, 2), [$hom(P_2, Q_2)$]),
+  node((0, 0), [$...$]),
+  node((0, 1), [$...$]),
+  node((0, 2), [$...$]),
+  node((1, 3), [$...$]),
+  node((2, 3), [$...$]),
+  node((3, 3), [$...$]),
+  node((4, 0), [$hom (P_0, B)$]),
+  node((4, 1), [$hom (P_1, B)$]),
+  node((4, 2), [$hom (P_2, B)$]),
+  node((4, 3), []),
+  arr((3, 0), (3, 1), [$square oo d^((P))_1$]),
+  arr((3, 1), (3, 2), [$square oo d^((P))_2$]),
+  arr((2, 0), (2, 1), [$-square oo d^((P))_1$]),
+  arr((2, 1), (2, 2), [$-square oo d^((P))_2$], label-pos: left),
+  arr((1, 0), (1, 1), [$square oo d^((P))_1$]),
+  arr((1, 1), (1, 2), [$square oo d^((P))_2$]),
+  arr((1, 0), (2, 0), [$d^((Q))_2 oo square$]),
+  arr((2, 0), (3, 0), [$d^((Q))_1 oo square$]),
+  arr((1, 1), (2, 1), [$d^((Q))_2 oo square$]),
+  arr((2, 1), (3, 1), [$d^((Q))_1 oo square$]),
+  arr((1, 2), (2, 2), [$d^((Q))_2 oo square$]),
+  arr((2, 2), (3, 2), [$d^((Q))_1 oo square$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((0, 2), (1, 2), []),
+  arr((1, 2), (1, 3), []),
+  arr((2, 2), (2, 3), []),
+  arr((3, 2), (3, 3), []),
+  arr((3, 0), (4, 0), [$eta oo square$], "dashed"),
+  arr((3, 1), (4, 1), [$eta oo square$], "dashed"),
+  arr((3, 2), (4, 2), [$eta oo square$], "dashed"),
+  arr((4, 0), (4, 1), [$-square oo d^((P))_1$]),
+  arr((4, 1), (4, 2), [$-square oo d^((P))_2$]),
+  arr((4, 2), (4, 3), []),
+))
+  Let $C$ be the double complex obtained by adding $hom(P, B)$ to the row $q = -1$ of the double complex $hom(P, Q)$. Since each $P_p$ is projective, $hom (P_p, -)$ is exact and so each column of $C$ is exact. $C$ can be turned into a (canonically ordered) upper half-plane complex by reflecting it to the second quadrant, so @aal applies and $Tot^Pi (C)$ is acyclic. Again, observe that $Tot^Pi (C) iso cone(f)$ where 
+  $
+    f: Tot^Pi (hom (P,Q)) -> hom (P, B)
+  $
+  is the cochain map induced by $eta: Q_cx -> B$. Hence $f$ is a quasi-isomorphism, but $H^ast hom (P, B) iso Ext^ast_R (A, B)$ by the proof of @balance-ext, so the result follows. 
+]
+
+
+// Applying cohomology to this total cochain complex yields $Ext^ast _R (M, N)$. 
+
+
+// #TODO modify in balancing Tor how you write the differentials e.g. it should be $d^((P))$
