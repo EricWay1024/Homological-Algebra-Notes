@@ -814,6 +814,7 @@ It turns out that this construction leads to a further way to compute $Ext$:
     Ext^ast_R (A, B) = H^ast Tot^Pi (hom_R (P, Q))
   $
 ]
+<balance-ext-2>
 #proof[
   @notes[Lemma 8.16]. The proof is similar to previous ones, so we present it briefly here.
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAoAFAPpkABAEVhAShABfUuky58hFAEYK1Ok1bsufIevFTZ8kBmx4CRAEwaaDFm0SceAwbaPFpchReVEya00HHWc9N1EJVW9TcyUrNVIg+20nF31BQyiY33iVZFtkrUddVyEPbJNcy3yyVWDU0ozI9xyzRRqidXqUkrCyzNIjaza4zpRbHuLQ9LcK1qr2vwSSUmIGvpAAOh3Fsf9E9d6Zna29joOCtY2T3Z8lvKJyUimQtNPz5fznorf2D-u+xWzyox3ed1iFxWZAALDc0noRBEhgAhUZQ-LqOFgppIgyo9FfGykbHTBE8PHuAmfR4oZ6kv7OWSaGBQADm8CIoAAZgAnHhIMggHAQJDqMnsOAAR2Y9F5MBEEAgIigAD1eAJJJJMos+QLEOKRUhbBLnNLZfLFcq1Rr+Fr3Lr+dwkM9haLEDCcc4ALTmuUKpUq9Wa7WqR36z1upAAVhojHoACMYIx+Bj2IwYNycCAvSBfTL-Vag7b7dZw87EAA2GhGxAAdlzfstgZtIZ19z1FYbUcQAA5GwXm9bg3btWWO06kNWe67GSBW2JS0Wm2wJ-rXbWhXOF-bVMvB6vTJ2kN3a5Ht8HF2P9xbDzzJx6a+7xReNVfMjf-eWkP2e7HTfOl5LoGK7fog-61iar68O+e4gQeYEAJxPlOa4VqoQq1nWaFioa7q9jhfYoQa1iERBz7kIRJq1qoMKEZhz7-owWBgGkUD0HAHCsjmAEwDg9CfvKYF4WK07Max7DsZx3G5nxAnwbeYHUc+3biWxHFcVAPFznJgl3iAx4GuRom5vmt5Fq2o7tkeD6qNONHdnOZmFi2I6lsJp7PgRlAyEAA
