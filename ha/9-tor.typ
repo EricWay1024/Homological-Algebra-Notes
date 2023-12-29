@@ -268,7 +268,7 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   By @five-to-ses, we have a #sest
   #math.equation(block: true, numbering: "(1)", supplement: "Short Exact Squence",
   $
-    ses(Coker(i_n tp M), H_n (P_cx tp M), Ker(i_(n-1) tp M))
+    ses(Coker(i_n tp id_M), H_n (P_cx tp M), Ker(i_(n-1) tp id_M))
   $) <ses-1>
   Now we are about to calculate the flanking terms of @ses-1.
   Note that we have a flat resolution for $H_n (P_cx)$:
@@ -281,10 +281,10 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $
   Hence 
   $
-    H_n (P_cx) tp M = Tor_0 (H_n (P_cx), M) = H_0 (D) = Coker (i_n tp M)
+    H_n (P_cx) tp M = Tor_0 (H_n (P_cx), M) = H_0 (D) = Coker (i_n tp id_M)
   $ and 
   $
-    Tor_1^R (H_n (P_cx), M) = H_1 (D) = Ker (i_n tp M)
+    Tor_1^R (H_n (P_cx), M) = H_1 (D) = Ker (i_n tp id_M)
   $
   Combining the last two equations with @ses-1 gives the result.
 ] 
@@ -317,7 +317,7 @@ $
 $) <hnptpm>
  is a direct summand of $  H_n (P_cx tp M) = Ker(d_n tp id_M) / IM(d_(n+1) tp id_M)  $
 
-To see why @hnptpm holds, firstly  $H_n (P) = Coker (j_n : d(P_(n+1)) -> Z_n)$. Since $(- tp M)$ commutes with cokernels, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M) $
+To see why @hnptpm holds, let $j_n : d(P_(n+1)) -> Z_n$ be the inclusion map, and by the proof of @kunneth, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M) $
 
 Since each $P_n$ and $d(P_n)$ are projective and thus flat, by @kunneth we have a #sest
 $ 0 arrow.r H_n lr((P)) times.circle M arrow.r H_n lr((P_cx times.circle M)) arrow.r "Tor"_1^ZZ lr((H_(n minus 1) lr((P)) comma M)) arrow.r 0 $
