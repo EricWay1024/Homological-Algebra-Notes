@@ -310,12 +310,16 @@ also splits, so $Z_n tp M$ is a direct summand of $P_n tp M$. Now notice we have
 $
   IM (d_(n+1) tp id_M) subset.eq IM (i_n tp id_M) subset.eq Ker (d_n tp id_M) subset.eq P_n tp M
 $
-By @split-sub, $Z_n tp M$ is a direct summand of $Ker (d_n tp id_M)$. Modding out by $IM (d_(n+1) tp id_M)$ on both of them, again by @split-sub, we see that $ (Z_n tp M) / IM(d_(n+1) tp id_M) $ is a direct summand of $ Ker(d_n tp id_M) / IM(d_(n+1) tp id_M) = H_n (P_cx tp M) $
+By @split-sub, $Z_n tp M$ is a direct summand of $Ker (d_n tp id_M)$. Modding out by $IM (d_(n+1) tp id_M)$ on both of them, again by @split-sub, we see that 
+#math.equation(block: true, numbering: "(1)", supplement: "Equation",
+$
+  H_n (P) tp M=  (Z_n tp M) / IM(d_(n+1) tp id_M) 
+$) <hnptpm>
+ is a direct summand of $  H_n (P_cx tp M) = Ker(d_n tp id_M) / IM(d_(n+1) tp id_M)  $
 
-Now, $H_n (P) = Coker (j_n : d(P_(n+1)) -> Z_n)$. Since $(- tp M)$ commutes with cokernels, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M) $
+To see why @hnptpm holds, firstly  $H_n (P) = Coker (j_n : d(P_(n+1)) -> Z_n)$. Since $(- tp M)$ commutes with cokernels, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M) $
 
-Hence $H_n (P) tp M$ is a direct summand of $H_n (P_cx tp M)$.
-By @kunneth, we have a #sest,
+Since each $P_n$ and $d(P_n)$ are projective and thus flat, by @kunneth we have a #sest
 $ 0 arrow.r H_n lr((P)) times.circle M arrow.r H_n lr((P_cx times.circle M)) arrow.r "Tor"_1^ZZ lr((H_(n minus 1) lr((P)) comma M)) arrow.r 0 $
 which is therefore split.
   // #TODO
