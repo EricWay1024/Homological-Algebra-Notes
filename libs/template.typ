@@ -21,6 +21,7 @@
 #let bij = [$attach(->, t: tilde)$]
 #let tpk = [$times.circle_k$]
 #let tpr = [$times.circle_R$]
+#let tpz = [$times.circle_ZZ$]
 #let tpzg = [$times.circle_(ZZ G)$]
 #let cA = [$cal(A)$]
 #let cB = [$cal(B)$]

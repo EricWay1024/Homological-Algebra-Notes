@@ -93,8 +93,8 @@ This isomorphism is called *the balancing of $Tor$*, which gives the following p
   $
     ... -> Tor_1^R (A, K) -> Tor_1^R (A, L) ->  Tor_1^R (A, M) -> A tpr K -> A tpr L -> A tpr M -> 0
   $
-  
 ]
+<tor-les>
 
 In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mapping cones and double complexes, introduced in the following sections.
 
@@ -442,6 +442,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
 Suppose $(P_cx, d^((P)))$ is a chain complex in $ModR$ and $(Q_cx, d^((Q)))$ is a chain complex in $RMod$. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h_(p, q) = d^((P))_p tp 1$ and $d^v_(p, q) = (-1)^p tp d^((Q))_q$. 
 // The sign trick is to make this anticommute. 
 ]
+<tp-dc>
 
 #lemma[
   The differentials of $P_cx tpr Q_cx$ anticommute, so $P_cx tpr Q_cx$ is a double complex. 
@@ -450,14 +451,14 @@ Suppose $(P_cx, d^((P)))$ is a chain complex in $ModR$ and $(Q_cx, d^((Q)))$ is 
   Notice that $(d^((P)) tp 1) oo (1 tp d^((Q))) = d^((P)) tp d^((Q)) = (1 tp d^((Q))) oo (d^((P)) tp 1)$ by @tp-composition, and alternating the signs for adjacent columns makes each square anticommute. 
 ]
 #lemma[
-  If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This lemma is the same as saying "every projective module is flat", but we have yet to define flat modules.]
+  If $P$ is a projective right $R$-module, then the functor $(P tpr -) : RMod -> Ab$ is exact. If $Q$ is a projective left $R$-module, then $(- tpr Q) : ModR -> Ab$ is exact.  #footnote[This lemma is the same as saying "every projective module is flat", but we have yet to define flat modules. We will revisit this claim in @projective-flat-2.]
 ]
 <projective-flat-1>
 #proof[
   @rotman[Proposition 3.46, p. 132]. We (very concisely) work on the first half of the claim. First notice that $(R tpr -)$ is an isomorphism by @r-tpr, so the functor $(R tpr -)$ is exact. Then tensor product preserves direct sums by @tensor-right-exact, so for a family of right $R$-modules $M_i$, $((plus.circle.big M_i) tpr -)$ is exact, if and only if $plus.circle.big (M_i tpr -)$ is exact, if and only if each $(M_i tpr -)$ is exact. Now any free module $F$, being a direct sum of $R$'s, must have that $(F tpr -)$ is exact. Finally, $P$ is projective, hence $P$ is a direct summand of some free module by @projective-summand, which indicates that $(P tpr -)$ is also exact.
 ]
 #theorem([Balancing of $Tor$])[ Let $A in ModR$ and $B in RMod$. For all $n$,
-  $ Tor_n^R (A, B) = L_n (A tpr -)(B) iso L_n (- tpr B)(A)  $ 
+  $ Tor_n^R (A, B) := L_n (- tpr B)(A) iso L_n (A tpr -)(B)  $ 
 ]
 <balance-tor>
 #proof[ @weibel[Theorem 2.7.2].
@@ -530,7 +531,7 @@ Suppose $(P_cx, d^((P)))$ is a chain complex in $ModR$ and $(Q_cx, d^((Q)))$ is 
 
 #definition[
 Given a chain complex $(P_cx, d^((P)))$ and a cochain complex $(I^cx, d_((I)))$, we can form the *Hom double complex* $ hom(P_cx, I^cx) = {hom (P_p, I^q)}_(p, q) $
-with differentials#footnote[Here we alternate the signs for adjacent rows instead of adjacent columns as in the tensor double complex. The sign convention is different in @weibel[p. 62]; I choose to use the current one, following @notes[p. 76], because it makes my life easier.]
+with differentials#footnote[Here we alternate the signs for adjacent rows instead of adjacent columns as in the tensor product double complex. The sign convention is different in @weibel[p. 62]; I choose to use the current one, following @notes[p. 76], because it makes my life easier.]
  $ d^h_(p, q) (f)  &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , I^q)  \ d^v_(p, q) (f) &=  d_((I))^q oo f in hom (P_p, I^(q+1)) $
 for $f in hom ( P_p , I^q )$.
 

@@ -1,7 +1,7 @@
 #import "../libs/template.typ": *
 
-= Ring Structures on $Ext$
-== Reinterpreting $Ext$
+= Ring Structure on $Ext$ and Yoneda Product
+ == Reinterpreting $Ext$
 Let $A, B in RMod$  with projective resolutions $P_cx -> A$ and $Q_cx -> B$. Write the total cochain complex $ Tot^Pi (hom (P, Q)) =: T$. Then @balance-ext-2 implies that 
 $
   Ext^ast _R (A, B) = H^ast (T)
@@ -9,7 +9,7 @@ $
 Recall that $T^n = product homr (P_i, Q_(i-n)) in Ab$.
 If $phi in T^n$, then we can write $phi = product phi_i$ where $phi_i : P_i -> Q_(i - n)$. Therefore, an element $phi$ in $T^n$ can be seen as a chain map $P_cx -> Q_cx [-n]$ once we can show that $phi$ commutes with the differentials of $P_cx$ and $Q_cx [-n]$. We will show that this commuting condition is (almost) equivalent to $phi$ being a cocycle in $T^n$.  Further, if $phi$ is a chain map $P_cx -> Q_cx [-n]$, then $phi$ being null homotopic is (almost) equivalent to $phi$ being a coboundary in $T^n$. These equivalences ultimately give rise to a new interpretation of $Ext$.
 
-The words "almost" in the last paragraph is due to some sign issues of $phi$. To address this, we first define
+The word "almost" in the last paragraph is due to some sign issues of $phi$. To address this, we (magically) define
 $
   epsilon_i = cases(1 quad& "if " i equiv 0 comma 3 quad  (mod 4), -1 quad& "if " i equiv 1 comma 2 quad  (mod 4))
 $
@@ -88,7 +88,8 @@ It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previou
 #corollary[
   $Ext_R^n (A, B)$ is isomorphic to the chain homotopy classes of chain maps $P_cx -> Q_cx [-n]$.
 ]
-#proof[ $Ext_R^n (A, B) iso H^n (T) = Z^n (T) over B^n (T)$, but now $Z^n (T)$ is isomorphic to the module of chain maps $P_cx -> Q_cx [-n]$ and $B^n (T)$ is isomorphic to the submodule of null homotopic chain maps $P_cx -> Q_cx [-n]$.
+<ext-homotopy>
+#proof[ $Ext_R^n (A, B) iso H^n (T) = Z^n (T) over B^n (T)$, but now $Z^n (T)$ is isomorphic to the group of chain maps $P_cx -> Q_cx [-n]$ and $B^n (T)$ is isomorphic to the subgroup of null homotopic chain maps.
 ]
 // A detailed proof can be seen @notes[Section 9.1]. 
 // To see this intuitively, notice a chain map $P_cx -> Q_cx [-n]$ is a collection of 
@@ -99,22 +100,32 @@ It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previou
 // Further, the chain map is null homotopic if and only if it is a boundary in $T^n$.
 
 
-== Yoneda Product
+ == Yoneda Product
 
-
-Given left $R$-modules $A, B, C$ with projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$, we see that $Ext^i_R\(A, B) $ is the chain homotopy classes of chain maps $P -> Q[-i]$, and $Ext^j_R\(B, C)$ is the chain homotopy classes of chain maps $Q -> T[-j]$. 
-Note that $homr(Q, T[-j]) iso homr(Q[-i], T[-i - j])$, because the translation functor is an isomorphism on $Ch(RMod)$ and preserves chain homotopy. 
-Also homotopy commutes with composition
-of maps. 
-Hence the composition $P -> Q[-i] ->T[-i-j]$ gives a map $ ⌣ :  Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j)_R (A, C) $ 
-
-One can show that this is associative and biadditive. 
-
-#remark[
-We have shown $D^- (RMod) iso K^- ("Proj" RMod)$.
+#proposition[
+Given left $R$-modules $A, B, C$, for any $i, j$, there is a well-defined map, called the *Yoneda product*, 
+$ ⌣ :  Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j)_R (A, C) $ 
+which is associative and biadditive. 
 ]
 
-$Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A)$ is a graded ring. For any $B$, $Ext_R^ast (A , B) = plus.circle.big_i Ext^i (A, B)$ is a graded module over the ring. 
+#proof[
+  Write projective resolutions $P_cx -> A$, $ Q_cx -> B$, $ T_cx-> C$.
+  Take $x in Ext^i_R\(A, B)$ and $y in Ext^j_R\(B, C)$. 
+  By @ext-homotopy,
+  we see that $x$ (resp. $y$) corresponds to some $[phi]$ (resp. $[psi]$) which is a chain homotopy class (of chain maps) $P_cx -> Q_cx [-i]$ (resp. $Q_cx -> T_cx [-j]$). 
+  Note that $ hom(Q_cx, T_cx [-j]) iso hom(Q_cx [-i], T_cx [-i - j]) $ because the translation functor is an isomorphism on $Ch(RMod)$ and preserves chain homotopy. 
+  Hence $[psi]$ can be also viewed as a chain homotopy class  $Q_cx [-i] -> T_cx [-i - j]$. Since chain homotopy commutes with composition, we can obtain $[psi oo phi] = [psi] oo [phi]$, which is a chain homotopy class $P_cx -> T_cx [-i-j]$. Then we define $x ⌣ y in Ext^(i+j)_R (A, C)$ to be the corresponding element of $[psi oo phi]$.
+  We can see that $⌣$ is associative and biadditive because the composition of chain maps is associative and biadditive.
+]
+
+// #remark[
+// We have shown $D^- (RMod) iso K^- ("Proj" RMod)$.
+// ]
+
+#corollary[For any $A, B in RMod$,
+$ Ext_R^ast (A, A) = plus.circle.big_i Ext_R^i (A, A) $ is a graded ring, and $ Ext_R^ast (A , B) = plus.circle.big_i Ext^i (A, B) $ is a graded module over $Ext_R^ast (A, A)$. 
+]
+
 
 // #TODO what is even a graded ring 
 

@@ -471,6 +471,15 @@ The key element that we seek from an abelian category is the notion of exactness
   $
 ]
 
+#proposition[
+  If $A->^f B->C->D->^g E$ is an exact sequence, then 
+  $
+    ses(Coker(f), C, Ker(g))
+  $
+  is a #sest.
+]
+<five-to-ses>
+
 #definition[
   A #sest $ses(A, B, C)$ is *split* if $B$ is isomorphic to $A ds C$. 
   // #image("imgs/19.png")
@@ -493,6 +502,11 @@ The key element that we seek from an abelian category is the notion of exactness
 
 #proof[#TODO https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma] 
 
+
+#corollary[
+  #TODO rotman 2.24
+]
+<split-sub>
 #definition[
   An additive functor $F: cC -> cD$ is called *right exact* if for every #sest $0-> A-> B-> C-> 0$ the sequence $ F(A) -> F(B) -> F(C) ->  0 $ is exact; $F$ is called *left exact* if   $ 0 -> F(A) -> F(B) -> F(C) $ is exact; $F$ is called *exact* if $F$ is both right and left exact, or
   $
@@ -572,6 +586,7 @@ Thanks to @hom-left-exact, the only special part of the definition is that $Hom(
   $
   splits.
 ]
+<projective-split>
 #proof[
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohAAFOXyWCiAFg0TtbAAyGF-ZUOTWLWqbts8jAlSnXXxNx19bnEYKABzeCJQADMAJwgAWyQAVmocCCRRS3cQLCgAfQMvEATkpDIQTOzNSWCIu3KUxHTqrMQqhiwwYKg6OAALcJA6q10EUuakc3akaynElpc5zsWKxByaxFUuCi4gA
 #align(center, commutative-diagram(

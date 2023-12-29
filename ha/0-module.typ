@@ -101,9 +101,9 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
     Any submodule of a free module over a PID is free. 
 ]
     <sub-pid>
-#proof[
-    TODO
-]
+// #proof[
+//     TODO
+// ]
 
 
 // Remark: Categorification. If we discuss a category $(C, ds, tp)$ then this is similar to categorifying some underlying structure of a ring. Active field of research.
