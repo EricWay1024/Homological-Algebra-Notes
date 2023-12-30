@@ -29,7 +29,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   $
   and 
   $
-    0 -> Hom(A) (K, B) ->  Hom(A) (L, B) ->  Hom(A) (M, B) -> \ Ext_cA^1 (K, B) ->  Ext_cA^1 (L, B) ->  Ext_cA^1 (M, B) -> ...
+    0 -> Hom(A) (M, B) ->  Hom(A) (L, B) ->  Hom(A) (K, B) -> \ Ext_cA^1 (M, B) ->  Ext_cA^1 (L, B) ->  Ext_cA^1 (K, B) -> ...
   $
 ]
 #proof[
@@ -115,7 +115,7 @@ In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mappi
 
 #definition[Let $f : B_cx -> Ccx$ be a chain map.
  Define the *mapping cone* of $f$ as the chain complex $cone(f)_cx$, given by $ cone(f)_n = B_(n-1) plus.circle C_n $ 
- with differential $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B_(n-1)$ and $c in C_n$.
+ with differential#footnote[In @tot-cone there is an explanation for this definition.] $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B_(n-1)$ and $c in C_n$.
 We could also write the differential in the form of a matrix:
 $
 mat(-d_B, 0; -f, d_C) : vec(B_(n-1), C_n) -> vec(B_(n-2), C_(n-1))
@@ -192,10 +192,11 @@ which indicates that $f_ast$ is an isomorphism.
 // #remark[
 // Let $0->B->^f C->^g D-> 0$ be a #sest of complexes. Then $phi: cone(f) -> D$ has $phi(b, c)-> g(c)$.#align(center,image("../imgs/2023-11-10-12-30-40.png",width:50%)) You can prove $cyl(f)-> C$ is a quasi-isomorphism and also $phi$ is quasi-isomorphism. (This is non-examinable.)
 // ]
-== Double Complexes and Total Complexes
+== Double and Total Complexes
 Recall that if $cA$ is an abelian category,  $Ch(cA)$ is also an abelian category. Then to define a "two-dimensional" complex, one may be tempted to consider the category $Ch(Ch(cA))$. However, what we define next is slightly different from that.
 #definition[
   A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h_(p, q) : C_(p, q) -> C_(p-1, q)$ and $d^v_(p, q) : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0 $ and $ d^v d^h + d^h d^v = 0 $
+  The *total degree* of a term $C_(p, q)$ is defined as $p + q$.
 ]
 
 In other words, a double complex is an infinite two-dimensional grid of objects where each row (resp. each column) is a chain complex, and the horizontal and vertical differentials _anticommute_. A diagram for a double complex is shown as below; this is not a commutative (but an anticommutative) diagram.
@@ -288,12 +289,19 @@ such that $C_(p q) eq 0$ for all $p lt p_0$.
 ]
 
 #definition[
-  Given $C = {C_(p, q)}$, we can define the *total complex*
+  Given $C = {C_(p, q)}$, we can define the *total complex* $Tot^Pi (C)$, given by
   $ Tot^Pi (C)_n = product_(p + q = n) C_(p, q) $
-  as well as the finite version 
+  That is, the $n$-th term of $Tot^Pi (C)$ is the product of all terms in $C$ which has total degree $n$.
+  When for each $n$, only finitely many terms in $C$ has total degree $n$, we also define $ Tot^xor (C)$, given by
   $ Tot^xor (C)_n = plus.circle.big _(p+q=n) C_(p, q) $
-  with differential $ d = d^h + d^v $
+  $Tot^Pi (C)$ and $ Tot^xor (C)$ both have differential $ d = d^h + d^v $
 ]
+<total-complex>
+#notation[
+  If $C$ is a double complex, sometimes we write $H_n (C)$ to mean $H_n (Tot^Pi (C))$ or $H_n (Tot^xor (C))$. 
+]
+<homology-double>
+
 #lemma[
   In a total complex, we have that $d^2 = 0$, so the total complex is indeed a chain complex. 
 ]
@@ -364,6 +372,36 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
 ))
 
 #endlec(10)
+
+#example[
+  Let $f_cx : B_cx -> C_cx$ be a chain map, then the following diagram forms a (two-column) double complex. The reader is welcome to verify that the total complex of this double complex is exactly $cone(f)$, which in particular helps explain why we have defined the differential of $cone(f)$ in that way.
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBhAfUIF9T0mXPkIpyFanSat2AIR4h+g7HgJEyAJkkMWbRJy4AKMAFpyASkUCQGFSKLitNHTP3zjZy0ptDVokqQAzNrSegYeGl7WtsJqYkEhunJGppFWyrH+ZMSJriAAdIXpPnZxyOI5zqHshfnFMX7qpAAsuWG19b728a1VSfodvJIwUADm8ESgAGYAThAAtkiBNDgQSBp9eVMpnsWzC0gArCtriM2bYdsRUdNzi4jiIKtLF+wmUADkCt7798tPp2OUn6IHeXw8Fj2dyQZAB61e+ig32sv3hcLOCJASIhNxAqIeJxhmO2fBR0MQADZCYhiD9yQB2ankOkHDHogAcLPuQOeiAAnENeEA
+#align(center, commutative-diagram(
+  node-padding: (40pt, 40pt),
+  node((1, 0), text(blue)[$C_n$]),
+  node((1, 1), [$B_n$]),
+  node((2, 0), text(red)[$C_(n-1)$]),
+  node((2, 1), text(blue)[$B_(n-1)$]),
+  node((3, 0), [$C_(n-2)$]),
+  node((3, 1), text(red)[$B_(n-2)$]),
+  node((0, 0), [$...$]),
+  node((0, 1), [$...$]),
+  node((4, 0), [$...$]),
+  node((4, 1), [$...$]),
+  arr((2, 1), (2, 0), [$-f$]),
+  arr((3, 1), (3, 0), [$-f$]),
+  arr((1, 1), (2, 1), [$-d$]),
+  arr((2, 1), (3, 1), [$-d$]),
+  arr((1, 0), (2, 0), [$d$]),
+  arr((2, 0), (3, 0), [$d$]),
+  arr((1, 1), (1, 0), [$-f$]),
+  arr((0, 0), (1, 0), []),
+  arr((0, 1), (1, 1), []),
+  arr((3, 0), (4, 0), []),
+  arr((3, 1), (4, 1), []),
+))
+]
+<tot-cone>
 
 #lemma("Acyclic Assembly Lemma")[
   Let $C = {C_(p, q)}$ be a double complex. If
@@ -440,6 +478,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
 == Balancing $Tor$
 #definition[
 Suppose $(P_cx, d^((P)))$ is a chain complex in $ModR$ and $(Q_cx, d^((Q)))$ is a chain complex in $RMod$. We can form a double complex of abelian groups which we call the *tensor product double complex*, denoted as $P_cx tpr Q_cx$, where the $(p, q)$ term is $P_p tpr Q_q$ and $d^h_(p, q) = d^((P))_p tp 1$ and $d^v_(p, q) = (-1)^p tp d^((Q))_q$. 
+It has the *tensor product total complex*, $Tot^xor (P_cx tpr Q_cx)$.
 // The sign trick is to make this anticommute. 
 ]
 <tp-dc>

@@ -327,12 +327,12 @@ which is therefore split.
 ]
 
 
-Now it can be helpful to recall @tp-dc, the tensor product double complex. 
+Now it can be helpful to recall @tp-dc, the tensor product double complex, as well as @homology-double.
 #theorem("Full Künneth Formula")[
   Let $P_cx$ and $Q_cx$ be right and left $R$-modules, respectively.  
   If $P_n$ and $d(P_n)$ are flat for each $n$, then there is a #sest 
   $
-    ses(plus.circle.big _(i+j=n) H_i (P) tp H_j (Q), H_n (Tot^xor (P tpr Q)), plus.circle.big_(i+j = n-1) Tor_1^R (H_i (P), H_j (Q)))
+    ses(plus.circle.big _(i+j=n) H_i (P) tp H_j (Q), H_n (P tpr Q), plus.circle.big_(i+j = n-1) Tor_1^R (H_i (P), H_j (Q)))
   $
 ]
 
