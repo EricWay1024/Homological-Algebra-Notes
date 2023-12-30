@@ -33,7 +33,7 @@ By definition, $K(bd(x))$ is the total complex of $C$, where the degree $p$ part
 ]
 #remark[
 In particular, $K_p lr((bd(x)))$ is isomorphic to the $p$-th exterior
-product $Lambda^p R^n$ of $R^n$, so $K lr((x))$
+product $Lambda^p R^n$ of $R^n$, so $K (bd(x))$
 is often called the *exterior algebra complex*. 
 ]
 
