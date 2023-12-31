@@ -42,7 +42,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   + $Hom(A)(-, B)$ is exact;
   + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $A$;
   + $Ext_cA^1 (A, B) = 0$ for all $A$.]
-
+<ext-injective>
 #proof[
   (1) $<=>$ (2) by the definition of injective objects.
 

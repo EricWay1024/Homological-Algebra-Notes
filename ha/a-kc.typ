@@ -2,7 +2,7 @@
 
 = Koszul Complexes and (Co)homology
 
-We generally follow @weibel[Section 4.5].
+We generally follow @weibel[Section 4.5]. In this section, by an $R$-module we mean either a left or a right $R$-module.
 
 == Koszul Complexes
 
@@ -15,21 +15,30 @@ We denote the generator of $K_1 lr((x))$ by $e_x$, so that
 $K_1 lr((x)) eq R dot.op e_x comma K_0 lr((x)) eq R dot.op 1$, and
 $d (e_x) eq x$.
 
-If $bd(x) = (x_1, ..., x_n)$ is a finite sequence of central elements, define $K(bd(x))$ as the total tensor product complex of
+If $bd(x) = (x_1, ..., x_n)$ is a finite sequence of central elements, define $K(bd(x))$ as the total tensor product complex
 $
-  K(x_1) tpr K(x_2) tpr ... tpr K(x_n)
+  Tot^xor (K(x_1) tpr K(x_2) tpr ... tpr K(x_n))
 $
+by which we mean an inductive relation $
+  K(bd(x)) = Tot^xor (K(x_1, x_2, ..., x_(n-1)), K(x_n))
+$
+The degree $p$ part of $K(bd(x))$ is denoted as $K_p (bd(x))$.
 ]
 
-Notice that $C := K(x_1) tpr ... tpr K(x_n)$ is an "$n$-dimensional complex" (which can be seen as a generalisation of a double complex). In particular, $C$ has in total $2^n$ terms, and a typical term in $C$ is indexed by an $n$-tuple of $0$ and $1$. For example, if $n = 4$, $C$ has a term $ C_(0, 1, 1, 0) = (R dot 1) tpr (R dot e_(x_2)) tpr (R dot e_(x_3)) tpr (R dot 1) $
+#remark[
+  Another way to understand the definition is to
+  regard $C := K(x_1) tpr ... tpr K(x_n)$ as an "$n$-dimensional complex", which can be seen as a generalisation of a double complex. In particular, $C$ has in total $2^n$ terms, and a typical term in $C$ is indexed by an $n$-tuple of $0$ and $1$, whose total degree is the sum of this $n$-tuple. For example, if $n = 4$, $C$ has a term $ C_(0, 1, 1, 0) = (R dot 1) tpr (R dot e_(x_2)) tpr (R dot e_(x_3)) tpr (R dot 1) $
 which has total degree $2$. (We can also see that by repetitively applying @r-tp-m, each term in $C$ is isomorphic to $R$, albeit with different generators.)
-
-By definition, $K(bd(x))$ is the total complex of $C$, where the degree $p$ part of $K(bd(x))$, denoted as $K_p (bd(x))$, is the direct sum of all terms in $C$ which has total degree $p$. Using basic combinatorics, we see that:
+Then $K(bd(x))$ is the total complex of $C$, where $K_p (bd(x))$ is the direct sum of all terms in $C$ which has total degree $p$. This discussion also explains the following @kpx-free.
+  However, since we do not wish to define the differential rules on an "$n$-dimensional complex" in general, it is more convenient to stick to the inductive definition for the proofs.
+]
 #proposition[
   $K_p (bd(x))$ is a free $R$-module with rank $vec(n, p)$.
 ]
+<kpx-free>
 #proof[
-  By the discussion above, there are $vec(n, p)$ terms in $C$ that have total degree $p$, because finding such a term in $C$ is the same as finding an binary $n$-tuple with $p$ ones and $(n-p)$ zeros. Since each term in $C$ is isomorphic to $R$, $K_p (bd(x))$ is isomorphic to the direct sum of $vec(n, p)$ $R$'s.
+  // By the discussion above, there are $vec(n, p)$ terms in $C$ that have total degree $p$, because finding such a term in $C$ is the same as finding an binary $n$-tuple with $p$ ones and $(n-p)$ zeros. Since each term in $C$ is isomorphic to $R$, $K_p (bd(x))$ is isomorphic to the direct sum of $vec(n, p)$ $R$'s.
+  By induction on $n$. Hint: recall that for binomial coefficients, $vec(n, p) = vec(n - 1, p) + vec(n-1, p-1)$.
 ]
 #remark[
 In particular, $K_p lr((bd(x)))$ is isomorphic to the $p$-th exterior
@@ -39,7 +48,7 @@ is often called the *exterior algebra complex*.
 
 Now we can give a better description for the chain complex $K(bd(x))$.
 
-#definition[
+#proposition[
 Let the
 symbols 
 $ e_(i_1) and dots.h.c and e_(i_p) eq underbrace(1 times.circle dots.h.c times.circle 1 times.circle e_(x_(i_1)) times.circle dots.h.c times.circle e_(x_(i_p)) times.circle dots.h.c times.circle 1, n" terms") quad lr((1 <= i_1 lt dots.h.c lt i_p <= n)) dot.basic $
@@ -47,7 +56,8 @@ generate the free $R$-module $K_p (bd(x))$.
 // ]
 // We also state the differential on $K(bd(x))$ as follows.
 // #proposition[
-Then the differential#footnote[Strictly speaking, the differential of $K(bd(x))$ should be able to be derived from the differential of an "$n$-dimensional total complex", but we have not defined the general case formally (as we certainly do not need to). Hence we simply state the differential of $K(bd(x))$ as a definition.]
+Then the differential
+// #footnote[Strictly speaking, the differential of $K(bd(x))$ should be able to be derived from the differential of an "$n$-dimensional total complex", but we have not defined the general case formally (as we certainly do not need to). Hence we simply state the differential of $K(bd(x))$ as a definition.]
 $K_p lr((bold(bd(x)))) arrow.r K_(p minus 1) lr((bold(x)))$ sends
 $e_(i_1) and dots.h.c and e_(i_p)$ to
 $ sum_(k=1)^p lr((minus 1))^(k plus 1) x_(i_k) e_(i_1) and dots.h.c and hat(e)_(i_k) and dots.h.c and e_(i_p) $
@@ -94,7 +104,7 @@ Note that in this special case, we can obtain the same formula for the different
 
 == Koszul (Co)homology 
 #definition[
-For a left $R$-module $A$, we define the *Koszul homology* and *Koszul
+For an $R$-module $A$, we define the *Koszul homology* and *Koszul
 cohomology* to be
 $ H_q lr((bd(x) comma A)) & eq H_q lr((K lr((bd(x))) times.circle_R A)) comma\
 H^q lr((bd(x) comma A)) & eq H^q lr(("Hom"_R lr((K lr((bd(x))) comma A)))) dot.basic $
@@ -185,7 +195,7 @@ $ 0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle
 ]
 
 #lemma[
-  Let $A$ be a left $R$-module. If $x$ is a non-zero-divisor on $A$, then  $H_1 (x, A) = 0$.
+  Let $A$ be an $R$-module. If $x$ is a non-zero-divisor on $A$, then  $H_1 (x, A) = 0$.
 ]
 <non-zero-h1>
 #proof[
@@ -199,6 +209,7 @@ $ 0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle
 #corollary[
   If $bd(x) = (x_1, ... , x_n)$ is a regular sequence on an $R$-module $A$, then $H_q (bd(x), A) = 0$ for $q > 0$. 
 ]
+<regular-acyclic>
 
 #proof[ By induction on $n$. The base case for $n = 1$ is given in @non-zero-h1.
   Let $x  = x_n$ and $bd(y) = (x_1, ..., x_(n-1))$, then $K(bd(x)) = Tot^xor (K(x) tpr K(bd(y)))$. By @kunneth-koszul (letting $C = K(bd(y)) tpr A$), we have a #sest 
@@ -223,6 +234,10 @@ $ 0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle
     H_p (bd(x), A) = Tor_p^R (R over I, A) \
     H^p (bd(x), A) = Ext_p^R (R over I, A) \
   $
+]
+#proof[
+  Notice that $H_q (bd(x), R) = H_q (K(bd(x)) tpr R) iso H_q (K(bd(x)))$. When $q >= 1$, by @regular-acyclic, $H_q (K(bd(x))) = 0$. When $q = 0$, $H_0 (K(bd(x))) = R over bd(x) R = R over I$ by @koszul-zero. This indicates that $ ... -> K_2(bd(x)) -> K_1(bd(x)) -> K_0(bd(x)) -> R over I -> 0 $
+  is exact everywhere. Thus $K(bd(x))$ is a free resolution of $R over I$, and thus a projective resolution. The rest follows from the definition (or the balancing) of $Ext$ and $Tor$.
 ]
 // #remark[
 //   #TODO Tower, Past paper, Serre...
