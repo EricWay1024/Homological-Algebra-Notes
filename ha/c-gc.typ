@@ -11,7 +11,7 @@
   $
   for all $g in G$ and $a_1, a_2 in A$. 
 
-  A *morphism* $A -> B$ of $G$-modules is a group homomorphism (i.e. $ZZ$-linear map) $phi: A -> B$ such that 
+  A *morphism* $A -> B$ of $G$-modules (or a *$G$-map*) is an abelian group homomorphism (i.e., $ZZ$-linear map) $phi: A -> B$ such that 
   $
     phi(g dot a) = g dot phi (a)
   $
@@ -423,7 +423,7 @@ $A eq bb(Z)$, $H_0 (G, ZZ)$ and $H^0 (G, ZZ)$ come from @group-h0 and @cohomolog
 ]
 
 // #TODO change the notation $H_ast (G, A)$ (comma not semicolon.)
-== Crossed Homomorphisms
+== Derivations
 <crossed-homomorphisms>
 Historically, the maps we are interested in are called \"crossed
 homomorphisms\". In these notes, however, we will adopt the more modern
@@ -431,184 +431,246 @@ term \"derivations\". Many of the proofs from now on are omitted; we
 have opted just to define the objects and sketch the theory. The proofs
 can all be found in Weibel.
 
-Definition 13.23. Let $G$ be a group and $A$ be a left $G$-module. A
-derivation of $G$ in $A$ is a map $D colon G arrow.r A$ with
-$D lr((g h)) eq g D lr((h)) plus D lr((g))$ for all $g comma h in G$.
+#definition[
+Let $G$ be a group and $A$ be a left $G$-module. A
+*derivation* of $G$ in $A$ is a set map $D colon G arrow.r A$ with
+$ D lr((g h)) eq g D lr((h)) plus D lr((g)) $ for all $g comma h in G $.
+Write $"Der"lr((G comma A))$ for the set of derivations of $G$ in $A$.
+]
 
-Remark 13.24. For those familiar with derivations more generally,
-Definition 13.23 is perhaps a little odd. Usually, you would expect
+#remark[
+In general, if $R$ is a ring and $A$ is an $R$-$R$-bimodule, a derivation of $R$ in $A$ is an abelian group homomorphism $D : R -> A$ such that  
 
-$ D lr((g h)) eq g D lr((h)) plus D lr((g)) h dot.basic $
+$ D lr((r s)) eq r D lr((s)) plus D lr((r)) s  $
 
-The reason we drop the $h$ on the far right is that we are viewing $A$
-as having trivial $G$-action on the right. In other words, we have
-$D lr((g)) h eq D lr((g))$.
+Here for $R = ZZ G$, we have
+$D lr((g)) h eq D lr((g))$ because we are viewing $A$ as a $ZZ G$-$ZZ G$-bimodule with
+ trivial $G$-action on the right. 
+]
 
-Write $"Der" lr((G comma A))$ for the set of derivations. Then
-$"Der" lr((G comma A))$ is an abelian group under pointwise addition.
-For $a in A$, let $D_a colon G arrow.r A$ be the map
-$D_a lr((g)) eq g a minus a$.
+#lemma[
+$"Der"lr((G comma A))$ is an abelian group under pointwise addition.
+]
 
-Definition 13.25. A derivation of the form $D_a$ is a principal
-derivation.
+#definition[
+  For $a in A$, let $D_a colon G arrow.r A$ be the map
+  $D_a lr((g)) eq g a minus a$. A derivation of the form $D_a$ is a *principal
+derivation*. Write $"PDer"lr((G comma A))$ for the set of principal derivations of $G$ in $A$.
+]
 
-Write $"PDer" lr((G comma A))$ for the set of principal derivations. It
-is easy to see that $D_a plus D_b eq$ $D_(a plus b)$, so
-$"PDer" lr((G comma A))$ is a subgroup of $"Der" lr((G comma A))$.
-Recall that $J$ is the augmentation ideal of $bb(Z) G$. Let
-$phi colon J arrow.r A$ be a $G$-module homomorphism. Define
+#lemma[
+$D_a plus D_b eq$ $D_(a plus b)$ and $"PDer"lr((G comma A))$ is a subgroup of $"Der"lr((G comma A))$.
+]
+#lemma[
+  $PDer(G, A) iso A over A^G$.
+]
+<pder-ag>
+
+#definition[
+Let
+$phi colon fJ arrow.r A$ be a $G$-map. Define
 $D_phi colon G arrow.r A$ by
 
-$ D_phi lr((g)) eq phi lr((g minus 1)) upright(". ") $
+$ D_phi lr((g)) eq phi lr((g minus 1)) $
+]
+#lemma[
+The map $phi arrow.r.bar D_phi$ is a natural isomorphism
 
-Then $D_phi colon G arrow.r A i$ is a $G$-module map.
-
-Lemma 13.26. The map $phi arrow.r.bar D_phi$ is a natural isomorphism
-
-$ "Hom"_G lr((J comma A)) arrow.r "Der" lr((G comma A)) $
+$ "Hom"_G lr((fJ comma A)) arrow.r "Der"lr((G comma A)) $
 
 of abelian groups.
+]
+#proof[@weibel[Lemma 6.4.4].
+  First we show that $D_phi : G-> A$ is indeed a derivation: 
+  $
+    D_phi (g h) = phi (g h - 1) = phi (g h - g) + phi (g - 1) = g D_phi (h) + D_phi (g)
+  $
+  The map $phi arrow.r.bar D_phi$ is obviously a natural group homomorphism, so it remains to verify that it is an isomorphism. 
+  
+  Suppose $D_phi = 0$, i.e., $D_phi (g) = phi (g - 1) =  0$ for all $g in G$. Since ${g-1 : g!=1}$ forms a basis for $fJ$, we see that $phi = 0$. Hence the map $phi arrow.r.bar D_phi$ is an injection.
 
-Theorem 13.27. We have
+  Take any $D in Der(G, A)$. Define $phi : fJ -> A$ by $phi(g - 1) = D(g)$ for all $g != 1$. This extends to an abelian group homomorphism since ${g-1 : g!=1}$ forms a basis of $fJ$. It is easy to show that $phi$ is a $G$-map and $D_phi = D$, so the map $phi arrow.r.bar D_phi$ is also a surjection.
+]
 
-$ H^1 lr((G comma A)) eq "Der" lr((G comma A)) slash "PDer" lr((G comma A)) $
+#theorem[
+$ H^1 lr((G comma A)) iso "Der"lr((G comma A)) over "PDer"lr((G comma A))$.
+]
+<h1ga>
+#proof[@weibel[Theorem 6.4.5].
+The short exact sequence
 
-Proof. The short exact sequence
-
-$ 0 arrow.r J arrow.r bb(Z) G arrow.r bb(Z) arrow.r 0 $
+$ 0 arrow.r fJ arrow.r bb(Z) G arrow.r bb(Z) arrow.r 0 $
 
 of $bb(Z) G$-modules gives a long exact sequence beginning with
 
-$ 0 arrow.r "Hom" lr((bb(Z) comma A)) arrow.r "Hom" lr((bb(Z) G comma A)) arrow.r "Hom" lr((J comma A)) arrow.r H^1 lr((G semi A)) arrow.r 0 $
+$
+  0 arrow.r homg lr((bb(Z) comma A)) arrow.r homg lr((bb(Z) G comma A)) arrow.r homg lr((fJ comma A)) arrow.r Ext_(ZZ G)^1 (ZZ, A) arrow.r Ext_(ZZ G)^1 (ZZ G, A) 
+$
+which reduces to
+$ 0 arrow.r A^G arrow.r A arrow.r Der(G, A) arrow.r H^1 lr((G , A)) arrow.r 0 $
 
-and the natural isomorphism
-$"Hom" lr((J comma A)) tilde.equiv "Der" lr((G comma A))$ takes the
-image of $"Hom" lr((bb(Z) comma A))$ to $"PDer" lr((G comma A))$, so
+The result then follows from @pder-ag.
+]
 
-$ H^1 lr((G semi A)) tilde.equiv "Der" lr((G comma A)) slash "PDer" lr((G comma A)) $
+#corollary[
+Let $A$ be a trivial $G$-module. Then
 
-Corollary 13.28. Let $A$ be a trivial $G$-module. Then
+$ H^1 lr((G comma A)) iso "Der"lr((G comma A)) tilde.equiv "Hom"_Grp lr((G comma A)) $
+]
 
-$ H^1 lr((G comma A)) eq "Der" lr((G comma A)) tilde.equiv "Hom"_("Grp") lr((G comma A)) $
+// #theorem([Hilbert Theorem 90])[
+// Let $L slash K$ be a finite Galois
+// extension with Galois group $G$. Let $L^ast.basic$ be the unit group of
+// $L$. Then $L^ast.basic$ is naturally a $G$-module, and
 
-Theorem 13.29 \(Hilbert Theorem 90). Let $L slash K$ be a finite Galois
-extension with Galois group $G$. Let $L^ast.basic$ be the unit group of
-$L$. Then $L^ast.basic$ is naturally a $G$-module, and
+// $ H^1 lr((G comma L^ast.basic)) eq 0 $
+// ]
 
-$ H^1 lr((G comma L^ast.basic)) eq 0 upright(". ") $
 
-== Bar Complex
+
+== Bar Complexes
 <bar-complex>
 Throughout this section, $bb(Z)$ is a trivial $G$-module.
 
-Definition 13.30. The unnormalised bar complex is the chain complex
+#definition[
+The *unnormalised bar complex* is the chain complex
 
 $ dots.h arrow.r B_2^u arrow.r B_1^u arrow.r B_0^u arrow.r^epsilon bb(Z) arrow.r 0 $
 
-with $B_0^u eq bb(Z) G$ and $B_n^u eq lr((bb(Z) G))^(times.circle n)$.
+with $B_0^u eq bb(Z) G$ and $B_n^u$ is the free $ZZ G$-module on the set of all symbols $[g_1 tp ... tp g_n]$ with $g_i in G$ for $n >=1$.
 The differential $d colon B_n^u arrow.r B_(n minus 1)^u$ is given by
 
 $ d eq sum_(i eq 0)^n lr((minus 1))^i d_i $
 
 where
 
-$  & d_0 lr((g_1 times.circle dots.h times.circle g_n)) eq g_1 dot.op lr((g_2 times.circle dots.h times.circle g_n)) comma\
- & d_i lr((g_1 times.circle dots.h times.circle g_n)) eq g_1 times.circle dots.h times.circle g_i g_(i plus 1) times.circle dots.h times.circle g_n quad upright(" for ") 1 lt.eq i lt.eq n minus 1 comma\
- & d_n lr((g_1 times.circle dots.h times.circle g_n)) eq g_1 times.circle dots.h times.circle g_(n minus 1) dot.basic $
+$   d_0 lr(([g_1 times.circle dots.h times.circle g_n])) &eq g_1 [g_2 times.circle dots.h times.circle g_n] \
+  d_i lr(([g_1 times.circle dots.h times.circle g_n])) &eq [g_1 times.circle dots.h times.circle g_i g_(i plus 1) times.circle dots.h times.circle g_n] quad upright(" for ") 1 lt.eq i lt.eq n minus 1 \
+  d_n lr(([g_1 times.circle dots.h times.circle g_n])) &eq [g_1 times.circle dots.h times.circle g_(n minus 1)]  $
+]
 
-Definition 13.31. The normalised bar complex is
+#definition[
+The *normalised bar complex* is
 
 $ dots.h arrow.r B_2 arrow.r B_1 arrow.r B_0 arrow.r^epsilon.alt bb(Z) arrow.r 0 $
 
-where $B_0 eq bb(Z) G$, and for $n gt.eq 1$, the group $B_n$ is free
-abelian on basis
-
-$ lr({lr([g_1 lr(|dots.h|) g_n]) colon g_i in G without brace.l 1 brace.r}) $
-
+where $B_0 eq bb(Z) G$, and for $n gt.eq 1$, the group $B_n$ is the free $ZZ G$-module on the set of all symbols
+$[g_1 lr(|dots.h|) g_n]$ with $g_i in G without brace.l 1 brace.r $.
 The differential $d colon B_n arrow.r B_(n minus 1)$ is
 $d eq sum_(i eq 0)^n lr((minus 1))^i d_i$, where
 
-$ d_0 lr((g_1 lr(|dots.h|) g_n)) & eq g_1 dot.op lr((g_2 lr(|dots.h|) g_n))\
-d_i lr((g_1 lr(|dots.h|) g_n)) & eq g_1 lr(|dots.h|) g_i g_(i plus 1) lr(|dots.h|) g_n quad upright(" for ") 1 lt.eq i lt.eq n minus 1\
-d_n lr((g_1 lr(|dots.h|) g_n)) & eq g_1 lr(|dots.h|) g_(n minus 1) $
+$ d_0 ([g_1 lr(|dots.h|) g_n]) & eq g_1  [g_2 lr(|dots.h|) g_n] \
+d_i lr(([g_1 lr(|dots.h|) g_n])) & eq [g_1 lr(|dots.h|) g_i g_(i plus 1) lr(|dots.h|) g_n] quad upright(" for ") 1 lt.eq i lt.eq n minus 1\
+d_n lr(([g_1 lr(|dots.h|) g_n])) & eq [g_1 lr(|dots.h|) g_(n minus 1)] $
 
-We write \[\] for $1 in B_0 eq bb(Z) G$. If any of the $g_i$ is 1 , we
+We write $[]$ for $1 in B_0 eq bb(Z) G$. If any of the $g_i$ is 1 , we
 write $lr([dots.h lr(|g_i|) dots.h])$ for $0 in B_n$.
+]
 
-Example 13.32. We have
 
-$ d lr((lr([g divides h]))) eq g lr([h]) minus lr([g h]) plus lr([g]) $
+#example[
+We have
 
-and
-
-$ d lr((lr([f lr(|g|) h]))) eq f lr([g divides h]) minus lr([f g divides h]) plus lr([f divides g h]) minus lr([f divides g]) $
-
-Theorem 13.33. The normalised and unnormalised bar complexes are free
+$ d lr((lr([g|h]))) &eq g lr([h]) minus lr([g h]) plus lr([g]) \
+ d lr((lr([f|g|h]))) &eq f lr([g|h]) minus lr([f g|h]) plus lr([f|g h]) minus lr([f|g]) $]
+  
+#theorem[
+The normalised and unnormalised bar complexes are free
 resolutions of $bb(Z)$ as a $bb(Z) G$-module.
+]
+#proof[
+  @weibel[Theorem 6.5.3]. We only give the proof for the normalised bar complexes, as the unnormalised case is the same. By @null-homotopic-acyclic, we only need to show that there exist abelian group homomorphisms $s_(-1): ZZ -> B_0$ and $s_n : B_n -> B_(n+1)$ for $n >= 0$ such that $d s + s d = 1$. The desired construction is given as 
+  $s_(-1) (1) = [ ]$
+  and 
+  $
+    s_n (g_0[g_1|...|g_n]) = [g_0|g_1|...|g_n]
+  $
+  for $n >=0$. 
+]
 
-Corollary 13.34. We have that $H^ast.basic lr((G comma A))$ is the
-cohomology of the chain complexes $"Hom"_G lr((B_ast.basic^u comma A))$
-and $"Hom"_G lr((B_ast.basic comma A))$.
+#corollary[
+ $H^ast lr((G comma A))$ is the
+cohomology of either the chain complex $"Hom"_G lr((B_ast^u comma A))$
+or $"Hom"_G lr((B_ast comma A))$.
+]
+
 
 This allows us to give an explicit description of group cohomology.
-Define an $n$-cochain to be a function $f colon G^n arrow.r A$. An
-$n$-cochain $phi$ is normalised if
-$phi lr((g_1 comma dots.h comma g_n)) eq 0$ whenever one of the $g_i$ is
-1 . Then
 
-$ "Hom"_G lr((B_n^u comma A)) tilde.equiv brace.l n upright("-cochains ") brace.r $
+#definition[
+Define an *$n$-cochain* as a function $f colon G^n arrow.r A$. An
+$n$-cochain $phi$ is *normalised* if
+$phi lr((g_1 comma dots.h comma g_n)) eq 0$ whenever there exists some $g_i = 1$. 
+Define the differential $d$ of an $n$-cochain $phi$ as an $(n+1)$-cochain $d phi$ given by
 
-Define the differential $d colon brace.l n$-cochains
-$brace.r arrow.r brace.l lr((n plus 1))$-cochains $brace.r$ by
+$ (d phi) lr((g_1 comma dots.h comma g_(n+1))) eq g_1 phi lr((g_2 comma dots.h comma g_(n+1))) plus sum_(i eq 1)^(n) lr((minus 1))^(i) phi lr((dots.h comma g_i g_(i plus 1) comma dots.h)) plus lr((minus 1))^(n+1) phi lr((g_1 comma dots.h comma g_(n))) $
 
-$ d phi lr((g_0 comma dots.h comma g_n)) eq g_0 phi lr((g_1 comma dots.h comma g_n)) plus sum_(i eq 1)^(n minus 1) lr((minus 1))^i phi lr((dots.h comma g_i g_(i plus 1) comma dots.h)) plus lr((minus 1))^n phi lr((g_0 comma dots.h comma g_(n minus 1))) $
-
-If $d phi eq 0$, then $phi$ is an $n$-cocycle, and for all $phi$, the
-cochain $d phi$ is an $n$-coboundary. Write $Z^n lr((G comma A))$ and
+If $phi$ is an $n$-cochain such that $d phi eq 0$, then $phi$ is an *$n$-cocycle*. If $phi'$ is an $(n-1)$-cochain, then the
+$n$-cochain $d phi'$ is an *$n$-coboundary*. Write $Z^n lr((G comma A))$ and
 $B^n lr((G comma A))$ for the abelian groups of $n$-cocycles and
-$n$-coboundaries respectively. Then
+$n$-coboundaries respectively.
 
-$ H^n lr((G comma A)) eq Z^n lr((G comma A)) slash B^n lr((G comma A)) $
 
-Lemma 13.35. We have
+]
 
-$ H^1 lr((G comma A)) eq "Der" lr((G comma A)) slash "PDer" lr((G comma A)) $
+From the definition, we see that 
+$"Hom"_G lr((B_n^u comma A))$ consists of all $n$-cochains, 
+while $"Hom"_G lr((B_n comma A))$ consists of all normalised $n$-cochains. 
+#corollary[
+$ H^n lr((G comma A)) eq Z^n lr((G comma A)) slash B^n lr((G comma A))$.
+]
+
+#example[
+$ H^1 lr((G comma A)) eq "Der"lr((G comma A)) slash "PDer"lr((G comma A))$.
+] 
+#proof[
+  @weibel[Example 6.5.6]. This is a direct proof of @h1ga using bar resolutions.  A $0 $-cochain is a map $1 arrow.r A$, that is, an element
+of $A$. If $a in A$, then $d a$ is the map $G arrow.r A$ sending $g$ to
+$g a - a$, which is a principal derivation by definition. Therefore, $phi in B^1 (G, A)$ #iff there exists $a in A$ such that $phi = d a$, #iff $phi in PDer(G, A)$. So $B^1 (G, A) = PDer(G, A)$.
+
+On the other hand, $phi in Z^1 (G, A)$ #iff $d phi = 0$, #iff for all $g, h in G$, 
+$
+  0 = (d phi) (g, h) = g phi(h) - phi (g h) + phi(g)
+$
+#iff $phi in Der(G, A)$. Thus $Z^1 (G, A) = Der(G, A)$.
+]
 
 == Group Extensions
 <group-extensions>
-Let $A$ be an abelian group and let $G$ be a group. An extension of $G$
+#definition[
+Let $A$ be an abelian group and let $G$ be a group. An *extension* of $G$
 by $A$ is a short exact sequence
 
 $ 0 arrow.r A arrow.r E arrow.r^pi G arrow.r 1 $
 
-The extension splits if $pi$ has a section. That is, if there is a group
-homomorphism $s colon G arrow.r E$ such that $pi compose s eq "id" G$.
+The extension *splits* if $pi$ has a section, i.e., if there is a group
+homomorphism $s colon G arrow.r E$ such that $pi compose s eq id_G$.
 Extensions
 
 $ 0 arrow.r A arrow.r E_i arrow.r^pi G arrow.r 1 $
 
-for $i eq 1 comma 2$ are equivalent if there is a group isomorphism
+for $i eq 1 comma 2$ are *equivalent* if there is a group isomorphism
 $E_1 arrow.r E_2$ such that the obvious diagram commutes.
-
-Theorem 13.36. There is a natural bijection
-
-$ H^2 lr((G comma A)) arrow.l.r.double brace.l upright(" Equivalence classes of extensions of ") G upright(" by ") A brace.r upright(". ") $
-
-== The Bar Resolution
-
-We have adjunction
-$
-  ZZ G tp_ZZ - ： Ab arrows.lr ZGMod : "Forget"
-$
-
-
-$
-  ... -> B^n_2 -> B^n_1 -> B^n_0 -> ZZ -> 0
-$
-$B^n_n$ is the free $ZZ G$-module on basis $[g_1 tp ... tp g_n]$ for $g_i in G$. 
-
-$d: B^n_n -> B^n_(n-1)$
-
-#theorem[
-  The bar complexes form a free resolution of the $ZZ G$-module $ZZ$.
 ]
+
+#theorem[ There is a natural bijection between $H^2 lr((G comma A))$ and the equivalence classes of extensions of $G$ by $A$.]
+#proof[@weibel[Classification Theorem 6.6.3].]
+
+// == The Bar Resolution
+
+// We have adjunction
+// $
+//   ZZ G tp_ZZ - ： Ab arrows.lr ZGMod : "Forget"
+// $
+
+
+// $
+//   ... -> B^n_2 -> B^n_1 -> B^n_0 -> ZZ -> 0
+// $
+// $B^n_n$ is the free $ZZ G$-module on basis $[g_1 tp ... tp g_n]$ for $g_i in G$. 
+
+// $d: B^n_n -> B^n_(n-1)$
+
+// #theorem[
+//   The bar complexes form a free resolution of the $ZZ G$-module $ZZ$.
+// ]

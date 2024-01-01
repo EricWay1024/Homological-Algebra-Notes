@@ -93,8 +93,12 @@
 #let cyl = [$"cyl"$]
 #let Tot = [$"Tot"$]
 
+
 #let triv = [$"triv"$]
 #let fJ = [$frak(J)$]
+#let Der = [$"Der"$]
+#let PDer = [$"PDer"$]
+
 #let endlec(n) = [_This is the end of lecture #n._]
 #let TODO = text(blue)[TODO]
 

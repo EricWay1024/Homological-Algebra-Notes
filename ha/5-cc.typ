@@ -194,6 +194,10 @@ $ f_* lr((x)) minus g_* lr((x)) & eq lr([f_n lr((c)) minus g_n lr((c))])\
 The third equality is because $c$ is an $n$-cycle  in $C$ and last equality is because $d_(n plus 1)^(lr((D))) compose s_n lr((c))$ is an $n$-boundary in $D$.
  ]
 
+#corollary[
+  If the chain map $id : C_cx -> C_cx$ is null homotopic, then $C_cx$ is acyclic. 
+]
+<null-homotopic-acyclic>
 #endlec(7)
 
 #definition[@weibel[Translation 1.2.8].
