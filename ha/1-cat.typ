@@ -74,9 +74,9 @@ In general, a category is a "generalised" monoid because in a category you can o
 == Categories with a Zero Object
 
 #definition[
-  An *initial object* $I$ of category $cC$ is an object such that for any $A in ob cC$, there exists a unique map $I -> A$.  
+  An *initial object* $I$ of category $cC$ is an object such that for any $A in ob cC$, there exists a unique morphism $I -> A$.  
   
-  A *final object* $T$ is an object such that for any $A in ob cC$ there exists a unique map $A -> T$.
+  A *final object* $T$ is an object such that for any $A in ob cC$ there exists a unique morphism $A -> T$.
 ]
 
 #example[
@@ -119,7 +119,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 ]
 
 #definition[
-  In a category with a zero object, a *kernel* of $f: B->C$ is a map $i: A-> B$ such that $f compose i  = 0$ in a universal way. That is, for any $i' : A'-> B$ such that $f compose i' = 0$, there exists a unique morphism $h : A' -> A$ such that $i' = i oo h$. We denote $i = ker(f)$. Diagrammatically,
+  In a category with a zero object, a *kernel* of $f: B->C$ is a morphism $i: A-> B$ such that $f compose i  = 0$ in a universal way. That is, for any $i' : A'-> B$ such that $f compose i' = 0$, there exists a unique morphism $h : A' -> A$ such that $i' = i oo h$. We denote $i = ker(f)$. Diagrammatically,
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmUsKq1GLNgCFuvEBmx4CRAMzkJ9Zq0QgAwvL7LBRAAybq26XvYByI4v4qhyUWa1TdIM9wkwoAHN4IlAAMwAnCABbJDIQHAgkUUkdNjDHSJikCwSkxHjrbyxMqNjEDTyc6gYsMG8oOjgACwCQKy82GAAPLDgcOAACAEJS7IrqRLiOtL0sBx5wsuqqxAAWRZAs8rXJ-OFN7aRKqfWuCi4gA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -154,7 +154,7 @@ In general, a category is a "generalised" monoid because in a category you can o
   // #image("imgs/5.png", width: 30%)
 ]
 #notation[
-  Sometimes, people might also say the object $A$ in the above definition is the kernel of $f$ when the map $i$ is clear, and write $A = ker(f)$. However, this easily leads to confusion later on, so this note adapts the following non-standard notation: we write $A = Ker(f)$ (with a capital K) when we mean the object and $i = ker(f)$ when we mean the morphism. Hence, we would have 
+  Sometimes, people might also say the object $A$ in the above definition is the kernel of $f$ when the morphism $i$ is clear, and write $A = ker(f)$. However, this easily leads to confusion later on, so this note adapts the following non-standard notation: we write $A = Ker(f)$ (with a capital K) when we mean the object and $i = ker(f)$ when we mean the morphism. Hence, we would have 
   $
     Ker(f) -->^(ker(f)) B ->^f C
   $
@@ -180,7 +180,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 
 // (This indicates that $A$ is the "biggest" subobject (to be defined!) of $B$ to be mapped to zero by $f$.)
 
-#definition[ A *cokernel* of $f: B->C$ is a map $j: C-> D$ such that $j compose f  = 0$ in a universal way. We denote $j = coker(f)$ and $D = Coker(f)$.]
+#definition[ A *cokernel* of $f: B->C$ is a morphism $j: C-> D$ such that $j compose f  = 0$ in a universal way. We denote $j = coker(f)$ and $D = Coker(f)$.]
 
 #theorem[
   A cokernel is an epimorphism.

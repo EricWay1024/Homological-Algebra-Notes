@@ -98,11 +98,13 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 // ]
 
 #definition[
-  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n+1) $
+  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n-1) $
  
   We have $ B^n ( C) arrow.hook Z^n (C) arrow.hook C^n $ (as subobjects) for all $n$.
 
   The *$n$-th cohomology* are defined as $ H^n (C) := Coker(B^n (C) arrow.hook Z^n (C)) $
+
+  We also define *cochain maps* similarly as before.
 ]
 
 #example[
