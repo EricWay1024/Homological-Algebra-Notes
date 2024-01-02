@@ -5,7 +5,8 @@
   title: "Homological Algebra",
   authors: (
     "Notes by Yuhang Wei",
-    "Lectures by Kobi Kremnitzer"
+    "Lectures by Kobi Kremnitzer",
+    "Partly Based on Previous Notes by Sebastian Monnet"
   ), 
   date: "October 24, 2023",
 )
