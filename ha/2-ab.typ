@@ -167,10 +167,10 @@ Being able to add and subtract parallel morphisms means we can rephrase the defi
 Inspired by @ab-zero and @ab-product, we naturally define the following:
 
 #definition[
-  An $Ab$-enriched category $cC$ is *additive* if it has all finite coproducts.
+  An $Ab$-enriched category $cC$ is *additive* if it has all finite biproducts, including the zero object.
 ]
 
-Hence an additive category has all finite biproducts, including the zero object which can be considered as the empty biproduct. Now we can reconcile the two definitions we have had for zero morphisms.
+ Now we can reconcile the two definitions we have had for zero morphisms.
 
 #proposition[
   In an additive category $cC$, let $f: A->B$. Then $f$ is the identity of $Hom(C) (A, B)$ if and only if it can be factored as $A -> 0 -> B$.
@@ -251,7 +251,7 @@ In fact, we get more than just kernels and cokernels:
 ]
 #proof[
   Let $cC$ be a pre-abelian category. Since
-$Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers, and thus it has all finite limits or colimits (by category theory, because it also has products and coproducts) @li[Corollary 2.8.4]. #TODO
+$Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers. We also know that $cC$ has all finite products and coproducts as an additive category. Thus it has all finite limits and colimits by @all-finite-limits.
 ]
 
 #proposition[
@@ -414,13 +414,13 @@ $ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) |
 ]
 
 
-#example[If $cA$ is an abliean category and $cC$ is any small category and then the category of functors $Fun(cC, cA)$ is abelian. [TODO]]
+#example[If $cA$ is an abelian category and $cC$ is any small category, then the category of functors $Fun(cC, cA)$ is abelian.]
 
-$Fun(cC^op, cA)$ are presheaves from $cC$ to $cA$.
 
 #example[
-  Non-example. Banach spaces over $RR$. We have $V attach(arrow.r.hook, t: i) W$ which are open. Then $coker i = W \/ overline(V)$. Then $ker coker i = overline(V) != V$. (The closure of $V$.)
-This is an example of quasi-abelian categories. 
+  The category of Banach spaces over $RR$ is not an abelian category, but a *quasi-abelian category*. 
+//   We have $V attach(arrow.r.hook, t: i) W$ which are open. Then $coker i = W \/ overline(V)$. Then $ker coker i = overline(V) != V$. (The closure of $V$.)
+// This is an example of quasi-abelian categories. 
 ]
 
 
@@ -536,7 +536,7 @@ is exact in $Ab$.
 ]
 
 
-#TODO how to understand $f oo -$
+// #TODO how to understand $f oo -$
 
 #remark[
   The functor $Hom(A) (M, -)$ fails to be exact in general because it does not necessarily send an epimorphism to an epimorphism. For a counterexample, let $cA = Ab$ (where an epimorphism is equivalent to a surjective homomorphism) and $M = ZZ over 2 ZZ$. The quotient map $h: ZZ -> ZZ over 4 ZZ $ is an surjective homomorphism. On the other hand, for any abelian group $A$, an element in $hom_Ab (ZZ over 2 ZZ, A)$ (i.e., a group homomorphism $ZZ over 2ZZ -> A$) is uniquely determined by an element in $A$ with order $2$. Hence $hom_Ab ( ZZ over 2 ZZ, ZZ) = 0$ and $hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) = ZZ over 2ZZ$, and we see the induced map $ (h oo -) : hom_Ab ( ZZ over 2 ZZ, ZZ) -> hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) $ cannot be surjective. 
@@ -642,13 +642,13 @@ splits.
   $homr (R, M) = M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ses(M, M', M'') $, if we apply $homr (R, -)$, we get the same #sest, which is exact. 
 ]
 
-#corollary[
-Any free module $R^(ds I)$ is projective. 
-]
+// #corollary[
+// Any free module $R^(ds I)$ is projective. 
+// ]
 
-#proof[
-  The proof is similar as above. #TODO
-]
+// #proof[
+//   The proof is similar as above. #TODO
+// ]
 #note[In $RMod$, we have
 $ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big_(i in I) M_i = plus.circle.big_(i in I) homr (R, M_i) $
 This does not follow from the universal property of the direct sum; this is because $R$ is special. 
@@ -717,9 +717,8 @@ Under $G$, this becomes
 $
   P^(ds J) ->^(G(f)) P^(ds I) -> G(M) -> 0 
 $
-where we define $G(M) = Coker(G(f))$.
-
-#TODO It can be verified that $G$ is a functor.
+where we define $G(M) = Coker(G(f))$. It can be verified that $G$ is a functor.
+// TODO ? 
 
 Since $P$ is a projective object, $F$ is exact and preserves cokernels; since $P$ is compact, $F$ preserves direct sums. On the other hand, $G$ is right exact and preserves direct sums by construction. Hence the composites $F G$ and $G F$ are right exact and preserves direct sums. 
 Now we check $F G$ and $G F$ are naturally isomorphic to identity functors. 
@@ -756,24 +755,26 @@ so $ G F (P^(ds I)) =P^( ds I)$. Now take any $X in cA$, since $P$ is a generato
 $
   P^(ds J) -> P^(ds I) -> X -> 0
 $
-A similar argument as before gives the result. #TODO review 
+A similar argument as before gives the result. 
+// #TODO review 
 ]
 
 #remark[
 $cA$ can have more than one compact, projective generator, say $P_1$ and $P_2$. Then $A = End(A) (P_1)^op hyph Mod = End(A) (P_2)^op hyph Mod$, where rings $End(A) (P_1)$ and $End(A) (P_2)$ are not necessarily isomorphic. This is *Morita equivalence* of rings. 
 
-Consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. #TODO
+For example, consider $veck$ for some field $k$. Then $k$ and $k^n$ are both compact, projective generators of $veck$. Then $k$ and $M_n (k)$ ($n times n$ matrices over $k$) both are equivalent to $veck$ as categories. 
+// #TODO
 ]
 
 
 
 #theorem("Freyd-Mitchell Embedding Theorem")[
-  If $cA$ is a small abelian category, there is a ring $R$ and an exact, fully faithful embedding $cA -> RMod$.
+  If $cA$ is a small abelian category, there is a ring $R$ and an exact, fully faithful embedding functor $cA -> RMod$.
 ]
 
 #proof[
 // Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?) 
-#TODO
+@weibel[p. 25].
 ]
 
 This theorem indicates that we can embed an abstract category into a concrete one. From a practical perspective, we can prove any reasonable statements for $RMod$ and they will also hold for abelian categories. An example is the following.
@@ -806,14 +807,13 @@ This theorem indicates that we can embed an abstract category into a concrete on
 // #image("imgs/23.png")
 
 such that the rows are exact, then there is an exact sequence 
-$ ker f -> ker g -> ker h attach(->, t: diff)  coker f -> coker g -> coker h $
-
-Further, if $A' -> B'$ is monic, so is $ker f -> ker g$.
-If $B -> C$ is epic, so is $coker g -> coker h$.
+$ Ker f -> Ker g -> Ker h attach(->, t: diff)  Coker f -> Coker g -> Coker h $
+where the *connecting (homo)morphism* $diff$ is given by a well-defined formula  $ diff(c') = i^(-1) g p'^(-1) (c') + IM(f) $ where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on. 
+Further, if $A' -> B'$ is monic, so is $Ker f -> Ker g$.
+If $B -> C$ is epic, so is $Coker g -> Coker h$.
 ]
 <snake>
-#proof[
-  [See https://faculty.etsu.edu/gardnerr/5410/notes/Snake-Lemma.pdf.]
+#proof[A detailed proof can be seen @snake-lemma-doc.
 We have the following commutative diagram: 
 #v(20pt)
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQBBEAX1PU1z5CKchWp0mrdgCEefEBmx4CRAMxiaDFm0QgAwnP5KhRMsXFapujgHJDCgcuHJR5zZJ0hpd3kcEqUdTcJbXY9H3lFf2cyAAYLD3YAaxgAJwACADN7KKciUXj3UN0UjIBzHMcTQNJCkKsQUvSAC0rjAJJSVQTikABjCCbs3wd251FuooaBpoqR3OrkdUn6zxm0lrboogAWUmDLT1itvJRYjVX2Y+5xGCgy+CJQTNSIAFskADYaHAgkVRGL3e-x+f0Q50uumG8iBH3BoKQAE5Aa84QB2BGIHYo4FYzFkSEgOYw1FIAm-MmxHFwgAcmIArNSkPTMaJCa0mYg2RTEMRiJz1CAeXtCVgIs9SXihWCWYS0OKQLDmfjyJziIKeVSSbiITyCYd2Fh7Ereaypp40CAaIwsGBPFB6HBmndjZK6dKkdbbfbHc6oFaQAAjGBgf2IAC0aP52rhiPxWoluOIurBfM53w9iDRnIxmZpN24QA
@@ -825,12 +825,12 @@ We have the following commutative diagram:
   node((1, 1), [$A'$]),
   node((1, 2), [$B'$]),
   node((1, 3), [$C'$]),
-  node((0, 1), [$ker f$]),
-  node((0, 2), [$ker g$]),
-  node((0, 3), [$ker h$]),
-  node((3, 1), [$coker f$]),
-  node((3, 2), [$coker g$]),
-  node((3, 3), [$coker h$]),
+  node((0, 1), [$Ker f$]),
+  node((0, 2), [$Ker g$]),
+  node((0, 3), [$Ker h$]),
+  node((3, 1), [$Coker f$]),
+  node((3, 2), [$Coker g$]),
+  node((3, 3), [$Coker h$]),
   node((1, 4), [$0$]),
   node((2, 0), [$0$]),
   arr((0, 1), (1, 1), []),
@@ -855,33 +855,31 @@ We have the following commutative diagram:
   arr((0, 2), (0, 3), [$q'$]),
 ))
 
-  In the first row, consider map $j' := i'|_(ker f) : ker f -> B'$. We claim that $j' : ker f -> ker g$. Indeed, take any $a' in ker f subset.eq A'$, we have 
+  In the first row, consider map $j' := i'|_(Ker f) : Ker f -> B'$. We claim that $j' : Ker f -> Ker g$. Indeed, take any $a' in Ker f subset.eq A'$, we have 
   $ g(j'(a')) = g(i'(a')) = i(f(a')) = i(0) = 0 $
-  Then $j'(a') in ker g$ and thus $j' : ker f -> ker g$. Similarly, $q' := p'|_(ker g) : ker g -> ker h$. We then see the first row is exact because of the exactness of $A' -> B' -> C'$.
+  Then $j'(a') in Ker g$ and thus $j' : Ker f -> Ker g$. Similarly, $q' := p'|_(Ker g) : Ker g -> Ker h$. We then see the first row is exact because of the exactness of $A' -> B' -> C'$. Also, if $i'$ is an injection, i.e., $Ker(i') = 0$, then obviously $Ker(j') = 0$.
 
-  In the last row, define $j : coker(f) -> coker(g)$ as $a + im(f) |-> i(a) + im(g)$ for any $a in A$. We claim that this map is well-defined. If $a_1, a_2 in A$ such that $a_1 + im(f) = a_2 + im(f)$, then $a_1 - a_2 in im(f)$, thus there exists $a' in A'$ so that $a_1 - a_2 = f(a')$. Then 
+  In the last row, define $j : Coker(f) -> Coker(g)$ as $a + IM(f) |-> i(a) + IM(g)$ for any $a in A$. We claim that this map is well-defined. If $a_1, a_2 in A$ such that $a_1 + IM(f) = a_2 + IM(f)$, then $a_1 - a_2 in IM(f)$, thus there exists $a' in A'$ so that $a_1 - a_2 = f(a')$. Then 
 
-  $ i(a_1 - a_2) = i(f(a')) = g(i'(a')) in im(g) $
+  $ i(a_1 - a_2) = i(f(a')) = g(i'(a')) in IM(g) $
 
   Then 
-  $ j(a_1 + im(f)) = i(a_1) + im(g) = i(a_2) + im(g) = j(a_2 + im(f)) $
+  $ j(a_1 + IM(f)) = i(a_1) + IM(g) = i(a_2) + IM(g) = j(a_2 + IM(f)) $
 
-  So $j$ is well-defined. Similarly, we can define $q : coker g -> coker h$ and show the exactness of the last row.
+  So $j$ is well-defined. Similarly, we can define $q : Coker g -> Coker h$ and show the exactness of the last row. We can also see that the surjection of $p$ implies the surjection of $q$.
 
-  Now all arrows except $diff$, which we call the *connecting homomorphism*, are clear. 
-  Pick any $c' in ker h subset.eq C'$. 
+  Now all arrows except $diff$ are clear. 
+  Pick any $c' in Ker h subset.eq C'$. 
   Since $p'$ is surjective, there exists $b' in B'$ so that $p'(b') = c'$. 
-  Now $ 0 = h(c') = h(p'(b')) = p(g(b')) $ so $g(b') in ker p = im i$, and there exists unique $a in A$ such that $i(a) = g(b')$. 
-  We thus define $diff: ker h -> coker f$ as $ diff(c') = a + im(f) $ 
+  Now $ 0 = h(c') = h(p'(b')) = p(g(b')) $ so $g(b') in Ker p = IM i$, and there exists unique $a in A$ such that $i(a) = g(b')$. 
+  We thus define $diff: Ker h -> Coker f$ as $ diff(c') = a + IM(f) $ 
   We claim this is a well-defined function. 
-  Then it suffices to show for any two choices $b'_1, b'_2$ of $b'$ and corresponding choices $a_1, a_2$ of $a$, $diff (c')$ gives the same value. Since $p'(b'_1) = p'(b'_2) = c'$, we have $b'_1 - b'_2 in ker(p') = im(i')$. Thus we can write $b'_1 - b'_2 = i'(a')$ for some $a' in A'$. Then 
+  Then it suffices to show for any two choices $b'_1, b'_2$ of $b'$ and corresponding choices $a_1, a_2$ of $a$, $diff (c')$ gives the same value. Since $p'(b'_1) = p'(b'_2) = c'$, we have $b'_1 - b'_2 in Ker(p') = IM(i')$. Thus we can write $b'_1 - b'_2 = i'(a')$ for some $a' in A'$. Then 
   $ i(a_1 - a_2) = g(b'_1 - b'_2) = g(i'(a')) = i (f (a'))  $
-  but $i$ is injective, and hence $a_1 - a_2 = f(a') in im f$. In other words, we could define $ diff(c') = i^(-1) g p'^(-1) (c') + im(f) $
-  where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on. 
+  but $i$ is injective, and hence $a_1 - a_2 = f(a') in IM f$. 
 
-  We still need to verify this is exact. TODO
-  
-  See @li[Theorem 6.8.6].
+  We omit the proof of the exactness at $Ker h$ and $Coker f$.
+  // See @li[Theorem 6.8.6].
 ]
 
 #endlec(5)

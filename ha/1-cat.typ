@@ -475,19 +475,18 @@ A colimit is a universal cocone; namely, $L$ is a *colimit* of $F$ if it is a co
 #example[
   If $I$ is a discrete category, then $lim_I F = product_(i in I) F_i$ is the product and $colim_I F = product.co_(i in I) F_i$ is the coproduct.
 ]
-#definition[Let $I = circle.filled arrows.rr circle.filled$ be the category with two objects and two parallel morphisms between them. Let $F : I-> cC$ be a functor which maps $I$ to 
+#example[Let $I = circle.filled arrows.rr circle.filled$ be the category with two objects and two parallel morphisms between them. Let $F : I-> cC$ be a functor which maps $I$ to 
 $
    A arrows.rr^f_g B
 $
-in $cC$. Then we define the *equaliser* of $f$ and $g$ as $lim_I F$, denoted as $Eq(f, g)$, and *coequaliser* of $f$ and $g$ as $colim_I F$, denoted as $Coeq(f, g)$. #TODO
-]
-
-#notation[
+in $cC$. Then when $lim_I F$ exists, we have two associated morphisms $h: lim_I F -> A$ and $h' : lim_I F -> A$, such that $f oo h = h' = g oo h$. We define the *equaliser* of $f$ and $g$ as this $h : lim_I F -> A$, denoted as $Eq(f, g)$. 
+We also dually define the *coequaliser* of $f$ and $g$ using $colim_I F$, denoted as $Coeq(f, g)$, such that $Coeq(f, g) oo f = Coeq(f, g) oo g$. 
   Continuing with @ker-notation, we have
   $
   EQ(f, g) -->^(Eq(f, g)) A arrows.rr^f_g B -->^(Coeq(f, g))  COeq(f, g)
 $
 ]
+
 
 #proposition[
   In a category with a zero object,
@@ -522,6 +521,12 @@ We then apply Yoneda Lemma to show $L(colim A_i) $ and $colim L(A_i)$ are isomor
 Left adjunction preserves colimits and right adjunction preserves limits.
 In particular, left adjunction preserves cokernels and are right exact; right adjunction preserves kernels and are left exact (to be defined later). 
 ]
+
+#proposition[
+  A category $cC$ has all finite limits #iff it has finite products and equalizers.
+]
+<all-finite-limits>
+#proof[@awodey[Proposition 5.21].]
 
 == Subobjects
 

@@ -81,3 +81,12 @@ pareigis:
   date: 1970
   author: Pareigis, Bodo
   publisher: Academic Press
+
+snake-lemma-doc:
+  type: web
+  title: A Proof of The Snake Lemma
+  author: Gardner, Robert
+  date: 2023
+  url:
+    value: https://faculty.etsu.edu/gardnerr/5410/notes/Snake-Lemma.pdf
+    date: 2023-12-31

@@ -120,7 +120,7 @@ By definition, $H^0 (G, A) = A^G$.
 //   #TODO
 // ]
 
-== First Homology with Integer Coefficients
+== First Homology
 
 #note[
 Recall the *commutator subgroup* of a group $G$ is defined as 
@@ -425,11 +425,11 @@ $A eq bb(Z)$, $H_0 (G, ZZ)$ and $H^0 (G, ZZ)$ come from @group-h0 and @cohomolog
 // #TODO change the notation $H_ast (G, A)$ (comma not semicolon.)
 == Derivations
 <crossed-homomorphisms>
-Historically, the maps we are interested in are called \"crossed
-homomorphisms\". In these notes, however, we will adopt the more modern
-term \"derivations\". Many of the proofs from now on are omitted; we
-have opted just to define the objects and sketch the theory. The proofs
-can all be found in Weibel.
+// Historically, the maps we are interested in are called \"crossed
+// homomorphisms\". In these notes, however, we will adopt the more modern
+// term \"derivations\". Many of the proofs from now on are omitted; we
+// have opted just to define the objects and sketch the theory. The proofs
+// can all be found in Weibel.
 
 #definition[
 Let $G$ be a group and $A$ be a left $G$-module. A
