@@ -1,7 +1,7 @@
 #import "../libs/template.typ": *
 
 
-= Module Theory Prerequisites
+= Module Theory Recap
 
 #definition[
     Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with maps $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
@@ -37,15 +37,18 @@ If $R$ is a commutative ring then left and right $R$-modules are the same, and w
 Compositions of module homomorphisms are still module homomorphisms, and hence we obtain the category of left $R$-modules, denoted as $RMod$. Similarly, we have the category of right $R$-modules, denoted as $ModR$.
 
 
-For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark 6.1.8 Li]. Also, $endr(M)$ is a ring, where the multiplication is defined as composition. Therefore any right $R$-module is also a left $D := endr(M)$-module [p. 205, Li].
+For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group.
+// [Remark 6.1.8 Li]. 
+Also, $endr(M)$ is a ring, where the multiplication is defined as composition. Therefore any right $R$-module is also a left $D := endr(M)$-module.
+// [p. 205, Li].
 
 #definition[
     The *kernel* of a module homomorphism $phi : M_1 -> M_2$ is defined as 
-    $ ker(phi) := {x in M_1 : phi(x) = 0} $
+    $ Ker(phi) := {x in M_1 : phi(x) = 0} $
     The *image* of $phi$ is defined as 
-    $ im(phi) := {phi(x) : x in M_1} $
+    $ IM(phi) := {phi(x) : x in M_1} $
 
-    It can be shown that $ker(phi) subset M_1$ and $im(phi) subset M_2$.
+    It can be shown that $Ker(phi) subset M_1$ and $IM(phi) subset M_2$.
 ]
 
 #definition[
@@ -69,7 +72,17 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 #proposition[
     For any $R$-module $M$ and map between sets $phi.alt:  X -> M$, there exists a unique module homomorphism $phi : R^(ds X) -> M$ that make the following commute: 
 
-    #align(center,image("../imgs/2023-10-28-21-16-04.png",width:30%))
+    // #align(center,image("../imgs/2023-10-28-21-16-04.png",width:30%))
+    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAEoA9ABQAPCACcABOwCU3XiAzY8BIqOHj6zVohABZbuJhQA5vCKgAZiogBbJGRA4IJGEed08fRD8ApAAmanMpKzQACywAOkYcHVDvIOooxFiQBiwwSxAoOjgkhxA4yTKYRSw4HDgAQjU1Oy4gA
+#align(center, commutative-diagram(
+    node-padding: (50pt, 50pt),
+  node((0, 0), [$X$]),
+  node((0, 1), [$R^(xor X)$]),
+  node((1, 1), [$M$]),
+  arr((0, 0), (0, 1), []),
+  arr((0, 0), (1, 1), [$phi.alt$]),
+  arr((0, 1), (1, 1), [$exists! phi $], "dashed"),
+))
 ]
 
 #definition[
@@ -88,14 +101,14 @@ For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group [Remark
 ]
     <module-generator>
 
-#proof[
-    Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
-]
+// #proof[
+//     Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
+// ]
 
-#remark[
-    This means we have the exact sequence:
-    $ 0 -> ker(sigma) -> R^(ds X) rgt(sigma) M -> 0 $
-]
+// #remark[
+//     This means we have the exact sequence:
+//     $ 0 -> ker(sigma) -> R^(ds X) rgt(sigma) M -> 0 $
+// ]
 
 #proposition[
     Any submodule of a free module over a PID is free. 

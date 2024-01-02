@@ -1,6 +1,6 @@
 #import "../libs/template.typ": *
 
-= Ring Structure on $Ext$ and Yoneda Product
+= Ring Structure on $Ext$
  == Reinterpreting $Ext$
 Let $A, B in RMod$  with projective resolutions $P_cx -> A$ and $Q_cx -> B$. Write the total cochain complex $ Tot^Pi (hom (P, Q)) =: T$. Then @balance-ext-2 implies that 
 $
