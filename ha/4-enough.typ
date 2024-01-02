@@ -243,8 +243,7 @@ $M$ is injective by Baer’s Criterion.
 ]
 
 #remark[
-  Every injective abelian group $I = I_"tor" ds I_"free"$, where $I_"free"$ is a $QQ$-vector space and $I_"tor"$ (torsion part) is a direct sum copies of $ZZ_(p^ infinity)$.
-  #TODO
+  @weibel[Example 2.3.3]. Every injective abelian group $I = I_"tor" ds I_"free"$, where $I_"free"$ (the torsion-free part) is a $QQ$-vector space and $I_"tor"$ (the torsion part) is a direct sum of copies of $ZZ_(p^ infinity)$. In particular, $QQ over ZZ = ds_p ZZ_(p ^ infinity)$.
 ]
 
 #lemma[

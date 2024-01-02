@@ -11,7 +11,7 @@ Recall that $Hom(A)(A, -): cA -> Ab$ is left exact by @hom-left-exact.
   In particular, $Ext_cA^0 (A, B) = Hom(A) (A, B)$.
 ]
 
-Notice that the contravariant functor $Hom(A)(-, B): cA^op -> Ab$ is also left exact by @hom-left-exact-2. Assume that $cA$ has enough projectives, so $A^op$ has enough injectives. Let $P_cx -> A$ be an projective resolution in $cA$, which can be seen as an injective resolution in $cA^op$. We can thus define another right derived functor $Ext_cA^i (-, B)$, given by
+Notice that the contravariant functor $Hom(A)(-, B): cA^op -> Ab$ is also left exact by @hom-left-exact-2. Assume that $cA$ has enough projectives, so $cA^op$ has enough injectives. Let $P_cx -> A$ be an projective resolution in $cA$, which can be seen as an injective resolution in $cA^op$. We can thus define another right derived functor $Ext_cA^i (-, B)$, given by
 $
   Ext_cA^i (-, B)(A) := R^i Hom(A)(-, B) (A) = H^i (Hom(A)(P_cx, A))
 $

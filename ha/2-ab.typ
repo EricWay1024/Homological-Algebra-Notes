@@ -500,13 +500,32 @@ The key element that we seek from an abelian category is the notion of exactness
 ]
     <splitting-lemma>
 
-#proof[#TODO https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma] 
+#proof[
+  // #TODO https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma
+  Although it is possible to give a purely category-theoretic proof, as can be seen @splitting-lemma-doc, we give a proof in $RMod$, which is in fact sufficient in view of @metatheorem.
+
+  (1) $=>$ (2) and (1) $=>$ (3) are trivial by the definition of biproducts. 
+
+  (2) $=>$ (1). We first claim that $B = IM f + Ker r$. Take any $b in B$, then plainly $b = f r(b) + (b - f r(b)) $. Since $r (b - f r(b)) = r (b) - r f r (b) = 0$, we have $b - f r(b) in Ker r$. Also obviously $f r (b) in IM f$.
+
+  We further claim that $B = IM f ds Ker r$. Suppose $b in IM f sect Ker r$, then there exists $a in A$ such that $b =  f(a)$; also $r (b) = 0$. Then $0 = r f (a) =a$, so $b = f(a) = 0$. 
+
+  Now we claim that $Ker r iso C$; in particular, the restriction $g|_(Ker r) : Ker r -> C$ is an isomorphism. Take any $c in C$, then since $g$ is a surjection, there exists some $f(a) + k in B$, where $a in A$ and $k in Ker r$, such that $g (f(a) + k) = c$. Note that $g f(a) = 0$, because $f(a) in IM f = Ker g$ by exactness at $B$, so for any $c in C$, there exists $k in Ker r$ such that $g(k) = c$. Thus $g|_(Ker r)$ is surjective. On the other hand, if $g(k) = 0$ for $k in Ker r$, then $k in Ker g = IM f$, but $IM f sect Ker r = {0}$, so $k = 0$. Thus $g|_(Ker r)$ is injective. 
+
+  Finally, observe that $f$ is an injection, so $IM(f) iso A$. 
+
+  (3) $=>$ (1). The proof is similar as above and thus omitted.
+] 
 
 
 #corollary[
-  #TODO rotman 2.24
+  - If $M = S ds T$ and $S subset.eq N subset.eq M$, then $N = S ds (N sect T)$. 
+  - If $M = S ds T$ and $S' subset.eq S$, then $M over S' = S over S' ds (T + S') over S'$.
 ]
 <split-sub>
+#proof[
+  @rotman[Corollary 2.24].
+]
 #definition[
   An additive functor $F: cC -> cD$ is called *right exact* if for every #sest $0-> A-> B-> C-> 0$ the sequence $ F(A) -> F(B) -> F(C) ->  0 $ is exact; $F$ is called *left exact* if   $ 0 -> F(A) -> F(B) -> F(C) $ is exact; $F$ is called *exact* if $F$ is both right and left exact, or
   $
@@ -771,6 +790,7 @@ For example, consider $veck$ for some field $k$. Then $k$ and $k^n$ are both com
 #theorem("Freyd-Mitchell Embedding Theorem")[
   If $cA$ is a small abelian category, there is a ring $R$ and an exact, fully faithful embedding functor $cA -> RMod$.
 ]
+<metatheorem>
 
 #proof[
 // Using Yoneda embeddings. $cA -> Fun(cA^op, Ab)$. (?) 

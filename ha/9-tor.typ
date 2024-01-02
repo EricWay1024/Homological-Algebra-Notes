@@ -126,11 +126,11 @@ $n gt.eq 1$. Then applying @flat-tor gives the result. The case where $P$ is a p
 ]
 
 #example[
-  A torsion free abelian group is flat (as a $ZZ$-module). 
+  A torsion-free abelian group is flat (as a $ZZ$-module). 
 ]
 #proof[
   // @weibel[Poposition 3.1.4, p.67].
-  Let $A$ be a torsion free abelian group, then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so each $A_i$ is free and hence flat.  $ A = union A_i = colim_I A_i $ where $I$ is a filtered poset representing the inclusion of finitely generated subgroups of $A$. Hence torsion free abelian groups are flat. 
+  Let $A$ be a torsion-free abelian group, then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so each $A_i$ is free and hence flat.  $ A = union A_i = colim_I A_i $ where $I$ is a filtered poset representing the inclusion of finitely generated subgroups of $A$. Hence torsion-free abelian groups are flat. 
 ]
 
 #example[

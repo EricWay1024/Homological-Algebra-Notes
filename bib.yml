@@ -90,3 +90,12 @@ snake-lemma-doc:
   url:
     value: https://faculty.etsu.edu/gardnerr/5410/notes/Snake-Lemma.pdf
     date: 2023-12-31
+
+splitting-lemma-doc:
+  type: web
+  title: "\"Abstract nonsense\" proof of the splitting lemma"
+  author: Noix07
+  date: 2014-04-14
+  url:
+    value: https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma/753182#753182
+    date: 2023-12-31
