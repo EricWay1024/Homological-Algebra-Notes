@@ -72,7 +72,9 @@ In fact, a final object is an empty product and an initial object an empty copro
 ]
   <ab-product>
 
-#proof[@notes[Proposition 3.7], @li[Theorem 3.4.9] and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality.
+#proof[@notes[Proposition 3.7]
+// , @li[Theorem 3.4.9] 
+and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality.
   
   Suppose the product $X_1 times X_2$ exists with projections $p_k colon X_1 times X_2 arrow.r X_k$. By definition of products, there are unique morphisms $i_k colon X_k arrow.r X_1 times X_2$ such that the following diagrams commute.
 
