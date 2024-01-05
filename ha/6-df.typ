@@ -8,15 +8,13 @@
   Let $cA, cB$ be abelian categories. A *homological $delta$-functor* $T$ from $cA$ to $cB$ 
   is a collection of additive functors  ${T_n : cA -> cB}_(n >= 0)$ such that 
   #enum(block(width: 100%)[
-    $T_0$ is right exact;
-  ],[
-    For each #sest $ses(A, B, C)$ in $cA$, there exist morphisms 
+    (Existence of $delta$). For each #sest $ses(A, B, C)$ in $cA$, there exist morphisms 
   $delta_n : T_n (C)  -> T_(n-1)(A) $ 
-  for $n >= 1$ such that $ ... -> T_(n+1)(C) ->^delta T_n (A) -> T_n (B) -> T_n (C) rgt(delta) T_(n-1)(A) -> ... $
-    is a #lest in $cB$;
+  for $n >= 1$ such that $ ... -> T_(n+1)(C) ->^delta T_n (A) -> T_n (B) -> T_n (C) rgt(delta) T_(n-1)(A) -> ... \ -> T_1 (C)   ->^delta T_0 (A)  -> T_0 (B)  -> T_0 (C) -> 0 $
+    is a #lest in $cB$. In particular, $T_0$ is right exact;
   ],
   [
-    For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s above give a commutative diagram 
+    (Naturality of $delta$). For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s above give a commutative diagram 
     // #align(center,image("../imgs/2023-11-24-19-38-59.png",width:30%)
     // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUB9MAAgAoAwgHIAlCAC+pdJlz5CKAIzkqtRizZc+YALQKR-AIKiJUkBmx4CRMgpX1mrRB278BYydItyiS29XvqTpo6eobuKjBQAObwRKAAZgBOEAC2SGQgOBBIAEweIEmpSEqZ2YgAzPmFaYg51FlI5f5qjiCwDDh0JgnJNRkNiCUBre2dEhTiQA
 #align(center, commutative-diagram(
@@ -38,17 +36,14 @@
   
 
   #enum(block(width: 100%)[
-    $T^0$ is left exact;
-  ],
-  [
-    For each #sest $ses(A, B, C)$ in $cA$, there exist morphisms 
+    (Existence of $delta$). For each #sest $ses(A, B, C)$ in $cA$, there exist morphisms 
   $delta^n : T^n (C)  -> T^(n+1)(A) $
   for $n >= 0$ such that 
-    $ ... -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... $
-    is a long exact sequence in $cB$;
+    $ 0 -> T^0 (C) -> T^0 (B) -> T^0 (A) ->^delta T^1 (C) ->  ...  \ -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... $
+    is a long exact sequence in $cB$. In particular, $T^0$ is left exact;
   ],
   [
-    For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s above give a commutative diagram 
+    (Naturality of $delta$). For each morphism of #sess from $ses(A', B', C')$ to $ses(A, B, C)$, the $delta$'s above give a commutative diagram 
     // #align(center,image("../imgs/2023-11-24-19-39-14.png",width:30%))
     // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUA9MAAgAoAwgHIAlCAC+pdJlz5CKAIzkqtRizZc+YANQKR-AIKiJUkBmx4CRMgpX1mrRB278BYydItyiS29XvqTpo6eobuKjBQAObwRKAAZgBOEAC2SGQgOBBIAEweIEmpSEqZ2YgAzPmFaYg51FlI5f5qjiCwDDh0JgnJNRkNiCUBre2dEhTiQA
 #align(center, commutative-diagram(
@@ -128,7 +123,7 @@ $ 0 arrow.r zws_p A arrow.r zws_p B arrow.r zws_p C arrow.r^delta A slash p A ar
 #definition[
   A *morphism* $f: S->T$ of homological (resp. cohomological) $delta$-functors is a collection of natural transformations ${f_n : S_n -> T_n}_(n>=0)$ (resp. ${f^n : S^n -> T^n}_(n>=0)$) which commutes with $delta$.  ]
   #remark[
-    This definition is equivalent to saying that there is a commutative ladder diagram connecting
+    This definition is equivalent to saying that there is a commutative "ladder diagram" connecting
 the long exact sequences for $S$ and $T$ associated to any short exact
 sequence in $cA$.
   ]
@@ -167,11 +162,9 @@ The main object of this section is to show that in an abelian category with enou
   + Delete $A$ to form the *deleted projective resolution*, i.e., the  chain complex $ ... -> P_2 -> P_1 -> P_0 -> 0 $ (which is not exact at $P_0$ unless $A = 0$);
   + Apply $F$ to form a chain complex in $cB$: $ ... -> F(P_2) -> F(P_1) -> F(P_0) -> 0 $ 
   + Calculate the $i$-th homology $H_i (F (P))$ of this chain complex.
-  
-  Our definition of $L_i F$ is still incomplete as we have not defined how it maps the morphisms in $cA$.
   // Now let $f: A -> B$ be a morphism in $cA$. To find $L_i F (f)$, we can find projective resolutions $P_cx -> A$ and $Q_cx -> B$, and by the @comparison[Comparison Theorem], there exists a chain map $f_cx : P_cx -> Q_cx$ lifting $f$. Then $L_i F (f) := H_i (F(f_cx))$, obtained in a similar fashion as above.
 ]
-
+In fact, our definition of the "functor" $L_i F$ is still incomplete as we have not defined how it maps the morphisms in $cA$. However, we first need to show that for any object $A in cA$, our definition of $L_i F (A)$ is independent of the choice of projective resolution $P_cx -> A$. The following implies the case when $i = 0$.
 #lemma[
   $L_0 F(A) iso F(A)$.
 ]
@@ -184,7 +177,7 @@ $
   By definition, $L_0 F(A) = H_0(F(P)) iso Coker(F(d_1))$. Since $F$ is right exact, it preserves cokernels, so $Coker(F(d_1)) iso F(Coker(d_1)) = F(A)$.
 ]
 
-Notice that the previous lemma indicates that the choice of $P_cx$ does not affect $L_0 F $. This in fact holds in general for all $L_i F$, which indicates that $L_i F$ is well-defined.
+// Notice that the previous lemma indicates that the choice of $P_cx$ does not affect $L_0 F $. This in fact holds in general for all $L_i F$, which indicates that $L_i F$ is well-defined.
 
 #lemma[ Let $cA, cB, F, A$ be defined as in @left-derived-functor.
   If $P_cx -> A$ and $Q_cx -> A$ are two projective resolutions, then there is a canonical isomorphism 

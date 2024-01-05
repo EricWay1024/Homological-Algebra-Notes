@@ -116,6 +116,10 @@ $ H^ast lr((G , A)) = R^ast lr((-_G)) lr((A)) tilde.equiv "Ext"_(bb(Z) G)^ast lr
 By definition, $H^0 (G, A) = A^G$. 
 ]
 
+#notation[
+  @weibel uses the notations $H_ast (G; A)$ and $H^ast (G; A)$ (with a semicolon instead of a comma).
+]
+
 // #example[
 //   #TODO
 // ]
@@ -338,13 +342,13 @@ is a projective resolution for $bb(Z)$ as a $bb(Z) C_m$-module.
 #theorem[
   Let $A$ be a $G$-module, where $G = C_m$. Then
 
-$  H_n lr((C_m ; A)) eq cases(
+$  H_n lr((C_m , A)) eq cases(
   A slash lr((sigma minus 1)) A quad &"if " n eq 0 comma,
   A^(G ) slash N A quad &"if " n eq 1 comma 3 comma 5 comma dots.h comma,
 brace.l a in A colon N a eq 0 brace.r slash lr((sigma minus 1)) A quad &"if " n eq 2 comma 4 comma 6 comma dots.h
 )
 
-$ $ H^n lr((C_m ; A)) eq cases(
+$ $ H^n lr((C_m , A)) eq cases(
 A^G quad &"if " n eq 0 comma,
 brace.l a in A colon N a eq 0 brace.r slash lr((sigma minus 1)) A quad &"if " n eq 1 comma 3 comma 5 comma dots.h comma,
 A^G slash N A quad &"if " n eq 2 comma 4 comma 6 comma dots.h 
@@ -357,8 +361,8 @@ $
 
 #corollary[
    We have
-$  & H_n lr((C_m ; bb(Z))) eq cases(bb(Z) quad & "if " n eq 0, bb(Z) slash m  quad & "if " n gt.eq 1 "is odd " comma, 0 quad & "else. ")\
- & H^n lr((C_m ; bb(Z))) eq cases(bb(Z) quad& "if " n eq 0, bb(Z) slash m quad & "if " n gt.eq 2 "is even, ", 0  quad & "else. ") $]
+$  & H_n lr((C_m , bb(Z))) eq cases(bb(Z) quad & "if " n eq 0, bb(Z) slash m  quad & "if " n gt.eq 1 "is odd " comma, 0 quad & "else. ")\
+ & H^n lr((C_m , bb(Z))) eq cases(bb(Z) quad& "if " n eq 0, bb(Z) slash m quad & "if " n gt.eq 2 "is even, ", 0  quad & "else. ") $]
 
 //  #remark[
 //   Galois homology? Tate homology?

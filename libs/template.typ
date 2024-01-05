@@ -40,7 +40,7 @@
 #let ModS = [$bd("Mod")$-$S$]
 #let homr = [$op("Hom")_R$]
 #let homg = [$op("Hom")_G$]
-#let endr = [$op("End")_RMod$]
+#let endr = [$op("End")_R$]
 #let Mod = [$bd("Mod")$]
 #let Ab = [$bd("Ab")$]
 #let Grp = [$bd("Grp")$]
@@ -99,7 +99,8 @@
 #let Der = [$"Der"$]
 #let PDer = [$"PDer"$]
 
-#let endlec(n) = [_This is the end of lecture #n._]
+// #let endlec(n) = [_This is the end of lecture #n._]
+#let endlec(n) = []
 #let TODO = text(blue)[TODO]
 
 
@@ -211,6 +212,12 @@
   set heading(numbering: "1.1.")
   set enum(numbering: "(1)")
 
+  // show link: underline
+  show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+  show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+  // show link: set text(fill: rgb(0, 0, 255))
+
+  // show ref: set text(fill: rgb(0, 0, 255))
   body
 }
 

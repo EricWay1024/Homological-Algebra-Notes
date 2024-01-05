@@ -17,7 +17,7 @@ Let $cA$ be an abelian category.
 ]
 
 #notation[
-  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
+  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. To emphasise that $d$ belongs to the chain complex $C_cx$, we would write either $d_C$, or $d^((C))_n$ if we also need to explicitly specify the index.  We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
 ]
 
 #remark[
@@ -107,7 +107,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
   We also define *cochain maps* similarly as before.
 ]
 
-#example[
+#example[@weibel[Application 1.1.4].
   Let $X$ be a topological
 space, and let $S_k eq S_k lr((X))$ be the free $R$-module on the set of
 continuous maps from the standard $k$-simplex $Delta_k$ to X. Restriction
@@ -121,8 +121,6 @@ $ dots.h.c arrow.r^d S_2 arrow.r^d S_1 arrow.r^d S_0 arrow.r 0 $ called the *sin
 The $n$-th homology module of $S_cx (X)$ is called the
 $n$-th singular homology of $X$ \(with
 coefficients in $R$) and is written $H_n lr((X semi R))$. 
-
-See @weibel[Application 1.1.4].
 ]
 // #example[
 //   Let $X$ be a topological space. Then $S_k = S_k (X)$ is the free $R$-module on the set of continuous maps $Delta_k -> X$, with restriction to the $i$-th face defines $S_k rgt(diff_i) S_(k-1)$, $d = sum (-1)^i diff_i$ gives a chain complex. 
@@ -252,13 +250,18 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
   $ ... -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) -> H_(n-1)(B) -> ... $
   a long exact sequence. Further, $diff_n$ is explicitly given by the well-defined expression  $ diff_n = f^(-1) d_B g^(-1) $
   
-  The same holds for cochain complexes with the connecting homomorphism 
+ If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of cochain complexes, then we have the connecting homomorphism 
   $ diff^n : H^n\(C) -> H^(n+1)(A) $
+  where the induced long exact sequence is
+  $
+     ... -> H_n (B) -> H_n (C) rgt(diff^n) H_(n+1) (A) -> H_(n+1)(B) -> ... 
+  $
+  and $ diff^n = f^(-1) d^B g^(-1) $
 ]
 <connecting>
 
 #proof[
-  Again, we can safely assume the context of $RMod$. This is an application of the @snake[Snake Lemma]. 
+  Again, we assume the context of $RMod$. This is an application of the @snake[Snake Lemma]. 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBBAPqFuvbHgJEATKOr1mrRCABCcrjxAYlAogGYN47WwDChhSb7LByACzWtk3Ryen+FRQyITFvHXYjRUC3EVDNCQjZAAowAFohAEoo5zMg5HV4mx99GVSM7P8XcxQrIvD7MvSsnIDXIk96xLY-MRgoAHN4IlAAMwAnCABbJDIQHAgkIScJ6aXqBaRVFcmZxHV5xcQLHbXjjaP3U72RQ6QANgTbXSgc1b2DzcQAdieS1+uSCsd0QAA5qAw6AAjGAMAAK1SCIAYMFGOBAfwiAOM7yQAFYLg9AYhHiDvsTfiDQcTwSCAJycCicIA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -408,7 +411,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 ]
 
 #corollary[Let $cA$ be an abelian category.
-  Then there exists a functor from the category of #sess of chain complexes in $cA$ to the category of #less in $cA$.
+  Then homology induces a functor from the category of #sess of chain complexes in $cA$ to the category of #less in $cA$.
 ]
 
 == Resolutions

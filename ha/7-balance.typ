@@ -494,7 +494,7 @@ It has the *tensor product total complex*, $Tot^xor (P_cx tpr Q_cx)$.
 ]
 <projective-flat-1>
 #proof[
-  @rotman[Proposition 3.46, p. 132]. We (very concisely) work on the first half of the claim. First notice that $(R tpr -)$ is an isomorphism by @r-tpr, so the functor $(R tpr -)$ is exact. Then tensor product preserves direct sums by @tensor-right-exact, so for a family of right $R$-modules $M_i$, $((plus.circle.big M_i) tpr -)$ is exact, if and only if $plus.circle.big (M_i tpr -)$ is exact, if and only if each $(M_i tpr -)$ is exact. Now any free module $F$, being a direct sum of $R$'s, must have that $(F tpr -)$ is exact. Finally, $P$ is projective, hence $P$ is a direct summand of some free module by @projective-summand, which indicates that $(P tpr -)$ is also exact.
+  @rotman[Proposition 3.46, p. 132]. We (very concisely) work on the #rrm case. First notice that $(R tpr -)$ is an isomorphism by @r-tpr, so the functor $(R tpr -)$ is exact. Then tensor product preserves direct sums by @tensor-right-exact, so for a family of right $R$-modules $M_i$, $((plus.circle.big M_i) tpr -)$ is exact, if and only if $plus.circle.big (M_i tpr -)$ is exact, if and only if each $(M_i tpr -)$ is exact. Now any free module $F$, being a direct sum of $R$'s, must have that $(F tpr -)$ is exact. Finally, $P$ is projective, hence $P$ is a direct summand of some free module by @projective-summand, which indicates that $(P tpr -)$ is also exact.
 ]
 #theorem([Balancing of $Tor$])[ Let $A in ModR$ and $B in RMod$. For all $n$,
   $ Tor_n^R (A, B) := L_n (- tpr B)(A) iso L_n (A tpr -)(B)  $ 
@@ -570,7 +570,7 @@ It has the *tensor product total complex*, $Tot^xor (P_cx tpr Q_cx)$.
 
 #definition[
 Given a chain complex $(P_cx, d^((P)))$ and a cochain complex $(I^cx, d_((I)))$, we can form the *Hom double complex* $ hom(P_cx, I^cx) = {hom (P_p, I^q)}_(p, q) $
-with differentials#footnote[Here we alternate the signs for adjacent rows instead of adjacent columns as in the tensor product double complex. The sign convention is different in @weibel[p. 62]; I choose to use the current one, following @notes[p. 76], because it makes my life easier.]
+with differentials#footnote[Here we alternate the signs for adjacent rows (instead of adjacent columns, as in the tensor product double complex). This sign convention, following @notes[p. 76], is different from that in @weibel[p. 62].]
  $ d^h_(p, q) (f)  &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , I^q)  \ d^v_(p, q) (f) &=  d_((I))^q oo f in hom (P_p, I^(q+1)) $
 for $f in hom ( P_p , I^q )$.
 
@@ -621,7 +621,7 @@ An (anticommutative) diagram for the Hom double complex is as follows. The place
 #remark[
   There are a few technicalities to be addressed here. They are not conceptually difficult but can be bewildering when first encountered. 
 
-  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards or to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards or to the right:
+  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards and to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards and to the right.
 //   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMma5i5djwEiZAIw6GLNok48BIsVIsKlIBg2akQOpE40Lvruhl7CYWZ+VoEqturIYdqRem4eRiIJUg6WAUGqdihhVNmuBp7GhdIl1uXpmhTOOXX5wu1msv4taUTtWbq1MfUifUXNKcEVyO0R49F5cTPmc2XDGqTEnRMgAHSng-OtofuHa6fH5zshKO0HNbdnyY+L5OE3uXcPVJPZA-MZRf4fUpA74dN4Q+7yHQwKAAc3gRFAADMAE48JBkEA4CBIACsyRxeMQJJoRKQADZybjuPiacTEA5GZTqYS2QAWTnMxB01lIADsAqQYR5SE0EsQ7WliHIcp+ioAHHLeSKlXLRdqNQEKYKpbTEPzDUykFrFeKLZSFaaAJwq7UOYhytWujl2wWexUOWU+sWu5VBoWu-mUeRAA
 // #align(center, commutative-diagram(
 //   node-padding: (50pt, 50pt),
@@ -659,7 +659,7 @@ An (anticommutative) diagram for the Hom double complex is as follows. The place
 //   arr((2, 2), (2, 3), []),
 //   arr((3, 2), (3, 3), []),
 // ))
-Thus this is, strictly speaking, neither a upper half-plane complex nor a right half-plane complex, because if we would like to turn the diagram into a canonically ordered one, we would need to reflect it to the "fourth quadrant". This ordering matters mainly because in this case, it would be more convenient to apply @aal-2 instead of @aal[Acyclic Assembly Lemma].
+Thus this is, strictly speaking, neither a upper half-plane complex nor a right half-plane complex, because if we would like to turn the diagram into a canonically ordered one, we would need to reflect it to the "third quadrant". This ordering matters mainly because in this case, it would be more convenient to apply @aal-2 instead of @aal[Acyclic Assembly Lemma].
 
 Another confusion that can easily arise from a non-canonical ordering is how to form the corresponding total complex. 
 Apart from converting the diagram to a canonically ordered one by reflection, a simple method is to select any object $A$ in the grid and draw a line $l$ connecting the arrowheads of the two arrows departing from $A$. Then every "diagonal slice", whose direct sum is a term of the total complex, must be parallel to this line $l$. This is simply because each arrow must point from one diagonal slice to another. For example, each diagonal slice of the Hom double complex has a distinct colour in the above diagram, and hence we see 
@@ -840,18 +840,18 @@ We draw the (non-canonically ordered) double complex $hom (P, Q)$ as follows. No
 //   arr((3, 2), (3, 3), []),
 // ))
 
-Note that the $n$-th term of the total cochain complex#footnote[Again, it may also be seen as a chain complex by replacing $n$ with $-n$.] is 
+The $n$-th term of the total cochain complex#footnote[Again, it may also be seen as a chain complex by replacing $n$ with $-n$.] is 
 $
   [Tot^Pi (hom (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n))
 $
-which is the product of infinitely many objects. 
+which is the product of infinitely many terms. 
 
 It turns out that this construction leads to a further way to compute $Ext$:
 
 #theorem[
   Let $P_cx -> A$ and $Q_cx -> B$ be projective resolutions, then
   $
-    Ext^ast_R (A, B) = H^ast Tot^Pi (hom_R (P, Q))
+    Ext^n_R (A, B) iso H^n Tot^Pi (hom_R (P, Q))
   $
 ]
 <balance-ext-2>
@@ -904,7 +904,7 @@ It turns out that this construction leads to a further way to compute $Ext$:
   arr((4, 1), (4, 2), [$-square oo d^((P))_2$]),
   arr((4, 2), (4, 3), []),
 ))
-  Let $C$ be the double complex obtained by adding $hom(P, B)$ to the row $q = -1$ of the double complex $hom(P, Q)$. Since each $P_p$ is projective, $hom (P_p, -)$ is exact and so each column of $C$ is exact. $C$ can be turned into a (canonically ordered) upper half-plane complex by reflecting it to the second quadrant, so @aal applies and $Tot^Pi (C)$ is acyclic. Again, observe that $Tot^Pi (C) iso cone(f)$ where 
+  Let $C$ be the double complex obtained by adding $hom(P, B)$ to the row $q = -1$ of the double complex $hom(P, Q)$. Since each $P_p$ is projective, $hom (P_p, -)$ is exact and so each column of $C$ is exact. $C$ can be turned into a (canonically ordered) upper half-plane complex (by reflecting it to the "second quadrant"), so @aal applies and $Tot^Pi (C)$ is acyclic. Again, observe that $Tot^Pi (C) iso cone(f)$ where 
   $
     f: Tot^Pi (hom (P,Q)) -> hom (P, B)
   $

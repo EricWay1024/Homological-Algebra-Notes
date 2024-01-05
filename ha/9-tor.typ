@@ -49,7 +49,7 @@
   + $Tor_1^R (A, B) = 0$ for all $B$.
 ]
   <flat-tor>
-#proof[@notes[Lemma 6.26]. We prove the first half. 
+#proof[@notes[Lemma 6.26]. We prove the #lrm case. 
 
 (1) $=>$ (2). Suppose that $B$ is flat. Let $F_cx arrow.r A$ be a free
 resolution of $A$. Since $(minus times.circle_R B)$ is exact, the sequence
@@ -66,7 +66,7 @@ exact sequence of $Tor$ by @tor-les,
 $ 0 eq "Tor"_1^R lr((A comma B)) arrow.r X times.circle_R B arrow.r Y times.circle_R B arrow.r A times.circle_R B arrow.r 0 $
 which shows that $(- tpr B)$ is exact.
 
-Note that the second half of the claim relies on the balancing of $Tor$, but the proof is very similar.
+Note that #rrm case relies on the balancing of $Tor$, but the proof is very similar.
 ]
 
 #corollary[Every projective module is flat. In particular, every free module is flat. #footnote[We have already proven this claim in @projective-flat-1, because we needed it for the balancing of $Tor$ (@balance-tor). This second proof actually relies on the balancing of $Tor$ so we could not use it previously, but it is presented here regardless.]]

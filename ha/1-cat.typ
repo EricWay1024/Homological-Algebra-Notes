@@ -3,7 +3,7 @@
 
 = Basic Category Theory
 
-This section is a crash course in Category Theory. The reader is advised to take the Category Theory course concurrently and/or refer to other materials when necessary.
+This section is a crash course in category theory. The reader is advised to take the Category Theory course concurrently and/or refer to other materials, e.g. @awodey.
 
 == Basic Definitions
 
@@ -52,6 +52,10 @@ In general, a category is a "generalised" monoid because in a category you can o
   - Let $R$ be a ring. The category $RMod$ has objects which are #lrms and morphisms which are module homomorphisms. Similarly, we have the category $ModR$ of #rrms. We often denote $hom_RMod$ or $hom_ModR$ as $homr$; it should be clear from the context which one we are referring to.
   - The category $Grp$ has objects which are groups and morphisms which are group homomorphisms. Similarly, we have the category $Ab$ of abelian groups. 
   // $veck, Set, $ left/right $R$-modules, bimodules, topological spaces, etc.
+]
+
+#definition[
+  Let $cC, cD$ be categories. The *product category* $cC times cD$ consists of objects $(C, D)$ for $C in cC$ and $D in cD$, and morphisms $(f, g) : (C_1 ,D_1 )-> (C_2, D_2)$ for $f : C_1 -> C_1$ and $g: D_1 -> D_2$. 
 ]
 
 #definition[
@@ -346,23 +350,29 @@ In $Cat$, the hom-sets are not only sets but also categories, which means that $
   Recall in linear algebra we have $angle.l T v, w angle.r  = angle.l v, T^* w angle.r $, where the name "adjoint" comes from.
 ]
 
-Equivalently, $tau$ is a natural isomorphism between $Hom(B) (L(-), -)$ and $Hom(A) (-, R(-))$, both of which are functors $cA^op times cB -> Set$.
 
-What's a product category? It's just pairs of objects and pairs of morphisms. 
 
-Why $cA^op$ here? Because $Hom(A)(-, B)$ is a contravariant functor.
+#remark[
+Equivalently, $tau$ is a natural isomorphism between $Hom(B) (L(-), -)$ and $Hom(A) (-, R(-))$, both of which are functors $cA^op times cB -> Set$. Note that $A^op$ is used here because $Hom(A)(-, B)$ is a contravariant functor.
+]
+
+
+
+// What's a product category? It's just pairs of objects and pairs of morphisms. 
+
 
 #example[
-  (Free, Forget) adjunction. Forget: $ veck &-> Set \ (V, +, dot) &|-> V $ Free: $ Set &-> veck \ X &|-> k[X] $
+  $"Free"$ is the left adjoint of $"Forget"$. For example, we define the functors between $veck$ and $Set$: $ "Forget": veck &-> Set \ (V, +, dot) &|-> V $  $ "Free" :  Set &-> veck \ X &|-> k[X] $
 
+Then we have:
 $ hom_(veck)(k[X], W) &iso hom_(Set) (X, "Forget"(W))\
 T &|-> T|_X \
 "linearly extended" f &arrow.l.bar f
 $
 
-Free is the left adjoint of Forget. 
 
-Forget: $Grp -> Set$. Free: $Set -> Grp$. Also happens. 
+
+// Forget: $Grp -> Set$. Free: $Set -> Grp$. Also happens. 
 ]
 
 

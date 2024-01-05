@@ -80,6 +80,7 @@ and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAA0B9YgAjwFt4PLgCYQAX1LpMufIRQAGclVqMWbLsQlSQGbHgJERy6vWatEHTmMnT9cokoUqz6y5u13ZhlMZEu1CysbFRgoAHN4IlAAMwAnCH4kJRAcCCRiWxB4xOTqNKQRLJykxABmfPTEMlVzNiwoTgAKTQBKT2yE0orUquMQACMYMCgkMpTXIIUOkrHKvJAGLDAgqDo4AAswkFNAthgADyw4HDgAQhmupAAWecR+yfrGlut24qvEW96M6iGRsYme0s03euU+dxSSxWbDWm22uzqlkOx1OPAu4go4iAA
 #align(center, commutative-diagram(
+  node-padding: (80pt, 50pt),
   node((1, 1), [$X_1 times X_2$]),
   node((1, 0), [$X_1$]),
   node((1, 2), [$X_2$]),
@@ -89,7 +90,7 @@ and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality
   arr((1, 1), (1, 2), [$p_2$]),
   arr((0, 0), (1, 0), [$id_(X_1)$]),
   arr((0, 0), (1, 2), [$0$], curve: 30deg),
-  arr((0, 0), (1, 1), [$exists ! i_1$], label-pos: -1em, "dashed"),
+  arr((0, 0), (1, 1), [$exists ! i_1$], label-pos: 1em, "dashed"),
   arr((2, 2), (1, 2), [$id_(X_2)$], label-pos: -1.5em),
   arr((2, 2), (1, 0), [$0$], label-pos: -1em, curve: 30deg),
   arr((2, 2), (1, 1), [$exists ! i_2$], label-pos: -1em, "dashed"),
@@ -107,8 +108,20 @@ is another cocone. Then we have a map
 $ phi eq f_1 compose p_1 plus f_2 compose p_2 colon X_1 times X_2 arrow.r A $
 such that for $k = 1, 2$, $phi oo i_k = f_k $.
 This gives a commutative diagram
-#align(center,image("../imgs/2023-10-29-11-34-35.png",width:30%))
-
+// #align(center,image("../imgs/2023-10-29-11-34-35.png",width:30%))
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0B9ARhAF9S6TLnyEUAJnJVajFmy7j+gkBmx4CRblOr1mrRBx4ACPAFt4RhUqFrRm0t2m65BgIL9pMKAHN4RUABmAE4QpkhkIDgQSJIyemxYPNYgwaFIWpHRiLHO+iCJigKBIWGIEVFIAMw6snkBSUUpJenUFYjVcS4pnIXKqaWxbR0MWGB5UHRwABZeIDXxBmhTWB58QA
+#align(center, commutative-diagram(
+  node-padding: (60pt, 50pt),
+  node((0, 0), [$X_1$]),
+  node((0, 2), [$X_2$]),
+  node((0, 1), [$X_1 times X_2$]),
+  node((1, 1), [$A$]),
+  arr((0, 0), (0, 1), [$i_1$]),
+  arr((0, 2), (0, 1), [$i_2$], label-pos: right),
+  arr((0, 0), (1, 1), [$f_1$], label-pos: right),
+  arr((0, 2), (1, 1), [$f_2$]),
+  arr((0, 1), (1, 1), [$phi$], "dashed"),
+))
 It remains to show that $phi$ is unique. To see this, note that for any
 such $phi$ we have $ phi & eq phi compose id_(X_1 times X_2)\
  & eq phi compose lr((i_1 p_1 plus i_2 p_2))\
@@ -363,12 +376,12 @@ Now it is time to give a list of properties that abelian categories have, packin
 - It has a zero object and has a zero morphism between any two objects, which is the identity of the abelian group and factors through $0$;
 - It has all limits and colimits;
 - Any finite product and coproduct coincide as the biproduct;
-- $f$ is monic if and only if $f oo u = 0$ implies $u = 0$, and $g$ is epic if and only if $v oo g = 0$ implies $v = 0$;
-- $f$ is monic and $f = 0$ implies the domain of $f$ is $0$, and $g$ is epic and $g = 0$ implies the codomain of $g$ is $0$;
-- $f$ is monic if and only if $ker f = 0$, and $g$ is epic if and only if $coker g = 0$;
+- $f$ is monic if and only if $f oo u = 0$ implies $u = 0$, if and only if $ker f = 0$, if and only if $f = im(f)$;
+-  $g$ is epic if and only if $v oo g = 0$ implies $v = 0$,  if and only if $coker g = 0$, #iff $g = colim(g)$;
+- $f$ is monic and $f = 0$ implies the domain of $f$ is $0$;
+- $g$ is epic and $g = 0$ implies the codomain of $g$ is $0$;
 - $Coim(f) -> IM(f)$ is an isomorphism;
-- Any $f$ can be factorised as $f = ker(coker(f)) oo coker(ker(f)) = im(f) oo coim(f)$;
-- $f$ is monic if and only if $f = im(f)$, and $g$ is epic if and only if $g = colim(g)$.
+- Any $f$ can be factorised as $f = ker(coker(f)) oo coker(ker(f)) = im(f) oo coim(f)$.
 ]
 
 // Remark. This is equivalent to:  (The converses are always true in any category.) This is equivalent to every mono is the kernel of its cokernel and every epi is the cokernel of its kernel. (? TODO)

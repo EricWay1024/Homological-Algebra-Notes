@@ -10,12 +10,14 @@
       (r_1 r_2) m &= r_1 (r_2 m) \
       1_R dot m &= m $
     
-    A *right $R$-module* is defined similarly, but with multiplication on the right, namely $m r$.
+    A *right $R$-module* is defined similarly, but with multiplication on the right, namely $m r$. 
+    
+    If $R$ is a commutative ring, then left and right $R$-modules are the same, and we call them *$R$-modules*.
 ]
 
-Another way to understand the definition is to think of $R$ acting on an abelian group $M$, where for each $r in R$ we define a group homomorphism $M -> M$, denoted as $m |-> r dot m = r m$. 
+// Another way to understand the definition is to think of $R$ acting on an abelian group $M$, where for each $r in R$ we define a group homomorphism $M -> M$, denoted as $m |-> r dot m = r m$. 
 
-If $R$ is a commutative ring then left and right $R$-modules are the same, and we call them $R$-modules. Obviously  a left $R$-module is the same as a right $R^op$-module. 
+//  Obviously  a left $R$-module is the same as a right $R^op$-module. 
 
 #definition[
     Let $M$ be a #lrm. A *submodule* $N$ of $M$ satisfies:
@@ -34,12 +36,12 @@ If $R$ is a commutative ring then left and right $R$-modules are the same, and w
     for all $x, y in M_1$ and $r in R$.
 ]
 
-Compositions of module homomorphisms are still module homomorphisms, and hence we obtain the category of left $R$-modules, denoted as $RMod$. Similarly, we have the category of right $R$-modules, denoted as $ModR$.
+// Compositions of module homomorphisms are still module homomorphisms, and hence we obtain the category of left $R$-modules, denoted as $RMod$. Similarly, we have the category of right $R$-modules, denoted as $ModR$.
 
 
-For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group.
+// For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group.
 // [Remark 6.1.8 Li]. 
-Also, $endr(M)$ is a ring, where the multiplication is defined as composition. Therefore any right $R$-module is also a left $D := endr(M)$-module.
+// Also, $endr(M)$ is a ring, where the multiplication is defined as composition. Therefore any right $R$-module is also a left $D := endr(M)$-module.
 // [p. 205, Li].
 
 #definition[
