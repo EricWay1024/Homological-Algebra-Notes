@@ -18,7 +18,7 @@
 
 These notes are mostly based on the University of Oxford course "C2.2 Homological Algebra" lectured by Kobi Kremnitzer during the 2023-24 Michaelmas term. Some proportions of the previous notes @notes are reused, as well as relevant parts of @weibel, which the course is largely based upon. Another important reference is @rotman, which provides detailed (and sometimes fussy) proofs. I have labelled the source of many proofs (whether they are similar or different to the ones presented) for the reader's reference. 
 
-For most of the proofs, I have tried improve them by filling in more detailed steps using available references as well as adding cross-references to previous results. 
+For most of the proofs, I have tried to improve them by filling in more detailed steps using available references as well as adding cross-references to previous results. 
 Two large deviations from the lectures are the sections on abelian categories and on module tensor products. A lot more details are supplemented in both sections so as to make them as self-contained as possible. I have also chosen to introduce module tensor products based on @rotman, starting from the universal mapping problem of $R$-biadditive maps, whereas the lectures used the tensor product of vector spaces as an initial motivation. 
 
 A current drawback of these notes is the lack of computational examples in later sections, e.g. on $Ext$ and $Tor$. The reader is directed to the aforementioned references for those. Also, I feel the need to claim that I have no idea what is examinable when writing these notes, so please do not assume any correlation between the appearance of anything in these notes and in the exams.  

@@ -283,9 +283,9 @@ This also gives an isomorphism between the category of bicomplexes in $cA$ and $
 #definition[
   Let $C_(bullet bullet)$ be a double complex. We say that
 $C_(bullet bullet)$ is an *upper half-plane complex* if there is some
-$q_0$ such that $C_(p q) eq 0$ for all $q lt q_0$. Similarly,
+$q_0$ such that $C_(p, q) eq 0$ for all $q lt q_0$. Similarly,
 $C_(bullet bullet)$ is a *right half-plane complex* if there is some $p_0$
-such that $C_(p q) eq 0$ for all $p lt p_0$.
+such that $C_(p, q) eq 0$ for all $p lt p_0$.
 ]
 
 #definition[
