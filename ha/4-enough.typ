@@ -10,6 +10,7 @@
 // ]
 
 = Enough Projectives and Injectives 
+<enough-proj-inj>
 
 #definition[
   An abelian category $cA$ is said to *have enough projectives* (resp. *injectives*) if for any object $M$ there is an epimorphism $P-> M -> 0$ where $P$ is projective (resp. a monomorphism $0 -> M->I$ where $I$ is injective). 

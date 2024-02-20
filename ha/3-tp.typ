@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = Tensor Product of Modules
+<tp-module>
 
 == Existence and Functoriality
 

@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = $Tor$ and Flatness
+<tor-flat>
 
 == Flat Modules
 

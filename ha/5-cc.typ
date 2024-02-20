@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = Chain Complexes
+<chain-complex>
 
 == Definitions
 

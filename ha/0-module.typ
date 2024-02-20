@@ -2,6 +2,7 @@
 
 
 = Module Theory Recap
+<module-recap>
 
 #definition[
     Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with maps $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:

@@ -1,5 +1,6 @@
 #import "../libs/template.typ": *
 = Balancing $Ext$ and $Tor$
+<balancing-ext-tor>
 == Defining $Ext$ and $Tor$ 
 
 #definition[

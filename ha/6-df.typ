@@ -1,5 +1,6 @@
 #import "../libs/template.typ": *
 = Derived Functors
+<derived-functor>
 
 == Homological $delta$-functors
 

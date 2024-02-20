@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = $Ext$ and Extensions
+<ext-extension>
 
 == Extensions
 

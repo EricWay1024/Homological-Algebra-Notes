@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = Koszul Complexes and (Co)homology
+<koszul>
 
 We generally follow @weibel[Section 4.5]. In this section, by an $R$-module we mean either a left or a right $R$-module.
 

@@ -1,6 +1,7 @@
 #import "../libs/template.typ": *
 
 = Group (Co)homology
+<group-cohomology>
 
 == Definitions
 

@@ -2,6 +2,7 @@
 #import "../libs/template.typ": *
 
 = Basic Category Theory
+<cat-theory>
 
 This section is a crash course in category theory. The reader is advised to take the Category Theory course concurrently and/or refer to other materials, e.g. @awodey.
 
