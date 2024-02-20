@@ -267,7 +267,7 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $
   Apply @connecting and we can find the connecting homomorphism $diff_(n+1) = i_n tp id_M$, where $i_n : d(P_(n+1)) -> Z_n$ is the inclusion map.
   By @five-to-ses, we have a #sest
-  #math.equation(block: true, numbering: "(1)", supplement: "Short Exact Squence",
+  #math.equation(block: true, numbering: "(1)", supplement: "Short Exact Sequence",
   $
     ses(Coker(i_n tp id_M), H_n (P_cx tp M), Ker(i_(n-1) tp id_M))
   $) <ses-1>

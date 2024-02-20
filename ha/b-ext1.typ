@@ -188,7 +188,7 @@ From the above proof, we also see that $diff(id_A) in Ext^1 (A, B)$ is the obstr
 
 == Baer Sum
 
-When a set $X$ has a bijection with the underlying map of a group $G$, then in general $X$ can be also equipped with a group structure. We are therefore interested in characterising the group structure on $e(A, B)$, in view of its bijection with the group $Ext^1(A, B)$. The natural addition operation on $e(A, B)$ was first explicitly acertained by R. Baer.
+When a set $X$ has a bijection with the underlying map of a group $G$, then in general $X$ can be also equipped with a group structure. We are therefore interested in characterising the group structure on $e(A, B)$, in view of its bijection with the group $Ext^1(A, B)$. The natural addition operation on $e(A, B)$ was first explicitly ascertained by R. Baer.
 
 #definition[
 Let
