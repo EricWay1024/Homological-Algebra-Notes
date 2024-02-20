@@ -14,11 +14,26 @@ jobs:
         uses: lvignoli/typst-action@v0
         with:
           source_file: main.typ
+      - name: Rename BW PDF file
+        run: |
+          mv main.pdf hom-alg-notes-bw.pdf
+      - name: Replace color scheme in template
+        run: |
+          sed -i 's/bw.typ/color.typ/g' libs/template.typ
+      - name: Typst
+        uses: lvignoli/typst-action@v0
+        with:
+          source_file: main.typ
+      - name: Rename Color PDF file
+        run: |
+          mv main.pdf hom-alg-notes-color.pdf
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           name: PDFs
-          path: main.pdf
+          path: |
+            hom-alg-notes-color.pdf
+            hom-alg-notes-bw.pdf
       - name: Get current date
         id: date
         run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
@@ -26,5 +41,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: github.ref_type == 'tag'
         with:
-          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          name: "${{ github.ref_name }} - ${{ env.DATE }}"
           files: "*.pdf"

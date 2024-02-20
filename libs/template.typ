@@ -1,6 +1,6 @@
-#import "@preview/ctheorems:1.1.0": *
 #import "@preview/commute:0.2.0": node, arr, commutative-diagram
-// #import "@preview/cetz:0.1.2"
+
+#let color_style = "./bw.typ"
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {
@@ -104,80 +104,6 @@
 #let TODO = text(blue)[TODO]
 
 
-#let theorem = thmbox(
-  "theorem",
-  "Theorem",
-  fill: rgb("#e8e8f8"),
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let lemma = thmbox(
-  "theorem",
-  "Lemma",
-  fill: rgb("#e8e8f8"),
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-
-)
-
-#let proposition = thmbox(
-  "theorem",
-  "Proposition",
-  fill: rgb("#e8e8f8"),
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let definition = thmbox(
-  "theorem",
-  "Definition",
-  fill: rgb("#e8f8e8"),
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let example = thmbox(
-  "theorem",
-  "Example",
-  stroke: rgb("#ffaaaa") + 1pt,
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-
-)
-
-#let remark = thmplain(
-  "theorem",
-  "Remark",
-  // stroke: rgb("#aaaaff") + 1pt,
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let notation = thmplain(
-  "theorem",
-  "Notation",
-  // stroke: rgb("#aaaaff") + 1pt,
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let note = thmplain(
-  "theorem",
-  "Note",
-  // stroke: rgb("#aaffaa") + 1pt,
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
-#let corollary = thmbox(
-  "theorem",
-  "Corollary",
-  fill: rgb("#e8e8f8"),
-  breakable: true,
-  separator: [#h(0em).#h(0.2em)],
-)
-
 #let fw(doc) = box(width: 100%)[#doc]
 
 #let proof(title: "Proof", term) = block(width: 100%, breakable: true)[_#title._ #term #h(1fr) $qed$]
@@ -213,11 +139,14 @@
   set enum(numbering: "(1)")
 
   // show link: underline
-  show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-  show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-  // show link: set text(fill: rgb(0, 0, 255))
+  if color_style == "./color.typ" {
+    show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+    show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+  }
 
-  // show ref: set text(fill: rgb(0, 0, 255))
   body
 }
+
+#import color_style : *
+
 
