@@ -4,7 +4,6 @@
   separator: [#h(0em).#h(0.2em)],
   padding: (top: 0.75em, bottom: 0.5em),
   inset: 0em,
-  base_level: 1,
 )
 
 #let thmboxparams2 = (
