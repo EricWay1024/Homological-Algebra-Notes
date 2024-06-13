@@ -99,3 +99,12 @@ splitting-lemma-doc:
   url:
     value: https://math.stackexchange.com/questions/748699/abstract-nonsense-proof-of-the-splitting-lemma/753182#753182
     date: 2023-12-31
+
+ses-split-projective:
+  type: web
+  title: Every short exact sequence splits implies object is projective?
+  author: Rafael
+  date: 2019-09-02
+  url:
+    value: https://math.stackexchange.com/q/3342026
+    date: 2024-06-12

@@ -61,10 +61,12 @@ In general, a category is a "generalised" monoid because in a category you can o
 
 #definition[
   A morphism $f: B-> C$ is *monic* (or a *monomorphism*) if for any $e_1, e_2 : A -> B$ such that $f compose e_1 = f compose e_2$ we have $e_1 = e_2$.
-  
   A morphism $f: B->C$ is *epic* (or an *epimorphism*) if for any $g_1, g_2 : C-> D$ such that $g_1 compose f = g_2 compose f$ we have $g_1 = g_2$.
 ]
 
+#note[
+  $f: B-> C$ is monic if and only if the induced map $(f oo -) : hom_cC (A, B) -> Hom(C) (A, C)$ is injective for any $A$, and $f : B-> C$ is epic if and only if the induced map $(- oo f) : Hom(C) (C, D) -> Hom(C) (B, D)$ is injective for any $D$. 
+]
 #example[
   In $Set$, a monomorphism is equivalent to a one-to-one map and an epimorphism is equivalent to an onto map.
 ]

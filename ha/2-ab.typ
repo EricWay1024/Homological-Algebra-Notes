@@ -69,7 +69,7 @@ In fact, a final object is an empty product and an initial object an empty copro
 #proposition[
   In an *Ab*-enriched category $cC$, let $X_1, X_2$ be two objects. Then
   + If the product $X_1 times X_2$ exists, then the coproduct $X_1 union.sq X_2$ also exists and is isomorphic to $X_1 times X_2$;
-  + If the coproduct $X_1 union.sq X_2$ exists, then the product $X_1 times X_2$ also exists and is isomorphic to $X_1 union.sq X_2$.'
+  + If the coproduct $X_1 union.sq X_2$ exists, then the product $X_1 times X_2$ also exists and is isomorphic to $X_1 union.sq X_2$.
 ]
   <ab-product>
 
@@ -166,16 +166,11 @@ Being able to add and subtract parallel morphisms means we can rephrase the defi
 
 #proposition[
   In an $Ab$-enriched category $cC$, $f : B-> C$ is a monomorphism if and only if  $f oo u = 0$ implies $u = 0$ for all $u : A -> B$. 
-
   Dually, $f : B -> C$ is an epimorphism if and only if $v oo f = 0$ implies $v = 0$ for all $v : C -> D$. 
 ]
   <ab-mono>
 #proof[
-  if $f : B -> C$ is a monomorphism, then in
-  $
-    A arrows.rr_(u_1)^(u_2) B ->^f C
-  $
-  whenever $f oo u_1 = f oo u_2$, we have $u_1 = u_2$. This is equivalent to saying whenever $f oo (u_1 - u_2) = 0$, we have $u_1 - u_2 = 0$. On the one hand, take $u_1 = u$ and $u_2 = 0$ gives the "only if" direction; on the other, take $u = u_1 - u_2$ gives the "if" direction.
+  $f : B -> C$ is a monomorphism, if and only if $(f oo -) : hom_cC (A, B) -> Hom(C) (A, C)$ is injective for any $A$, if and only if $(f oo -)$ (as a $ZZ$-homomorphism) has kernel $0$. 
 ]
 
 == Additive Categories
@@ -199,14 +194,13 @@ Inspired by @ab-zero and @ab-product, we naturally define the following:
 
 #proposition[
   In an additive category, if a monomorphism $i : A-> B$ is a zero morphism, then $A$ is the zero object. 
-  
   Dually, if an epimorphism $p : C -> D$ is a zero morphism, then $D$ is the zero object.
 ]
   <additive-mono-zero>
 #proof[
   Take any $X$ and $u : X -> A$, we have
   $
-    X arrow^u A ->^i B
+    X arrow^u A ->^i B.
   $
   $i = 0$, so $i oo u = 0$; but since $i$ is monic, $u = 0$ by @ab-mono.
   Therefore there is a unique (zero) morphism from any $X$ to $A$, so $A$ is final and thus zero.
@@ -215,7 +209,6 @@ Inspired by @ab-zero and @ab-product, we naturally define the following:
 #proposition[@rotman[Proposition 5.89]. 
 Let $f colon A arrow.r B$ be a morphism in an additive
 category $cal(C)$. If $ker f$ exists, then $f$ is monic if and only if $ker f eq 0$.
-
 Dually, if  $coker f$ exists, then $f$ is epic if and only  $coker f eq 0$.
 ]
 <additive-ker>
@@ -480,10 +473,10 @@ The key element that we seek from an abelian category is the notion of exactness
 #corollary[
   $ses(A, B, C, f:f, g:g)$ can be rewritten as 
   $
-    ses(IM(f), B, Coker(f), f:f, g:coker(f))
+    ses(IM(f), B, Coker(f), f:"", g:coker(f))
   $ or 
   $
-    ses(Ker(g), B, Coim(g), f:ker(g), g:g)
+    ses(Ker(g), B, Coim(g), f:ker(g), g:"")
   $
 ]
 
@@ -534,7 +527,7 @@ The key element that we seek from an abelian category is the notion of exactness
 ] 
 
 
-#corollary[
+#corollary[Let $M, S, T$ be $R$-modules. 
   - If $M = S ds T$ and $S subset.eq N subset.eq M$, then $N = S ds (N sect T)$. 
   - If $M = S ds T$ and $S' subset.eq S$, then $M over S' = S over S' ds (T + S') over S'$.
 ]
@@ -543,11 +536,10 @@ The key element that we seek from an abelian category is the notion of exactness
   @rotman[Corollary 2.24].
 ]
 #definition[
-  An additive functor $F: cC -> cD$ is called *right exact* if for every #sest $0-> A-> B-> C-> 0$ the sequence $ F(A) -> F(B) -> F(C) ->  0 $ is exact; $F$ is called *left exact* if   $ 0 -> F(A) -> F(B) -> F(C) $ is exact; $F$ is called *exact* if $F$ is both right and left exact, or
-  $
-    ses(F(A), F(B), F(C))
-  $
-  is exact.
+  An additive functor $F: cC -> cD$ is called 
+  - *right exact* if that $A-> B-> C-> 0$ is exact implies that $F(A) -> F(B) -> F(C) ->  0 $ is exact; 
+  - *left exact* if that $0-> A-> B-> C$ is exact implies that  $0 -> F(A) -> F(B) -> F(C) $ is exact;
+  - *exact* if that $0->A->B->C->0$ is exact implies that $ses(F(A), F(B), F(C))$ is exact.
 ]
 
 #remark[
@@ -561,13 +553,13 @@ The key element that we seek from an abelian category is the notion of exactness
   <hom-left-exact>
 
 #proof[
-  Let $ses(A, B, C, f: f, g: g)$ be a #sest in $cA$, then we want to prove 
+  Let $0->A->^f B->^g C$ be exact in $cA$, then we want to prove 
 $ 0 -> Hom(A)(M, A) ->^(f oo -) Hom(A)(M, B) ->^(g oo -) Hom(A)(M, C) $
 is exact in $Ab$.
 
   Exactness at $Hom(A) (M, A)$ is equivalent to $(f oo -) $ being monic, so let us calculate $Ker(f oo -)$. Let $u in Hom(A)(M, A)$ such that $(f oo  -) (u) = 0$, i.e., $f oo u  = 0$. But $f$ is monic, so $u = 0$, and thus $Ker(f oo -) = 0$ and $(f oo -)$ is monic.
 
-  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. Let $ v in Ker(g oo -)$, in other words $v in Hom(A) (M, B)$ such that $(g oo -) (v) = 0$, i.e., $g oo v = 0$. Then by universal property of kernel, there exists $h : M -> Ker(g)$ such that $v = ker(g) oo h$. But $Ker(g) = IM(f)$ by exactness and $ker(g) = f$, so we have $v = f oo h = (f oo -)(h) in IM(f oo -)$. Hence $Ker(g oo -) subset.eq IM(f oo -)$. The other direction of the inclusion can be similarly proven. Hence $Ker(g oo -) = IM(f oo -)$. 
+  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. To show that $Ker(g oo -) subset.eq IM(f oo -)$, let $ v in Ker(g oo -)$. Then $v : M -> B$ such that $g oo v = 0$. Note that $A = Ker(g)$ and $f = ker(g)$, so by the universal property of kernel, there exists $h : M -> A$ such that $v = f oo h$, hence $v in IM(f oo -)$. On the other hand, to show that $IM(f oo -) subset.eq Ker(g oo -)$, notice that if $v in  IM (f oo -)$, then $v = f oo h$ for some $h$ and then $g oo v = g oo f oo h = 0$ since $g oo f = 0$. 
 ]
 
 
@@ -579,7 +571,9 @@ is exact in $Ab$.
 
 #corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]   <hom-left-exact-2>
 
-
+#note[
+  What does left exactness mean for a contravariant functor? If $X -> Y -> Z -> 0$ is exact in $cA$, then $0 -> Z -> Y -> X$ is exact in $cA^op$, and $0 -> Hom(A)(Z, M) -> Hom(A)(Y, M) -> Hom(A)(X, M)$ is exact in $Ab$. 
+]
 #endlec(4)
 
 == Projective and Injective Objects
@@ -587,17 +581,19 @@ is exact in $Ab$.
 
 #definition[
    Let $cA$ be an abelian category. An object $P$ is called *projective* if $Hom(A) (P, -)$ is exact. 
-   
    Dually, an object $I$ is called *injective* if $Hom(A) (-, I)$ is exact. 
 ]
 
 In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses(Hom(A)(P, X), Hom(A)(P, Y), Hom(A)(P, Z)) $ is a #sest.
-Thanks to @hom-left-exact, the only special part of the definition is that $Hom(A)(P, Y) -> Hom(A)(P, Z)$ is surjective. 
 
 #proposition[
-  $P$ is *projective* if and only if for any epimorphism $h: Y->Z$ and any $f: P->Z$, there exists (not necessarily unique) $g: P->Y$ such that the following commutes (which we refer to as the *lifting property*): 
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAFEAX1PU1z5CKAEyli1Ok1btyPPiAzY8BImQk0GLNohAAtef2VCi5cZK0zdATR6SYUAObwioAGYAnCAFskZkDgQSGJS2uxuhiCePsE0gUjEvO5evogAzHFBiCGWOiAAFpHRqf7x6TSMWGB5UPRw+Q4gmtJ5MAAeWHA4CNyU3EA
+  The followings are equivalent:
+  1. $P$ is a projective object;
+  2. For any epimorphism $h : Y -> Z$, the induced map $(h oo -) : Hom(A) (P, Y) -> Hom(A) (P, Z)$ is surjective;
+  3. For any epimorphism $h : Y-> Z$ and any morphism $f : P -> Z$, there exists (not necessarily unique) $g : P -> Y$ such that $f = h oo g$, i.e. the following commutes (which we refer to as the *lifting property*):
+ // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAFEAX1PU1z5CKAEyli1Ok1btyPPiAzY8BImQk0GLNohAAtef2VCi5cZK0zdATR6SYUAObwioAGYAnCAFskZkDgQSGJS2uxuhiCePsE0gUjEvO5evogAzHFBiCGWOiAAFpHRqf7x6TSMWGB5UPRw+Q4gmtJ5MAAeWHA4CNyU3EA
 #align(center, commutative-diagram(
+    node-padding: (50pt, 50pt),
   node((0, 1), [$P$]),
   node((1, 2), [$0$]),
   node((1, 1), [$Z$]),
@@ -607,25 +603,16 @@ Thanks to @hom-left-exact, the only special part of the definition is that $Hom(
   arr((1, 0), (1, 1), [$h$]),
   arr((0, 1), (1, 0), [$exists g$], "dashed"),
 ))
-// #image("imgs/20.png", width: 30%)
-]
-
-#proof[
-  By definition, $P$ is projective if and only if for any epimorphism $h: Y->Z$, we have $ (h oo -) : Hom(A)(P, Y) -> Hom(A)(P, Z) $ is surjective, which means for any $f : P->Z$, there exists $g: P-> Y$ such that $f = h oo g$.
-]
-
-#corollary[
-  $P$ is a projective object, #iff any #sest 
-  $
-    ses(A, B, P)
-  $
-  splits.
+  4. Any #sest $ses(A, B, P)$ splits.
 ]
 <projective-split>
 #proof[
-// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohAAFOXyWCiAFg0TtbAAyGF-ZUOTWLWqbts8jAlSnXXxNx19bnEYKABzeCJQADMAJwgAWyQAVmocCCRRS3cQLCgAfQMvEATkpDIQTOzNSWCIu3KUxHTqrMQqhiwwYKg6OAALcJA6q10EUuakc3akaynElpc5zsWKxByaxFUuCi4gA
+  (1) $=>$ (2) is obvious; (2) $=>$ (1) by @hom-left-exact.
+  (2) $<=>$ (3) is also obvious. 
+
+  (3) $=>$ (4). // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQAmclVqMWbAELdeIDNjwEiAZjHV6zVohAAFOXyWCiAFg0TtbAAyGF-ZUOTWLWqbts8jAlSnXXxNx19bnEYKABzeCJQADMAJwgAWyQAVmocCCRRS3cQLCgAfQMvEATkpDIQTOzNSWCIu3KUxHTqrMQqhiwwYKg6OAALcJA6q10EUuakc3akaynElpc5zsWKxByaxFUuCi4gA
 #align(center, commutative-diagram(
-  node-padding: (50pt, 50pt),
+  node-padding: (50pt, 40pt),
   node((1, 1), [$A$]),
   node((1, 2), [$B$]),
   node((1, 3), [$P$]),
@@ -639,14 +626,20 @@ Thanks to @hom-left-exact, the only special part of the definition is that $Hom(
   arr((1, 1), (1, 2), []),
   arr((1, 3), (1, 4), []),
 ))
-  Suppose $P$ is projective. Since $g : B-> P$ is an epimorphism, we can always find $s : P -> B$ such that $g oo s= id_P$ by the lifting property. Then just recall @splitting-lemma. 
+  Since $g : B-> P$ is an epimorphism, we can always find $s : P -> B$ such that $g oo s= id_P$ by the lifting property. Then (4) holds by @splitting-lemma[Splitting Lemma]. 
   
-  The converse should also be clear.
+  (4) $=>$ (3). See @ses-split-projective.
 ]
 
-#corollary[Dually, $I$ is injective #iff for any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that the following commutes (which we refer to as the *extension property*):
+
+
+#corollary[Dually, the followings are equivalent: 
+1. $I$ is injective; 
+2. For any monomorphism $h: X->Y$, the induced map $(- oo h) : Hom(A) (Y, I) -> Hom(A) (X, I)$ is surjective; 
+3. For any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that $f = g oo h$, i.e., the following commutes (which we refer to as the *extension property*):
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAEkQBfU9TXfIRQAGUsKq1GLNsO68QGbHgJEy46vWatEIABpy+SwUQBMYiZuk6AmtwkwoAc3hFQAMwBOEALZIzIHAgkUUktNjcDEE8fJDIAoMQTHncvX0TqQKQAZg0pbRAAC0jotJz44OoGLDB8qDo4AocQXLCdGAAPLDgcOAACRzsuIA
 #align(center, commutative-diagram(
+      node-padding: (50pt, 50pt),
   node((1, 1), [$I$]),
   node((0, 0), [$0$]),
   node((0, 1), [$X$]),
@@ -656,12 +649,7 @@ Thanks to @hom-left-exact, the only special part of the definition is that $Hom(
   arr((0, 1), (0, 2), [$h$]),
   arr((0, 2), (1, 1), [$exists g$], "dashed"),
 ))
-
-Also, $I$ is injective #iff any #sest 
-$
-  ses(I, A, B )
-$
-splits.
+4. Any  #sest $ses(I, A, B)$ splits.
 ]
 
 
@@ -674,7 +662,7 @@ splits.
 ]
 
 #proof[ It is equivalent to say the functor $ homr (R, -)$ is exact.  In fact,
-  $homr (R, M) = M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ses(M, M', M'') $, if we apply $homr (R, -)$, we get the same #sest, which is exact. 
+  $homr (R, M) iso M $ because any module morphism $phi : R -> M $ is entirely determined by $phi(1_R)$. Given any #sest $ses(M, M', M'') $, if we apply $homr (R, -)$, we get the same #sest, which is exact. 
 ]
 
 // #corollary[

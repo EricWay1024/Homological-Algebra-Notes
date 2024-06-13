@@ -249,7 +249,6 @@ $M$ is injective by Baer’s Criterion.
 
 #lemma[
     Direct sums of projectives are projectives.
-    
     Dually, products of injectives are injectives. 
 ]
 
@@ -303,7 +302,6 @@ $M$ is injective by Baer’s Criterion.
 
 #proposition[
   If an additive functor $R: cB -> cA$ between abelian categories is right adjoint to an exact functor and $I$ is injective in $cB$, then $R(I)$ is injective in $cA$. 
-  
   Dually, if an additive functor $L: cA -> cB$ is left adjoint to an exact functor and $P$ is projective in $cA$, then $L(P)$ is projective in $cB$. 
 ]
 #proof[

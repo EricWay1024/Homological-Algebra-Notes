@@ -56,5 +56,8 @@ Yuhang Wei
 #pagebreak()
 #include "ha/c-gc.typ"
 #pagebreak()
+#include "ha/d-app.typ"
+#pagebreak()
+
 
 #bibliography("bib.yml", style: "chicago-author-date")

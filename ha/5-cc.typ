@@ -478,7 +478,6 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
 
 #lemma[
   If $cA$ has enough projectives, then every object has a projective resolution.
-
   Dually, if $cA$ has enough injectives, then every object has an injective resolution.
 ]
 <enough-resolution>
