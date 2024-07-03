@@ -40,7 +40,7 @@
     (Existence of $delta$). For each #sest $ses(A, B, C)$ in $cA$, there exist morphisms 
   $delta^n : T^n (C)  -> T^(n+1)(A) $
   for $n >= 0$ such that 
-    $ 0 -> T^0 (C) -> T^0 (B) -> T^0 (A) ->^delta T^1 (C) ->  ...  \ -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... $
+    $ 0 -> T^0 (A) -> T^0 (B) -> T^0 (C) ->^delta T^1 (A) ->  ...  \ -> T^(n-1)(C) ->^delta T^n (A) -> T^n (B) -> T^n (C) rgt(delta) T^(n+1)(A) -> ... $
     is a long exact sequence in $cB$. In particular, $T^0$ is left exact;
   ],
   [

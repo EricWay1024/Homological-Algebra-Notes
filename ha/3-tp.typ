@@ -303,7 +303,10 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
 ]
 
 #proposition[
-  Let $k$ be a commutative ring, then the category $(kMod, tpk)$ is a monoidal category.
+  Let $R$ be a commutative ring, then the category $(RMod, tpr)$ is a monoidal category. In particular, for a field $k$, the category $(veck, tpk)$ is a monoidal category.
+]
+#proof[
+  The identity for $tpr$ in $RMod$ is clearly given by $R$. 
 ]
 #definition[
   A *monoid object* in a monoid category $(cC, tp, I)$ is an object $M$ with two morphisms:
@@ -341,13 +344,13 @@ Thus we see that $hat(f) oo h = f$, and we can conclude that $M tpr N$ is a tens
   where $alpha$, $lambda$, $rho$ are natural isomorphisms for the associativity, the left identity and the right identity, respectively. 
 ]
 #definition[
-  Let $k$ be a commutative ring. A (unital associative) *$k$-algebra* is a monoid object in $(kMod, tpk)$.
+  Let $k$ be a field. A (unital associative) *$k$-algebra* is a monoid object in $(veck, tpk)$.
 ]
 #remark[
   Let $M$ be a $k$-algebra, then
-$M in kMod$ with multiplication $mu: M tpk M -> M$ which is bilinear and unit $eta: k -> M$ which sends $1 in k$ to $i(1) in M$, the unit element in $M$. 
+$M$ is a $k$-vector space equipped with bilinear multiplication $mu: M tpk M -> M$ and unit $eta: k -> M$ which sends $1 in k$ to $i(1) in M$, the multiplicative unit. 
 
-An equivalent definition: $M$ is a $k$-module as well as a ring, where the ring multiplication satisfies 
+An equivalent definition: $M$ is both a $k$-vector space and a unital ring, where the ring multiplication satisfies 
 $
   a (x y) = (a x) y = x( a y) \
 $
@@ -383,7 +386,7 @@ $Set$ is a *cartesian monoidal category*, where the categorical product is the s
 $ dim (V ds W) = dim V + dim W $
 $ dim (V tp W) = dim V dot dim W $
 
-An alternative definition of the tensor product: let $V$ be a vector space with basis ${v_i}_(i in I)$ and $W$ with ${w_j}_(j in J)$ and define $V tpk W$ to have basis ${v_i tp w_j}_(i in I, j in J)$. This definition relies on the choice of basis, and hence when we change basis, this can be inconvenient.
+An alternative definition of the tensor product: let $V$ be a vector space with basis ${v_i}_(i in I)$ and $W$ with ${w_j}_(j in J)$ and define $V tpk W$ to have basis ${v_i tp w_j}_(i in I, j in J)$. This definition relies on the choice of basis and can be inconvenient when we have to change basis.
 ]
 
 == Tensor-hom Adjunction

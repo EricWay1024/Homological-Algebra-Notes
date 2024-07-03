@@ -537,9 +537,10 @@ The key element that we seek from an abelian category is the notion of exactness
 ]
 #definition[
   An additive functor $F: cC -> cD$ is called 
-  - *right exact* if that $A-> B-> C-> 0$ is exact implies that $F(A) -> F(B) -> F(C) ->  0 $ is exact; 
-  - *left exact* if that $0-> A-> B-> C$ is exact implies that  $0 -> F(A) -> F(B) -> F(C) $ is exact;
-  - *exact* if that $0->A->B->C->0$ is exact implies that $ses(F(A), F(B), F(C))$ is exact.
+  - *right exact* if the exactness of $A-> B-> C-> 0$ implies the exactness of $F(A) -> F(B) -> F(C) ->  0 $; 
+  - *left exact* if the exactness of $0-> A-> B-> C$  implies  the exactness of  $0 -> F(A) -> F(B) -> F(C) $;
+  - *exact* if the exactness of $0->A->B->C->0$ implies the exactness of $ses(F(A), F(B), F(C))$,
+  for any $A, B, C in cC$.
 ]
 
 #remark[

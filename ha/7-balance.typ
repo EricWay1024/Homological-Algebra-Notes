@@ -8,18 +8,18 @@
 Recall that $Hom(A)(A, -): cA -> Ab$ is left exact by @hom-left-exact.
   If $cA$ has enough injectives, we define the right derived functor $Ext_cA^i (A, -)$ of $Hom(A)(A, -)$ as
   // #footnote[While $Ext_cA^i (A, -)(B)$ (as well as $Ext_cA^i (-, B)(A)$ defined below) is not a common way of writing, it emphasizes the asymmetry of the construction.]
-  $ Ext_cA^i (A, B) = Ext_cA^i (A, -)(B) := R^i Hom(A)(A, -)(B) = H^i (Hom(A) (A, I^cx)) $
+  $ Ext_cA^i (A, B) = Ext_cA^i (A, -)(B) := R^i Hom(A)(A, -)(B) = H^i (Hom(A) (A, I^cx)). $
   In particular, $Ext_cA^0 (A, B) = Hom(A) (A, B)$.
 ]
 
 Notice that the contravariant functor $Hom(A)(-, B): cA^op -> Ab$ is also left exact by @hom-left-exact-2. Assume that $cA$ has enough projectives, so $cA^op$ has enough injectives. Let $P_cx -> A$ be an projective resolution in $cA$, which can be seen as an injective resolution in $cA^op$. We can thus define another right derived functor $Ext_cA^i (-, B)$, given by
 $
-  Ext_cA^i (-, B)(A) := R^i Hom(A)(-, B) (A) = H^i (Hom(A)(P_cx, A))
+  Ext_cA^i (-, B)(A) := R^i Hom(A)(-, B) (A) = H^i (Hom(A)(P_cx, B)).
 $
 
 The above two constructions are in fact isomorphic, i.e., $Ext_cA^i (A, -)(B) iso Ext_cA^i (-, B)(A)$, or
 $
-  Ext_cA^i (A, B) := R^i Hom(A)(A, -)(B) iso R^i Hom(A)(-, B) (A)
+  Ext_cA^i (A, B) := R^i Hom(A)(A, -)(B) iso R^i Hom(A)(-, B) (A).
 $
 This isomorphism is called the *balancing of $Ext$*. Before proving the balancing of $Ext$, we present some properties of $Ext$ that it gives.
 
@@ -622,7 +622,7 @@ An (anticommutative) diagram for the Hom double complex is as follows. The place
 #remark[
   There are a few technicalities to be addressed here. They are not conceptually difficult but can be bewildering when first encountered. 
 
-  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards and to the left, which we refer to as an *canonically ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards and to the right.
+  Notice that in our original definition of a double complex, we would draw the arrows pointing downwards and to the left, which we refer to as a *canonical ordering*. However, when we draw the diagram for a Hom double complex, the arrows point upwards and to the right.
 //   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQALCAWwAIAKAAoB9MrwCSAPWIBKEAF9S6TLnyEUZAEzU6TVuy58ho0hMma5i5djwEiZAIw6GLNok48BIsVIsKlIBg2akQOpE40Lvruhl7CYWZ+VoEqturIYdqRem4eRiIJUg6WAUGqdihhVNmuBp7GhdIl1uXpmhTOOXX5wu1msv4taUTtWbq1MfUifUXNKcEVyO0R49F5cTPmc2XDGqTEnRMgAHSng-OtofuHa6fH5zshKO0HNbdnyY+L5OE3uXcPVJPZA-MZRf4fUpA74dN4Q+7yHQwKAAc3gRFAADMAE48JBkEA4CBIACsyRxeMQJJoRKQADZybjuPiacTEA5GZTqYS2QAWTnMxB01lIADsAqQYR5SE0EsQ7WliHIcp+ioAHHLeSKlXLRdqNQEKYKpbTEPzDUykFrFeKLZSFaaAJwq7UOYhytWujl2wWexUOWU+sWu5VBoWu-mUeRAA
 // #align(center, commutative-diagram(
 //   node-padding: (50pt, 50pt),

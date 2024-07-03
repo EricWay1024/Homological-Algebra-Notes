@@ -81,65 +81,146 @@ $n gt.eq 1$. Then applying @flat-tor gives the result. The case where $P$ is a p
   // Recall that since the tensor product is left adjoint, it commutes with all colimits. Thus $ (colim_I A_i) tpr B iso colim_I (A_i tpr B) $
 
 
-
 #definition[
-  A partially ordered set (poset) $I$ is said to be *filtered* if for any $i, j in I$, there exists $k$ such that $i <= k$ and $j <= k$.
+  A category $I$ is called *filtered* if 
+  + $I$ is non-empty;
+  + For any $i, j in I$, there exists $k in I$ with morphisms $f : i -> k$ and $g : j -> k$; 
+  + For any $i, j in I$ with a pair of morphisms $u, v : i -> j$, there exists $k in I$ with morphism $w : j -> k$ such that $w oo u = w oo v$.
 ]
+
+
+#example[
+  A non-empty partially ordered set (poset) $I$, viewed as a small category, is  *filtered* if for any $i, j in I$, there exists $k$ such that $i <= k$ and $j <= k$. This is because condition (3) above is automatically satisifed, as there is at most one morphism $i -> j$ for any $i, j in I$. 
+]
+
 
 
 #proposition[
   // For any small category $I$ and any functor $I -> ModR$, we have 
-  Let $I$ be a filtered poset. View $I$ as a small category. Then the functor $ colim_I: Fun(I, RMod) -> RMod $ is exact. 
+  Let $I$ be a filtered category. Then the functor $ colim_I: Fun(I, RMod) -> RMod $ is exact. 
 ]
 <colim-exact>
 #proof[@weibel[Theorem 2.6.15, p.57].]
 
 #remark[
-  $colim_I$ is not a exact functor in general.
+  $colim_I$ is not a exact functor in general if $I$ is not filtered.
 ]
 
+#notation[
+    Let $I$ be a small category and $A : I -> RMod$ be a diagram. We denote $A_i = A(i)$ for each $i in I$ and  we would write $colim_I A_i$ to mean $colim_I A$.
+  ]
 
 #corollary[
-  A filtered colimit of flat $R$-modules is flat. 
+  Let $I$ be a filtered category and $A : I -> ModR$ be a diagram. Let $B in RMod$. Then $Tor_n^R (colim_I A_i, B) iso colim_I Tor_n^R (A_i, B)$. In other words, filtered colimits commute with $Tor$.
 ]
-#notation[
-    In case the notation in the next proof seems confusing,
-    notice that in category theory we would usually write $colim_I F$, where $F : I -> RMod$ is a diagram. Here, by writing $colim_I A_i$ we indicate that $A_i = F(i)$ for all $i in I$.  
-  ]
+<filter-tor>
 #proof[
-  In $RMod$, let $A = colim_I A_i$ where $I$ is a filtered poset and $A_i$ is flat for all $i in I$. We want to show $A$ is flat. If we have #sest $ ses(B_1, B_2, B_3) $ then for all $i in I$, 
+  Let $P_cx -> B$ be a projective resolution. Then 
   $
-    ses(A_i tpr B_1, A_i tpr B_2, A_i tpr B_3)
+    Tor_n^R (colim_I A_i , B ) &= H_n ((colim_I A_i) tpr P) 
+    \ &iso H_n (colim_I (A_i tpr P)) \
+    &iso colim_I H_n (A_i tpr P) \
+    &= colim_I Tor_n^R (A_i, B),
   $
-  Taking $colim_I$, which is exact as $I$ is a filtered poset by @colim-exact, yields 
-  $
-    ses(colim_I (A_i tpr B_1), colim_I (A_i tpr B_2), colim_I (A_i tpr B_3))
-  $
-  By @tensor-right-exact, $colim_I$ commutes with tensor products, hence 
-  $
-    ses((colim_I A_i) tpr B_1, (colim_I A_i) tpr B_2, (colim_I A_i) tpr B_3)
-  $
-  which is just 
-  $
-    ses( A tpr B_1, A tpr B_2, A tpr B_3)
-  $
-  showing that $A$ is flat.
+  where at each step we respectively use the definition of $Tor$, that colimits commute with tensor products, that $colim_I$ is exact and thus commutes with homology, and the definition of $Tor$ again.
 ]
 
-#example[
-  A torsion-free abelian group is flat (as a $ZZ$-module). 
+#corollary[
+  Let $I$ be a filtered category and $A : I -> ModR$ be a diagram. Suppose $A_i$ is flat for all $i in I$. Then $colim_I A_i$ is also flat. 
+  In other words, a filtered colimit of flat $R$-modules is flat. 
 ]
+<filtered-flat-flat>
 #proof[
-  // @weibel[Poposition 3.1.4, p.67].
-  Let $A$ be a torsion-free abelian group, then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so each $A_i$ is free and hence flat.  $ A = union A_i = colim_I A_i $ where $I$ is a filtered poset representing the inclusion of finitely generated subgroups of $A$. Hence torsion-free abelian groups are flat. 
+  Take any $B in RMod$.
+  Since each $A_i$ is flat, we know that $Tor_1 (A_i , B) = 0$ by @flat-tor. Then 
+  $
+    Tor_1 (colim_I A_i, B) = colim_I Tor_1 (A_i, B) = 0
+  $
+  by @filter-tor, so $colim_I A_i$ is also flat by @flat-tor again.
 ]
 
+// #proof[
+//   In $RMod$, let $A = colim_I A_i$ where $I$ is a filtered poset and $A_i$ is flat for all $i in I$. We want to show $A$ is flat. If we have #sest $ ses(B_1, B_2, B_3) $ then for all $i in I$, 
+//   $
+//     ses(A_i tpr B_1, A_i tpr B_2, A_i tpr B_3)
+//   $
+//   Taking $colim_I$, which is exact as $I$ is a filtered poset by @colim-exact, yields 
+//   $
+//     ses(colim_I (A_i tpr B_1), colim_I (A_i tpr B_2), colim_I (A_i tpr B_3))
+//   $
+//   By @tensor-right-exact, $colim_I$ commutes with tensor products, hence 
+//   $
+//     ses((colim_I A_i) tpr B_1, (colim_I A_i) tpr B_2, (colim_I A_i) tpr B_3)
+//   $
+//   which is just 
+//   $
+//     ses( A tpr B_1, A tpr B_2, A tpr B_3)
+//   $
+//   showing that $A$ is flat.
+// ]
 #example[
   Let $s in R$ be a central element of ring $R$, then the localisation $R[s^(-1)]$ is a flat $R$-module. To generalise, for a central multiplicatively closed set $S subset Z(R)$, we can form $R[S^(-1)]$, which is a flat $R$-module as well.
 ]
 #proof[
   @weibel[Theorem 3.2.2, p.69].
 ]
+We now take a look at the case in $Ab$ and we shall show that a module in $Ab$ is flat if and only if it is torsion-free.
+#lemma[
+  Let $B in Ab$ and $p in ZZ$. Then
+  $Tor_0^ZZ (ZZ over p ZZ, B) = B over p B$ and $Tor_1 ^ZZ (ZZ over p ZZ, B) = {b in B : p b = 0}.$
+]
+#proof[
+  Use the definition of $Tor$, the projective resolution $0 -> ZZ ->^p ZZ -> ZZ over p ZZ -> 0$, and  $B tpz ZZ iso B$.
+]
+#lemma[
+  An abelian group is a filtered colimit of its finitely generated subgroups.
+]
+#proof[
+$A = union A_i = colim_I A_i $ where $I$ is a filtered poset representing the inclusion relations of the finitely generated subgroups of $A$. 
+// Hence torsion-free abelian groups are flat. 
+]
+#lemma[
+  Let $A, B in Ab$. 
+  Then $Tor_1^ZZ (A, B)$ is a torsion abelian group. 
+]
+#remark[
+  This is likely why $Tor$ is called $Tor$.
+]
+#proof[
+  By writing $A = colim_I A_i$ for finitely genreated subgroups $A_i$ of $A$, we see that it suffices to show that each $Tor^ZZ_1 (A_i, B)$ is torsion. We can write $A_i$ as a direct sum of its torsion part and free part using the classification theorem for finitely generated abelian groups, i.e. $A_i = ZZ over p_1 ZZ ds ZZ over p_2 ZZ  ds ... ds ZZ over p_m ZZ  ds ZZ^r$. Notice that $Tor$ commutes with direct sums and the free part $ZZ^r$ vanishes with $Tor$, so 
+  $
+    Tor_1 ^ZZ (A_i, B) iso plus.circle.big_(k=1)^m Tor_1^ZZ (ZZ over p_k ZZ, B) iso plus.circle.big_(k=1)^m B over p_k B,
+  $
+  which is clearly a torsion abelian group.
+]
+
+#lemma[
+  Let $B in Ab$. Then $Tor_1 ^ZZ (QQ over ZZ, B)$ is the torsion subgroup of $B$, i.e. ${b in B : "there exists" n in ZZ "such that" n b = 0 }.$
+]
+#proof[
+  $QQ over ZZ$ can be written as the filtered colimit $QQ over ZZ iso colim_I ZZ over p ZZ$, where $I$ is the poset representing the divisibility of natural numbers. Then 
+  $
+    Tor_1 ^ZZ (QQ over ZZ, B) iso Tor_1^ZZ ( colim_I ZZ over p ZZ, B) iso colim_I Tor_1^ZZ (ZZ over p ZZ, B) iso colim_I {b in B : p b = 0},
+  $
+  which is the torsion subgroup of $B$.
+]
+
+// #example[
+//   A torsion-free abelian group is a flat $ZZ$-module. 
+// ]
+// #proof[
+//   // @weibel[Poposition 3.1.4, p.67].
+//   Let $A$ be a torsion-free abelian group, then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$, so  by 
+// ]
+#proposition[
+  A $ZZ$-module is flat if and only if it is torsion-free.
+]
+#proof[
+  Let $A$ be a torsion-free abelian group, then $A = union A_i$ where $A_i$ are finitely generated subgroups of $A$. Then each $A_i$ is free and hence flat. By @filtered-flat-flat, $A$ is also flat.
+
+  On the other hand, if $A$ is flat, then $Tor_1^ZZ (-, A) = 0$; in particular, $Tor_1 ^ZZ (QQ over ZZ, A) = 0$, so the torsion subgroup of $A$ is trivial.
+]
+
 // #proof[
 //   $R[s^(-1)]$ is the universal ring where $s$ is invertible, which is $colim(R->^s R ->^s R-> ...)$.
 // ]

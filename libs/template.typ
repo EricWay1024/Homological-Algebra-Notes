@@ -1,6 +1,6 @@
 #import "@preview/commute:0.2.0": node, arr, commutative-diagram
 
-#let color_style = "./bw.typ"
+#let color_style = "./color.typ"
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {

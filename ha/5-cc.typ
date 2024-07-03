@@ -21,8 +21,18 @@ Let $cA$ be an abelian category.
   We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. To emphasise that $d$ belongs to the chain complex $C_cx$, we would write either $d_C$, or $d^((C))_n$ if we also need to explicitly specify the index.  We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
 ]
 
+
 #remark[
   In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. An $n$-boundary must be an $n$-cycle because $d^2= 0$. The $n$-th homology becomes a quotient module#footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], $ H_n (C) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)) $  An element in $H_n (C)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
+]
+
+#remark[
+  It is helpful to keep in mind two defining short exact sequences: 
+  $
+    0-> Z_n -> C_n ->^(d_n) B_(n-1) -> 0, \
+    0 -> B_(n) arrow.hook Z_n -> H_n -> 0.
+  $
+  
 ]
 
 
@@ -582,25 +592,28 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
 ]
 <comparison>
 
-#proof[@weibel[Comparison Theorem 2.26], @rotman[Theorem 6.16]. // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAUB9ACjAGoAjAEoQAX1LpMufIRQDyVWoxZsAWpzAACbuxHjJ2PASLyBi+s1aIQ6rdwCKeiSAyGZRAEykz1CyuvEYs6u0sYoZD5Klmz2PPzCYoowUADm8ESgAGYAThAAtkhkIDgQSPJR-iBQQVm5BYjlJUheFVYgmRo17XXN1E2IAMz63fmFfaWIACzUDFhgbVB0cAAWySC+ym0wAB5YcDgIwzmjU+O9rWzVohSiQA
+#proof[@weibel[Comparison Theorem 2.26], @rotman[Theorem 6.16]. Set   $f_(-1) = f'$.
+  By induction, suppose that $f_n$ has been constructed. 
+  Note that for any $a in P_(n+1)$, we have 
+  $
+    d'_n oo f_n oo d_(n+1) (a) = f_(n-1) oo d_n oo d_(n+1) (a) = 0,
+  $
+  therefore $f_n oo d_(n+1) : P_(n+1) -> Q_(n)$ lands in $Z_n (Q)$. On the other hand, due to the exactness of $Q_cx$, the map $d'_(n+1)
+  : Q_(n+1) -> Z_n (Q)$ is an epimorphism. So we have the following:
+// https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAFAfQAowBqYgEoQAX1LpMufIRRli1Ok1bsAWlzAACHgEUR4ydjwEiAJlIKaDFm0QhyYiSAxGZRchcXWVdnbwHCYoowUADm8ESgAGYAThAAtkhkIDgQSKYGILEJSB4paYgAzDSMWGC2IFD0cAAWISBWyhUwAB5YcDgImdmJRTSpSY027FCO0XG9eQOIyd4VURqaEBCaUP6C+pSiQA
 #align(center, commutative-diagram(
-  node((0, 0), [$P_(n+1)$]),
-  node((0, 1), [$Z_n (P)$]),
+  node-padding: (60pt, 50pt),
+  node((0, 1), [$P_(n+1)$]),
   node((1, 1), [$Z_n (Q)$]),
   node((1, 2), [$0$]),
   node((1, 0), [$Q_(n+1)$]),
-  arr((0, 0), (0, 1), [$d_(n+1)$]),
-  arr((0, 1), (1, 1), [$f_n$]),
   arr((1, 1), (1, 2), []),
-  arr((0, 0), (1, 0), [$exists f_(n+1)$], "dashed"),
+  arr((0, 1), (1, 0), [$f_(n+1)$], label-pos: right, "dashed"),
   arr((1, 0), (1, 1), [$d'_(n+1)$]),
-)) Set   $f_(-1) = f'$.
-  By induction, suppose that $f_n$ has been constructed. We have
-  $d_(n+1)$ mapping $P_(n+1)$ to $B_n (P) subset.eq Z_n (P)$. 
-  Take any $a in Z_n (P)$, then $ d'_n (f_n (a)) = f_(n-1) (d_n (a)) = f_(n-1) (0) = 0 $
-  hence $f_n (a) in Z_n (Q)$, or $f_n : Z_n (P) -> Z_n (Q)$. Now due to the exactness of $Q_cx$, $d'_(n+1)
-  : Q_(n+1) -> Z_n (Q)$ is an epimorphism. Since $P_(n+1)$ is an projective object,
-  the morphism $f_(n+1) : P_(n+1) -> Q_(n+1)$ exists such that the above diagram commutes.
+  arr((0, 1), (1, 1), [$f_n oo d_(n+1)$]),
+))
+  where since $P_(n+1)$ is an projective object,
+  the morphism $f_(n+1) : P_(n+1) -> Q_(n+1)$ exists such that the diagram commutes, i.e. $d'_(n+1) oo f_(n+1) = f_n oo d_(n+1)$.
 
   For the uniqueness, let $h: P_cx -> Q_cx$ be another chain map lifting $f'$. We want to construct homotopy $s$ with terms $s_n: P_n -> Q_(n+1)$  such that 
   $ h_n - f_n = d'_(n+1) s_n + s_(n-1) d_n $
@@ -646,12 +659,13 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
 (Again, only the solid lines commute.)
 We want to show the existence of $s_(n+1)$ which satisfies
 
-$ d'_(n+2) s_(n+1) = h_(n+1) - f_(n+1) - s_n d_(n+1) $
+$ d'_(n+2) s_(n+1) = h_(n+1) - f_(n+1) - s_n d_(n+1). $
 
-We claim that $(h_(n+1) - f_(n+1) - s_n d_(n+1))$ sends $P_(n+1)$ to $Z_(n+1) (Q)$. First notice that this suffices to prove the existence of $s_(n+1)$, as we now have
+We claim that $(h_(n+1) - f_(n+1) - s_n d_(n+1))$ sends $P_(n+1)$ to $Z_(n+1) (Q)$. First, notice that this claim would indicate the existence of $s_(n+1)$, as we would have
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAFAfQAowBqYgEoQAX1LpMufIRRli1Ok1bsAWrwHCABDwCKI8ZOx4CRcqQU0GLNohC6N-AEwGJIDMZlEnFxdZV25GKKMFAA5vBEoABmAE4QALZI5iA4EEg+IIxYYLYgUPRwABahIFbKeXCOwmVZ9ABGMIwcUiayIDnYsGJucYkZNGlIZEo27FAA5HzOrjHxSYgpQ4gj-nlF1UJaALRa0Zs7WlVgWlCbtYwNTS2epnaMMNE4PXP9K4PpiADMopSiQA
 #align(center, commutative-diagram(
+  node-padding: (60pt, 50pt),
   node((0, 1), [$P_(n+1)$]),
   node((1, 1), [$Z_(n+1) (Q)$]),
   node((1, 0), [$Q_(n+2)$]),
@@ -668,7 +682,7 @@ Now $
   d'_(n+1) (h_(n+1) - f_(n+1) - s_n d_(n+1)) &= d'_(n+1) (h_(n+1) - f_(n+1)) - d'_(n+1) s_n d_(n+1) \
   &= d'_(n+1) (h_(n+1) - f_(n+1)) - (h_n - f_n - s_(n-1) d_n) d_(n+1) 
   \ &= d'_(n+1) (h_(n+1) - f_(n+1)) - (h_n - f_n) d_(n+1)
-  \ &= 0
+  \ &= 0.
 $
 
   Hence $(h_(n+1) - f_(n+1) - s_n d_(n+1))$ sends $P_(n+1)$ to $Z_(n+1) (Q)$.
