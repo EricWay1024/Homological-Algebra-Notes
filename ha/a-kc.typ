@@ -121,8 +121,8 @@ $lr({H_q lr((bd(x) comma minus))})$ is a
 homological $delta$-functor and 
 $lr({H^q lr((bold(x) comma minus))})$ is a cohomological $delta$-functor
 with
-$ H_0 lr((bold(x) comma A)) eq A slash bd(x) A\
-H^0 lr((bold(x) comma A)) eq homr lr((R slash bd(x) R comma A)) eq lr({a in A colon x_i a eq 0 upright(" for all ") i})  $
+$ H_0 lr((bold(x) comma A)) eq A slash bd(x) A, quad
+H^0 lr((bold(x) comma A)) eq homr lr((R slash bd(x) R comma A)) eq lr({a in A colon x_i a eq 0 upright(" for all ") i}).  $
 ]
 <koszul-zero>
 #proof[
@@ -135,7 +135,6 @@ H^0 lr((bold(x) comma A)) eq homr lr((R slash bd(x) R comma A)) eq lr({a in A co
     ses(homr (K_p (bd(x)), A), homr (K_p (bd(x)), B), homr (K_p (bd(x)), C))
   $
   By @connecting, applying homology and cohomology to them respectively induces two #less. 
-
   Notice $K_1 (bd(x)) iso R^n$ with generators ${e_(i)}_(1 <= i <= n)$ and $K_0 (bd(x)) = R$. The differential $K_1 (bd(x)) -> K_0 (bd(x))$ sends each $e_(i)$ to $x_i$. The rest should follow easily.
 ]
 

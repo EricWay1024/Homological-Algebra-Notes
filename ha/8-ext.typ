@@ -11,9 +11,9 @@ $
 Recall that $T^n = product homr (P_i, Q_(i-n)) in Ab$.
 If $phi in T^n$, then we can write $phi = product phi_i$ where $phi_i : P_i -> Q_(i - n)$. Therefore, an element $phi$ in $T^n$ can be seen as a chain map $P_cx -> Q_cx [-n]$ once we can show that $phi$ commutes with the differentials of $P_cx$ and $Q_cx [-n]$. We will show that this commuting condition is (almost) equivalent to $phi$ being a cocycle in $T^n$.  Further, if $phi$ is a chain map $P_cx -> Q_cx [-n]$, then $phi$ being null homotopic is (almost) equivalent to $phi$ being a coboundary in $T^n$. These equivalences ultimately give rise to a new interpretation of $Ext$.
 
-The word "almost" in the last paragraph is due to some sign issues of $phi$. To address this, we (magically) define
+The word "almost" in the last paragraph is due to some sign issues of $phi$. To address this, we define
 $
-  epsilon_i = cases(1 quad& "if " i equiv 0 comma 3 quad  (mod 4), -1 quad& "if " i equiv 1 comma 2 quad  (mod 4))
+  epsilon_i = cases(1 quad& "if " i equiv 0 comma 3 quad  (mod 4), -1 quad& "if " i equiv 1 comma 2 quad  (mod 4)).
 $
 Then we define $tilde(phi)_i  = epsilon_(n-i) phi_i$ for each $phi_i : P_i -> Q_(i - n)$, and $tilde(phi) = product tilde(phi)_i in T^n$. The following is some simple observations of the definitions.
 
@@ -25,7 +25,7 @@ Then we define $tilde(phi)_i  = epsilon_(n-i) phi_i$ for each $phi_i : P_i -> Q_
 ]
 <epsilon-lemma>
 
-It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previous claims, such as the following.
+It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previous claims, as in the following.
 // i.e., $T^n iso tilde(T^n)$, where an arbitrary element of $tilde(T^n)$ is $tilde(phi) = product tilde(phi)_i = product epsilon_(n-i) phi_i$.
 
 #proposition[
@@ -40,18 +40,18 @@ It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previou
   As discussed above, the latter is equivalent to $tilde(phi)$ commuting with the differentials, i.e., for all $i$,
   #math.equation(block: true, numbering: "(1)", supplement: "Equation",
   $
-    tilde(phi)_i oo d_(i+1)^((P)) = d_(i+1-n)^((Q)) oo tilde(phi)_(i+1)
+    tilde(phi)_i oo d_(i+1)^((P)) = d_(i+1-n)^((Q)) oo tilde(phi)_(i+1).
   $) <phi-commute>
   Using the definition of $tilde(phi)$, @phi-commute can reduced to 
   #math.equation(block: true, numbering: "(1)", supplement: "Equation",
   $
-    phi_i oo d_(i+1)^((P)) = (-1)^(i+1-n) d_(i+1-n)^((Q)) oo phi_(i+1)
+    phi_i oo d_(i+1)^((P)) = (-1)^(i+1-n) d_(i+1-n)^((Q)) oo phi_(i+1).
   $) <phi-commute-2>
   
   On the other hand, $phi in T^n$ is a cocycle, i.e., $d^((T))_n (phi) = 0$, if and only if for all $i$,
   #math.equation(block: true, numbering: "(1)", supplement: "Equation",
   $
-    d^h (phi_i) + d^v (phi_(i+1)) = 0
+    d^h (phi_i) + d^v (phi_(i+1)) = 0.
   $) <phi-commute-3>
   Using the definition of $d^h$ and $d^v$, we see that @phi-commute-3 is equivalent to @phi-commute-2.
 ]
@@ -72,19 +72,19 @@ It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previou
 ))
   Considering each $phi_i$, we see that
   $
-    phi_i = d^h (psi_(i-1)) + d^v (psi_i) = (-1)^(i-n) psi_(i-1) oo d_i^((P)) + d_(i-n+1)^((Q)) oo psi_i
+    phi_i = d^h (psi_(i-1)) + d^v (psi_i) = (-1)^(i-n) psi_(i-1) oo d_i^((P)) + d_(i-n+1)^((Q)) oo psi_i.
   $
   Using @epsilon-lemma, we can reduce this to 
   $
-    tilde(phi)_i = (-1)^(i-n) tilde(psi)_(i-1) oo d_i^((P)) + (-1)^(i-n+1) d_(i-n+1)^((Q)) oo tilde(psi)_i
+    tilde(phi)_i = (-1)^(i-n) tilde(psi)_(i-1) oo d_i^((P)) + (-1)^(i-n+1) d_(i-n+1)^((Q)) oo tilde(psi)_i.
   $
   Then we see that $(-1)^(i-n+1) tilde(psi)_i : P_i -> Q_(i - n +1)$ is a chain homotopy between $tilde(phi)$ and $0$.
 
   "$arrow.l.double$". Suppose that $h_i : P_i -> Q_(i - n +1)$ is a chain homotopy between $tilde(phi)$ and $0$  for each $i$, so that 
   $
-    tilde(phi)_i = h_(i-1) oo d_i^((P)) +  d_(i-n+1)^((Q)) oo h_i
+    tilde(phi)_i = h_(i-1) oo d_i^((P)) +  d_(i-n+1)^((Q)) oo h_i.
   $
-  Then we can define for each $i$, $ tilde(psi)_i &= (-1)^(i-n+1) h_i \ psi_i &= epsilon_(i-n+1) tilde(psi)_i $ which gives $psi &= product psi_i in T^(n-1) $. Again with @epsilon-lemma, we can reveal that $d(psi) = phi$, so $phi$ is a coboundary.
+  Then we can define for each $i$, $ tilde(psi)_i &= (-1)^(i-n+1) h_i, quad psi_i &= epsilon_(i-n+1) tilde(psi)_i, $ which gives $psi &= product psi_i in T^(n-1)$. Again with @epsilon-lemma, we can reveal that $d(psi) = phi$, so $phi$ is a coboundary.
 ]
 
 #corollary[
@@ -106,7 +106,7 @@ It turns out that we need to replace some $phi$ with $tilde(phi)$ in our previou
 
 #proposition[
 Given left $R$-modules $A, B, C$, for any $i, j$, there is a well-defined map, called the *Yoneda product*, 
-$ ⌣ :  Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j)_R (A, C) $ 
+$ ⌣ :  Ext_R^i (A, B) times Ext_R^j (B, C) -> Ext^(i+j)_R (A, C), $ 
 which is associative and biadditive. 
 ]
 

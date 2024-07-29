@@ -64,7 +64,7 @@ vanishes in positive degree.
 (3) $arrow.r.double$ (1). For any short exact sequence
 $0 arrow.r X arrow.r Y arrow.r A arrow.r 0$ in $ModR$, we have the long
 exact sequence of $Tor$ by @tor-les,
-$ 0 eq "Tor"_1^R lr((A comma B)) arrow.r X times.circle_R B arrow.r Y times.circle_R B arrow.r A times.circle_R B arrow.r 0 $
+$ 0 eq "Tor"_1^R lr((A comma B)) arrow.r X times.circle_R B arrow.r Y times.circle_R B arrow.r A times.circle_R B arrow.r 0, $
 which shows that $(- tpr B)$ is exact.
 
 Note that #rrm case relies on the balancing of $Tor$, but the proof is very similar.

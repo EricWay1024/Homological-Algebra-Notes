@@ -1,15 +1,15 @@
 #import "../libs/template.typ": *
 
-= Examples
+= Example: $R = ZZ$
 
-== $R = ZZ$
+// == $R = ZZ$
 
 In the category $Ab$, we have the following:
 - $A$ is projective #iff $A$ is free; 
 - $A$ is injective #iff $A$ is divisible, #iff $A$ is a direct sum of copies of $QQ$ and $ZZ[1/p] over ZZ$, where each $p$ is prime;
 - $A$ is flat #iff $A$ is torsionfree. 
 
-=== Resolutions 
+== Resolutions 
 
 #align(center, table(columns: (auto, auto, auto), inset: 7pt, stroke: none, 
 [Type], [Object], [Resolution],
@@ -19,7 +19,7 @@ table.hline(),
 [injective], $ZZ$, $0 -> ZZ -> QQ -> QQ over ZZ -> 0$, 
 ))
 
-=== Tensor products
+== Tensor products
 #align(center, table(columns: (auto, auto, auto, auto, auto), inset: 7pt, stroke: none,
 [$tp_ZZ$], table.vline(), $ZZ$, $QQ$, $ZZ over m$, $QQ over ZZ$,
 table.hline(),
@@ -36,7 +36,7 @@ $QQ over ZZ$, $QQ over ZZ$, $0$, $0$, $0$
 - $ZZ over m tp_ZZ A iso A over m A$ (recall that $R over I tp_R M iso M over I M$);
 - $QQ tp_ZZ QQ iso QQ$. 
 
-=== $Tor$ groups
+== $Tor$ groups
 #let tor1z = [$Tor_1^ZZ$]
 
 #align(center, table(columns: (auto, auto, auto, auto, auto), inset: 7pt, stroke: none,
@@ -54,7 +54,7 @@ $QQ over ZZ$, $0$, $0$, $ZZ over m$, $QQ over ZZ$
 - $tor1z (ZZ over m, A) iso  {a in A | m  a = 0}$;
 - $tor1z (QQ over ZZ, QQ over ZZ)$ is obtained from the #lest induced by applying $(- tpz QQ over ZZ)$ to  $0 -> ZZ -> QQ -> QQ over ZZ -> 0$.
 
-=== Hom-sets
+== Hom-sets
 
 
 #align(center, table(columns: (auto, auto, auto, auto, auto), inset: 7pt, stroke: none,
@@ -66,7 +66,7 @@ $ZZ over n$, $0$, $0$, $ZZ over"gcd"(m, n)$, $ZZ over n$,
 $QQ over ZZ$, $0$, $0$, $0$, $hat(ZZ)$
 ))
 
-Each row represents the first argument in $hom$ and each column the second. 
+Each row represents the first argument in $hom$ and each column the second. A question mark indicates that the result is beyond the scope of the course.
 
 - $hom_ZZ (ZZ, A) iso A$ (in general, $hom_R (R, M) iso M$); 
 - $hom_ZZ (QQ, QQ) iso QQ$ by establishing a (fairly easy) bijection; 
@@ -74,7 +74,7 @@ Each row represents the first argument in $hom$ and each column the second.
 - $hom_ZZ (ZZ over n, A) iso {a in A | n a = 0}$ (incidentally, this is isomorphic to $tor1z (ZZ over n, A)$); 
 - $hom_ZZ (A, QQ over ZZ)$ is the *Pontryagin duality* of $A$.
 
-=== $Ext$ groups
+== $Ext$ groups
 #align(center, table(columns: (auto, auto, auto, auto, auto), inset: 7pt, stroke: none,
 [$Ext_1^ZZ$], table.vline(), $ZZ$, $QQ$, $ZZ over m$, $QQ over ZZ$,
 table.hline(),
@@ -84,27 +84,29 @@ $ZZ over n$, $ZZ over n$, $0$, $ZZ over"gcd"(m, n)$, $0$,
 $QQ over ZZ$, $?$, $0$, $?$, $0$
 ))
 
+Each row represents the first argument in $Ext$ and each column the second. 
+
 - $Ext_1^ZZ (ZZ, -) = 0$ as $ZZ$ is projective; 
 - $Ext_1^ZZ (-, QQ) = 0$ as $QQ$ is injective; 
 - $Ext_1^ZZ (-, QQ over ZZ) = 0$ as $QQ over ZZ$ is injective; 
 - $Ext_1^ZZ (ZZ over n, A) iso A over n A$ using the projective resolution of $ZZ over n$.
 
-== $R = k[x]$
+// == $R = k[x]$
 
-We consider when $R$ is the polynomial ring $k[x]$ for a field $k$. Note that $k[x]$ is a PID. 
+// We consider when $R$ is the polynomial ring $k[x]$ for a field $k$. Note that $k[x]$ is a PID. 
 
-=== Projective, injective, and flat modules 
+// === Projective, injective, and flat modules 
 
-- $k(x)$, the field of fractions, is an injective $k[x]$-module;
-- Any quotient of an injective $k[x]$-module is injective; 
-- $k[x, x^(-1)]$ is a flat $k[x]$-module since it is the localisation of $x$ in $k[x]$; alternatively, it can be constructed as a filtered colimit of flat modules $k[x] ->^(x^(-1)) x^(-1) k[x] -> ^(x^(-2))  x^(-2) k[x] ->...$.
+// - $k(x)$, the field of fractions, is an injective $k[x]$-module;
+// - Any quotient of an injective $k[x]$-module is injective; 
+// - $k[x, x^(-1)]$ is a flat $k[x]$-module since it is the localisation of $x$ in $k[x]$; alternatively, it can be constructed as a filtered colimit of flat modules $k[x] ->^(x^(-1)) x^(-1) k[x] -> ^(x^(-2))  x^(-2) k[x] ->...$.
 
-=== Resolutions 
+// === Resolutions 
 
-#align(center, table(columns: (auto, auto, auto), inset: 7pt, stroke: none, 
-[Type], [Object], [Resolution],
-table.hline(),
-[projective], $k[x] over (x^m)$, $0->k[x]->^(x^m) k[x] -> k[x] over (x^m) -> 0$,
-[injective], $k[x]$, $0-> k[x] -> k(x) -> k(x) over k[x] -> 0$,
-[flat], $k[x, x^(-1)] over k[x]$, $0 -> k[x]  -> k[x, x^(-1)]  -> k[x, x^(-1)] over k[x] -> 0$, 
-))
+// #align(center, table(columns: (auto, auto, auto), inset: 7pt, stroke: none, 
+// [Type], [Object], [Resolution],
+// table.hline(),
+// [projective], $k[x] over (x^m)$, $0->k[x]->^(x^m) k[x] -> k[x] over (x^m) -> 0$,
+// [injective], $k[x]$, $0-> k[x] -> k(x) -> k(x) over k[x] -> 0$,
+// [flat], $k[x, x^(-1)] over k[x]$, $0 -> k[x]  -> k[x, x^(-1)]  -> k[x, x^(-1)] over k[x] -> 0$, 
+// ))

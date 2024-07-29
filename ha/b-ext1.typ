@@ -8,7 +8,7 @@
 #definition[
   Let $A$ and $B$ be $R$-modules. An *extension* of $A$ by $B$ is a #sest 
   $
-    ses(B, X, A)
+    ses(B, X, A).
   $
   Two extensions are *equivalent* if there is a commutative diagram 
   // #align(center,image("../imgs/2023-11-25-13-22-33.png",width:50%))
@@ -43,7 +43,7 @@
 
   An extension is *split* if it is equivalent to 
   $
-    ses(B, A xor B, A)
+    ses(B, A xor B, A).
   $
 ]
 #lemma[
@@ -52,7 +52,7 @@
 #proof[
   We look at the #lest of $Ext^ast (A, -)$: 
   $
-    hom (A, X) -> hom (A, A) ->^diff Ext^1 (A, B) = 0
+    hom (A, X) -> hom (A, A) ->^diff Ext^1 (A, B) = 0.
   $
   The first arrow is a surjection, so
   $id_A in hom (A, A)$ can always lift to a splitting $sigma: A -> X$. (It is helpful to recall the proof of @projective-split.)
@@ -102,16 +102,15 @@ From the above proof, we also see that $diff(id_A) in Ext^1 (A, B)$ is the obstr
   $
   is a bijection, and split extensions correspond to $0 in Ext_R^1 (A, B)$. 
 ]
-#proof[
-  (This is a proof sketch.)
+#proof(title: "Proof sketch")[
   We first show that $Theta$ is surjective. Let $x in Ext^1_R (A, B)$, and we want to construct some extension $xi = (ses(B, X, A))$ such that $Theta(xi) = x$. 
   Since $RMod$ has enough injectives, we can find a #sest 
   $
-    ses(B, I, N, f:j, g: pi)
+    ses(B, I, N, f:j, g: pi),
   $
   where $I$ is injective and $pi = coker(j)$. Since $I$ is injective, we have $Ext^1_R (A, I) = 0$ by @ext-injective, so the #lest of $Ext$ gives an exact sequence 
   $
-    0 -> homr (A, B) -> homr (A, I) -> homr (A, N) ->^(delta') Ext^1_R (A, B) -> 0
+    0 -> homr (A, B) -> homr (A, I) -> homr (A, N) ->^(delta') Ext^1_R (A, B) -> 0.
   $
   Now $delta'$ is surjective, so $x in Ext^1_R (A, B)$ can be lifted to some $beta in homr (A, N)$ such that $delta' (beta) = x$. Now we have the following:
 
@@ -173,7 +172,7 @@ From the above proof, we also see that $diff(id_A) in Ext^1 (A, B)$ is the obstr
 ))
   from which we see 
   $
-    Theta(xi) = delta(id_A) = delta'((beta oo -)(id_A)) = delta'(beta) = x
+    Theta(xi) = delta(id_A) = delta'((beta oo -)(id_A)) = delta'(beta) = x.
   $
   Thus we have shown $Theta$ is surjective.
 
@@ -196,11 +195,11 @@ $ xi_1 colon 0 arrow.r B arrow.r^(i_1) X_1 arrow.r^(pi_1) A arrow.r 0 comma quad
 be extensions of $A$ by $B$. Let
 $ X^(prime prime) eq X_1 times_A X_2 eq lr({lr((x_1 comma x_2)) in X_1 times X_2 colon pi_1 lr((x_1)) eq pi_2 lr((x_2))}) $
 and let
-$ Y eq X^(prime prime) / lr({lr((i_1 lr((b)) comma minus i_2 lr((b)))) colon b in B}) $ Then the sequence $ 0 arrow.r B arrow.r^i Y arrow.r^pi A arrow.r 0 $ is
+$ Y eq X^(prime prime) / lr({lr((i_1 lr((b)) comma minus i_2 lr((b)))) colon b in B}). $ Then the sequence $ 0 arrow.r B arrow.r^i Y arrow.r^pi A arrow.r 0 $ is
 called the *Baer sum* of $xi$ and $xi^prime$, where we have maps
 $ i colon B &arrow.r Y \ b &arrow.r.bar lr((i_1 lr((b)) comma 0)) $
 and
-$ pi colon Y &arrow.r A \ lr((x_1 comma x_2)) &arrow.r.bar pi_1 lr((x_1)) plus pi_2 lr((x_2)) $
+$ pi colon Y &arrow.r A \ lr((x_1 comma x_2)) &arrow.r.bar pi_1 lr((x_1)) plus pi_2 lr((x_2)). $
 ]
 
 #lemma[
@@ -307,7 +306,7 @@ and let $X_n^(prime prime)$ be the pushout of
 Let $Y_n$ be the quotient of $X_n^(prime prime)$ by the antidiagonal.
 Then the Baer sum is
 
-$ 0 arrow.r B arrow.r Y_n arrow.r X_(n minus 1) xor X_(n minus 1)^prime arrow.r dots.h arrow.r X_2 xor X_2^prime arrow.r X_1^(prime prime) arrow.r A arrow.r 0 $
+$ 0 arrow.r B arrow.r Y_n arrow.r X_(n minus 1) xor X_(n minus 1)^prime arrow.r dots.h arrow.r X_2 xor X_2^prime arrow.r X_1^(prime prime) arrow.r A arrow.r 0. $
 ]
 Suppose that $cal(A)$ has enough projectives and $P_bullet arrow.r A$ is
 a projective resolution. Consider the diagram
