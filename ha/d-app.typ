@@ -4,10 +4,12 @@
 
 // == $R = ZZ$
 
-In the category $Ab$, we have the following:
+Let $A in Ab$.  Recall that we have the following:
 - $A$ is projective #iff $A$ is free; 
 - $A$ is injective #iff $A$ is divisible, #iff $A$ is a direct sum of copies of $QQ$ and $ZZ[1/p] over ZZ$, where each $p$ is prime;
 - $A$ is flat #iff $A$ is torsionfree. 
+
+We now demonstrate some calculations in the category $Ab$ using tools developed throughout the course. These may serve as exercises or reference materials.
 
 == Resolutions 
 
