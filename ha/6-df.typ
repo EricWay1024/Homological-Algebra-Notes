@@ -65,11 +65,11 @@
 #example[
   Homology gives a homological $delta$-functor
   $ 
-    {H_n : Ch_(>= 0)(cA) -> cA}_(n >= 0)
+    {H_n : Ch_(>= 0)(cA) -> cA}_(n >= 0),
   $
   where $Ch_(>=0) (cA)$ is the (full) subcategory of $Ch(cA)$ whose objects are chain complexes $C_cx$ such that $C_n = 0$ for all $n < 0$.
 
-  Similarly, cohomology gives a cohomological $delta$-functor $ {H^n : Ch^(>= 0) (cA) -> cA}_(n >= 0) $
+  Similarly, cohomology gives a cohomological $delta$-functor $ {H^n : Ch^(>= 0) (cA) -> cA}_(n >= 0), $
   where $Ch^(>= 0) (cA)$ is defined similarly.
 ]
 
@@ -112,7 +112,7 @@ where $A ->^p A$ is the map of multiplication by $p$ and so on, so that we
 //  #align(center,image("../imgs/2023-11-06-21-52-48.png",width:50%))
 get the exact
 sequence
-$ 0 arrow.r zws_p A arrow.r zws_p B arrow.r zws_p C arrow.r^delta A slash p A arrow.r B slash p B arrow.r C slash p C arrow.r 0 $
+$ 0 arrow.r zws_p A arrow.r zws_p B arrow.r zws_p C arrow.r^delta A slash p A arrow.r B slash p B arrow.r C slash p C arrow.r 0. $
 
 
   // For any integer $p$, define $T_(0)(A) = A over p A$ and $T_1(A) = p A = {a in A | p a = 0}$ and $T_n = 0$ for $n >= 2$ gives a homological $delta$-functor from $Ab -> Ab$, by the Snake Lemma,
@@ -157,11 +157,11 @@ The main object of this section is to show that in an abelian category with enou
   To elaborate, given $F : cA -> cB$ and $A in cA$, to calculate $L_i F(A)$ we need the following steps: 
   + #fw[Find a projective resolution of $A$ in $cA$:
   $
-    ... -> P_2 -> P_1 -> P_0 -> A -> 0
+    ... -> P_2 -> P_1 -> P_0 -> A -> 0;
   $
   ]
-  + Delete $A$ to form the *deleted projective resolution*, i.e., the  chain complex $ ... -> P_2 -> P_1 -> P_0 -> 0 $ (which is not exact at $P_0$ unless $A = 0$);
-  + Apply $F$ to form a chain complex in $cB$: $ ... -> F(P_2) -> F(P_1) -> F(P_0) -> 0 $ 
+  + Delete $A$ to form the *deleted projective resolution*, i.e., the  chain complex $ ... -> P_2 -> P_1 -> P_0 -> 0, $ (which is not exact at $P_0$ unless $A = 0$);
+  + Apply $F$ to form a chain complex in $cB$: $ ... -> F(P_2) -> F(P_1) -> F(P_0) -> 0; $ 
   + Calculate the $i$-th homology $H_i (F (P))$ of this chain complex.
   // Now let $f: A -> B$ be a morphism in $cA$. To find $L_i F (f)$, we can find projective resolutions $P_cx -> A$ and $Q_cx -> B$, and by the @comparison[Comparison Theorem], there exists a chain map $f_cx : P_cx -> Q_cx$ lifting $f$. Then $L_i F (f) := H_i (F(f_cx))$, obtained in a similar fashion as above.
 ]
@@ -191,9 +191,9 @@ $
   We can also lift $id_A$ to a map $g: Q_cx -> P_cx$ and get $g_ast : H_i F(Q) -> H_i F(P)$. 
 
   Notice $g oo f : P_cx -> P_cx$ and $id_P : P_cx -> P_cx$ are both chain maps lifting $id_A$, and by the @comparison[Comparison Theorem] they are chain homotopic. Therefore 
-$ g_* oo f_* = (g oo f)_* = (id_P)_* $
+$ g_* oo f_* = (g oo f)_* = (id_P)_*.$
   Similarly,
-  $ f_* oo g_* = (id_Q)_* $
+  $ f_* oo g_* = (id_Q)_*,$
   which gives an isomorphism $H_i (F(P)) iso H_i (F(Q)) $.
 ]
 
@@ -203,7 +203,7 @@ $ g_* oo f_* = (g oo f)_* = (id_P)_* $
 <projective-left-zero>
 
 #proof[
-  Simply notice that $ ... -> 0 -> A -> A -> 0 $
+  Simply notice that $... -> 0 -> A -> A -> 0 $
   is a projective resolution of $A$.
 ]
 

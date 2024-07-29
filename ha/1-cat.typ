@@ -270,8 +270,8 @@ Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')
   // #image("imgs/8.png", width: 50%)
 ]
 
-#proposition[
-  $ Hom(C) (product.co C_i, A) bij product Hom(C) (C_i, A) $
+#proposition[We have
+  $ Hom(C) (product.co C_i, A) bij product Hom(C) (C_i, A). $
 ]
 
 #proof[ This is similar to the above case: we just reverse all the arrows.
@@ -496,7 +496,7 @@ in $cC$. Then when $lim_I F$ exists, we have two associated morphisms $h: lim_I 
 We also dually define the *coequaliser* of $f$ and $g$ using $colim_I F$, denoted as $Coeq(f, g)$, such that $Coeq(f, g) oo f = Coeq(f, g) oo g$. 
   Continuing with @ker-notation, we have
   $
-  EQ(f, g) -->^(Eq(f, g)) A arrows.rr^f_g B -->^(Coeq(f, g))  COeq(f, g)
+  EQ(f, g) -->^(Eq(f, g)) A arrows.rr^f_g B -->^(Coeq(f, g))  COeq(f, g).
 $
 ]
 
@@ -523,10 +523,9 @@ $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
 #proof[
   Take $X in cB$.
 
-  $ hom_cB (L(colim A_i), X) = hom_cA (colim A_i,  R(X)) =  lim hom_cA (A_i, R(X)) \ = lim hom_cB (L (A_i),  X)  =  hom_cB (colim L (A_i), X) $
+  $ hom_cB (L(colim A_i), X) iso hom_cA (colim A_i,  R(X)) iso  lim hom_cA (A_i, R(X)) \ iso lim hom_cB (L (A_i),  X)  iso  hom_cB (colim L (A_i), X). $
 
-If we move colimit out of $hom$, it becomes limit. This is seen for products and coproducts. 
-
+If we move colimit out of $hom$, it becomes limit. (This has been seen for products and coproducts.)
 We then apply Yoneda Lemma to show $L(colim A_i) $ and $colim L(A_i)$ are isomorphic. 
 ]
 
@@ -541,7 +540,7 @@ In particular, left adjunction preserves cokernels and are right exact; right ad
 <all-finite-limits>
 #proof[@awodey[Proposition 5.21].]
 
-== Subobjects
+== Subobjects and quotient objects
 
 @awodey[Section 5.1]. 
 This section offers some new vocabulary to describe things we already have seen.

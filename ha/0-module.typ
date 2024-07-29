@@ -65,10 +65,10 @@
 #definition[
     Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x. $
 
-    We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x $
+    We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x. $
 
     An element $m in R^(ds X) $ can be written as 
-    $ m = sum_(x in X) a_x x $
+    $ m = sum_(x in X) a_x x, $
     where only finitely many $a_x in R$ is non-zero.
 ]
 

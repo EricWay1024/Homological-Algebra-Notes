@@ -6,7 +6,7 @@
  == Reinterpreting $Ext$
 Let $A, B in RMod$  with projective resolutions $P_cx -> A$ and $Q_cx -> B$. Write the total cochain complex $ Tot^Pi (hom (P, Q)) =: T$. Then @balance-ext-2 implies that 
 $
-  Ext^n _R (A, B) iso H^n (T)
+  Ext^n _R (A, B) iso H^n (T).
 $
 Recall that $T^n = product homr (P_i, Q_(i-n)) in Ab$.
 If $phi in T^n$, then we can write $phi = product phi_i$ where $phi_i : P_i -> Q_(i - n)$. Therefore, an element $phi$ in $T^n$ can be seen as a chain map $P_cx -> Q_cx [-n]$ once we can show that $phi$ commutes with the differentials of $P_cx$ and $Q_cx [-n]$. We will show that this commuting condition is (almost) equivalent to $phi$ being a cocycle in $T^n$.  Further, if $phi$ is a chain map $P_cx -> Q_cx [-n]$, then $phi$ being null homotopic is (almost) equivalent to $phi$ being a coboundary in $T^n$. These equivalences ultimately give rise to a new interpretation of $Ext$.

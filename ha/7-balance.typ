@@ -64,35 +64,35 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $B$;
   + $Ext_cA^1 (A, B) = 0$ for all $B$.
 ]
-#proof[
-  Similar as above.
-]
+// #proof[
+//   Similar as above.
+// ]
 
 #definition[
   Let $R$ be a ring and $B$ be a left $R$-module. Since $(- tpr B) : ModR -> Ab$ is right exact by @tensor-right-exact and $RMod$ has enough projectives, we can define the left derived functor $Tor_i^R (-, B)$:
-  $ Tor_i^R (A, B) = Tor_i^R (-, B)(A) := L_i (- tpr B) (A) $
+  $ Tor_i^R (A, B) = Tor_i^R (-, B)(A) := L_i (- tpr B) (A). $
 ]
 
 Similarly, let $A$ be a right $R$-module, and $(A tpr - ): RMod -> Ab$ is right exact by @tensor-right-exact-2. We can thus define the left derived functor $Tor_i^R (A, -)$: 
 $
-  Tor_i^R (A, -)(B) := L_i (A tpr -) (B)
+  Tor_i^R (A, -)(B) := L_i (A tpr -) (B).
 $
 
 The two constructions are again isomorphic, i.e., 
 
-$ Tor_i^R (A, B) := L_i (- tpr B) (A) iso L_i (A tpr -) (B) $
+$ Tor_i^R (A, B) := L_i (- tpr B) (A) iso L_i (A tpr -) (B). $
 
 This isomorphism is called *the balancing of $Tor$*, which gives the following property.
 
 #proposition[
   Let $ses(K, L, M)$ be a #sest in $ModR$ and let $B in RMod$. Then we have the induced long exact sequence 
   $
-    ... -> Tor_1^R (K, B) -> Tor_1^R (L, B) ->  Tor_1^R (M, B) -> K tpr B -> L tpr B -> M tpr B -> 0
+    ... -> Tor_1^R (K, B) -> Tor_1^R (L, B) ->  Tor_1^R (M, B) -> K tpr B -> L tpr B -> M tpr B -> 0.
   $
   
   If $ses(K, L, M)$ is instead a #sest in $RMod$ and let $A in ModR$, then we have the induced #lest 
   $
-    ... -> Tor_1^R (A, K) -> Tor_1^R (A, L) ->  Tor_1^R (A, M) -> A tpr K -> A tpr L -> A tpr M -> 0
+    ... -> Tor_1^R (A, K) -> Tor_1^R (A, L) ->  Tor_1^R (A, M) -> A tpr K -> A tpr L -> A tpr M -> 0.
   $
 ]
 <tor-les>
@@ -135,7 +135,7 @@ with differential $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B^(n+1)$ and $c i
  ... -> H_(n+1) (cone(f)) ->  H_n (B) ->^diff H_n (C) -> H_n (cone(f)) -> ...
 $
   where the connecting morphism 
-  $ diff = f_ast $
+  $diff = f_ast $.
   // Dually, let $g : B^cx -> C^cx$ be a cochain map, then there is a #lest in cohomology 
   // $
   //   ... -> H^(n-1) (cone(f)) ->  H^n (B) ->^diff H^n (C) -> H^n (cone(f)) -> ...
@@ -145,7 +145,7 @@ $
 ]
 #proof[
 There is a #sest of chain complexes:
-$ ses(C, cone(f), B[-1], f: i, g: pi) $
+$ ses(C, cone(f), B[-1], f: i, g: pi), $
 where $i: c mapsto (0, c)$ and $pi : (b, c) |-> -b$. Notice that $H_(n+1)(B[-1]) = H_n (B)$, so we get the corresponding #lest in homology as above by @connecting.
 
   Further, we have $diff = i^(-1) d_(cone(f)) pi^(-1)$ by @connecting.
@@ -158,7 +158,7 @@ where $i: c mapsto (0, c)$ and $pi : (b, c) |-> -b$. Notice that $H_(n+1)(B[-1])
 #proof[
   "$=>$". If $f$ is a quasi-isomorphism, then $f_ast : H_n (B) -> H_n (C)$ is an isomorphism for all $n$. Then we have an exact
 sequence
-$ H_n (B) arrow.r^(f_ast) H_n (C) arrow.r^(i_ast) H_n ("cone"(f)) arrow.r^(pi_ast) H_(n - 1) (B) arrow.r^(f_ast) H_(n - 1) (C)  $
+$ H_n (B) arrow.r^(f_ast) H_n (C) arrow.r^(i_ast) H_n ("cone"(f)) arrow.r^(pi_ast) H_(n - 1) (B) arrow.r^(f_ast) H_(n - 1) (C).  $
 
 By exactness at $H_n (C)$,  we have that
 $ Ker (i_ast) = IM(f_ast) = H_n (C)$. So $i_ast = 0$ and $IM(i_ast) = 0$. 
@@ -166,12 +166,12 @@ By exactness at $H_(n - 1) (B)$, we have that
 $ "Im"(pi_ast) = Ker(f_ast) = 0$, so $pi_ast = 0$ and $ Ker (pi_ast) = H_n ("cone"(f))$. 
 
 By exactness at $H_n ("cone"(f))$, we
-have $ 0 = IM(i_ast) = Ker (pi_ast) = H_n ("cone"(f)) $ so
+have $ 0 = IM(i_ast) = Ker (pi_ast) = H_n ("cone"(f)), $ so
 $cone(f)$ is acyclic.
 
 "$arrow.l.double$". If cone $(f)$ is
 acyclic, then $H_n ("cone"(f)) = 0$ and we have an exact sequence
-$ 0 arrow.r H_n (B) arrow.r^(f_ast) H_n ("cone"(f)) arrow.r 0  $
+$ 0 arrow.r H_n (B) arrow.r^(f_ast) H_n ("cone"(f)) arrow.r 0,  $
 which indicates that $f_ast$ is an isomorphism.
 ]
 
@@ -183,7 +183,7 @@ which indicates that $f_ast$ is an isomorphism.
 #definition[
   The *mapping cylinder* of a chain map $f: B_cx -> C_cx$ is defined as the chain complex $cyl(f)_n = B_n xor B_(n-1) xor C_n$. The differential can be represented by the matrix 
   $
-    mat(d_B, id_B, 0;0, -d_B, 0; 0, -f, d_C)
+    mat(d_B, id_B, 0;0, -d_B, 0; 0, -f, d_C).
   $
 ]
 
@@ -196,7 +196,7 @@ which indicates that $f_ast$ is an isomorphism.
 == Double and Total Complexes
 Recall that if $cA$ is an abelian category,  $Ch(cA)$ is also an abelian category. Then to define a "two-dimensional" complex, one may be tempted to consider the category $Ch(Ch(cA))$. However, what we define next is slightly different from that.
 #definition[
-  A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h_(p, q) : C_(p, q) -> C_(p-1, q)$ and $d^v_(p, q) : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0 $ and $ d^v d^h + d^h d^v = 0 $
+  A *double complex* (or *bicomplex*) $C = C_(cx cx)$ in an abelian category $cA$ is a family ${C_(p, q)}$ of objects in $cA$ with maps $d^h_(p, q) : C_(p, q) -> C_(p-1, q)$ and $d^v_(p, q) : C_(p, q) -> C_(p, q-1)$ such that $ (d^h)^2 = (d^v)^2 = 0, quad d^v d^h + d^h d^v = 0. $
   The *total degree* of a term $C_(p, q)$ is defined as $p + q$.
 ]
 
@@ -291,11 +291,11 @@ such that $C_(p, q) eq 0$ for all $p lt p_0$.
 
 #definition[
   Given $C = {C_(p, q)}$, we can define the *total complex* $Tot^Pi (C)$, given by
-  $ Tot^Pi (C)_n = product_(p + q = n) C_(p, q) $
+  $ Tot^Pi (C)_n = product_(p + q = n) C_(p, q). $
   That is, the $n$-th term of $Tot^Pi (C)$ is the product of all terms in $C$ which has total degree $n$.
   When for each $n$, only finitely many terms in $C$ has total degree $n$, we also define $ Tot^xor (C)$, given by
-  $ Tot^xor (C)_n = plus.circle.big _(p+q=n) C_(p, q) $
-  $Tot^Pi (C)$ and $ Tot^xor (C)$ both have differential $ d = d^h + d^v $
+  $ Tot^xor (C)_n = plus.circle.big _(p+q=n) C_(p, q). $
+  $Tot^Pi (C)$ and $ Tot^xor (C)$ both have differential $ d = d^h + d^v. $
 ]
 <total-complex>
 #notation[
@@ -309,17 +309,17 @@ such that $C_(p, q) eq 0$ for all $p lt p_0$.
 #proof[
   @rotman[Lemma 10.5]. 
   $
-    d^2 = (d^h + d^v) (d^h + d^v) = (d^h)^2 + (d^h d^v + d^v d^h) + (d^v)^2 = 0
+    d^2 = (d^h + d^v) (d^h + d^v) = (d^h)^2 + (d^h d^v + d^v d^h) + (d^v)^2 = 0.
   $
   (This is why we have defined double complexes in the anticommuting way.)
 ]
 The total complex is illustrated by the colours in the following diagram; each “diagonal
 slice” is given a different colour. For example, $Tot(C_(cx cx))_0$ is the product of all the
-blue terms. This diagram also helps explain how the differential of the total complex works. For example, take $ c = (..., c_(-1, 1), c_(0, 0), c_(1, -1), ...) in product_(p in ZZ) C_(-p, p) = Tot(C)_0 $
+blue terms. This diagram also helps explain how the differential of the total complex works. For example, take $ c = (..., c_(-1, 1), c_(0, 0), c_(1, -1), ...) in product_(p in ZZ) C_(-p, p) = Tot(C)_0. $
 Then 
 $ d (c) = ( ...,  
 underbrace(d^v (c_(-1, 1)) + d^h (c_(0,0)), in C_(-1, 0)) , 
-underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1) $
+underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1). $
 // #align(center,image("../imgs/2023-11-12-16-04-08.png",width:50%))
 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAGEB9ACgFoyABMQCUIAL6l0mXPkIoATOSq1GLNl24AGcqIlTseAkQDMS6vWatEHHmRHjJIDAdlEy85RbXWN-Upt1HZxkjBVIPc1UrGy1-QP0QuWRTCJVLdVs4hwTDJLJjTyiMvkF+eKdpXKJFAsj0nx5tATLsipdQ5NJatO8Y0vs9NsSiABYzHuiAOmnW4KqUMdSvKZnBudcFrsL6kGnJ2cqNzpHt3r2D9qTFE7qz1aDDjrIbibZztcek7W7lt-uco7aJZFazvB6XIjaSi3Fb7D4QlCmTSnWEXYZhZEwv5w8Hokj+FHY8TKGBQADm8CIoAAZgAnCAAWyQYxAOAgSAA7FjrFAAHo0Vp0xlIMis9mIFm-Hn8wX0pmIbRipCmV7SgWDIXylVspAANm5ID56scmqQiiViAArAajbLhVbqDrEAAOG0yjVykWO8WKqWG3kACzt8vNTtFfr5QY99oAnN6zdH5cRFU7LYmkNaLZKQf6oybPRL44gVRHA8HOUX9arc+WXUWudXI7XiKKnc703WLcR5B2G2HjB2q2GRoOi8Q0-n7drxcRdR2UzOOR3iK6LT3J0m412O-IF0hNGIKGIgA
@@ -418,11 +418,11 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
   <aal>
 #proof[@weibel[Lemma 2.7.3] explains why proving (1) is sufficient to prove all four conditions, so we work on (1) only.
   Let $C$ be an upper half-plane bicomplex with exact columns, where we assume $C_(p, q) = 0$ when $q < 0$ (by translating $C$ up or down). It is sufficient to show that 
-  $ H_0 (Tot^Pi (C)) = 0 $
+  $ H_0 (Tot^Pi (C)) = 0, $
   since by translating $C$ left and right, this will indicate that $H_n (Tot^Pi (C)) = 0$ for all $n$.
   
   Let $ c = (..., c_(-2, 2), c_(-1, 1), c_(0, 0)) in product C_(-p, p) = Tot^Pi (C)_0 $ be a $0$-cycle, i.e., $d(c) = 0$.
-  We will use induction to find elements $b_(-p, p+1) in C_(-p, p+1)$ for $p >= -1$ such that $ d^v (b_(-p, p+1)) + d^h (b_(-p+1, p)) = c_(-p, p) $
+  We will use induction to find elements $b_(-p, p+1) in C_(-p, p+1)$ for $p >= -1$ such that $ d^v (b_(-p, p+1)) + d^h (b_(-p+1, p)) = c_(-p, p). $
 
   For the base case, let $b_(1,0) = 0$ for $p = -1$. Since the $0$-th column is exact, there exists $b_(0,1) in C_(0,1)$ such that $d^v (b_(0,1)) = c_(0,0)$. 
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ACjIEYAlCAC+pdJlz5CKflVqMWbLr3JDR47HgJE+pPnPrNWiDj13E1YkBk1SiZAEwGFxkMRFyYUAObwioADMAJwgAWyRdEBwIJABmakNFEygAPRoRK2CwpDIomMRIxNdU9PUQLPDEB2poiISXNlSACw9hIA
@@ -452,10 +452,10 @@ underbrace(d^v (c_(0, 0)) + d^h (c_(1, -1)), in C_(0, -1)), ... ) in Tot(C)_(-1)
  We compute that 
 $ d^v lr((c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))))) & eq d^v lr((c_(minus p, p))) plus d^h d^v lr((b_(minus p plus 1 comma p)))\
  & eq d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) minus d^h d^h \(b_(minus p plus 2 comma p minus 1 )) \
- & eq 0 dot.basic $
+ & eq 0, $
 
  where $d^v lr((c_(minus p, p))) plus d^h lr((c_(minus p plus 1 comma p minus 1))) = 0$ because $d(c) = 0$. Thus 
- $ c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))) in Ker(d^v : C_(-p, p) -> C_(-p, p-1)) = IM (d^v : C_(-p, p+1) -> C_(-p, p)) $
+ $ c_(minus p comma p) minus d^h lr((b_(minus p plus 1 comma p))) in Ker(d^v : C_(-p, p) -> C_(-p, p-1)) = IM (d^v : C_(-p, p+1) -> C_(-p, p)), $
  
  since the $(minus p)$-th  column is exact. So there exists
 $b_(minus p comma p plus 1)$ such that
@@ -498,7 +498,7 @@ It has the *tensor product total complex*, $Tot^xor (P_cx tpr Q_cx)$.
   @rotman[Proposition 3.46, p. 132]. We (very concisely) work on the #rrm case. First notice that $(R tpr -)$ is an isomorphism by @r-tpr, so the functor $(R tpr -)$ is exact. Then tensor product preserves direct sums by @tensor-right-exact, so for a family of right $R$-modules $M_i$, $((plus.circle.big M_i) tpr -)$ is exact, if and only if $plus.circle.big (M_i tpr -)$ is exact, if and only if each $(M_i tpr -)$ is exact. Now any free module $F$, being a direct sum of $R$'s, must have that $(F tpr -)$ is exact. Finally, $P$ is projective, hence $P$ is a direct summand of some free module by @projective-summand, which indicates that $(P tpr -)$ is also exact.
 ]
 #theorem([Balancing of $Tor$])[ Let $A in ModR$ and $B in RMod$. For all $n$,
-  $ Tor_n^R (A, B) := L_n (- tpr B)(A) iso L_n (A tpr -)(B)  $ 
+  $ Tor_n^R (A, B) := L_n (- tpr B)(A) iso L_n (A tpr -)(B).  $ 
 ]
 <balance-tor>
 #proof[ @weibel[Theorem 2.7.2].
@@ -557,9 +557,9 @@ It has the *tensor product total complex*, $Tot^xor (P_cx tpr Q_cx)$.
   
   Meanwhile, the mapping cone of $f : Tot^xor (P tpr Q) -> A tpr Q $ has
   $
-    cone(f)_n = Tot^xor (P tpr Q)_(n-1) xor (A tp Q_(n))
+    cone(f)_n = Tot^xor (P tpr Q)_(n-1) xor (A tp Q_(n)).
   $
-  Also $ d_(cone(f)) = (-(d^((P)) tp 1 + (-1)^p tp d^((Q))), 1 tp d^((Q)) - epsilon tp 1) = -d_(Tot^xor (C)[-1]) $
+  Also $ d_(cone(f)) = (-(d^((P)) tp 1 + (-1)^p tp d^((Q))), 1 tp d^((Q)) - epsilon tp 1) = -d_(Tot^xor (C)[-1]), $
   hence $cone(f) iso Tot^xor (C)[-1]$.
   To show that $f$ is a quasi-isomorphism, we need to show $cone(f)$ is acyclic by @cone-qi. As any $Q_p$ is projective, $(- tpr Q_p)$ is exact  by @projective-flat-1. Since $P_cx -> A$ is a resolution, every row of $C$ is exact. Since $C$ is upper half-plane, $Tot^xor (C)$ is acyclic by @aal. So $f$ is a quasi-isomorphism. 
   
@@ -676,7 +676,7 @@ This total complex is a _cochain_ complex#footnote[In fact, whether a total comp
 
 #remark[
   Let $I^cx$ be a cochain complex of abelian groups and let $P_cx$ (resp. $Q_cx$) be a chain complex of right (resp. left) $R$-modules, then there is a natural isomorphism
-$ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
+$ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))). $
 ]
 
 
@@ -742,7 +742,7 @@ $ hom_Ab (Tot^xor (P tp Q), I) iso hom_R (P , Tot^Pi (hom_Ab (Q, I))) $
   We observe that $cone(f) iso Tot^xor (C)$ (both their terms and differentials match). Every $hom(-, I^q)$ is exact, so every row of $C$ is exact, then we can see that $Tot^xor (C)$ is acyclic by @aal-2. Similarly, we can show that $cone(g)$ is acyclic. 
    Then applying cohomology yields
 
-  $ R^ast hom(A, -) (B) &= H^ast hom (A, I) \ &iso H^ast Tot^xor ( hom(P, I))  \ &iso H^ast hom(P, B) = R^ast hom(-, B) (A) $
+  $ R^ast hom(A, -) (B) &= H^ast hom (A, I) \ &iso H^ast Tot^xor ( hom(P, I))  \ &iso H^ast hom(P, B) = R^ast hom(-, B) (A). $
 ]
 
 // #TODO Tot and everything should be cochain instead of chain complex !!! => so that we can take cohomology...
@@ -757,10 +757,8 @@ Now that we have gained some experience with non-canonically ordered double comp
   with differentials 
    $ d^h_(p, q) (f)  &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , Q_q)  \ d^v_(p, q) (f) &=  d^((Q))_q oo f in hom (P_p, Q_(q-1)) $
 for $f in hom ( P_p , Q_q )$.
-
 Then we define the *Hom cochain complex* as
-
-  $ Tot^Pi (hom(P, Q)) $
+  $Tot^Pi (hom(P, Q)). $
 ]
 
 We draw the (non-canonically ordered) double complex $hom (P, Q)$ as follows. Note that each row is a cochain complex, while each column is a chain complex. 
@@ -841,9 +839,9 @@ We draw the (non-canonically ordered) double complex $hom (P, Q)$ as follows. No
 //   arr((3, 2), (3, 3), []),
 // ))
 
-The $n$-th term of the total cochain complex#footnote[Again, it may also be seen as a chain complex by replacing $n$ with $-n$.] is 
+The $n$-th term of the total cochain complex is 
 $
-  [Tot^Pi (hom (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n))
+  [Tot^Pi (hom (P_cx, Q_cx))]^n = product_(p >= max{0, n}) hom (P_p, Q_(p - n)),
 $
 which is the product of infinitely many terms. 
 
@@ -852,7 +850,7 @@ It turns out that this construction leads to a further way to compute $Ext$:
 #theorem[
   Let $P_cx -> A$ and $Q_cx -> B$ be projective resolutions, then
   $
-    Ext^n_R (A, B) iso H^n Tot^Pi (hom_R (P, Q))
+    Ext^n_R (A, B) iso H^n Tot^Pi (hom_R (P, Q)).
   $
 ]
 <balance-ext-2>

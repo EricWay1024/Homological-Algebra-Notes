@@ -9,9 +9,9 @@
 #let Bil = [$"Bil"$]
 #definition[
     Let $R$ be a ring. Consider #rrm $M$, #lrm $N$ and abelian group $A$. A map $f: M times N -> A$ is called a *balanced product* (or we say it is *$R$-biadditive*) if it satisfies:
-      $ f(x + x', y) = f(x, y) + f(x', y) \
-      f(x, y + y') = f(x, y) + f(x, y') \
-     f(x r , y) = f(x, r y) $
+      $ f(x + x', y) = f(x, y) + f(x', y), \
+      f(x, y + y') = f(x, y) + f(x, y'), \
+     f(x r , y) = f(x, r y). $
     for all $x, x' in M$, $y, y' in N$ and $r in R$. 
     
     // Denote the set of all balanced products $B : M times N -> A$ as $Bil\(M, N; A)$, which is an abelian group under addition. 
@@ -372,7 +372,7 @@ for all $a in k$ and $x,y in M$.
 ]
 #remark[
 In  $Set$, 
-$ hom(X times Y, Z) = hom(X, hom (Y, Z)) $ 
+$ hom(X times Y, Z) = hom(X, hom (Y, Z)). $ 
 $Set$ is a *cartesian monoidal category*, where the categorical product is the same as the tensor product. 
 ]
 
@@ -383,8 +383,7 @@ $Set$ is a *cartesian monoidal category*, where the categorical product is the s
 // == More discussions
 
 #remark[ For vector spaces $V, W$ over field $k$,
-$ dim (V ds W) = dim V + dim W $
-$ dim (V tp W) = dim V dot dim W $
+$ dim (V ds W) = dim V + dim W, quad dim (V tp W) = dim V dot dim W. $
 
 An alternative definition of the tensor product: let $V$ be a vector space with basis ${v_i}_(i in I)$ and $W$ with ${w_j}_(j in J)$ and define $V tpk W$ to have basis ${v_i tp w_j}_(i in I, j in J)$. This definition relies on the choice of basis and can be inconvenient when we have to change basis.
 ]

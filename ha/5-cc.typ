@@ -10,11 +10,11 @@ Let $cA$ be an abelian category.
 #definition[
   A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$, where $d_n$ are called *differentials*. 
   The *$n$-cycles* of $Ccx$ are defined as $  Z_n (C) := Ker d_n $ and 
-  the *$n$-boundaries* are defined as $ B_n (C) := IM d_(n+1) $
+  the *$n$-boundaries* are defined as $ B_n (C) := IM d_(n+1). $
  
   Since  $d_n oo d_(n-1) = 0$, we have $ B_n (C) arrow.hook Z_n (C) arrow.hook C_n $ (as subobjects) for all $n$.
 
-  The *$n$-th homology* is defined as $ H_n (C) := Coker(B_n (C) arrow.hook Z_n (C)) $
+  The *$n$-th homology* is defined as $ H_n (C) := Coker(B_n (C) arrow.hook Z_n (C)). $
 ]
 
 #notation[
@@ -42,7 +42,7 @@ Let $cA$ be an abelian category.
     We can form a category $"Ch"(cA)$ where objects are chain complexes and morphisms are *chain maps* $u_cx : C_cx -> D_cx$ which
   commutes with differentials 
   $
-    u d = d u
+    u d = d u.
   $
   Namely, for all $n in ZZ$,
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9QgX1PUy58hFAEZyVWoxZsuACjABaUQEoQfAdjwEiZUZPrNWiEABFu6-iAxbhRcfuqGZJ8wuVqekmFADm8IlAAMwAnCABbJDIQHAgkcSkjNihLYLDIxAAmalikAGYnaWMQFI0QUIionLiswqSTJgsyioyE3MQCxJcQRvdVdQoeIA
@@ -67,13 +67,11 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 ]
 
 #proposition[
-  A chain map $u_cx : Ccx -> Dcx$ induces a morphism $ H_n (u) : H_n (C) -> H_n (D) $
+  A chain map $u_cx : Ccx -> Dcx$ induces a morphism $H_n (u) : H_n (C) -> H_n (D). $
 ]
 #proof[
   It suffices to assume $cA = RMod$. First we show that $u_n : C_n -> D_n$ sends boundaries to boundaries. Take boundary $b in C_n$, then there exists $c in C_(n+1)$ such that $d(c) = b$. Thus $u(b) = u d(c) = d u (c)$, showing that $u(b)$ is a boundary in $D_n$. 
-
   Next we show that $u_n : C_n -> D_n$ sends cycles to cycles. Take cycle $z in C_n$ such that $d(z) = 0$. Then $d u(z) = u d(z) = u(0) = 0$, showing that $u(z)$ is a cycle in $D_n$. 
-
   Therefore, $u_n$ induces a function $H_n (C) -> H_n (D)$.
 ]
 
@@ -100,7 +98,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
   - $C_cx$ is *acyclic*, i.e., $H_n (C) = 0$ for all $n$;
   - $0 -> C_cx$ is a quasi-isomorphism. 
 ]
-#proof[Trivial.]
+// #proof[Trivial.]
 
 // #definition[
 //   A cochain complex is given by ${C^n}_(n in ZZ)$ and $d^n : C^n -> C^(n+1)$ with $d^2 = 0$.
@@ -109,27 +107,27 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 // ]
 
 #definition[
-  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n-1) $
+  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n-1). $
  
   We have $ B^n ( C) arrow.hook Z^n (C) arrow.hook C^n $ (as subobjects) for all $n$.
 
-  The *$n$-th cohomology* are defined as $ H^n (C) := Coker(B^n (C) arrow.hook Z^n (C)) $
+  The *$n$-th cohomology* are defined as $ H^n (C) := Coker(B^n (C) arrow.hook Z^n (C)). $
 
   We also define *cochain maps* similarly as before.
 ]
 
 #example[@weibel[Application 1.1.4].
   Let $X$ be a topological
-space, and let $S_k eq S_k lr((X))$ be the free $R$-module on the set of
+space, and let $C_k eq C_k lr((X))$ be the free $R$-module on the set of
 continuous maps from the standard $k$-simplex $Delta_k$ to X. Restriction
 to the $i$-th face of $Delta_k lr((0 lt.eq i lt.eq k))$ transforms a
 map $Delta_k arrow.r X$ into a map
 $Delta_(k minus 1) arrow.r X$, and induces an $R$-module
-homomorphism $diff_i$ from $S_k$ to $S_(k minus 1)$. The alternating
-sums $d eq sum lr((minus 1))^i diff_i$ (from $S_k$ to $S_(k minus 1)$) 
+homomorphism $diff_i$ from $C_k$ to $C_(k minus 1)$. The alternating
+sums $d eq sum lr((minus 1))^i diff_i$ (from $C_k$ to $C_(k minus 1)$) 
 assemble to form a chain complex
-$ dots.h.c arrow.r^d S_2 arrow.r^d S_1 arrow.r^d S_0 arrow.r 0 $ called the *singular chain complex* of $X$.
-The $n$-th homology module of $S_cx (X)$ is called the
+$ dots.h.c arrow.r^d C_2 arrow.r^d C_1 arrow.r^d C_0 arrow.r 0 $ called the *singular chain complex* of $X$.
+The $n$-th homology module of $C_cx (X)$ is called the
 $n$-th singular homology of $X$ \(with
 coefficients in $R$) and is written $H_n lr((X semi R))$. 
 ]
@@ -221,13 +219,12 @@ $C lr([p])$ the *$p$-th translate* of $C$. The way to remember
 the shift is that the degree $0$ part of $C lr([p])$ is $C_p$. The
 sign convention is designed to simplify notation later on. Note that
 translation shifts homology:
-$ H_n lr((C lr([p]))) eq H_(n plus p) lr((C)) quad lr((upright("resp. ") H^n lr((C lr([p]))) eq H^(n minus p) lr((C)))) $
+$ H_n lr((C lr([p]))) eq H_(n plus p) lr((C)) quad lr((upright("resp. ") H^n lr((C lr([p]))) eq H^(n minus p) lr((C)))). $
 
 We make translation into a functor $[p]: Ch(cA) -> Ch(cA)$ by shifting indices on chain maps.
 That is, if $f colon C arrow.r D$ is a chain map, then
 $f lr([p])$ is the chain map given by the formula
-$ f lr([p])_n eq f_(n plus p) quad lr((upright("resp. ") f lr([p])^n eq f^(n minus p))) $
-
+$ f lr([p])_n eq f_(n plus p) quad lr((upright("resp. ") f lr([p])^n eq f^(n minus p))). $
 ]
 
 // #definition[
@@ -257,17 +254,17 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
 // Long exact sequence. 
 
 #theorem[
-  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of chain complexes, then there is a natural map for each $n$ $ diff_n: H_n (C) -> H_(n-1) (A) $ which we call the *connecting homomorphism*, making 
+  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of chain complexes, then there is a natural map for each $n$ $ diff_n: H_n (C) -> H_(n-1) (A), $ which we call the *connecting homomorphism*, making 
   $ ... -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) -> H_(n-1)(B) -> ... $
-  a long exact sequence. Further, $diff_n$ is explicitly given by the well-defined expression  $ diff_n = f^(-1) d_B g^(-1) $
+  a long exact sequence. Further, $diff_n$ is explicitly given by the well-defined expression  $ diff_n = f^(-1) d_B g^(-1). $
   
  If $ 0 -> A_cx rgt(f) B_cx rgt(g) Ccx -> 0$ is a short exact sequence of cochain complexes, then we have the connecting homomorphism 
-  $ diff^n : H^n\(C) -> H^(n+1)(A) $
+  $ diff^n : H^n\(C) -> H^(n+1)(A), $
   where the induced long exact sequence is
   $
      ... -> H_n (B) -> H_n (C) rgt(diff^n) H_(n+1) (A) -> H_(n+1)(B) -> ... 
   $
-  and $ diff^n = f^(-1) d^B g^(-1) $
+  and $ diff^n = f^(-1) d^B g^(-1). $
 ]
 <connecting>
 
@@ -531,16 +528,16 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
   Let $M_0 := Ker epsilon_0$, and we have short exact sequence
 
   $
-    0 -> M_0 -> P_0 -> M -> 0
+    0 -> M_0 -> P_0 -> M -> 0.
   $
 
   Now we can let $epsilon_1: P_1 -> M_0$ be an epimorphism and $M_1 := Ker epsilon_1$, obtaining the short exact sequence
   $
-    ses(M_1, P_1, M_0)
+    ses(M_1, P_1, M_0).
   $
   We define $d_1 = i_0 epsilon_1 : P_1 -> P_0$ and then 
   $
-    d_1(P_1) = M_0 = Ker epsilon_0
+    d_1(P_1) = M_0 = Ker epsilon_0.
   $
   Thus the chain in exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
   // Set $d_0 = epsilon_0$.

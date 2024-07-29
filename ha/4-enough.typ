@@ -100,7 +100,7 @@ $alpha lr((p)) eq alpha^prime lr((p comma 0))$ and it lifts $f$, showing that $P
     $RMod$ has enough projectives. 
 ]
 #proof[
-  For any module $M$, we can find a free (and thus projective) module $F$ with a surjection $ F-> M-> 0 $
+  For any module $M$, we can find a free (and thus projective) module $F$ with a surjection $F-> M-> 0. $
 ]
 
 
@@ -170,16 +170,14 @@ $R$, and we have a map
 
 $
   tilde(phi):I  &->M  \
-  r &|-> alpha^prime lr((b r))
+  r &|-> alpha^prime lr((b r)).
 $
-
-
 By assumption, this extends to a map $phi colon R arrow.r M$. 
 
 [Construction of $alpha'' : A'' -> M$.] Define 
 $ A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B $  We
 claim that there is a well-defined map
-$ alpha^(prime prime) colon A^(prime prime) &arrow.r M  \ a plus b r &arrow.r.bar alpha^prime lr((a)) plus phi lr((r))  $
+$ alpha^(prime prime) colon A^(prime prime) &arrow.r M  \ a plus b r &arrow.r.bar alpha^prime lr((a)) plus phi lr((r)),  $
 where $a in A^prime$ and $r in R$. To see that this is well-defined,
 suppose that $a plus b r eq a^prime plus b r^prime$
 where $a, a' in A'$ and $r, r' in R$.
@@ -188,7 +186,7 @@ $ a minus a^prime eq b lr((r^prime minus r)) in A^prime sect b R dot.basic $
 
 From this we see $r - r' in I$, and then we have
 $ phi lr((r^prime minus r))
- = alpha^prime lr((b lr((r^prime minus r)))) = alpha^prime lr((a minus a^prime)) $
+ = alpha^prime lr((b lr((r^prime minus r)))) = alpha^prime lr((a minus a^prime)). $
 
 Therefore, it follows that
 $alpha^prime lr((a)) plus phi lr((r)) eq alpha^prime lr((a^prime)) plus phi lr((r^prime))$
@@ -225,7 +223,7 @@ Let $M$ be an injective $R$-module, and let $m in M$ and
 $r in R without brace.l 0 brace.r$. Set $J eq r R$ (which is an ideal of $R$) and define
 $f colon J arrow.r M$ by $f lr((r)) eq m$. By Baer’s Criterion, we may
 extend $f$ to a homomorphism $tilde(f) colon R arrow.r M$. Then
-$ m eq f lr((r)) = tilde(f)(r)eq tilde(f) lr((r dot.op 1)) eq r dot.op tilde(f) lr((1)) $
+$ m eq f lr((r)) = tilde(f)(r)eq tilde(f) lr((r dot.op 1)) eq r dot.op tilde(f) lr((1)). $
 So taking $m' eq tilde(f) lr((1))$, we see that $M$ is divisible.
 
 Suppose conversely that $M$ is a divisible $R$-module. Let $J$ be an

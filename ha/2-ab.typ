@@ -59,7 +59,7 @@ We can also define functors between $Ab$-enriched categories which respect the a
   (3) $=>$ (1) and (3) $=>$ (2) is obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
 
   Suppose $*$ is a terminal object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$. 
-For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A) $
+For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A). $
 So there is a unique morphism from $*$ to $A$ and therefore $*$ is also initial. 
 ]
 
@@ -100,7 +100,7 @@ and @borceux[Proposition 1.2.4]. We prove statement (1) and leave (2) to duality
 Explicitly, we have for $j, k in {1, 2}$, $ p_j oo i_k = cases(id_(X_j) quad &"if " j = k, 0 quad &"otherwise") $
 // #image("imgs/16.png")
 
-Then we have $ p_1 compose lr((i_1 p_1 plus i_2 p_2)) eq p_1 comma quad p_2 compose lr((i_1 p_1 plus i_2 p_2)) eq p_2 $
+Then we have $ p_1 compose lr((i_1 p_1 plus i_2 p_2)) eq p_1 comma quad p_2 compose lr((i_1 p_1 plus i_2 p_2)) eq p_2. $
 
 By definition of products, $id_(X_1 times X_2) $ is the unique morphism $h : X_1 times X_2 -> X_1 times X_2$ with $p_k compose h eq p_k$ for each $k$, so $i_1 p_1 plus i_2 p_2 eq id_(X_1 times X_2)$. We claim that
 $ X_1 rgt(i_1) X_1 times X_2 lft(i_2) X_2 $ is a universal cocone and thus a coproduct. Suppose 
@@ -321,10 +321,7 @@ $Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers. We also know 
 ))
 ]
 
-#definition[In a pre-abelian category, we define the *coimage* of a morphism $f$ as $ coim (f) = coker(ker(f)) $ and *image* of $f$ as $ im(f) = ker(coker(f)) $ Continuing with @ker-notation, we have $G = Coim(f)$ and $D = IM(f)$ in the above diagram.
-// #image("imgs/17.png")
-// [See Definition 1.2.4, Li-2]
-
+#definition[In a pre-abelian category, we define the *coimage* of a morphism $f$ as $ coim (f) = coker(ker(f)) $ and *image* of $f$ as $ im(f) = ker(coker(f)). $ Continuing with @ker-notation, we have $G = Coim(f)$ and $D = IM(f)$ in the above diagram.
 We call $f$ *strict* if the map $Coim (f) -> IM f$ is an isomorphism. 
 ]
 == Abelian Categories
@@ -337,7 +334,7 @@ We call $f$ *strict* if the map $Coim (f) -> IM f$ is an isomorphism.
 #corollary[
 In an abelian category, every morphism $f : X-> Y$ has a factorisation 
 $
-  X ->^g IM (f) ->^h Y
+  X ->^g IM (f) ->^h Y,
 $
 where $g$ is an epimorphism and $h$ is a monomorphism.
 ]
@@ -414,8 +411,8 @@ We now introduce the most important member in the family of abelian categories.
 
 #remark[
   Note that the product and coproduct of a family $(M_i)_(i in I)$ coincide when $I$ is finite but differ when $I$ is infinite:
-$ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i} $
-  $ product _( i in I) M_i = {(m_i) _(i in I) | m_i in M_i} $
+$ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i}, $
+  $ product _( i in I) M_i = {(m_i) _(i in I) | m_i in M_i}. $
 ]
 
 #proposition[
@@ -476,7 +473,7 @@ The key element that we seek from an abelian category is the notion of exactness
     ses(IM(f), B, Coker(f), f:"", g:coker(f))
   $ or 
   $
-    ses(Ker(g), B, Coim(g), f:ker(g), g:"")
+    ses(Ker(g), B, Coim(g), f:ker(g), g:"").
   $
 ]
 
@@ -674,7 +671,7 @@ In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses
 //   The proof is similar as above. #TODO
 // ]
 #note[In $RMod$, we have
-$ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big_(i in I) M_i = plus.circle.big_(i in I) homr (R, M_i) $
+$ homr (R, plus.circle.big_(i in I) M_i) = plus.circle.big_(i in I) M_i = plus.circle.big_(i in I) homr (R, M_i). $
 This does not follow from the universal property of the direct sum; this is because $R$ is special. 
 ]
 
@@ -881,26 +878,24 @@ We have the following commutative diagram:
 ))
 
   In the first row, consider map $j' := i'|_(Ker f) : Ker f -> B'$. We claim that $j' : Ker f -> Ker g$. Indeed, take any $a' in Ker f subset.eq A'$, we have 
-  $ g(j'(a')) = g(i'(a')) = i(f(a')) = i(0) = 0 $
+  $ g(j'(a')) = g(i'(a')) = i(f(a')) = i(0) = 0. $
   Then $j'(a') in Ker g$ and thus $j' : Ker f -> Ker g$. Similarly, $q' := p'|_(Ker g) : Ker g -> Ker h$. We then see the first row is exact because of the exactness of $A' -> B' -> C'$. Also, if $i'$ is an injection, i.e., $Ker(i') = 0$, then obviously $Ker(j') = 0$.
 
   In the last row, define $j : Coker(f) -> Coker(g)$ as $a + IM(f) |-> i(a) + IM(g)$ for any $a in A$. We claim that this map is well-defined. If $a_1, a_2 in A$ such that $a_1 + IM(f) = a_2 + IM(f)$, then $a_1 - a_2 in IM(f)$, thus there exists $a' in A'$ so that $a_1 - a_2 = f(a')$. Then 
-
-  $ i(a_1 - a_2) = i(f(a')) = g(i'(a')) in IM(g) $
-
+  $i(a_1 - a_2) = i(f(a')) = g(i'(a')) in IM(g). $
   Then 
-  $ j(a_1 + IM(f)) = i(a_1) + IM(g) = i(a_2) + IM(g) = j(a_2 + IM(f)) $
+  $ j(a_1 + IM(f)) = i(a_1) + IM(g) = i(a_2) + IM(g) = j(a_2 + IM(f)). $
 
   So $j$ is well-defined. Similarly, we can define $q : Coker g -> Coker h$ and show the exactness of the last row. We can also see that the surjection of $p$ implies the surjection of $q$.
 
   Now all arrows except $diff$ are clear. 
   Pick any $c' in Ker h subset.eq C'$. 
   Since $p'$ is surjective, there exists $b' in B'$ so that $p'(b') = c'$. 
-  Now $ 0 = h(c') = h(p'(b')) = p(g(b')) $ so $g(b') in Ker p = IM i$, and there exists unique $a in A$ such that $i(a) = g(b')$. 
-  We thus define $diff: Ker h -> Coker f$ as $ diff(c') = a + IM(f) $ 
+  Now $0 = h(c') = h(p'(b')) = p(g(b')), $ so $g(b') in Ker p = IM i$, and there exists unique $a in A$ such that $i(a) = g(b')$. 
+  We thus define $diff: Ker h -> Coker f$ as $diff(c') = a + IM(f). $ 
   We claim this is a well-defined function. 
   Then it suffices to show for any two choices $b'_1, b'_2$ of $b'$ and corresponding choices $a_1, a_2$ of $a$, $diff (c')$ gives the same value. Since $p'(b'_1) = p'(b'_2) = c'$, we have $b'_1 - b'_2 in Ker(p') = IM(i')$. Thus we can write $b'_1 - b'_2 = i'(a')$ for some $a' in A'$. Then 
-  $ i(a_1 - a_2) = g(b'_1 - b'_2) = g(i'(a')) = i (f (a'))  $
+  $i(a_1 - a_2) = g(b'_1 - b'_2) = g(i'(a')) = i (f (a')),  $
   but $i$ is injective, and hence $a_1 - a_2 = f(a') in IM f$. 
 
   We omit the proof of the exactness at $Ker h$ and $Coker f$.
