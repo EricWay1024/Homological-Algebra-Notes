@@ -6,10 +6,10 @@
 
 #definition[
     Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with maps $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
-    $ r(m_1 + m_2) &= r m_1 + r m_2 \
-      (r_1 + r_2) m &= r_1 m + r_2 m \
-      (r_1 r_2) m &= r_1 (r_2 m) \
-      1_R dot m &= m $
+    $ r(m_1 + m_2) &= r m_1 + r m_2, \
+      (r_1 + r_2) m &= r_1 m + r_2 m, \
+      (r_1 r_2) m &= r_1 (r_2 m), \
+      1_R dot m &= m. $
     
     A *right $R$-module* is defined similarly, but with multiplication on the right, namely $m r$. 
     
@@ -31,8 +31,8 @@
 #definition[
     Let $R$ be a ring. Let $M_1, M_2$ be left $R$-modules. A map $phi : M_1 -> M_2$ is a *module homomorphism* if it satisfies:
     $
-        phi(x + y) &= phi(x) + phi(y) \
-        phi(r x) &= r phi(x)
+        phi(x + y) &= phi(x) + phi(y), \
+        phi(r x) &= r phi(x).
     $
     for all $x, y in M_1$ and $r in R$.
 ]
@@ -47,9 +47,9 @@
 
 #definition[
     The *kernel* of a module homomorphism $phi : M_1 -> M_2$ is defined as 
-    $ Ker(phi) := {x in M_1 : phi(x) = 0} $
+    $ Ker(phi) := {x in M_1 : phi(x) = 0}. $
     The *image* of $phi$ is defined as 
-    $ IM(phi) := {phi(x) : x in M_1} $
+    $ IM(phi) := {phi(x) : x in M_1}. $
 
     It can be shown that $Ker(phi) subset M_1$ and $IM(phi) subset M_2$.
 ]
@@ -63,7 +63,7 @@
 ]
 
 #definition[
-    Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x $
+    Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x. $
 
     We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x $
 

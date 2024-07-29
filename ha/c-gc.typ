@@ -177,27 +177,27 @@ The aim is of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for a
 #proof[
   Define map $
   theta : G &-> fJ over fJ^2 \ 
-  g &|-> g - 1 + fJ^2
+  g &|-> g - 1 + fJ^2.
   $
 
   Take any $a, b in G$, then we have 
   $
-    theta(a b) = a b - 1 + fJ^2 = a b - 1 - (a - 1) (b - 1) + fJ^2 = (a - 1)  + (b-1) +fJ^2  = theta(a) +theta(b)
+    theta(a b) = a b - 1 + fJ^2 = a b - 1 - (a - 1) (b - 1) + fJ^2 = (a - 1)  + (b-1) +fJ^2  = theta(a) +theta(b),
   $
   so $theta$ is a group homomorphism. Since $fJ over fJ^2$ is abelian, we have 
   $
-    theta(a b a^(-1) b^(-1)) = theta(a) + theta(b) - theta(a) - theta(b) = 0
+    theta(a b a^(-1) b^(-1)) = theta(a) + theta(b) - theta(a) - theta(b) = 0,
   $
   so $[G, G] subset.eq Ker theta$, and $theta$  descends to a homomorphism 
   $macron(theta) : G over [G, G] -> fJ over fJ^2$.
 
   Define group homomorphism $sigma : fJ  &-> G over [G, G]$ linearly expanded by
   $
-    g - 1 &|-> g +[G, G ]
+    n(g - 1) &|-> g^n [G, G ].
   $
   Then for $a, b in G$, we have 
   $
-    sigma((a - 1) (b - 1)) = sigma(a b - 1 - (a-1) - (b-1)) = a b a^(-1) b^(-1) + [G, G] = [G, G]
+    sigma((a - 1) (b - 1)) = sigma(a b - 1 - (a-1) - (b-1)) = a b a^(-1) b^(-1)  [G, G] = [G, G].
   $
   So $sigma$ descends to a homomorphism $macron(sigma) : fJ over fJ^2 -> G over [G, G]$. 
   The result thus follows from the obvious fact that $macron(sigma)$ and $macron(theta)$ are mutual inverses.
@@ -208,7 +208,7 @@ The aim is of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for a
 #theorem[
   We have 
   $
-    H_1 (G , ZZ) iso G over [G, G]
+    H_1 (G , ZZ) iso G over [G, G].
   $
 ]
 <homology-1>
@@ -228,8 +228,7 @@ Since $bb(Z) G$ is a projective and thus flat $bb(Z) G$-module, we have
 $H_1 lr((G , bb(Z) G)) eq 0$ by @flat-tor. Notice that $ZZ_G = ZZ$ and 
 $ (bb(Z) G)_G iso ZZ$ by @group-h0.
 Since $epsilon_ast$ is a surjection, we see $epsilon_ast$ must be an isomorphism $ZZ -> ZZ$. So we have
-
-$ H_1 lr((G , bb(Z))) tilde.equiv fJ_G eq fJ slash fJ^2 tilde.equiv G slash lr([G comma G]) $
+$H_1 lr((G , bb(Z))) tilde.equiv fJ_G eq fJ slash fJ^2 tilde.equiv G slash lr([G comma G]).$
 ]
 
 // $ A_G = ZZ tpzg A = Coker(fJ tpzg A -> ZZ G tpzg A) = Coker(fJ tpzg A -> A) $ so $(ZZ G)_G = ZZ G over fJ iso ZZ$. 

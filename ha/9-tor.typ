@@ -290,8 +290,9 @@ If $Q_cx -> A$ is a resolution where $Q_n$ is $F$-acyclic for all $n$, then $L_i
 
 == Universal Coefficient Theorem
 
-How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
-
+Let $P_cx$ be a chain complex of right $R$-modules and let $M$ be a left $R$-module. 
+In this section, we investigate how the homology of $P_cx$ is related to the homology of $P_cx tp M$, under certain flatness assumptions about $P_cx$.
+We first need an auxiliary result.
 #lemma[
   Let $ses(X, Y, Z)$ be a #sest in $ModR$ such that $Y$ and $Z$ are flat, then $X$ is also flat. 
 ]
@@ -304,19 +305,20 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $
   Since $Y$ and $Z$ are flat, $Tor_n^R (Y, B) = Tor_n^R (Z, B) = 0$ when $n >= 1$ by @flat-tor. So $Tor_n^R (X, B) = 0$ for any $n >= 1$ and $X$ is also flat.
 ]
+The main result is the following.
 #theorem("Künneth Formula")[
   Let $P_cx$ be a chain complex of flat right $R$-modules such that each submodule $d(P_n)$ of $P_(n-1)$ is also flat. Then for every $n$ and every left $R$-module $M$, there is a #sest 
   
   $
-    ses(H_n (P) tpr M, H_n (P_cx tpr M), Tor_1^R (H_(n-1)(P), M))
+    ses(H_n (P) tpr M, H_n (P_cx tpr M), Tor_1^R (H_(n-1)(P), M)).
   $
 ]
 <kunneth>
-#proof[@rotman[Theorem 7.55].
+#proof[@rotman[Theorem 7.55], @weibel[Theorem 3.6.1].
   Let $Z_n = Ker (P_n ->^d P_(n-1))$, then we have a #sest 
   #math.equation(block: true, numbering: "(1)", supplement: "Short Exact Sequence",
   $
-    ses(Z_n, P_n, d(P_n))
+    ses(Z_n, P_n, d(P_n)).
   $) <zpdp>
   
   // The associated #lest in $Tor$ shows that $Z_n$ is also flat, as $ Tor_k (P_n, M) = Tor_k (d(P_n), M) = 0 $ for all $k >= 1$. (#TODO In general, if two terms in a #sest are flat then the third one is also flat. ) 
@@ -324,13 +326,13 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   Also, since $d(P_n)$ is flat,
   $Tor_1^R (d(P_n), M) = 0
   $ by @flat-tor,
-  so the long exact sequence induced by @zpdp gives
+  so a long exact sequence induced by @zpdp gives
   $
-    ses(Z_n tp M, P_n tp M, d(P_n) tp M)
+    ses(Z_n tp M, P_n tp M, d(P_n) tp M),
   $
   from which we yield a #sest of chain complexes 
   $
-    ses(Z_cx tp M , P_cx tp M, d(P)_cx tp M)
+    ses(Z_cx tp M , P_cx tp M, d(P)_cx tp M).
   $
   We now look at the #lest induced by homology: 
   #math.equation(block: true, numbering: "(1)", supplement: "Long Exact Sequence",
@@ -339,7 +341,7 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   $) <eq1>
   Note that the differentials on the chain complexes  $Z_cx$ and $d(P)_cx$ are all zero, and hence the differentials on $Z_cx tp M$ and $d(P)_cx tp M$ are also all zero, which gives 
   $
-    H_n (d(P)_cx tp M) = d(P_n) tp M quad "and" quad H_n (Z_cx tp M ) = Z_n tp M
+    H_n (d(P)_cx tp M) = d(P_n) tp M quad "and" quad H_n (Z_cx tp M ) = Z_n tp M.
   $
   // #TODO A theorem saying differential zero gives homology equals chain complex.
   Hence @eq1 now becomes 
@@ -350,29 +352,32 @@ How is the homology of $P_cx$ related to the homology of $P_cx tp M$?
   By @five-to-ses, we have a #sest
   #math.equation(block: true, numbering: "(1)", supplement: "Short Exact Sequence",
   $
-    ses(Coker(i_n tp id_M), H_n (P_cx tp M), Ker(i_(n-1) tp id_M))
+    ses(Coker(i_n tp id_M), H_n (P_cx tp M), Ker(i_(n-1) tp id_M)).
   $) <ses-1>
-  Now we are about to calculate the flanking terms of @ses-1.
+ Now it remains to calculate the two flanking terms of @ses-1.
   Note that we have a flat resolution for $H_n (P_cx)$:
   $
-    ses(d(P_(n+1)), Z_n, H_n (P_cx), f: i_n)
+    ses(d(P_(n+1)), Z_n, H_n (P_cx), f: i_n).
   $
   By @flat-resolution, $Tor_ast^R (H_n (P_cx), M)$ is the homology of the following chain complex:
   $
-    D_cx = (0 -> d(P_(n+1)) tp M ->^(i_n tp id_M) Z_n tp M -> 0)
+    D_cx = (... -> 0 -> d(P_(n+1)) tp M ->^(i_n tp id_M) Z_n tp M -> 0)
   $
   Hence 
   $
     H_n (P_cx) tp M = Tor_0 (H_n (P_cx), M) = H_0 (D) = Coker (i_n tp id_M)
   $ and 
   $
-    Tor_1^R (H_n (P_cx), M) = H_1 (D) = Ker (i_n tp id_M)
+    Tor_1^R (H_n (P_cx), M) = H_1 (D) = Ker (i_n tp id_M).
   $
   Combining the last two equations with @ses-1 gives the result.
 ] 
 #remark[
   These are the games you play with the machine.
 ]
+
+In particular, we can consider the case of $Ab$, where we have the following:
+
 #theorem("Universal Coefficient Theorem")[
   Let $P_cx$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Künneth #sest splits, so $ H_n (P_cx tp M) = (H_n (P) tp M) ds Tor_1^ZZ (H_(n-1) (P), M) $
   The split is not canonical.
@@ -386,7 +391,7 @@ sequence
 
 $ 0 arrow.r Z_n arrow.r^(i_n) P_n arrow.r d( P_n) arrow.r 0 $
 
-splits by @projective-split. Applying $(- tp M)$ (which commutes with direct sums), we get that
+splits by @projective-split. Applying $(- tp M)$ (which commutes with direct sums), we see that the #sest
 $ 0 arrow.r Z_n tp M arrow.r^(i_n tp id_M) P_n tp M arrow.r d( P_n) tp M arrow.r 0 $
 also splits, so $Z_n tp M$ is a direct summand of $P_n tp M$. Now notice we have the inclusions 
 $
@@ -397,19 +402,19 @@ By @split-sub, $Z_n tp M$ is a direct summand of $Ker (d_n tp id_M)$. Modding ou
 $
   H_n (P) tp M=  (Z_n tp M) / IM(d_(n+1) tp id_M) 
 $) <hnptpm>
- is a direct summand of $  H_n (P_cx tp M) = Ker(d_n tp id_M) / IM(d_(n+1) tp id_M)  $
+ is a direct summand of $  H_n (P_cx tp M) = Ker(d_n tp id_M) / IM(d_(n+1) tp id_M).  $
 
-To see why @hnptpm holds, let $j_n : d(P_(n+1)) -> Z_n$ be the inclusion map, and by the proof of @kunneth, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M) $
+To see why @hnptpm holds, let $j_n : d(P_(n+1)) -> Z_n$ be the inclusion map, and by the proof of @kunneth, $ H_n (P) tp M &= Coker (j_n tp id_M : d(P_(n+1)) tp M -> Z_n tp M) \ &= (Z_n tp M) / (IM (j_n tp id_M)) = (Z_n tp M) / IM(d_(n+1) tp id_M). $
 
 Since each $P_n$ and $d(P_n)$ are projective and thus flat, by @kunneth we have a #sest
-$ 0 arrow.r H_n lr((P)) times.circle M arrow.r H_n lr((P_cx times.circle M)) arrow.r "Tor"_1^ZZ lr((H_(n minus 1) lr((P)) comma M)) arrow.r 0 $
+$ 0 arrow.r H_n lr((P)) times.circle M arrow.r H_n lr((P_cx times.circle M)) arrow.r "Tor"_1^ZZ lr((H_(n minus 1) lr((P)) comma M)) arrow.r 0, $
 which is therefore split.
   // #TODO
   // Note: $P_n -> d(P_n)$ splits. 
 ]
 
 
-Now it can be helpful to recall @tp-dc, the tensor product double complex, as well as @homology-double.
+We also demonstrate a more general result, known as the Full Künneth Formula. Now it can be helpful to recall @tp-dc, the tensor product double complex, as well as @homology-double.
 #theorem("Full Künneth Formula")[
   Let $P_cx$ and $Q_cx$ be right and left $R$-modules, respectively.  
   If $P_n$ and $d(P_n)$ are flat for each $n$, then there is a #sest 
@@ -418,10 +423,50 @@ Now it can be helpful to recall @tp-dc, the tensor product double complex, as we
   $
 ]
 
-#example[
-  If $X$ and $Y$ are two topological spaces, 
+#proof[
+  @weibel[Theorem 3.6.3]. Modify the proof of @kunneth.
+]
+
+
+
+#theorem("Universal Coefficient Theorem for Cohomology")[
+  Let $P_cx$ be a chain complex of projective $R$-modules such that each $d(P_n)$ is also projective. Then for any $n$ and every $R$-module $M$, there is a non-canonically split exact sequence 
   $
-    H_n (X times Y) = (plus.circle.big_(p=1)^n H_p (X) tp H_(n-p) (Y)) xor (plus.circle.big_(p=1)^n Tor_1^ZZ (H_(p-1) (X), H_(n-p) (Y)))
+    0 -> Ext_R^1 (H_(n-1) (P), M) -> H^n (homr (P, M)) -> homr (H_n (P), M) -> 0.
   $
 ]
+#proof[
+  @weibel[Theorem 3.6.5].
+]
+
+These results yield important consequences in algebraic topology, as briefly discussed below. More can be seen in the Algebraic Topology course.
+
+#example[ @weibel[Application 3.6.4]. 
+  Let $X$ be a topological space. 
+  Let $C_cx (X)$ be the singular chain complex of $X$, then each $C_n (X)$ is a free abelian group. Let $M$ be an abelian group, then we define the $n$-th (singular) homology of $X$ with _coefficients_ in $M$ as 
+  $
+    H_n (X ; M) := H_n (C_cx (X) tp M).
+  $
+  In particular, $H_n (X) = H_n (X ; ZZ)$. Then the Universal Coefficient Theorem gives
+  $
+    H_n (X; M) iso (H_n (X) tp M )ds Tor_1^ZZ (H_(n-1) (X), M).
+  $
+  For cohomology, we could make a similar definition, i.e. 
+  $
+    H^n (X; M) := H^n (hom_ZZ (C_cx (X), M))
+  $
+  with $H^n (X) = H^n (X; ZZ)$,
+  and  the Universal Coefficient Theorem would indicate that 
+  $
+    H^n (X; M) iso hom_ZZ (H_n (X), M) ds Ext_ZZ^1 (H_(n-1) (X), M).
+  $
+  (If we further assume that $M = ZZ$ and that each $H_n (X)$ is finitely generated such that $H_n (X) iso F_n ds T_n$ with free part $F_n$ and torsion part $T_n$, then we can show that 
+  $H^n (X) iso F_n ds T_(n-1).$)
+  
+  Let $Y$ be another topological space with singular chain complex $C_cx (Y)$. By  Eilenberg–Zilber theorem, $H_n (X times Y) iso H_n (C_cx (X) tp C_cx (Y))$. Then the Full Künneth Formula indicates that
+  $
+    H_n (X times Y) iso (plus.circle.big_(p=1)^n H_p (X) tp H_(n-p) (Y)) xor (plus.circle.big_(p=1)^n Tor_1^ZZ (H_(p-1) (X), H_(n-p) (Y))).
+  $
+]
+
 #endlec(12)
