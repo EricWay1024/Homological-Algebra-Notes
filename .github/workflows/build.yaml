@@ -14,19 +14,19 @@ jobs:
         uses: lvignoli/typst-action@v0
         with:
           source_file: main.typ
-      - name: Rename BW PDF file
+      - name: Rename color PDF file
         run: |
-          mv main.pdf hom-alg-notes-bw.pdf
+          mv main.pdf hom-alg-notes-color.pdf
       - name: Replace color scheme in template
         run: |
-          sed -i 's/bw.typ/color.typ/g' libs/template.typ
+          sed -i 's/color.typ/bw.typ/g' libs/template.typ
       - name: Typst
         uses: lvignoli/typst-action@v0
         with:
           source_file: main.typ
-      - name: Rename Color PDF file
+      - name: Rename BW PDF file
         run: |
-          mv main.pdf hom-alg-notes-color.pdf
+          mv main.pdf hom-alg-notes-bw.pdf
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:

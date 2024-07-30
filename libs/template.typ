@@ -138,15 +138,8 @@
   set heading(numbering: "1.1.")
   set enum(numbering: "(1)")
 
-  // show link: underline
-  // if color_style == "./color.typ" {
-  // show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-  // show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-  // // }
-      show ref: set text(rgb(0,0,255))
-    // show footnote: set text(rgb(0,0,255))
-    show link: set text(rgb(0,0,255))
-
+  show ref: set text(rgb(0,0,255))
+  show link: set text(rgb(0,0,255))
   body
 }
 
