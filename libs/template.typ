@@ -1,6 +1,11 @@
 #import "@preview/commute:0.2.0": node, arr, commutative-diagram
 
 #let color_style = "./color.typ"
+#let link_color = rgb(0, 0, 255)
+#if color_style == "./bw.typ" {
+  link_color = rgb(0, 0, 0)
+}
+
 
 #let textwidth = 100%;
 #let img(path, width: textwidth) = {
@@ -137,10 +142,8 @@
   set par(justify: true)
   set heading(numbering: "1.1.")
   set enum(numbering: "(1)")
-  if color_style == "./color.typ" {
-    show ref: set text(rgb(0,0,255))
-    show link: set text(rgb(0,0,255))
-  }
+  show ref: set text(link_color)
+  show link: set text(link_color)
   body
 }
 
