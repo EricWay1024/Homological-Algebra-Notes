@@ -540,7 +540,7 @@ In particular, left adjunction preserves cokernels and are right exact; right ad
 <all-finite-limits>
 #proof[@awodey[Proposition 5.21].]
 
-== Subobjects and quotient objects
+== Subobjects and Quotient Objects
 
 @awodey[Section 5.1]. 
 This section offers some new vocabulary to describe things we already have seen.
