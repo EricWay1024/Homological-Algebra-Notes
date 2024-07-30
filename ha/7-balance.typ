@@ -68,6 +68,31 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
 //   Similar as above.
 // ]
 
+#example[
+  Let $m, n in ZZ$. 
+  Let us calculate $Ext_ZZ^1 (ZZ over m, ZZ over n)$ in two different ways. 
+
+  We may use the injective resolution of $ZZ over n$: 
+  $
+    0 -> ZZ over n -> QQ over ZZ ->^n QQ over ZZ -> 0.
+  $
+  Now delete $ZZ over n$, apply $hom_ZZ (ZZ over m, -)$, and use $hom_ZZ (ZZ over m , QQ over ZZ) iso ZZ over m$, we get 
+  $
+    0 -> ZZ over m -> ^n ZZ over m -> 0.
+  $
+  Calculating the first cohomology of this sequence reveals that $Ext_ZZ ^ 1 (ZZ over m , ZZ over n) = H^1 = Coker (ZZ over m -> ^n ZZ over m) iso ZZ over gcd(m, n)$.
+
+  On the other hand, we may invoke the balancing of $Ext$ and use the projective resolution of $ZZ over m$: 
+  $
+    0 -> ZZ ->^m ZZ -> ZZ over m -> 0.
+  $
+  Now delete $ZZ over m$, apply $hom_ZZ (-, ZZ over n)$ (which is a contravariant functor), and use $hom_ZZ (ZZ, ZZ over n) iso ZZ over n$, we get 
+  $
+    0 -> ZZ over n -> ^m ZZ over n -> 0.
+  $
+  Again the first cohomology of the sequence gives $ZZ over gcd(m, n)$. 
+  
+]
 #definition[
   Let $R$ be a ring and $B$ be a left $R$-module. Since $(- tpr B) : ModR -> Ab$ is right exact by @tensor-right-exact and $RMod$ has enough projectives, we can define the left derived functor $Tor_i^R (-, B)$:
   $ Tor_i^R (A, B) = Tor_i^R (-, B)(A) := L_i (- tpr B) (A). $
@@ -151,6 +176,8 @@ where $i: c mapsto (0, c)$ and $pi : (b, c) |-> -b$. Notice that $H_(n+1)(B[-1])
   Further, we have $diff = i^(-1) d_(cone(f)) pi^(-1)$ by @connecting.
   Let $b in B_n$ be a cycle. We can lift it to $(-b, 0)$ in $cone(f)$. Apply the differential of $cone(f)$ to get $d_(cone(f)) ( -b, 0) = (d (b), f (b)) = (0, f (b))$. Thus $diff[b] = [f (b)] = f_ast [b]$.
 ]
+
+The following is the main function of the mapping cone.
 #corollary[
   A chain map $f: B_cx -> C_cx$ is a quasi-isomorphism if and only if $cone(f)$  is acyclic.
 ]
@@ -179,7 +206,7 @@ which indicates that $f_ast$ is an isomorphism.
   The same result can be obtained for cochain maps. 
 ]
 
-
+There is a similar construction called the mapping cylinder, although we do not use it in these notes.
 #definition[
   The *mapping cylinder* of a chain map $f: B_cx -> C_cx$ is defined as the chain complex $cyl(f)_n = B_n xor B_(n-1) xor C_n$. The differential can be represented by the matrix 
   $

@@ -32,7 +32,7 @@ Let $cA$ be an abelian category.
     0-> Z_n -> C_n ->^(d_n) B_(n-1) -> 0, \
     0 -> B_(n) arrow.hook Z_n -> H_n -> 0.
   $
-  
+  From these we know that exact functors preserve homology as they preserve #sess.
 ]
 
 
@@ -429,9 +429,7 @@ $ ses(A_cx, B_cx, Ccx) $ is a *short exact sequence* if $ses(A_n, B_n, C_n)$ is 
   Let $cA$ be an abelian category. Let $M$ be an object of $cA$. A *left resolution* of $M$ is a complex $P_cx$, where $P_i = 0$ for negative $i$, with morphism $epsilon : P_0 -> M$ such that 
   $ ... -> P_2 rgt(d) P_1 rgt(d) P_0 rgt(epsilon) M -> 0 $
   is exact.
-
   If each $P_i$ is projective, then we call it a *projective resolution*.
-
   If $cA$ is $RMod$ or $ModR$ and each $P_i$ is a free module, then we call it a *free resolution*.
 
   In the same way, we define *right resolutions* and *injective resolutions*, only reversing all the arrows. 

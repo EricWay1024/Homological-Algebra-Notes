@@ -139,10 +139,10 @@
   set enum(numbering: "(1)")
 
   // show link: underline
-  if color_style == "./color.typ" {
-    show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-    show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
-  }
+  // if color_style == "./color.typ" {
+  show ref: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+  show link: box.with(stroke: rgb(144, 238, 144), inset: (bottom: 0pt))
+  // }
 
   body
 }

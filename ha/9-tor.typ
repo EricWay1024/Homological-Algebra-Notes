@@ -427,7 +427,7 @@ We also demonstrate a more general result, known as the Full Künneth Formula. N
   @weibel[Theorem 3.6.3]. Modify the proof of @kunneth.
 ]
 
-
+It is worth mentioning that there is also a version of the Universal Coefficient Theorem for cohomology that involves $Ext$ and $hom$:
 
 #theorem("Universal Coefficient Theorem for Cohomology")[
   Let $P_cx$ be a chain complex of projective $R$-modules such that each $d(P_n)$ is also projective. Then for any $n$ and every $R$-module $M$, there is a non-canonically split exact sequence 
