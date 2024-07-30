@@ -19,7 +19,7 @@ jobs:
           mv main.pdf hom-alg-notes-color.pdf
       - name: Replace color scheme in template
         run: |
-          sed -i 's/color.typ/bw.typ/g' libs/template.typ
+          sed -i '0,/color.typ/s//bw.typ/' libs/template.typ
       - name: Typst
         uses: lvignoli/typst-action@v0
         with:

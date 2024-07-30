@@ -137,9 +137,10 @@
   set par(justify: true)
   set heading(numbering: "1.1.")
   set enum(numbering: "(1)")
-
-  show ref: set text(rgb(0,0,255))
-  show link: set text(rgb(0,0,255))
+  if color_style == "./color.typ" {
+    show ref: set text(rgb(0,0,255))
+    show link: set text(rgb(0,0,255))
+  }
   body
 }
 
