@@ -24,7 +24,7 @@ For most of the proofs, I have tried to improve them by filling in more detailed
 // A current drawback of these notes is the lack of computational examples in later sections, e.g., on *$Ext$* and *$Tor$*. The reader is directed to the aforementioned references for those. Also, I must clarify that I am uncertain about the examinable content while writing these notes. 
 
 Homological Algebra is admittedly a challenging yet rewarding course.
-On a personal note, I chose to work on these notes to enhance my own learning. As a learner, I acknowledge that these notes must contain mistakes and improvable parts. Therefore, the reader is welcome to submit issues for any advice on GitHub (https://github.com/EricWay1024/Homological-Algebra-Notes), where these notes are open-sourced and updated#footnote[For anyone interested, I write these notes with Typst, a fairly new but much simpler alternative of LaTeX.].
+On a personal note, I chose to work on these notes to enhance my own learning. As a learner, I acknowledge that these notes must contain mistakes and improvable parts. Therefore, the reader is welcome to submit issues for any advice on GitHub (https://github.com/EricWay1024/Homological-Algebra-Notes), where these notes are open-sourced and updated#footnote[For anyone interested, I write these notes with Typst, a fairly new but much simpler alternative of LaTeX.]. One can also find a not-so-colourful version of these notes by following that link if one wishes to print them out.
 
 Finally, I would like to thank Prof Kobi Kremnitzer for delivering the lectures and  Sebastian Monnet for creating the previous version of these notes. I would also like to thank my friend Qixuan Fang for reading these notes and offering some feedback.
 

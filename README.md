@@ -1,6 +1,6 @@
 # Lecture Notes for University of Oxford course C2.2 Homological Algebra (Michaelmas, 2023-24)
 
-Go to [Release](https://github.com/EricWay1024/Homological-Algebra-Notes/releases) for the latest compiled PDF.
+Go to [Release](https://github.com/EricWay1024/Homological-Algebra-Notes/releases) for the latest compiled PDF, both the colourful (for screen viewing) and not-so-colourful version (for printing).
 
 Written with [Typst](https://typst.app/).
 To compile and watch for changes:
