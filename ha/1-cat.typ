@@ -212,7 +212,7 @@ We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects"
 == Products and Coproducts
 
 #definition[
-  Let  ${C_i | i in I}$ be a family of objects, then their *product* $product_(i in I) C_i$ is an object such that there exist $pi_j : product_(i in I) -> C_j$ for all $j in I$ in a universal way. That is, for any object $D$ with morphisms $g_j : D -> C_j$ for all $j in I$, there exists a unique morphism $D -> product_(i in I)$.
+  Let  ${C_i | i in I}$ be a family of objects, then their *product* $product_(i in I) C_i$ is an object such that there exist $pi_j : product_(i in I) -> C_j$ for all $j in I$ in a universal way. That is, for any object $D$ with morphisms $g_j : D -> C_j$ for all $j in I$, there exists a unique morphism $D -> product_(i in I) C_i$.
 // #image("imgs/6.png", width: 50%)
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABEQBfU9TXfIRQBGclVqMWbNACdoTAMY4A+gAosAAixgNASQCUGgMLKs3XiAzY8BIqOHj6zVohAmAVt3EwoAc3hEoABmcgC2SGQgOBBIoiAM2i4gUHRwABY+5sFhEdTRSABM1E5Srr7KnjzZEOGIcfmIRRLO0lgVXlxAA
 #align(center, commutative-diagram(
