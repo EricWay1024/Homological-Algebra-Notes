@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Typst
-        uses: lvignoli/typst-action@v0
+        uses: lvignoli/typst-action@main
         with:
           source_file: main.typ
       - name: Rename color PDF file
@@ -21,7 +21,7 @@ jobs:
         run: |
           sed -i '0,/color.typ/s//bw.typ/' libs/template.typ
       - name: Typst
-        uses: lvignoli/typst-action@v0
+        uses: lvignoli/typst-action@main
         with:
           source_file: main.typ
       - name: Rename BW PDF file

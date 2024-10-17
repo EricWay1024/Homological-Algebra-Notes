@@ -1,4 +1,4 @@
-#import "@preview/ctheorems:1.1.0": *
+#import "@preview/ctheorems:1.1.2": *
 #let thmboxparams = (
   breakable: true,
   separator: [#h(0em).#h(0.2em)],
