@@ -56,7 +56,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 ]
 
 #definition[
-  Let $cC, cD$ be categories. The *product category* $cC times cD$ consists of objects $(C, D)$ for $C in cC$ and $D in cD$, and morphisms $(f, g) : (C_1 ,D_1 )-> (C_2, D_2)$ for $f : C_1 -> C_1$ and $g: D_1 -> D_2$. 
+  Let $cC, cD$ be categories. The *product category* $cC times cD$ consists of objects $(C, D)$ for $C in cC$ and $D in cD$, and morphisms $(f, g) : (C_1 ,D_1 )-> (C_2, D_2)$ for $f : C_1 -> C_2$ and $g: D_1 -> D_2$. 
 ]
 
 #definition[
