@@ -1,4 +1,5 @@
 #import "libs/template.typ": *
+#import "@preview/ctheorems:1.1.2": *
 #show: thmrules
 
 #show: project.with(
@@ -11,6 +12,8 @@
   // date: "October 24, 2023",
   date: datetime.today().display("[day padding:none] [month repr:long] [year]"),
 )
+
+
 
 #outline(indent: true)
 #pagebreak()
