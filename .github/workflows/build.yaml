@@ -10,20 +10,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Typst
-        uses: lvignoli/typst-action@main
-        with:
-          source_file: main.typ
+
+      # Step 1: Download the typst archive
+      - name: Download Typst
+        run: wget https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz
+
+      # Step 2: Extract the typst archive
+      - name: Extract Typst
+        run: |
+          mkdir -p typst
+          tar -xf typst-x86_64-unknown-linux-musl.tar.xz -C typst
+
+      # Step 3: Add Typst to the system PATH
+      - name: Add Typst to PATH
+        run: echo "$(pwd)/typst/typst-x86_64-unknown-linux-musl" >> $GITHUB_PATH
+
+      # (Optional) Step 4: Verify Typst installation
+      - name: Verify Typst installation
+        run: typst --version
+      
+      - name: Compile Typst
+        run: typst compile main.typ
+
+      # - name: Typst
+      #   uses: lvignoli/typst-action@main
+      #   with:
+      #     source_file: main.typ
+
       - name: Rename color PDF file
         run: |
           mv main.pdf hom-alg-notes-color.pdf
       - name: Replace color scheme in template
         run: |
           sed -i '0,/color.typ/s//bw.typ/' libs/template.typ
-      - name: Typst
-        uses: lvignoli/typst-action@main
-        with:
-          source_file: main.typ
+      # - name: Typst
+      #   uses: lvignoli/typst-action@main
+      #   with:
+      #     source_file: main.typ
+      - name: Compile Typst
+        run: typst compile main.typ
       - name: Rename BW PDF file
         run: |
           mv main.pdf hom-alg-notes-bw.pdf
