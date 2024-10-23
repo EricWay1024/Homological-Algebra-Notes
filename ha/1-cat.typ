@@ -492,7 +492,7 @@ A colimit is a universal cocone; namely, $L$ is a *colimit* of $F$ if it is a co
 $
    A arrows.rr^f_g B
 $
-in $cC$. Then when $lim_I F$ exists, we have two associated morphisms $h: lim_I F -> A$ and $h' : lim_I F -> A$, such that $f oo h = h' = g oo h$. We define the *equaliser* of $f$ and $g$ as this $h : lim_I F -> A$, denoted as $Eq(f, g)$. 
+in $cC$. Then when $lim_I F$ exists, we have two associated morphisms $h: lim_I F -> A$ and $h' : lim_I F -> B$, such that $f oo h = h' = g oo h$. We define the *equaliser* of $f$ and $g$ as this $h : lim_I F -> A$, denoted as $Eq(f, g)$. 
 We also dually define the *coequaliser* of $f$ and $g$ using $colim_I F$, denoted as $Coeq(f, g)$, such that $Coeq(f, g) oo f = Coeq(f, g) oo g$. 
   Continuing with @ker-notation, we have
   $
