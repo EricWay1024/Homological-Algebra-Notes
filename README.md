@@ -34,7 +34,7 @@ These lecture notes are written using [Typst](https://typst.app/), a modern type
    cd Homological-Algebra-Notes
    ```
 
-3. **Compile the notes**: To compile and watch for changes in the main Typst file (usually main.typ), run the following command:
+3. **Compile the notes**: To compile and watch for changes, run the following command:
     ```
     typst watch main.typ
     ```
