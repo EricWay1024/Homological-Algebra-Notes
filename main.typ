@@ -16,6 +16,14 @@
 
 
 #outline(indent: true)
+
+#heading(numbering: none)[License]
+
+#align(center)[#image("imgs/by-nc.svg", width: 60pt)]
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
+You are free to share, remix, and adapt this content, as long as it is not for commercial purposes. 
+For more details, visit: https://creativecommons.org/licenses/by-nc/4.0/.
+
 #pagebreak()
 #heading(numbering: none)[Preface]
 These notes are mostly based on the University of Oxford course 'C2.2 Homological Algebra' lectured by Prof Kobi Kremnitzer during the 2023-24 Michaelmas term. Portions of the previous notes @notes are reused, along with relevant parts of @weibel, upon which the course is largely based. Another important reference is @rotman, which provides detailed and, at times, meticulous proofs. I have labelled the source of many proofs (whether they are similar or different to the ones presented) for the reader's reference.
@@ -27,9 +35,9 @@ For most of the proofs, I have tried to improve them by filling in more detailed
 // A current drawback of these notes is the lack of computational examples in later sections, e.g., on *$Ext$* and *$Tor$*. The reader is directed to the aforementioned references for those. Also, I must clarify that I am uncertain about the examinable content while writing these notes. 
 
 Homological Algebra is admittedly a challenging yet rewarding course.
-On a personal note, I chose to work on these notes to enhance my own learning. As a learner, I acknowledge that these notes must contain mistakes and improvable parts. Therefore, the reader is welcome to submit issues for any advice on GitHub (https://github.com/EricWay1024/Homological-Algebra-Notes), where these notes are open-sourced and updated#footnote[For anyone interested, I write these notes with Typst, a fairly new but much simpler alternative of LaTeX.]. One can also find a not-so-colourful version of these notes fit for printing by following that link.
+On a personal note, I chose to work on these notes to enhance my own learning. As a learner, I acknowledge that these notes must contain mistakes and improvable parts. Therefore, the reader is welcome to submit issues for any advice on GitHub (https://github.com/EricWay1024/Homological-Algebra-Notes), where these notes are open-sourced#footnote[Under the Creative Commons Attribution-NonCommercial 4.0 International License.] and updated#footnote[For anyone interested, I write these notes with Typst, a fairly new but much simpler alternative of LaTeX.]. One can also find a not-so-colourful version of these notes fit for printing by following that link.
 
-Finally, I would like to thank Prof Kobi Kremnitzer for delivering the lectures and  Sebastian Monnet for creating the previous version of these notes. I would also like to thank my friends Qixuan Fang for reading these notes and offering feedback and Quanwen Chen for contributing to the GitHub workflows.
+Finally, I would like to thank Prof Kobi Kremnitzer for delivering the lectures and  Sebastian Monnet for creating the previous version of these notes. Please see the GitHub repo for further acknowledgements.
 
 #align(right)[
 Yuhang Wei
