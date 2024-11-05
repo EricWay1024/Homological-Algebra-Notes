@@ -39,12 +39,12 @@
 
 #proposition[
   Let $B$ a #lrm. 
-  The followings are equivalent: 
+  The following are equivalent: 
   + $B$ is flat;
   + $Tor_n^R (A, B) = 0$ for all $n > 0$ and all  $A$;
   + $Tor_1^R (A, B) = 0$ for all $A$.
 
-  Similarly, let $A$ be a #rrm. The followings are equivalent:
+  Similarly, let $A$ be a #rrm. The following are equivalent:
   + $A$ is flat; 
   + $Tor_n^R (A, B) = 0$ for all $n > 0$ and all $B$;
   + $Tor_1^R (A, B) = 0$ for all $B$.

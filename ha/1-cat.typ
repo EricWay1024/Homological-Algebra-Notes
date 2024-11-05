@@ -161,7 +161,7 @@ In general, a category is a "generalised" monoid because in a category you can o
   // #image("imgs/5.png", width: 30%)
 ]
 #notation[
-  Sometimes, people might also say the object $A$ in the above definition is the kernel of $f$ when the morphism $i$ is clear, and write $A = ker(f)$. However, this easily leads to confusion later on, so this note adapts the following non-standard notation: we write $A = Ker(f)$ (with a capital K) when we mean the object and $i = ker(f)$ when we mean the morphism. Hence, we would have 
+  Sometimes, people might also say the object $A$ in the above definition is the kernel of $f$ when the morphism $i$ is clear, and write $A = ker(f)$. However, this easily leads to confusion later on, so this note adopts the following non-standard notation: we write $A = Ker(f)$ (with a capital K) when we mean the object and $i = ker(f)$ when we mean the morphism. Hence, we would have 
   $
     Ker(f) -->^(ker(f)) B ->^f C
   $
@@ -212,7 +212,7 @@ We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects"
 == Products and Coproducts
 
 #definition[
-  Let  ${C_i | i in I}$ be a family of objects, then their *product* $product_(i in I) C_i$ is an object such that there exist $pi_j : product_(i in I) -> C_j$ for all $j in I$ in a universal way. That is, for any object $D$ with morphisms $g_j : D -> C_j$ for all $j in I$, there exists a unique morphism $D -> product_(i in I) C_i$.
+  Let  ${C_i | i in I}$ be a family of objects, then their *product* $product_(i in I) C_i$ is an object such that there exist $pi_j : product_(i in I) C_i -> C_j$ for all $j in I$ in a universal way. That is, for any object $D$ with morphisms $g_j : D -> C_j$ for all $j in I$, there exists a unique morphism $D -> product_(i in I) C_i$.
 // #image("imgs/6.png", width: 50%)
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABEQBfU9TXfIRQBGclVqMWbNACdoTAMY4A+gAosAAixgNASQCUGgMLKs3XiAzY8BIqOHj6zVohAmAVt3EwoAc3hEoABmcgC2SGQgOBBIoiAM2i4gUHRwABY+5sFhEdTRSABM1E5Srr7KnjzZEOGIcfmIRRLO0lgVXlxAA
 #align(center, commutative-diagram(
@@ -518,7 +518,7 @@ $Eq(f, 0) = ker f $ and $Coeq (f, 0) = coker f$.
 
 
 #proposition[ 
-  Let $L : cA arrows.lr cB : R$ be an adjunction and $ L(colim A_i) iso colim L (A_i) \ R(lim B_i) iso lim R(B_i) $ 
+  Let $L : cA arrows.lr cB : R$ be an adjunction. Then $ L(colim A_i) iso colim L (A_i), \ R(lim B_i) iso lim R(B_i). $ 
 ]
 #proof[
   Take $X in cB$.
@@ -543,7 +543,7 @@ In particular, left adjunction preserves cokernels and are right exact; right ad
 == Subobjects and Quotient Objects
 
 @awodey[Section 5.1]. 
-This section offers some new vocabulary to describe things we already have seen.
+This section offers some new vocabulary to describe things we have already seen.
 
 #definition[
   Let $A$ be an object of category $cC$. A *subobject* of $A$ is a monomorphism $u : S -> A$. 

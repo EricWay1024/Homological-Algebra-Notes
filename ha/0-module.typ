@@ -5,7 +5,7 @@
 <module-recap>
 
 #definition[
-    Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with maps $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
+    Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with a map $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
     $ r(m_1 + m_2) &= r m_1 + r m_2, \
       (r_1 + r_2) m &= r_1 m + r_2 m, \
       (r_1 r_2) m &= r_1 (r_2 m), \
@@ -69,7 +69,7 @@
 
     An element $m in R^(ds X) $ can be written as 
     $ m = sum_(x in X) a_x x, $
-    where only finitely many $a_x in R$ is non-zero.
+    where only finitely many $a_x in R$ are non-zero.
 ]
 
 #proposition[

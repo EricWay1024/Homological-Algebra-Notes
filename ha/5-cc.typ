@@ -93,7 +93,7 @@ $Ch(cA)$ is an abelian category if $cA$ is an abelian category.
 // ]
 
 #proposition[
-  The followings are equivalent: 
+  The following are equivalent: 
   - $C_cx$ is exact at every $C_n$;
   - $C_cx$ is *acyclic*, i.e., $H_n (C) = 0$ for all $n$;
   - $0 -> C_cx$ is a quasi-isomorphism. 

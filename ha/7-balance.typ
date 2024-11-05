@@ -38,7 +38,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
 ]
 
 #proposition[
-  The followings are equivalent:
+  The following are equivalent:
   + $B$ is injective;
   + $Hom(A)(-, B)$ is exact;
   + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $A$;
@@ -58,7 +58,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   Since $Ext^1_cA (A', B) = 0$ by assumption,  $Hom(A) (-, B)$ is an exact functor.
 ]
 #proposition[
-  The followings are equivalent:
+  The following are equivalent:
   + $A$ is projective;
   + $Hom(A)(A, -)$ is exact;
   + $Ext_cA^i (A, B) = 0$ for $i !=0$ and all $B$;

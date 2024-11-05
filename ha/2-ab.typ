@@ -48,7 +48,7 @@ We can also define functors between $Ab$-enriched categories which respect the a
 
  An $Ab$-enriched category needs not have a zero object. Nevertheless, once it has an initial or final object, it has a zero object, as shown below.
 
-#proposition[Let $*$ be an object in an *Ab*-enriched category, then the followings are equivalent:
+#proposition[Let $*$ be an object in an *Ab*-enriched category, then the following are equivalent:
 + $*$ is a final object;
 + $*$ is an initial object;
 + $*$ is a zero object.
@@ -56,7 +56,7 @@ We can also define functors between $Ab$-enriched categories which respect the a
 <ab-zero>
 
 #proof[
-  (3) $=>$ (1) and (3) $=>$ (2) is obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
+  (3) $=>$ (1) and (3) $=>$ (2) are obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
 
   Suppose $*$ is a terminal object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$. 
 For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A). $
@@ -213,7 +213,7 @@ Dually, if  $coker f$ exists, then $f$ is epic if and only  $coker f eq 0$.
 ]
 <additive-ker>
 #proof[
-Let $ker f$ be $i : K -> A$. Suppose $i = 0$. Since we know a kernel is a monomorphism, by @additive-mono-zero, $K = 0$. To show that $f$ is monic, take any $u : X -> A$ such that $f oo u = 0$. Then by the universal property of a kernel, there exists a unique morphism $h : X -> K$ such that $u = i oo h$. Thus $u$ factors through $K = 0$, so $u = 0$, proving $f$ is monic by @ab-mono. 
+Let $ker f$ be $i : K -> A$. Suppose $i = 0$. Since we know a kernel is a monomorphism, by @additive-mono-zero, $K = 0$. To show that $f$ is monic, take any $u : X -> A$ such that $f oo u = 0$. Then by the universal property of the kernel, there exists a unique morphism $h : X -> K$ such that $u = i oo h$. Thus $u$ factors through $K = 0$, so $u = 0$, proving $f$ is monic by @ab-mono. 
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGkQBfU9TXfIRQBGclVqMWbAILdeIDNjwEiAJjHV6zVohAAhOXyWCiZYeK1TdADW7iYUAObwioAGYAnCAFskAZmocCCQyEAYsMB0QKDo4AAsHEE1JKLjDEE8ff0DgxFEJbTYmdMzfPJykdQKrDJKvMtCgpHzLKKw7LiA
 #align(center, commutative-diagram(
   node-padding: (50pt, 50pt),
@@ -260,7 +260,7 @@ In fact, we get more than just kernels and cokernels:
 ]
 #proof[
   Let $cC$ be a pre-abelian category. Since
-$Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers. We also know that $cC$ has all finite products and coproducts as an additive category. Thus it has all finite limits and colimits by @all-finite-limits.
+$Eq(f, g) = ker(f - g)$, $cC$ has all equalisers and coequalisers. We also know that $cC$ has all finite products and coproducts as an additive category. Thus it has all finite limits and colimits by @all-finite-limits.
 ]
 
 #proposition[
@@ -300,7 +300,7 @@ $Eq(f, q) = ker(f - g)$, $cC$ has all equalisers and coequalisers. We also know 
 ]
 <pre-ab-morphism>
 #proof[
-  Since $coker(f) oo f = 0$, by the universal property of kernel, there exists $c : X -> D$ such that $f = ker(coker(f)) oo c$. Since $f oo ker(f) = 0$, we have $ker(coker(f)) oo c oo ker(f) = 0$. Now notice $ker(coker(f))$ is monic, and hence by @pre-add-mono, $ker(ker(coker(f))) = 0$. By the universal property of kernel again, there exists $d : K -> 0$ such that $c oo ker(f) = ker(ker(coker(f))) oo d$. Thus $c oo ker(f)$ factors through the zero object and thus is $0$.  The desired morphism is obtained from the universal property of cokernel.
+  Since $coker(f) oo f = 0$, by the universal property of the kernel, there exists $c : X -> D$ such that $f = ker(coker(f)) oo c$. Since $f oo ker(f) = 0$, we have $ker(coker(f)) oo c oo ker(f) = 0$. Now notice $ker(coker(f))$ is monic, and hence by @pre-add-mono, $ker(ker(coker(f))) = 0$. By the universal property of the kernel again, there exists $d : K -> 0$ such that $c oo ker(f) = ker(ker(coker(f))) oo d$. Thus $c oo ker(f)$ factors through the zero object and thus is $0$.  The desired morphism is obtained from the universal property of the cokernel.
   #align(center, commutative-diagram(
   node((0, 0), [$K$]),
   node((0, 1), [$X$]),
@@ -346,7 +346,7 @@ We can always write $f = im(f) oo coim(f)$ and consider $im(f)$ as a subobject o
 
 
 #remark[
-  The followings are two equivalent definitions of an abelian category:
+  The following are two equivalent definitions of an abelian category:
   - A pre-abelian category where every monomorphism is a kernel and every epimorphism is a cokernel;
   - A pre-abelian category where every monomorphism is the kernel of its cokernel and every epimorphism is the cokernel of its kernel.
 ]
@@ -357,7 +357,7 @@ We prove part of the equivalence:
   In an abelian category, every monomorphism is the kernel of its cokernel, and every epimorphism is the cokernel of its kernel.
 ]
 #proof[
-  Use the diagram in the proof of @pre-ab-morphism. Let $f$ be a monomorphism, then $ker(f) = 0$ and $K = 0$. It is not to hard to find $G = X$ and $coker(ker(f)) = id_X$. Since $D$ and $G$ are isomorphic, we see that $X$ is isomorphic to $D$ and thus $f = ker(coker(f))$.
+  Use the diagram in the proof of @pre-ab-morphism. Let $f$ be a monomorphism, then $ker(f) = 0$ and $K = 0$. It is not too hard to find $G = X$ and $coker(ker(f)) = id_X$. Since $D$ and $G$ are isomorphic, we see that $X$ is isomorphic to $D$ and thus $f = ker(coker(f))$.
 ]
 
 
@@ -365,10 +365,10 @@ We prove part of the equivalence:
 Now it is time to give a list of properties that abelian categories have, packing everything we have picked up along the way:
 - Every hom-set is an abelian group subject to bilinear morphism composition;
 - It has a zero object and has a zero morphism between any two objects, which is the identity of the abelian group and factors through $0$;
-- It has all limits and colimits;
+- It has all finite limits and colimits;
 - Any finite product and coproduct coincide as the biproduct;
 - $f$ is monic if and only if $f oo u = 0$ implies $u = 0$, if and only if $ker f = 0$, if and only if $f = im(f)$;
--  $g$ is epic if and only if $v oo g = 0$ implies $v = 0$,  if and only if $coker g = 0$, #iff $g = colim(g)$;
+-  $g$ is epic if and only if $v oo g = 0$ implies $v = 0$,  if and only if $coker g = 0$, #iff $g = coim(g)$;
 - $f$ is monic and $f = 0$ implies the domain of $f$ is $0$;
 - $g$ is epic and $g = 0$ implies the codomain of $g$ is $0$;
 - $Coim(f) -> IM(f)$ is an isomorphism;
@@ -411,7 +411,7 @@ We now introduce the most important member in the family of abelian categories.
 
 #remark[
   Note that the product and coproduct of a family $(M_i)_(i in I)$ coincide when $I$ is finite but differ when $I$ is infinite:
-$ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for almost all" i}, $
+$ union.sq.big _(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i) _(i in I) | m_i in M_i, m_i = 0 "for all but finitely many" i}, $
   $ product _( i in I) M_i = {(m_i) _(i in I) | m_i in M_i}. $
 ]
 
@@ -499,7 +499,7 @@ The key element that we seek from an abelian category is the notion of exactness
 // ]
 
 #lemma("Splitting Lemma")[
-  Let $ses(A, B, C, f:f, g:g)$ be a short exact sequence. The followings are equivalent:
+  Let $ses(A, B, C, f:f, g:g)$ be a short exact sequence. The following are equivalent:
   + The short exact sequence is split;
   + There exists a *retraction*#footnote[The terms "retraction" and "section" come from algebraic topology, but for our purpose they are nothing more than certain morphisms.] $r: B->A$ such that $r oo f = id_A$;
   + There exists a *section* $s : C -> B$ such that $g oo s = id_C$.
@@ -557,7 +557,7 @@ is exact in $Ab$.
 
   Exactness at $Hom(A) (M, A)$ is equivalent to $(f oo -) $ being monic, so let us calculate $Ker(f oo -)$. Let $u in Hom(A)(M, A)$ such that $(f oo  -) (u) = 0$, i.e., $f oo u  = 0$. But $f$ is monic, so $u = 0$, and thus $Ker(f oo -) = 0$ and $(f oo -)$ is monic.
 
-  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. To show that $Ker(g oo -) subset.eq IM(f oo -)$, let $ v in Ker(g oo -)$. Then $v : M -> B$ such that $g oo v = 0$. Note that $A = Ker(g)$ and $f = ker(g)$, so by the universal property of kernel, there exists $h : M -> A$ such that $v = f oo h$, hence $v in IM(f oo -)$. On the other hand, to show that $IM(f oo -) subset.eq Ker(g oo -)$, notice that if $v in  IM (f oo -)$, then $v = f oo h$ for some $h$ and then $g oo v = g oo f oo h = 0$ since $g oo f = 0$. 
+  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. To show that $Ker(g oo -) subset.eq IM(f oo -)$, let $ v in Ker(g oo -)$. Then $v : M -> B$ such that $g oo v = 0$. Note that $A = Ker(g)$ and $f = ker(g)$, so by the universal property of the kernel, there exists $h : M -> A$ such that $v = f oo h$, hence $v in IM(f oo -)$. On the other hand, to show that $IM(f oo -) subset.eq Ker(g oo -)$, notice that if $v in  IM (f oo -)$, then $v = f oo h$ for some $h$ and then $g oo v = g oo f oo h = 0$ since $g oo f = 0$. 
 ]
 
 
@@ -585,7 +585,7 @@ is exact in $Ab$.
 In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses(Hom(A)(P, X), Hom(A)(P, Y), Hom(A)(P, Z)) $ is a #sest.
 
 #proposition[
-  The followings are equivalent:
+  The following are equivalent:
   1. $P$ is a projective object;
   2. For any epimorphism $h : Y -> Z$, the induced map $(h oo -) : Hom(A) (P, Y) -> Hom(A) (P, Z)$ is surjective;
   3. For any epimorphism $h : Y-> Z$ and any morphism $f : P -> Z$, there exists (not necessarily unique) $g : P -> Y$ such that $f = h oo g$, i.e. the following commutes (which we refer to as the *lifting property*):
@@ -631,7 +631,7 @@ In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses
 
 
 
-#corollary[Dually, the followings are equivalent: 
+#corollary[Dually, the following are equivalent: 
 1. $I$ is injective; 
 2. For any monomorphism $h: X->Y$, the induced map $(- oo h) : Hom(A) (Y, I) -> Hom(A) (X, I)$ is surjective; 
 3. For any monomorphism $h: X->Y$ and any $f: X->I$, there exists $g: Y->I$ such that $f = g oo h$, i.e., the following commutes (which we refer to as the *extension property*):
