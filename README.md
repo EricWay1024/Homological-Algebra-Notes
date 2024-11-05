@@ -10,7 +10,7 @@ Go to [Release](https://github.com/EricWay1024/Homological-Algebra-Notes/release
 
 Contributions are welcome! These notes are supposed to be constantly updated, and that requires collaborative efforts. If you find a typo, error, or have suggestions for improvement, feel free to submit a pull request. You can also open an issue to report any problems or ask questions. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for further instructions on how to contribute. 
 
-If you make any contribution, you will be mentioned in the acknowledgements below. Please indicate your preferred name when opening an issue or making a pull request. Your GitHub user name will be used in a lack of a preferred name.
+If you make any contribution, you will be mentioned in the acknowledgements below. Please indicate your preferred name when opening an issue or making a pull request. Your GitHub user name will be used by default if no preference is given.
 
 ## Acknowledgements
 
