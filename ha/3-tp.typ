@@ -8,7 +8,7 @@
 
 #let Bil = [$"Bil"$]
 #definition[
-    Let $R$ be a ring. Consider #rrm $M$, #lrm $N$ and abelian group $A$. A map $f: M times N -> A$ is called a *balanced product* (or we say it is *$R$-biadditive*) if it satisfies:
+    Let $R$ be a ring. Consider a #rrm $M$, a #lrm $N$ and an abelian group $A$. A map $f: M times N -> A$ is called a *balanced product* (or we say it is *$R$-biadditive*) if it satisfies:
       $ f(x + x', y) = f(x, y) + f(x', y), \
       f(x, y + y') = f(x, y) + f(x, y'), \
      f(x r , y) = f(x, r y). $
@@ -18,7 +18,7 @@
 ]
 
 #definition[
-    The *tensor product* of a #rrm $M$ and a #lrm $N$ is an abelian group $M tpr N$ with a balance product $M times N -> M tpr N$ such that for any balanced product $f: M times N -> A$, there exists a unique group homomorphism $M tpr N -> A$ that makes the diagram commutes:
+    The *tensor product* of a #rrm $M$ and a #lrm $N$ is an abelian group $M tpr N$ with a balanced product $M times N -> M tpr N$ such that for any balanced product $f: M times N -> A$, there exists a unique group homomorphism $M tpr N -> A$ that makes the diagram commute:
 
     // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkACPAW3k4ByIAL6l0mXPkIoAjOSq1GLNlxxoAToJFiQGbHgJE5MhfWatEIAIIiFMKAHN4RUADN1EHkjIgcEJABM1GbKlgBC2m4eXohyvv6IQSAMWGAWIFB0cAAW9iDBSukwAB5YcDhwnACEkSDunt7UfkgywhTCQA
 #align(center, commutative-diagram(

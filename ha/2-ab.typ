@@ -599,7 +599,7 @@ In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses
   arr((0, 1), (1, 1), [$f$]),
   arr((1, 1), (1, 2), []),
   arr((1, 0), (1, 1), [$h$]),
-  arr((0, 1), (1, 0), [$exists g$], "dashed"),
+  arr((0, 1), (1, 0), [$exists g$], label-pos: right, "dashed"),
 ))
   4. Any #sest $ses(A, B, P)$ splits.
 ]
@@ -710,7 +710,7 @@ Recall @module-generator.
 ]
 
 #theorem("Morita's Theorem")[
-  Let $cA$ be an abelian category. Assume $cA$ has (small) coproducts. Assume that $P$ is a compact, projective generator. Let ring $R = End(A) (P)$, then the functor $ Hom(A)(P, -) : cA -> ModR $ is an equivalence of categories. 
+  Let $cA$ be an abelian category. Assume $cA$ has (small) coproducts. Assume that $P in cA$ is a compact, projective generator. Let ring $R = End(A) (P)$, then the functor $ Hom(A)(P, -) : cA -> ModR $ is an equivalence of categories. 
 ]
 
 
@@ -727,7 +727,7 @@ Therefore, $R = end_S (S) = S^op$. Thus, indeed, we have $SMod$ is equivalent to
 @rotman[Theorem 5.55] and @pareigis[p. 211].
 // https://cornellmath.wordpress.com/2008/04/10/abelian-categories-and-module-categories/
 Denote $ F:=Hom(A)(P, -) : cA -> ModR$.
-Using the definition of categorical equivalence, we want to construct another functor $G : ModR -> cA$ and show $F G$ and $G F$ are naturally isomorphic to identity functors. We see that in this way $G$ should be left adjoint to $F$, so $G$ must preserves colimits and in particular be right exact.
+Using the definition of categorical equivalence, we want to construct another functor $G : ModR -> cA$ and show $F G$ and $G F$ are naturally isomorphic to identity functors. We see that in this way $G$ should be left adjoint to $F$, so $G$ must preserve colimits and in particular be right exact.
 
 Inspired by the discussion above, we define $G$ in the following way. We first set $G(R) = P$ and $G(R^(ds I)) = P^(ds I)$. Any morphism $f: R^(ds J) -> R^(ds I)$ can be represented by a (possibly infinite) matrix with entries $a_(i j) in R$ for all $i in I$ and $j in J$. However, notice that $R = End(A) (P)$ by definition and thus the same matrix $(a_(i j))_(i in I, j in J)$ can also be seen as a morphism $P^(ds J) -> P^(ds I)$, which is defined to be $G(f)$. 
 Now, for any $R$-module $M$, we can find a presentation 
@@ -741,7 +741,7 @@ $
 where we define $G(M) = Coker(G(f))$. It can be verified that $G$ is a functor.
 // TODO ? 
 
-Since $P$ is a projective object, $F$ is exact and preserves cokernels; since $P$ is compact, $F$ preserves direct sums. On the other hand, $G$ is right exact and preserves direct sums by construction. Hence the composites $F G$ and $G F$ are right exact and preserves direct sums. 
+Since $P$ is a projective object, $F$ is exact and preserves cokernels; since $P$ is compact, $F$ preserves direct sums. On the other hand, $G$ is right exact and preserves direct sums by construction. Hence the composites $F G$ and $G F$ are right exact and preserve direct sums. 
 Now we check $F G$ and $G F$ are naturally isomorphic to identity functors. 
 
 For $F G : ModR -> ModR$, we have $ F G (R) = F (P) = hom_cA (P, P) = R $
@@ -835,7 +835,7 @@ Further, if $A' -> B'$ is monic, so is $Ker f -> Ker g$.
 If $B -> C$ is epic, so is $Coker g -> Coker h$.
 ]
 <snake>
-#proof[A detailed proof can be seen @snake-lemma-doc.
+#proof[See @snake-lemma-doc for a detailed proof.
 We have the following commutative diagram: 
 #v(20pt)
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAmAXVJADcBDAGwFcYkQBBEAX1PU1z5CKchWp0mrdgCEefEBmx4CRAMxiaDFm0QgAwnP5KhRMsXFapujgHJDCgcuHJR5zZJ0hpd3kcEqUdTcJbXY9H3lFf2cyAAYLD3YAaxgAJwACADN7KKciUXj3UN0UjIBzHMcTQNJCkKsQUvSAC0rjAJJSVQTikABjCCbs3wd251FuooaBpoqR3OrkdUn6zxm0lrboogAWUmDLT1itvJRYjVX2Y+5xGCgy+CJQTNSIAFskADYaHAgkVRGL3e-x+f0Q50uumG8iBH3BoKQAE5Aa84QB2BGIHYo4FYzFkSEgOYw1FIAm-MmxHFwgAcmIArNSkPTMaJCa0mYg2RTEMRiJz1CAeXtCVgIs9SXihWCWYS0OKQLDmfjyJziIKeVSSbiITyCYd2Fh7Ereaypp40CAaIwsGBPFB6HBmndjZK6dKkdbbfbHc6oFaQAAjGBgf2IAC0aP52rhiPxWoluOIurBfM53w9iDRnIxmZpN24QA
@@ -877,7 +877,7 @@ We have the following commutative diagram:
   arr((0, 2), (0, 3), [$q'$]),
 ))
 
-  In the first row, consider map $j' := i'|_(Ker f) : Ker f -> B'$. We claim that $j' : Ker f -> Ker g$. Indeed, take any $a' in Ker f subset.eq A'$, we have 
+  In the first row, consider the map $j' := i'|_(Ker f) : Ker f -> B'$. We claim that $j' : Ker f -> Ker g$. Indeed, take any $a' in Ker f subset.eq A'$, we have 
   $ g(j'(a')) = g(i'(a')) = i(f(a')) = i(0) = 0. $
   Then $j'(a') in Ker g$ and thus $j' : Ker f -> Ker g$. Similarly, $q' := p'|_(Ker g) : Ker g -> Ker h$. We then see the first row is exact because of the exactness of $A' -> B' -> C'$. Also, if $i'$ is an injection, i.e., $Ker(i') = 0$, then obviously $Ker(j') = 0$.
 

@@ -282,8 +282,7 @@ $M$ is injective by Baer’s Criterion.
   $
   
   For any $A in Ab$, $I(A)$ is injective as a product of injectives $QQ over ZZ$.
-  Consider canonical map 
-  
+  Consider the canonical map 
   $
     e_A: A &-> I(A) \
     a &|-> (phi(a))_(phi in hom_Ab (A, QQ over ZZ)),
