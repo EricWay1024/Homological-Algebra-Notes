@@ -564,7 +564,7 @@ is exact in $Ab$.
 // #TODO how to understand $f oo -$
 
 #remark[
-  The functor $Hom(A) (M, -)$ fails to be exact in general because it does not necessarily send an epimorphism to an epimorphism. For a counterexample, let $cA = Ab$ (where an epimorphism is equivalent to a surjective homomorphism) and $M = ZZ over 2 ZZ$. The quotient map $h: ZZ -> ZZ over 4 ZZ $ is an surjective homomorphism. On the other hand, for any abelian group $A$, an element in $hom_Ab (ZZ over 2 ZZ, A)$ (i.e., a group homomorphism $ZZ over 2ZZ -> A$) is uniquely determined by an element in $A$ with order $2$. Hence $hom_Ab ( ZZ over 2 ZZ, ZZ) = 0$ and $hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) = ZZ over 2ZZ$, and we see the induced map $ (h oo -) : hom_Ab ( ZZ over 2 ZZ, ZZ) -> hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) $ cannot be surjective. 
+  The functor $Hom(A) (M, -)$ fails to be exact in general because it does not necessarily send an epimorphism to an epimorphism. For a counterexample, let $cA = Ab$ (where an epimorphism is equivalent to a surjective homomorphism) and $M = ZZ over 2 ZZ$. The quotient map $h: ZZ -> ZZ over 4 ZZ $ is an surjective homomorphism. On the other hand, for any abelian group $A$, an element in $hom_Ab (ZZ over 2 ZZ, A)$ (i.e., a group homomorphism $ZZ over 2ZZ -> A$) is uniquely determined by an element $a$ in $A$ such that $2a = 0$. Hence $hom_Ab ( ZZ over 2 ZZ, ZZ) = 0$ and $hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) = ZZ over 2ZZ$, and we see the induced map $ (h oo -) : hom_Ab ( ZZ over 2 ZZ, ZZ) -> hom_Ab ( ZZ over 2 ZZ, ZZ over 4ZZ) $ cannot be surjective. 
 ]
 
 #corollary[Dually, $Hom(A) (-, M): cA^op -> Ab$ is also left exact. ]   <hom-left-exact-2>
