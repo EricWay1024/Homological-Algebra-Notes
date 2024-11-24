@@ -397,7 +397,7 @@ An alternative definition of the tensor product: let $V$ be a vector space with 
 <hom-module>
 #proof[
   Take any $f in hom_S (B, C)$ and $r in R$, define right multiplication $f r : B -> C$ by $f r(b) = f(r b)$.
-  Then we see that $(f r) (b s) = f (r b s) = f (r b) s = (f r) (b) s$, which indicates that $f r$ still a homomorphism $B -> C$ of right $S$-modules.
+  Then we see that $(f r) (b s) = f (r b s) = f (r b) s = (f r) (b) s$, which indicates that $f r$ is still a homomorphism $B -> C$ of right $S$-modules.
 ]
 
 Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
