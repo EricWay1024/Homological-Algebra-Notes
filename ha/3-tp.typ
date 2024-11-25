@@ -83,11 +83,11 @@ $
 
 
 #proof[
-  The function $ f : M times N &-> M' tpr N' \ (m, n) &|-> phi(m) tp psi(n) $
+  The function $ f : M times N &-> M' tpr N', \ (m, n) &|-> phi(m) tp psi(n), $
   is $R$-biadditive. Therefore, $f$ induces a unique homomorphism
   $
-    hat(f): M tpr N &-> M' tpr N' \
-    m tp n &|-> phi(m) tp psi(n)
+    hat(f): M tpr N &-> M' tpr N', \
+    m tp n &|-> phi(m) tp psi(n),
   $
   which we write as $phi tp psi$.
 ]
@@ -101,14 +101,14 @@ $
 #corollary[
   Let $M$ be a #rrm and $N$ be a #lrm, then we have functors
   $
-    M tpr - : RMod &-> Ab \
-    B &|-> M tpr B \
-    (g:B-> B') &mapsto id_M tp g
+    M tpr - : RMod &-> Ab, \
+    B &|-> M tpr B, \
+    (g:B-> B') &mapsto id_M tp g;
   $
   $
-    - tpr N : ModR &-> Ab \
-    A &|-> A tpr N \
-    (f: A -> A') &mapsto f tp id_N
+    - tpr N : ModR &-> Ab, \
+    A &|-> A tpr N, \
+    (f: A -> A') &mapsto f tp id_N.
   $
 ]
 
@@ -229,8 +229,8 @@ $
 #proposition[
   If $R$ is a ring, $M$ is a #rrm and $N$ is a #lrm, then there is a natural $ZZ$-isomorphism
   $
-    tau : M tpr N &-> N tp_(R^op) M \
-    m tp n &|-> n tp m
+    tau : M tpr N &-> N tp_(R^op) M, \
+    m tp n &|-> n tp m.
   $
 ]
 #proof[
@@ -249,8 +249,8 @@ $
 #corollary[
   If $R$ is a commutative ring and $M$, $N$ are $R$-modules, then there is a natural $R$-isomorphism
   $
-    tau: M tpr N &-> N tpr M \
-    m tp n &mapsto n tp m
+    tau: M tpr N &-> N tpr M, \
+    m tp n &mapsto n tp m.
   $
 ]
 <r-tpr>
@@ -270,7 +270,7 @@ $
 #corollary[
   Let $R$ be a commutative ring, and let $M_1, M_2, ..., M_n$ be $R$-modules. Let $sigma in S_n$ (where $S_n$ is the symmetric group of degree $n$), then
   $
-    ( ... (M_1 tpr M_2) tpr ... tpr M_n) iso ( ... (M_sigma(1) tpr M_sigma(2)) tpr ... tpr M_sigma(n))
+    ( ... (M_1 tpr M_2) tpr ... tpr M_n) iso ( ... (M_sigma(1) tpr M_sigma(2)) tpr ... tpr M_sigma(n)).
   $
 ]
 #proof[
@@ -280,8 +280,8 @@ $
 #proposition[
   Given ring $R$ and #lrm $M$, there is a natural $R$-isomorphism
   $
-    phi_M : R tpr M &-> M \
-    r tp m &|-> r m
+    phi_M : R tpr M &-> M, \
+    r tp m &|-> r m.
   $
 ]
 <r-tp-m>
@@ -417,10 +417,10 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 
 #theorem[
   Let $R$, $S$ be rings. Let $A$ be a #rrm, $B$ be an $R$-$S$-bimodule, and $C$ be a right $S$-module. Then we have a canonical isomorphism
-  $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)) $
+  $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)), $
   where for $f : A tpr B -> C$, $a in A$, and $b in B$,
   $
-    tau(f)(a)(b) = f(a tp b)
+    tau(f)(a)(b) = f(a tp b).
   $
 ]
 <tensor-hom>
@@ -438,7 +438,7 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 #corollary[ Let $R$, $S$ be rings and let $B$ be an $R$-$S$-bimodule.
   We have an adjunction
   $
-    (- tpr B) tack.l hom_S (B, -)
+    (- tpr B) tack.l hom_S (B, -),
   $
   where $(- tpr B) : ModR -> ModS$ and $hom_S (B, -) : ModS -> ModR$.
 ]
@@ -451,11 +451,11 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 #theorem[
   Let $A$ be a left $R$-module, $B$ be an $S$-$R$-bimodule, and $C$ be a left $S$-module, then there is a canonical isomorphism
   $
-    hom_S (B tpr A, C) bij hom_R (A, hom_S (B, C))
+    hom_S (B tpr A, C) bij hom_R (A, hom_S (B, C)).
   $
   Thus $(B tpr -): RMod -> SMod$ and $hom_S (B, -): SMod -> RMod$ form an adjunction
   $
-    (B tpr -) tack.l hom_S (B, -)
+    (B tpr -) tack.l hom_S (B, -).
   $
   Hence $(B tpr -)$ preserves colimits and in particular is right exact.
 ]
@@ -475,14 +475,14 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 
 #example[
   Let $R$ be a commutative ring. Given $R$-modules $N$ and $M$, suppose we want to calculate $N tp_R M$, then we can pick the relations and generators of $N$:
-  $ R^(ds J) -> R^(ds I) -> N -> 0 $
+  $ R^(ds J) -> R^(ds I) -> N -> 0. $
   Consider $R^(ds J) -> R^(ds I)$, this homomorphism between free modules can be represented by a (possibly infinite) matrix $a_(i j) in R$. Therefore, we can write
-  $ N = Coker(R^(ds J) rgt((a_(i j))) R^(ds I)) $
+  $ N = Coker(R^(ds J) rgt((a_(i j))) R^(ds I)). $
 
   Notice that the same matrix can also act as $M^(ds J) -> M^(ds I) $, hence
 
   $
-    N tpr M = Coker(R^(ds J) rgt((a_(i j))) R^(ds I)) tpr M iso Coker(R^(ds J) tpr M rgt((a_(i j))) R^(ds I) tpr M) \ iso Coker((R tpr M)^(ds J) rgt((a_(i j))) (R tpr M)^(ds I)) iso Coker (M^(ds J) rgt((a_(i j))) M^(ds I))
+    N tpr M = Coker(R^(ds J) rgt((a_(i j))) R^(ds I)) tpr M iso Coker(R^(ds J) tpr M rgt((a_(i j))) R^(ds I) tpr M) \ iso Coker((R tpr M)^(ds J) rgt((a_(i j))) (R tpr M)^(ds I)) iso Coker (M^(ds J) rgt((a_(i j))) M^(ds I)).
   $
 ]
 
@@ -500,11 +500,11 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 // Assume $R$ is a commutative ring. The functor $- tp_R M$ is left adjoint which implies that it is right exact and commutes with all colimits.
 
 #example[
-  Suppose $I$ is an ideal of $R$ generated by ${x_i}_(i in J)$, then we have #sest $ ses(I, R, R \/ I) $ On the other hand, $ R^(ds J) -> I -> 0 $ and thus
-  $ R^(ds J) rgt((x_j)) R -> R \/ I -> 0 $
+  Suppose $I$ is an ideal of $R$ generated by ${x_i}_(i in J)$, then we have #sest $ ses(I, R, R \/ I). $ On the other hand, $ R^(ds J) -> I -> 0, $ and thus
+  $ R^(ds J) rgt((x_j)) R -> R \/ I -> 0. $
 
   Let $M$ be a left $R$-module, then
-  $ (R over I )tpr M iso Coker (M^(ds J) rgt((x_j)) M) = M over I M $
+  $ (R over I )tpr M iso Coker (M^(ds J) rgt((x_j)) M) = M over I M. $
 ]
 <tensor-ideal>
 // [Check https://math.stackexchange.com/questions/175789/how-to-prove-that-r-i-otimes-r-m-cong-m-im]
@@ -514,7 +514,7 @@ Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 #example[ The *localisation* of a commutative ring $R$ at element $x$ is defined as $R[t] over (t x - 1)$, denoted as $R[x^(-1)]$.
 
   For $R$-module $M$, we have
-  $ R[x^(-1)] tpr M iso M[x^(-1)] $
+  $ R[x^(-1)] tpr M iso M[x^(-1)]. $
 ]
 
 #proof[

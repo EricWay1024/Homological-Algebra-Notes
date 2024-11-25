@@ -100,7 +100,7 @@ In fact, a final object is an empty product and an initial object an empty copro
     ),
   )
 
-  Explicitly, we have for $j, k in {1, 2}$, $ p_j oo i_k = cases(id_(X_j) quad &"if " j = k, 0 quad &"otherwise") $
+  Explicitly, we have for $j, k in {1, 2}$, $ p_j oo i_k = cases(id_(X_j) quad &"if " j = k\,, 0 quad &"otherwise".) $
   // #image("imgs/16.png")
 
   Then we have $ p_1 compose lr((i_1 p_1 plus i_2 p_2)) eq p_1 comma quad p_2 compose lr((i_1 p_1 plus i_2 p_2)) eq p_2. $
@@ -206,10 +206,7 @@ Now we can reconcile the two definitions we have had for zero morphisms.
 ]
 <additive-mono-zero>
 #proof[
-  Take any $X$ and $u : X -> A$, we have
-  $
-    X arrow^u A ->^i B.
-  $
+  Take any $X$ and $u : X -> A$, we have $X arrow^u A ->^i B.$
   $i = 0$, so $i oo u = 0$; but since $i$ is monic, $u = 0$ by @ab-mono.
   Therefore there is a unique (zero) morphism from any $X$ to $A$, so $A$ is final and thus zero.
 ]
@@ -407,11 +404,11 @@ We now introduce the most important member in the family of abelian categories.
 
   ($RMod$ is pre-abelian.) Let $f : A -> B$ be a morphism in $RMod$. Then
   $
-    Ker(f) = {a in A : f(a) = 0}
+    Ker(f) = {a in A : f(a) = 0},
   $
   with $ker(f) : Ker(f) -> A$ being the inclusion map, is a categorical kernel. Also,
   $
-    Coker(f) = B over IM(f)
+    Coker(f) = B over IM(f),
   $
   where $IM(f) = {f(a) in B : a in A}$, with $coker(f) : B -> Coker(f)$ being the quotient map, is a categorical cokernel.
 
@@ -429,7 +426,9 @@ We now introduce the most important member in the family of abelian categories.
 #remark[
   Note that the product and coproduct of a family $(M_i)_(i in I)$ coincide when $I$ is finite but differ when $I$ is infinite:
   $
-    union.sq.big_(i in I) M_i = plus.circle.big_(i in I) M_i = {(m_i)_(i in I) | m_i in M_i, m_i = 0 "for all but finitely many" i},
+    union.sq.big_(i in I) M_i = plus.circle.big_(i in I) M_i = {
+      (m_i)_(i in I) | m_i in M_i, m_i = 0 "for all but finitely many" i
+    },
   $
   $ product_( i in I) M_i = {(m_i)_(i in I) | m_i in M_i}. $
 ]
@@ -762,11 +761,11 @@ In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses
   Inspired by the discussion above, we define $G$ in the following way. We first set $G(R) = P$ and $G(R^(ds I)) = P^(ds I)$. Any morphism $f: R^(ds J) -> R^(ds I)$ can be represented by a (possibly infinite) matrix with entries $a_(i j) in R$ for all $i in I$ and $j in J$. However, notice that $R = End(A) (P)$ by definition and thus the same matrix $(a_(i j))_(i in I, j in J)$ can also be seen as a morphism $P^(ds J) -> P^(ds I)$, which is defined to be $G(f)$.
   Now, for any $R$-module $M$, we can find a presentation
   $
-    R^(ds J) ->^f R^(ds I) -> M -> 0
+    R^(ds J) ->^f R^(ds I) -> M -> 0.
   $
   Under $G$, this becomes
   $
-    P^(ds J) ->^(G(f)) P^(ds I) -> G(M) -> 0
+    P^(ds J) ->^(G(f)) P^(ds I) -> G(M) -> 0,
   $
   where we define $G(M) = Coker(G(f))$. It can be verified that $G$ is a functor.
   // TODO ?
@@ -803,11 +802,10 @@ In other words, $P$ is projective if for any #sest $ses(X, Y, Z)$ in $cA$, $ ses
   Since $F G$ preserves cokernels, we see that $F G(M) iso M$. Hence $F G$ is naturally isomorphic to the identity functor of $ModR$.
 
   For $G F: cA -> cA$, we have
-  $G F (P) = G( R) = P
-$,
+  $G F (P) = G( R) = P$,
   so $ G F (P^(ds I)) =P^( ds I)$. Now take any $X in cA$, since $P$ is a generator, we can find
   $
-    P^(ds J) -> P^(ds I) -> X -> 0
+    P^(ds J) -> P^(ds I) -> X -> 0.
   $
   A similar argument as before gives the result.
   // #TODO review
@@ -865,8 +863,8 @@ This theorem indicates that we can embed an abstract category into a concrete on
   // #image("imgs/23.png")
 
   such that the rows are exact, then there is an exact sequence
-  $ Ker f -> Ker g -> Ker h attach(->, t: diff) Coker f -> Coker g -> Coker h $
-  where the *connecting (homo)morphism* $diff$ is given by a well-defined formula $ diff(c') = i^(-1) g p'^(-1) (c') + IM(f) $ where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on.
+  $ Ker f -> Ker g -> Ker h attach(->, t: diff) Coker f -> Coker g -> Coker h. $
+  Here, the *connecting (homo)morphism* $diff$ is given by a well-defined formula $ diff(c') = i^(-1) g p'^(-1) (c') + IM(f), $ where $p'^(-1)$ means finding some element $b' in B'$ such that $p'(b') = c'$ and so on.
   Further, if $A' -> B'$ is monic, so is $Ker f -> Ker g$.
   If $B -> C$ is epic, so is $Coker g -> Coker h$.
 ]
