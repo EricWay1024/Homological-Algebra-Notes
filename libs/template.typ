@@ -111,7 +111,10 @@
 
 #let fw(doc) = box(width: 100%)[#doc]
 
-#let proof(title: "Proof", term) = block(width: 100%, breakable: true)[_#title._ #term #h(1fr) $qed$]
+#let proof(title: "Proof", term) = block(
+  width: 100%,
+  breakable: true,
+)[_#title._ #term #h(1fr) $qed$]
 
 #let project(title: "", authors: (), date: none, body) = {
   // Set the document's basic properties.
@@ -147,6 +150,6 @@
   body
 }
 
-#import color_style : *
+#import color_style: *
 
 

@@ -14,7 +14,6 @@
   fill: rgb("#e8e8f8"),
   breakable: true,
   separator: [#h(0em).#h(0.2em)],
-
 )
 
 #let proposition = thmbox(
@@ -39,7 +38,6 @@
   stroke: rgb("#ffaaaa") + 1pt,
   breakable: true,
   separator: [#h(0em).#h(0.2em)],
-
 )
 
 #let remark = thmplain(
