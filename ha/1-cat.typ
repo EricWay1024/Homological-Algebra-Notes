@@ -34,7 +34,7 @@ This section is a crash course in category theory. The reader is advised to take
 #example[
   A *discrete category* $cC$ is one where 
   $
-    hom_cC (X, Y) = cases({id_X} quad &X = Y, nothing quad &X != Y)
+    hom_cC (X, Y) = cases({id_X} quad &X = Y\,, nothing quad &X != Y.)
   $
   It does not contain more information than $ob cC$, so it can be simply regarded as a collection of objects, or a set when $cC$ is small.
 ]
@@ -257,7 +257,7 @@ $ product_(i in I) X_i = {(x_i)_(i in I) | x_i in X_i} $ and $product.co_(i in I
 #proof[
  For any $C_i$, there exists $pi_i : product C_i -> C_i$ satisfying the universal property. Define $phi: Hom(C) (A, product C_i) -> product Hom(C) (A, C_i)$ as 
 
- $ f |-> (pi_i compose f)_i = (pi_1 compose f, ..., pi_n compose f) $
+ $ f |-> (pi_i compose f)_i = (pi_1 compose f, ..., pi_n compose f). $
   #align(center, commutative-diagram(
     node((0, 0), [$A$]),
     node((0, 1), [$product C_i$]),
@@ -294,13 +294,13 @@ Any $(g_i)_i in product Hom(C) (A, C_i)$ can be factorised as $(pi_i compose f')
   Let $cC$, $cD$ be categories.
   A *functor* $F: cC -> cD$ consists of
   - A map of objects $ob cC -> ob cD$;
-  - #fw[For every pair objects $C_1, C_2 in cC$, a map of morphisms $ Hom(C) (C_1, C_2) -> Hom(D) (F(C_1), F(C_2)) $ ]
+  - #fw[For every pair objects $C_1, C_2 in cC$, a map of morphisms $ Hom(C) (C_1, C_2) -> Hom(D) (F(C_1), F(C_2)), $ ]
   subject to preserving morphism composition and identity morphisms. ]
 #definition[
   Now we can define $bd("Cat")$, the category of all (small) categories, where $ob bd("Cat")$ are small categories and $hom_Cat (cC, cD)$ are functors between $cC$ and $cD$. 
 ]
 #definition[
-  Suppose $F, G: cC -> cD$, then a *natural transformation* $alpha: F => G$ is defined by a collection of morphisms in $cD$ indexed by $x in ob cC$: $ {alpha_x: F(x) -> G(x)}_(x in ob cC) $ where the diagram commutes:
+  Suppose $F, G: cC -> cD$, then a *natural transformation* $alpha: F => G$ is defined by a collection of morphisms in $cD$ indexed by $x in ob cC$: $ {alpha_x: F(x) -> G(x)}_(x in ob cC), $ where the diagram commutes:
   // https://tikzcd-typst-editor.pages.dev/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEAKADwEoQAvqXSZc+QigCM5KrUYs2AcR78hI7HgJEyk2fWatEHHgHJVwkBg3ii03dX0Kjy7mcGyYUAObwioAGYAThAAtkhkIDgQSJJqIEGhMdRRSADMDvKGIMr+5gHBYYgRKYgATBkGbFy5ghYJheWR0YipAhQCQA
 #align(center, commutative-diagram(
   node((0, 0), [$F(x)$]),
@@ -328,7 +328,7 @@ In $Cat$, the hom-sets are not only sets but also categories, which means that $
 
 == Adjoint Functors 
 #definition[
-  Functors $L : cA arrows.rl cB : R$ are *adjoint* if for all $A in cA, B in cB$ there exists a bijection $ tau_(A B) : Hom(B)(L(A), B) bij Hom(A) (A, R(B)) $ such that for any $f: A-> A'$ and $g: B-> B'$, the diagram commutes:
+  Functors $L : cA arrows.rl cB : R$ are *adjoint* if for all $A in cA, B in cB$, there exists a bijection $ tau_(A B) : Hom(B)(L(A), B) bij Hom(A) (A, R(B)) $ such that for any $f: A-> A'$ and $g: B-> B'$, the diagram commutes:
 //  #image("imgs/10.png")
 // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAAkIBbACgCEAlAAIeAGR4BBAOQDSQwQJABfUuky58hFAEZyVWoxZtOvQSPETZ8xSrXY8BIgCY91es1aIO3fsLGSrPhllVRAMe00iMm19dyMvEwCRaTkAJV8bUPCNRx1SGLdDT29eS2S0jJC7HK1kFwKDD2MfMskKoIEbfRgoAHN4IlAAMwAnbiQyEBwIJG1bEFHxxF0pmcQnecWuCepppABmQqavHDomAH1JKUEqhbHt5d21gBYj+Kmzy4lrW62kF1WSAArG9iqcLpJ5MFNvcDk8kM8YUtXoDEEClBQlEA
 #align(center, commutative-diagram(
@@ -365,12 +365,12 @@ Equivalently, $tau$ is a natural isomorphism between $Hom(B) (L(-), -)$ and $Hom
 
 
 #example[
-  $"Free"$ is the left adjoint of $"Forget"$. For example, we define the functors between $veck$ and $Set$: $ "Forget": veck &-> Set \ (V, +, dot) &|-> V $  $ "Free" :  Set &-> veck \ X &|-> k[X] $
+  $"Free"$ is the left adjoint of $"Forget"$. For example, we define the functors between $veck$ and $Set$: $ "Forget": veck &-> Set, \ (V, +, dot) &|-> V; $  $ "Free" :  Set &-> veck, \ X &|-> k[X]. $
 
 Then we have:
-$ hom_(veck)(k[X], W) &iso hom_(Set) (X, "Forget"(W))\
-T &|-> T|_X \
-"linearly extended" f &arrow.l.bar f
+$ hom_(veck)(k[X], W) &iso hom_(Set) (X, "Forget"(W)),\
+T &|-> T|_X, \
+"linearly extended" f &arrow.l.bar f.
 $
 
 
