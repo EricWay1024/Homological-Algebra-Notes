@@ -391,7 +391,8 @@ The main result is the following.
   Combining the last two equations with @ses-1 gives the result.
 ]
 #remark[
-  These are the games you play with the machine.
+  This theorem and its proof demonstrates how the long exact sequences and derived functors that we have developed are put into use. The Künneth Formula and the Universal Coefficient Theorem that follows are important results heavily used in algebraic topology. As Kobi put it in the lecture,
+  "_These are the games you play with the machine._"
 ]
 
 In particular, we can consider the case of $Ab$, where we have the following:
