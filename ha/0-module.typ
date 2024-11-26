@@ -5,107 +5,112 @@
 <module-recap>
 
 #definition[
-    Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with a map $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
-    $ r(m_1 + m_2) &= r m_1 + r m_2, \
-      (r_1 + r_2) m &= r_1 m + r_2 m, \
-      (r_1 r_2) m &= r_1 (r_2 m), \
-      1_R dot m &= m. $
-    
-    A *right $R$-module* is defined similarly, but with multiplication on the right, namely $m r$. 
-    
-    If $R$ is a commutative ring, then left and right $R$-modules are the same, and we call them *$R$-modules*.
+  Let $R$ be a ring. A *left $R$-module* $M$ is an abelian group with a map $R times M -> M$ (called multiplication), denoted as $(r, m) |-> r dot m = r m$, which satisfies:
+  $
+    r(m_1 + m_2) &= r m_1 + r m_2, \
+    (r_1 + r_2) m &= r_1 m + r_2 m, \
+    (r_1 r_2) m &= r_1 (r_2 m), \
+    1_R dot m &= m.
+  $
+
+  A *right $R$-module* is defined similarly, but with multiplication on the right, namely $m r$.
+
+  If $R$ is a commutative ring, then left and right $R$-modules are the same, and we call them *$R$-modules*.
 ]
 
-// Another way to understand the definition is to think of $R$ acting on an abelian group $M$, where for each $r in R$ we define a group homomorphism $M -> M$, denoted as $m |-> r dot m = r m$. 
+// Another way to understand the definition is to think of $R$ acting on an abelian group $M$, where for each $r in R$ we define a group homomorphism $M -> M$, denoted as $m |-> r dot m = r m$.
 
-//  Obviously  a left $R$-module is the same as a right $R^op$-module. 
+//  Obviously  a left $R$-module is the same as a right $R^op$-module.
 
 #definition[
-    Let $M$ be a #lrm. A *submodule* $N$ of $M$ satisfies:
-    - $N$ is a subgroup of $(M, +)$;
-    - $r n in N$ for all $r in R$ and $n in N$.
+  Let $M$ be a #lrm. A *submodule* $N$ of $M$ satisfies:
+  - $N$ is a subgroup of $(M, +)$;
+  - $r n in N$ for all $r in R$ and $n in N$.
 
-    In this case we denote $N subset M$.
+  In this case we denote $N subset M$.
 ]
 
 #definition[
-    Let $R$ be a ring. Let $M_1, M_2$ be left $R$-modules. A map $phi : M_1 -> M_2$ is a *module homomorphism* if it satisfies:
-    $
-        phi(x + y) &= phi(x) + phi(y), \
-        phi(r x) &= r phi(x).
-    $
-    for all $x, y in M_1$ and $r in R$.
+  Let $R$ be a ring. Let $M_1, M_2$ be left $R$-modules. A map $phi : M_1 -> M_2$ is a *module homomorphism* if it satisfies:
+  $
+    phi(x + y) &= phi(x) + phi(y), \
+    phi(r x) &= r phi(x).
+  $
+  for all $x, y in M_1$ and $r in R$.
 ]
 
 // Compositions of module homomorphisms are still module homomorphisms, and hence we obtain the category of left $R$-modules, denoted as $RMod$. Similarly, we have the category of right $R$-modules, denoted as $ModR$.
 
 
 // For all $M, M' in RMod$, we see that  $ homr(M, M')$ is an abelian group.
-// [Remark 6.1.8 Li]. 
+// [Remark 6.1.8 Li].
 // Also, $endr(M)$ is a ring, where the multiplication is defined as composition. Therefore any right $R$-module is also a left $D := endr(M)$-module.
 // [p. 205, Li].
 
 #definition[
-    The *kernel* of a module homomorphism $phi : M_1 -> M_2$ is defined as 
-    $ Ker(phi) := {x in M_1 : phi(x) = 0}. $
-    The *image* of $phi$ is defined as 
-    $ IM(phi) := {phi(x) : x in M_1}. $
+  The *kernel* of a module homomorphism $phi : M_1 -> M_2$ is defined as
+  $ Ker(phi) := {x in M_1 : phi(x) = 0}. $
+  The *image* of $phi$ is defined as
+  $ IM(phi) := {phi(x) : x in M_1}. $
 
-    It can be shown that $Ker(phi) subset M_1$ and $IM(phi) subset M_2$.
+  It can be shown that $Ker(phi) subset M_1$ and $IM(phi) subset M_2$.
 ]
 
 #definition[
-    Let $N subset M$ be #lrms. Define a #lrm on the quotient group $M over N$ with
-    $ r(x + N) = r x + N $
-    for all $r in R$ and $x in M$.
-    Then the *quotient map* $M -> M over N$ is a module homomorphism and $M over N$ is 
-    a *quotient module*. 
+  Let $N subset M$ be #lrms. Define a #lrm on the quotient group $M over N$ with
+  $ r(x + N) = r x + N $
+  for all $r in R$ and $x in M$.
+  Then the *quotient map* $M -> M over N$ is a module homomorphism and $M over N$ is
+  a *quotient module*.
 ]
 
 #definition[
-    Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x. $
+  Let $X$ be a set. The *free module* with basis $X$ is defined as $ R^(ds X) = plus.circle.big_(x in X) R x. $
 
-    We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x. $
+  We have the inclusion map $i: X -> R^(ds X)$ between sets: $ i(x) = 1_R dot x. $
 
-    An element $m in R^(ds X) $ can be written as 
-    $ m = sum_(x in X) a_x x, $
-    where only finitely many $a_x in R$ are non-zero.
+  An element $m in R^(ds X) $ can be written as
+  $ m = sum_(x in X) a_x x, $
+  where only finitely many $a_x in R$ are non-zero.
 ]
 
 #proposition[
-    For any $R$-module $M$ and map between sets $phi.alt:  X -> M$, there exists a unique module homomorphism $phi : R^(ds X) -> M$ that make the following commute: 
+  For any $R$-module $M$ and map between sets $phi.alt:  X -> M$, there exists a unique module homomorphism $phi : R^(ds X) -> M$ that make the following commute:
 
-    // #align(center,image("../imgs/2023-10-28-21-16-04.png",width:30%))
-    // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAEoA9ABQAPCACcABOwCU3XiAzY8BIqOHj6zVohABZbuJhQA5vCKgAZiogBbJGRA4IJGEed08fRD8ApAAmanMpKzQACywAOkYcHVDvIOooxFiQBiwwSxAoOjgkhxA4yTKYRSw4HDgAQjU1Oy4gA
-#align(center, commutative-diagram(
-    node-padding: (50pt, 50pt),
-  node((0, 0), [$X$]),
-  node((0, 1), [$R^(xor X)$]),
-  node((1, 1), [$M$]),
-  arr((0, 0), (0, 1), []),
-  arr((0, 0), (1, 1), [$phi.alt$]),
-  arr((0, 1), (1, 1), [$exists! phi $], "dashed"),
-))
+  // #align(center,image("../imgs/2023-10-28-21-16-04.png",width:30%))
+  // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAEoA9ABQAPCACcABOwCU3XiAzY8BIqOHj6zVohABZbuJhQA5vCKgAZiogBbJGRA4IJGEed08fRD8ApAAmanMpKzQACywAOkYcHVDvIOooxFiQBiwwSxAoOjgkhxA4yTKYRSw4HDgAQjU1Oy4gA
+  #align(
+    center,
+    commutative-diagram(
+      node-padding: (50pt, 50pt),
+      node((0, 0), [$X$]),
+      node((0, 1), [$R^(xor X)$]),
+      node((1, 1), [$M$]),
+      arr((0, 0), (0, 1), []),
+      arr((0, 0), (1, 1), [$phi.alt$]),
+      arr((0, 1), (1, 1), [$exists! phi$], "dashed"),
+    ),
+  )
 ]
 
 #definition[
-    Let $X$ be a subset of $R$-module $M$ and let $i: X->M$ be the inclusion map. We have the corresponding map $sigma: R^(ds X) -> M$. We say
-    - $X$ is *linear independent* or *free* if $sigma$ is injective and $X$ is *linear dependent* otherwise;
-    - $X$ spans or generates $M$ if $sigma$ is surjective, in which case $X$ is a *generating set* of $M$. A module with a finite generating subset is called a *finitely generated module*.
+  Let $X$ be a subset of $R$-module $M$ and let $i: X->M$ be the inclusion map. We have the corresponding map $sigma: R^(ds X) -> M$. We say
+  - $X$ is *linear independent* or *free* if $sigma$ is injective and $X$ is *linear dependent* otherwise;
+  - $X$ spans or generates $M$ if $sigma$ is surjective, in which case $X$ is a *generating set* of $M$. A module with a finite generating subset is called a *finitely generated module*.
 
-    A linear independent generating subset of $M$ is called a *basis* of $M$, and a module with a basis is called a *free module*.
-    // #align(center,image("imgs/2023-10-28-21-19-38.png",width:100%))
+  A linear independent generating subset of $M$ is called a *basis* of $M$, and a module with a basis is called a *free module*.
+  // #align(center,image("imgs/2023-10-28-21-19-38.png",width:100%))
 ]
 
 
 
 #corollary[
-    Any $R$-module $M$ is isomorphic to a quotient of a free module. 
+  Any $R$-module $M$ is isomorphic to a quotient of a free module.
 ]
-    <module-generator>
+<module-generator>
 
 // #proof[
-//     Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$. 
+//     Take some subset $X$ of $M$ and inclusion map $i : X -> M$, we have the corresponding homomorphism $sigma: R^(ds X) -> M$ with $im(sigma) iso R^(ds X) over ker(sigma)$. If we take $X = M$ (or any generating set of $M$), then $im(sigma) = M$.
 // ]
 
 // #remark[
@@ -114,9 +119,9 @@
 // ]
 
 #proposition[
-    Any submodule of a free module over a PID is free. 
+  Any submodule of a free module over a PID is free.
 ]
-    <sub-pid>
+<sub-pid>
 // #proof[
 //     TODO
 // ]
@@ -170,11 +175,11 @@
 
 // We have maps of $G$-sets that preserve the action of $G$. We also have homomorphism of modules (linear transformation). Notice that for a left module, a homomorphism $f: M-> N$ of modules should be written on the right: $m f in N$ so that $(r m) f = r (m f)$.
 
-// We have subgroups. We also have subrings. Normal subgroups; ideals. But we have left, right and 2-sided ideals. A 2-sided ideal is a kernel of homomorphism of rings. 
+// We have subgroups. We also have subrings. Normal subgroups; ideals. But we have left, right and 2-sided ideals. A 2-sided ideal is a kernel of homomorphism of rings.
 
 // #definition[An ideal is closed under addition and for any $i in I, r in R$, we have $i r , r i in I$.]
 
-// We also have left or right submodules. A left ideal is just a submodule of $R$ considered as a left module. 
+// We also have left or right submodules. A left ideal is just a submodule of $R$ considered as a left module.
 
 // We have symmteric groups $S_n$. We also have symmetric groups of free modules $R^n = R plus.circle R plus.circle ...$ and the set of linear transformations of $R^n$ which is $M_n (R)$, $n times n$ matrices.
 
