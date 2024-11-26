@@ -98,8 +98,8 @@ For most of our homological algebra to work, an abelian category needs to have e
       arr((2, 1), (2, 2), []),
       arr((0, 1), (2, 1), [$f$], curve: 30deg),
       arr((1, 1), (2, 1), [$f'$], label-pos: -1em),
-      arr((1, 1), (2, 0), [$alpha'$], "dashed"),
-      arr((0, 1), (2, 0), [$alpha$], curve: -30deg, "dashed"),
+      arr((1, 1), (2, 0), [$alpha'$], "dashed", label-pos: right),
+      arr((0, 1), (2, 0), [$alpha$], curve: -30deg, "dashed", label-pos: right),
       arr((0, 1), (1, 1), [$i$], label-pos: -1em),
     ),
   )
@@ -214,7 +214,7 @@ For most of our homological algebra to work, an abelian category needs to have e
 ]
 
 #definition[
-  Let $R$ be an integral domain. A $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be "divided"
+  Let $R$ be an integral domain. An $R$-module $M$ is called *divisible* if, for all $r in R without {0}$, every element $m$ of $M$ can be "divided"
   by $r$, in the sense that there exists an element $m^prime$ in $M$ such that
   $m eq r m^prime$.
   Equivalently, the multiplication by any non-zero $r in R$ defines a surjective map from $M$ to $M$.

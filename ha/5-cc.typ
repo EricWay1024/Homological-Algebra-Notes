@@ -8,7 +8,7 @@
 Let $cA$ be an abelian category.
 
 #definition[
-  A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_n oo d_(n-1) = 0$, where $d_n$ are called *differentials*.
+  A *chain complex* $Ccx$ in $cA$ is a family ${C_n}_(n in ZZ)$ of objects in $cA$ with morphisms $d_n : C_n -> C_(n-1)$ such that $d_(n-1) oo d_(n) = 0$, where $d_n$ are called *differentials*.
   The *$n$-cycles* of $Ccx$ are defined as $  Z_n (C) := Ker d_n $ and
   the *$n$-boundaries* are defined as $ B_n (C) := IM d_(n+1). $
 
@@ -75,7 +75,7 @@ Let $cA$ be an abelian category.
   A chain map $u_cx : Ccx -> Dcx$ induces a morphism $H_n (u) : H_n (C) -> H_n (D). $
 ]
 #proof[
-  It suffices to assume $cA = RMod$. First we show that $u_n : C_n -> D_n$ sends boundaries to boundaries. Take boundary $b in C_n$, then there exists $c in C_(n+1)$ such that $d(c) = b$. Thus $u(b) = u d(c) = d u (c)$, showing that $u(b)$ is a boundary in $D_n$.
+  It suffices to show the case $cA = RMod$. First we show that $u_n : C_n -> D_n$ sends boundaries to boundaries. Take boundary $b in C_n$, then there exists $c in C_(n+1)$ such that $d(c) = b$. Thus $u(b) = u d(c) = d u (c)$, showing that $u(b)$ is a boundary in $D_n$.
   Next we show that $u_n : C_n -> D_n$ sends cycles to cycles. Take cycle $z in C_n$ such that $d(z) = 0$. Then $d u(z) = u d(z) = u(0) = 0$, showing that $u(z)$ is a cycle in $D_n$.
   Therefore, $u_n$ induces a function $H_n (C) -> H_n (D)$.
 ]
@@ -324,7 +324,7 @@ Therefore, we can form short exact sequences with chain complexes, and it turns 
   $
     A_n / (d A_(n+1)) -> B_n / (d B_(n+1)) -> C_n / (d C_(n+1)) -> 0
   $
-  is exact, where $d A_(n+1) = IM d$; if we write the kernels, we get
+  is exact, where $d A_(n+1) = IM d_A$; if we write the kernels, we get
   $
     0-> Z_(n-1)(A) -> Z_(n-1)(B) -> Z_(n-1)(C)
   $
@@ -439,11 +439,11 @@ Therefore, we can form short exact sequences with chain complexes, and it turns 
   )
 ]
 #proof[@rotman[Theorem 6.13].
-  Since $H_n$ is a functor, the leftmost two squares commute. Take $[c] in H_n (C)$ for some $c in Z_n (C)$, we need to show that $alpha_ast diff ([c]) = diff' gamma_ast ([c])$.
+  Since $H_n$ is a functor, the leftmost two squares commute. Taking $[c] in H_n (C)$ for some $c in Z_n (C)$, we need to show that $alpha_ast diff ([c]) = diff' gamma_ast ([c])$.
 
   Let $b in B_n$ be a lifting of $c$, i.e., $g(b) = c$. Then $diff([c]) = [a]$, where $f(a) = d_B (b)$. Therefore, $alpha_ast diff([c]) = [alpha (a)]$.
 
-  On the other hand, since $gamma$ is a chain map, we have $g' beta (b)= gamma g (b) = gamma (c)$. We see that $b' := beta(b) in B'_n$ is a lifting of $c'$ because $g'(b') = g'(beta(b)) = gamma(g(b)) = gamma(c) = c'$. Hence $diff' gamma_ast ([c]) = diff' ([gamma(c)]) = [a']$, where $f'(a') = d_(B') (b') = d_(B') (beta (b))$.
+  On the other hand, since $gamma$ is a chain map, we have $g' beta (b)= gamma g (b) = gamma (c)$. We see that $b' := beta(b) in B'_n$ is a lifting of $c':=gamma(c)$ because $g'(b') = g'(beta(b)) = gamma(g(b)) = gamma(c) = c'$. Hence $diff' gamma_ast ([c]) = diff' ([gamma(c)]) = [a']$, where $f'(a') = d_(B') (b') = d_(B') (beta (b))$.
 
   But
   $
@@ -466,7 +466,7 @@ Therefore, we can form short exact sequences with chain complexes, and it turns 
   If each $P_i$ is projective, then we call it a *projective resolution*.
   If $cA$ is $RMod$ or $ModR$ and each $P_i$ is a free module, then we call it a *free resolution*.
 
-  In the same way, we define *right resolutions* and *injective resolutions*, only reversing all the arrows.
+  In the same way, we define *right resolutions* and *injective resolutions* by reversing all the arrows.
 ]
 #proposition[
   $P_cx -> M$ is a resolution if and only if the following chain map $f: P_cx -> M[0]$
@@ -563,7 +563,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
   )
   Let $M in cA$.
   By definition of having enough projectives, let $epsilon_0: P_0 -> M$ be an epimorphism where $P_0$ is projective.
-  Let $M_0 := Ker epsilon_0$, and we have short exact sequence
+  Let $M_0 := Ker epsilon_0$, and we have the short exact sequence
 
   $
     0 -> M_0 -> P_0 -> M -> 0.
@@ -577,7 +577,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
   $
     d_1(P_1) = M_0 = Ker epsilon_0.
   $
-  Thus the chain in exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
+  Thus the chain is exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
   // Set $d_0 = epsilon_0$.
   // Suppose we now have monomorphism $i_(n-1) : M_(n-1) -> P_(n-1)$ and $d_(n-1) : P_(n-1) -> P_(n-2)$
   // By induction, givenlet $epsilon_n: P_n -> M_(n-1)$ be an epimorphism, where $P_n$ is projective, and let $M_n = ker epsilon_n$. Thus we have
