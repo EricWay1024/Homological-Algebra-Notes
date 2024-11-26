@@ -103,8 +103,8 @@ From the above proof, we also see that $diff(id_A) in Ext^1 (A, B)$ is the obstr
 #theorem[
   Given $R$-modules $A$ and $B$, the map
   $
-    Theta: e(A, B) &-> Ext_R^1 (A, B) \
-    [ses(B, X, A)] &mapsto diff(id_A)
+    Theta: e(A, B) &-> Ext_R^1 (A, B), \
+    [ses(B, X, A)] &mapsto diff(id_A),
   $
   is a bijection, and split extensions correspond to $0 in Ext_R^1 (A, B)$.
 ]
@@ -218,10 +218,10 @@ When a set $X$ has a bijection with the underlying map of a group $G$, then in g
     Y eq X^(prime prime) / lr({lr((i_1 lr((b)) comma minus i_2 lr((b)))) colon b in B}).
   $ Then the sequence $ 0 arrow.r B arrow.r^i Y arrow.r^pi A arrow.r 0 $ is
   called the *Baer sum* of $xi$ and $xi^prime$, where we have maps
-  $ i colon B &arrow.r Y \ b &arrow.r.bar lr((i_1 lr((b)) comma 0)) $
+  $ i colon B &arrow.r Y, \ b &arrow.r.bar lr((i_1 lr((b)) comma 0)) $
   and
   $
-    pi colon Y &arrow.r A \ lr((x_1 comma x_2)) &arrow.r.bar pi_1 lr((x_1)) plus pi_2 lr((x_2)).
+    pi colon Y &arrow.r A, \ lr((x_1 comma x_2)) &arrow.r.bar pi_1 lr((x_1)) plus pi_2 lr((x_2)).
   $
 ]
 

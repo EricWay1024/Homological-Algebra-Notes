@@ -32,7 +32,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   $
   and
   $
-    0 -> Hom(A) (M, B) -> Hom(A) (L, B) -> Hom(A) (K, B) -> \ Ext_cA^1 (M, B) -> Ext_cA^1 (L, B) -> Ext_cA^1 (K, B) -> ...
+    0 -> Hom(A) (M, B) -> Hom(A) (L, B) -> Hom(A) (K, B) -> \ Ext_cA^1 (M, B) -> Ext_cA^1 (L, B) -> Ext_cA^1 (K, B) -> dots.
   $
 ]
 #proof[
@@ -55,7 +55,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
 
   (4) $=>$ (2). Let $ses(A', A, A'')$ be a short exact sequence in $cA$, which induces the #lest
   $
-    0 -> Hom(A) (A', B) -> Hom(A) (A, B) -> Hom(A) (A'', B) -> Ext^1_cA (A', B) -> ...
+    0 -> Hom(A) (A', B) -> Hom(A) (A, B) -> Hom(A) (A'', B) -> Ext^1_cA (A', B) -> dots.
   $
   Since $Ext^1_cA (A', B) = 0$ by assumption, $Hom(A) (-, B)$ is an exact functor.
 ]
@@ -146,7 +146,7 @@ In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mappi
   with differential#footnote[In @tot-cone there is an explanation for this definition.] $ d(b, c) = (-d(b), d(c) - f(b)) $ for $b in B_(n-1)$ and $c in C_n$.
   We could also write the differential in the form of a matrix:
   $
-    mat(-d_B, 0; -f, d_C) : vec(B_(n-1), C_n) -> vec(B_(n-2), C_(n-1))
+    mat(-d_B, 0; -f, d_C) : vec(B_(n-1), C_n) -> vec(B_(n-2), C_(n-1)).
   $
 
   Dually, let $g : B^cx -> C^cx$ be a cochain map, then the mapping cone of $g$ is the cochain complex $cone(g)^cx$ given by
@@ -159,7 +159,7 @@ In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mappi
 #lemma[
   Let $f: B_cx -> C_cx$ be a chain map. Then there is a long exact sequence in homology
   $
-    ... -> H_(n+1) (cone(f)) -> H_n (B) ->^diff H_n (C) -> H_n (cone(f)) -> ...
+    ... -> H_(n+1) (cone(f)) -> H_n (B) ->^diff H_n (C) -> H_n (cone(f)) -> ...,
   $
   where the connecting morphism
   $diff = f_ast $.
@@ -564,16 +564,18 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
   // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
   (We drop the dots for chain complexes in this proof.)
   Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$.
-  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi): $ epsilon tp id_Q: P tpr Q -> A tpr Q \ id_Q tp eta: P tpr Q -> P tpr B $ which induce chain maps on the total complexes:
+  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi): 
+  $ epsilon tp id_Q: P tpr Q -> A tpr Q, \ id_Q tp eta: P tpr Q -> P tpr B, $ 
+  which induce chain maps on the total complexes:
   $
-    f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q \
-    g : Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B
+    f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q, \
+    g : Tot^xor (P tpr Q) -> Tot^xor (P tpr B) = P tpr B.
   $
   We claim that $f$ and $g$
   are quasi-isomorphisms, which would give isomorphisms on homology and thus prove the result, i.e.
 
-  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B) $
-  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (P tpr B) = L_ast (- tpr B ) (A) $
+  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (A tpr Q) = L_ast (A tpr - ) (B), $
+  $ H_ast (Tot^xor (P tpr Q)) iso H_ast (P tpr B) = L_ast (- tpr B ) (A). $
 
   Now we form a double complex $C$, obtained from $P tpr Q$ by adding $A tpr Q$ in the column $p = -1$ using the augmentation $epsilon: P_0 -> A$,
 
@@ -616,7 +618,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
   where $C_(-1, q) = A tp Q_q$ and $C_(p, q) = P_p tp Q_q$ for any $p, q >= 0$.
   Then
   $
-    (Tot^xor (C)[-1])_n = Tot^xor (C)_(n-1) = Tor^xor (P tpr Q)_(n-1) xor (A tp Q_(n))
+    (Tot^xor (C)[-1])_n = Tot^xor (C)_(n-1) = Tor^xor (P tpr Q)_(n-1) xor (A tp Q_(n)).
   $
 
   Meanwhile, the mapping cone of $f : Tot^xor (P tpr Q) -> A tpr Q $ has
@@ -637,13 +639,13 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
   Given a chain complex $(P_cx, d^((P)))$ and a cochain complex $(I^cx, d_((I)))$, we can form the *Hom double complex* $ hom(P_cx, I^cx) = {hom (P_p, I^q)}_(p, q) $
   with differentials#footnote[Here we alternate the signs for adjacent rows (instead of adjacent columns, as in the tensor product double complex). This sign convention, following @notes[p. 76], is different from that in @weibel[p. 62].]
   $
-    d^h_(p, q) (f) &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , I^q) \ d^v_(p, q) (f) &= d_((I))^q oo f in hom (P_p, I^(q+1))
+    d^h_(p, q) (f) &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , I^q), \ d^v_(p, q) (f) &= d_((I))^q oo f in hom (P_p, I^(q+1))
   $
   for $f in hom ( P_p , I^q )$.
 
   Then we define the *Hom cochain complex*#footnote[@weibel[p. 62] writes this as $Tor^Pi (hom (P, I))$, but as we will see in this case any diagonal slice has only finite terms, so their product and direct sum are the same.] as
 
-  $ Tot^xor (hom(P, I)) $
+  $ Tot^xor (hom(P, I)). $
 ]
 
 An (anticommutative) diagram for the Hom double complex is as follows. The placeholder in function compositions is written as $square$ (instead of $-$ as in most parts of these notes) so that it is not confused with the minus sign. Note particularly the signs and indices in the horizontal differentials. Also note that each row and each column is a cochain complex.
@@ -734,7 +736,7 @@ An (anticommutative) diagram for the Hom double complex is as follows. The place
   Another confusion that can easily arise from a non-canonical ordering is how to form the corresponding total complex.
   Apart from converting the diagram to a canonically ordered one by reflection, a simple method is to select any object $A$ in the grid and draw a line $l$ connecting the arrowheads of the two arrows departing from $A$. Then every "diagonal slice", whose direct sum is a term of the total complex, must be parallel to this line $l$. This is simply because each arrow must point from one diagonal slice to another. For example, each diagonal slice of the Hom double complex has a distinct colour in the above diagram, and hence we see
   $
-    Tot^xor (hom (P, I))^n = plus.circle.big_(p + q = n) hom(P_p, I^q)
+    Tot^xor (hom (P, I))^n = plus.circle.big_(p + q = n) hom(P_p, I^q).
   $
   This total complex is a _cochain_ complex#footnote[In fact, whether a total complex is a chain complex or a cochain complex can seem arbitrary, because this actually depends on how we index the diagonals. Here we see the Hom total complex as a cochain complex because it is more convenient in later proofs.
 // because later on we would like to establish an isomorphism between the total complex and the cone complex of a cochain map (which is a cochain complex).
@@ -752,14 +754,14 @@ An (anticommutative) diagram for the Hom double complex is as follows. The place
 #endlec(11)
 
 #theorem([Balancing of $Ext$])[ For all $n$,
-  $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A) $
+  $ Ext^n_R (A, B) = R^n hom_R (A, -) (B) iso R^n hom_R (-, B) (A). $
 ]
 <balance-ext>
 #proof[@weibel[Theorem 2.7.6, p.63].
   // #align(center,image("../imgs/2023-11-23-03-27-44.png",width:80%))
   Take projective resolution $P_cx ->^epsilon A$ and injective resolution $B ->^eta I^cx$. We can view $A$ and $B$ as complexes concentrated at degree $0$. We can form double cochain complexes $hom(P, I)$, $hom(A, I)$ and $hom(P, B)$. As in the proof of @balance-tor, we need to show the maps on Hom cochain complexes
   $
-    f: hom(A, I) -> Tot^xor ( hom(P, I)) \ g: hom(P, B) -> Tot^xor (hom(P, I))
+    f: hom(A, I) -> Tot^xor ( hom(P, I)), \ g: hom(P, B) -> Tot^xor (hom(P, I))
   $ are quasi-isomorphisms. This is equivalent to $cone(f)$ and $cone(g)$ being acyclic by (the dual of) @cone-qi.
 
   Let $C$ be the double complex $hom(P, I)$ with $hom(A, I)$ added to the column $p=-1$ using $epsilon : P_0 -> A$. We make it so that every added differential has a minus sign, as shown in the diagram.
@@ -832,7 +834,7 @@ Now that we have gained some experience with non-canonically ordered double comp
   $
   with differentials
   $
-    d^h_(p, q) (f) &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , Q_q) \ d^v_(p, q) (f) &= d^((Q))_q oo f in hom (P_p, Q_(q-1))
+    d^h_(p, q) (f) &= (-1)^q f oo d^((P))_(p+1) in hom ( P_(p+1) , Q_q), \ d^v_(p, q) (f) &= d^((Q))_q oo f in hom (P_p, Q_(q-1))
   $
   for $f in hom ( P_p , Q_q )$.
   Then we define the *Hom cochain complex* as

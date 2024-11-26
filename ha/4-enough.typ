@@ -177,22 +177,22 @@ For most of our homological algebra to work, an abelian category needs to have e
   extension $alpha$ of $f$ to $B$.
 
   [Construction of $phi : R-> M$.] Suppose that $A^prime eq.not B$. Let $b in B without A^prime$. Let
-  $ I eq { r in R:b r in A^prime} $ Then $I$ is a right ideal of
+  $ I eq { r in R:b r in A^prime}. $ Then $I$ is a right ideal of
   $R$, and we have a map
 
   $
-    tilde(phi):I &->M \
+    tilde(phi):I &->M, \
     r &|-> alpha^prime lr((b r)).
   $
   By assumption, this extends to a map $phi colon R arrow.r M$.
 
   [Construction of $alpha'' : A'' -> M$.] Define
   $
-    A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B
+    A^(prime prime) eq A^prime plus R b = {a + r b : a in A', r in R} subset.eq B.
   $ We
   claim that there is a well-defined map
   $
-    alpha^(prime prime) colon A^(prime prime) &arrow.r M \ a plus b r &arrow.r.bar alpha^prime lr((a)) plus phi lr((r)),
+    alpha^(prime prime) colon A^(prime prime) &arrow.r M, \ a plus b r &arrow.r.bar alpha^prime lr((a)) plus phi lr((r)),
   $
   where $a in A^prime$ and $r in R$. To see that this is well-defined,
   suppose that $a plus b r eq a^prime plus b r^prime$
@@ -273,7 +273,7 @@ For most of our homological algebra to work, an abelian category needs to have e
 #proof[
   Suppose ${P_i :  i in I}$ is a family of projective modules. Then for each $i in I$, by @projective-summand we can write $F_i = P_i xor Q_i$ for some free $R$-module $F_i$ and $R$-module $Q_i$. Then
   $
-    plus.circle.big_(i in I) F_i = plus.circle.big_(i in I) P_i xor plus.circle.big_(i in I) Q_i
+    plus.circle.big_(i in I) F_i = plus.circle.big_(i in I) P_i xor plus.circle.big_(i in I) Q_i.
   $
   Since $plus.circle.big_(i in I) F_i$ is also a free module, $plus.circle.big_(i in I) P_i$ is also projective.
   // The first half is easily seen from
@@ -297,14 +297,14 @@ For most of our homological algebra to work, an abelian category needs to have e
 #proof[
   Define a map
   $
-    I : Ab &-> Ab \
+    I : Ab &-> Ab, \
     A &|-> product_(hom_Ab (A, QQ over ZZ)) QQ over ZZ.
   $
 
   For any $A in Ab$, $I(A)$ is injective as a product of injectives $QQ over ZZ$.
   Consider the canonical map
   $
-    e_A: A &-> I(A) \
+    e_A: A &-> I(A), \
     a &|-> (phi(a))_(phi in hom_Ab (A, QQ over ZZ)),
   $
 
@@ -326,9 +326,9 @@ For most of our homological algebra to work, an abelian category needs to have e
 #proof[
   @notes[Lemma 5.25] and @weibel[Proposition 2.3.10].
   We want to show that
-  $ Hom(A)(-, R(I)) $ is exact.
+  $Hom(A)(-, R(I))$ is exact.
   We have
-  $ Hom(A)(-, R(I)) iso Hom(B)(L(-), I ) $
+  $ Hom(A)(-, R(I)) iso Hom(B)(L(-), I ), $
   but $L$ is exact by assumption and $Hom(B)(-, I)$ is exact because $I$ is injective in $cB$, so $Hom(B)(L(-), I )$ is a composition of exact functors and thus exact.
 ]
 With this proposition, we can prove that an abelian category has enough projectives or injectives by constructing adjunctions.
@@ -352,15 +352,15 @@ With this proposition, we can prove that an abelian category has enough projecti
 #proof[
   Define map
   $
-    I : RMod &-> RMod \
-    M &|-> product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ)
+    I : RMod &-> RMod, \
+    M &|-> product_(homr(M, hom_Ab (R, QQ over ZZ))) hom_Ab (R, QQ over ZZ).
   $
 
   For any left $R$-module $M$,
   $I(M)$ is injective as a product of injectives, and there is a canonical morphism
   $
-    e_M: M &-> I(M ) \
-    m &|-> (phi(m))_(phi in homr(M, hom_Ab (R, QQ over ZZ)))
+    e_M: M &-> I(M ), \
+    m &|-> (phi(m))_(phi in homr(M, hom_Ab (R, QQ over ZZ))).
   $
   // Exercise: $e_M$ is one-to-one (mono). (like what we did before.) [TODO]
   We would like to show that $e_M$ is an injective function.

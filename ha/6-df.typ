@@ -89,9 +89,9 @@
   If $p$ is an integer, the collection ${T_n : Ab -> Ab}_(n>=0)$ of functors defined by
   $
     T_n (A) = cases(
-    A over p A quad& n = 0,
-     zws_p A := brace.l a in A colon p a eq 0 brace.r quad& n = 1,
-     0 quad& n >= 2
+    A over p A quad& n = 0 \,,
+     zws_p A := brace.l a in A colon p a eq 0 brace.r quad& n = 1 \,,
+     0 quad& n >= 2\,
     )
   $
   form a homological $delta$-functor (or a cohomological
@@ -191,7 +191,7 @@ In fact, our definition of the "functor" $L_i F$ is still incomplete as we have 
 
 #proof[ Consider the projective resolution of $A$:
   $
-    ... P_1 ->^(d_1) P_0 -> A -> 0
+    ... P_1 ->^(d_1) P_0 -> A -> 0.
   $
 
   By definition, $L_0 F(A) = H_0(F(P)) iso Coker(F(d_1))$. Since $F$ is right exact, it preserves cokernels, so $Coker(F(d_1)) iso F(Coker(d_1)) = F(A)$.
@@ -229,7 +229,7 @@ In fact, our definition of the "functor" $L_i F$ is still incomplete as we have 
 Now we complete the definition of $L_i F$ and prove that it is indeed a functor.
 
 #lemma[
-  If $f : A' -> A$ a morphism in $cA$, then there is a natural map $ L_i F(f) : L_i F(A') -> L_i F(A) $
+  If $f : A' -> A$ a morphism in $cA$, then there is a natural map $ L_i F(f) : L_i F(A') -> L_i F(A). $
 ]
 #proof[
   Let $P'_cx -> A'$ and $P_cx -> A$ be projective resolutions. By the @comparison[Comparison Theorem], $f$ lifts to a chain map $tilde(f) : P'_cx -> P_cx$, which gives a map $tilde(f_ast) : H_i F(P') -> H_i F(P)$. As any other lift is chain homotopic to $tilde(f)$, the map $tilde(f_ast)$ is independent of the lift.
@@ -276,7 +276,7 @@ Now we complete the definition of $L_i F$ and prove that it is indeed a functor.
 #definition[
   Let $cA$ and $cB$ be two abelian categories and
   let $F : cA  -> cB$ be a left exact functor. Assume that $cA$ has enough injectives and for any $A in cA$ we have an injective resolution $A -> I^cx$. Then the *$i$-th right derived functor* $R^i F$ is defined as
-  $ R^i F (A) := H^i (F (I^cx)) $
+  $ R^i F (A) := H^i (F (I^cx)). $
 ]
 // If $F : cA  -> cB$ is left exact, we can define the right derived functor $R^i F(A) = H^i F(I)$ for $A -> I^cx$.
 

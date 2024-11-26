@@ -242,33 +242,33 @@ We now take a look at the case in $Ab$ and we shall show that a module in $Ab$ i
 #lemma("Flat Resolution Lemma")[
   Let $F_cx -> A$ be a flat resolution of $A$. Then
   $
-    Tor_ast^R (A, B) iso H_ast (F_cx tpr B )
+    Tor_ast^R (A, B) iso H_ast (F_cx tpr B ).
   $
   Similarly, if $F'_cx -> B$ is a flat resolution, then
   $
-    Tor_ast^R (A, B) iso H_ast (A tpr F'_cx)
+    Tor_ast^R (A, B) iso H_ast (A tpr F'_cx).
   $
 ]
 <flat-resolution>
 #proof[
   By induction.
-  When $n = 0$, we need to show that $A tpr B iso H_0 (F_cx tpr B)$. We see that $ H_0 (F_cx tpr B) = (F_0 tpr B) / IM(F_1 tpr B) = Coker(F_1 tpr B -> F_0 tpr B) $ On the other hand, $A = Coker(F_1 -> F_0)$, and since $(- tpr B)$ is right exact and preserves cokernels, we get the result.
+  When $n = 0$, we need to show that $A tpr B iso H_0 (F_cx tpr B)$. We see that $ H_0 (F_cx tpr B) = (F_0 tpr B) / IM(F_1 tpr B) = Coker(F_1 tpr B -> F_0 tpr B). $ On the other hand, $A = Coker(F_1 -> F_0)$, and since $(- tpr B)$ is right exact and preserves cokernels, we get the result.
 
   When $n >= 1$, we have the short exact sequence
   $
-    ses(K, F_0, A, f:ker(epsilon), g:epsilon)
+    ses(K, F_0, A, f:ker(epsilon), g:epsilon).
   $ If we write $E_cx = (... -> F_2 -> F_1 -> 0)$, then $E_cx ->^(d_1) K$ is a flat resolution of $K$, where $d_1 : F_1 -> F_0$ has $IM(d_1) = Ker(epsilon) = K$ by the exactness at $F_0$ of the resolution $F_cx -> A$. Now we can write the #lest induced by $Tor$:
   $
-    ... -> Tor_n (F_0 , B) -> Tor_n (A , B) -> Tor_(n-1) (K , B) -> Tor_(n-1) (F_0 , B) -> ...
+    ... -> Tor_n (F_0 , B) -> Tor_n (A , B) -> Tor_(n-1) (K , B) -> Tor_(n-1) (F_0 , B) -> dots.
   $
   But $Tor_n (F_0, B) = 0$ for $n >= 1$ by @flat-tor.
   Thus,
   $
-    Tor_n (A, B) iso cases(Ker (K tp B -> F_0 tp B) quad &n = 1, Tor_(n-1) (K, B) quad &n >= 2)
+    Tor_n (A, B) iso cases(Ker (K tp B -> F_0 tp B) quad &n = 1\,, Tor_(n-1) (K, B) quad &n >= 2.)
   $
   For $n=1$, notice that $K tpr B iso H_0 (E_cx tpr B) = (F_1 tpr B) over IM(F_2 tpr B)$ by applying the case $n = 0$ to $E_cx -> K$, and hence we have
   $
-    Tor_1 (A, B) iso Ker (K tp B -> F_0 tp B) = Ker ((F_1 tp B) / IM(F_2 tp B) -> F_0 tp B) = H_1 (F_cx tp B)
+    Tor_1 (A, B) iso Ker (K tp B -> F_0 tp B) = Ker ((F_1 tp B) / IM(F_2 tp B) -> F_0 tp B) = H_1 (F_cx tp B).
   $
   For $n >= 2$,
   $
@@ -307,7 +307,7 @@ We first need an auxiliary result.
   Let $B in RMod$.
   Write the #lest induced by $Tor$:
   $
-    ... -> Tor_(n+1)^R (Z, B) -> Tor_n^R (X, B) -> Tor_n^R (Y, B) -> ...
+    ... -> Tor_(n+1)^R (Z, B) -> Tor_n^R (X, B) -> Tor_n^R (Y, B) -> dots.
   $
   Since $Y$ and $Z$ are flat, $Tor_n^R (Y, B) = Tor_n^R (Z, B) = 0$ when $n >= 1$ by @flat-tor. So $Tor_n^R (X, B) = 0$ for any $n >= 1$ and $X$ is also flat.
 ]
@@ -350,7 +350,7 @@ The main result is the following.
     numbering: "(1)",
     supplement: "Long Exact Sequence",
     $
-      ... -> H_(n+1) (d(P)_cx tp M ) ->^diff H_n (Z_cx tp M) \ -> H_n (P_cx tp M) -> H_n (d(P)_cx tp M) ->^diff H_(n-1) (Z_cx tp M) -> ...
+      ... -> H_(n+1) (d(P)_cx tp M ) ->^diff H_n (Z_cx tp M) \ -> H_n (P_cx tp M) -> H_n (d(P)_cx tp M) ->^diff H_(n-1) (Z_cx tp M) -> ....
     $,
   ) <eq1>
   Note that the differentials on the chain complexes $Z_cx$ and $d(P)_cx$ are all zero, and hence the differentials on $Z_cx tp M$ and $d(P)_cx tp M$ are also all zero, which gives
@@ -360,7 +360,7 @@ The main result is the following.
   // #TODO A theorem saying differential zero gives homology equals chain complex.
   Hence @eq1 now becomes
   $
-    ... -> d(P_(n+1)) tp M ->^(diff_(n+1)) Z_n tp M -> H_n (P_cx tp M) -> d(P_(n)) tp M ->^(diff_n) Z_(n-1) tp M -> ...
+    ... -> d(P_(n+1)) tp M ->^(diff_(n+1)) Z_n tp M -> H_n (P_cx tp M) -> d(P_(n)) tp M ->^(diff_n) Z_(n-1) tp M -> ....
   $
   Apply @connecting and we can find the connecting homomorphism $diff_(n+1) = i_n tp id_M$, where $i_n : d(P_(n+1)) -> Z_n$ is the inclusion map.
   By @five-to-ses, we have a #sest
@@ -379,7 +379,7 @@ The main result is the following.
   $
   By @flat-resolution, $Tor_ast^R (H_n (P_cx), M)$ is the homology of the following chain complex:
   $
-    D_cx = (... -> 0 -> d(P_(n+1)) tp M ->^(i_n tp id_M) Z_n tp M -> 0)
+    D_cx = (... -> 0 -> d(P_(n+1)) tp M ->^(i_n tp id_M) Z_n tp M -> 0).
   $
   Hence
   $
@@ -397,7 +397,7 @@ The main result is the following.
 In particular, we can consider the case of $Ab$, where we have the following:
 
 #theorem("Universal Coefficient Theorem")[
-  Let $P_cx$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Künneth #sest splits, so $ H_n (P_cx tp M) = (H_n (P) tp M) ds Tor_1^ZZ (H_(n-1) (P), M) $
+  Let $P_cx$ be a chain complex of free abelian groups, then for every $n$ and every $M$, the Künneth #sest splits, so $ H_n (P_cx tp M) = (H_n (P) tp M) ds Tor_1^ZZ (H_(n-1) (P), M). $
   The split is not canonical.
 ]
 
@@ -415,7 +415,7 @@ In particular, we can consider the case of $Ab$, where we have the following:
   $
   also splits, so $Z_n tp M$ is a direct summand of $P_n tp M$. Now notice we have the inclusions
   $
-    IM (d_(n+1) tp id_M) subset.eq IM (i_n tp id_M) subset.eq Ker (d_n tp id_M) subset.eq P_n tp M
+    IM (d_(n+1) tp id_M) subset.eq IM (i_n tp id_M) subset.eq Ker (d_n tp id_M) subset.eq P_n tp M.
   $
   By @split-sub, $Z_n tp M$ is a direct summand of $Ker (d_n tp id_M)$. Modding out by $IM (d_(n+1) tp id_M)$ on both of them, again by @split-sub, we see that
   #math.equation(
@@ -445,7 +445,7 @@ We also demonstrate a more general result, known as the Full Künneth Formula. N
   Let $P_cx$ and $Q_cx$ be right and left $R$-modules, respectively.
   If $P_n$ and $d(P_n)$ are flat for each $n$, then there is a #sest
   $
-    ses(plus.circle.big _(i+j=n) H_i (P) tp H_j (Q), H_n (P tpr Q), plus.circle.big_(i+j = n-1) Tor_1^R (H_i (P), H_j (Q)))
+    ses(plus.circle.big _(i+j=n) H_i (P) tp H_j (Q), H_n (P tpr Q), plus.circle.big_(i+j = n-1) Tor_1^R (H_i (P), H_j (Q))).
   $
 ]
 

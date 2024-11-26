@@ -23,7 +23,12 @@ Let $cA$ be an abelian category.
 
 
 #remark[
-  In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. An $n$-boundary must be an $n$-cycle because $d^2= 0$. The $n$-th homology becomes a quotient module#footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], $ H_n (C) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)) $ An element in $H_n (C)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
+  In the case of $RMod$, an *$n$-cycle* in $C_n$ is an element $x in C_n$ such that $d(x) = 0$, and an *$n$-boundary* in $C_n$ is an element $y in C_n$ such that there exists $c' in C_(n+1)$ such that $d(c') = y$. 
+  An $n$-boundary must be an $n$-cycle because $d^2= 0$. 
+  The $n$-th homology becomes a quotient module
+  #footnote()[The slogan is that "homology is cycles modulo boundaries" or even "homology is kernel modulo image".], 
+  $ H_n (C) = Z_n / B_n = (Ker d_n) /( IM d_(n+1)). $ 
+  An element in $H_n (C)$ can be written as $x + B_n$, or simply $[x]$, for some $n$-cycle $x$.
 ]
 
 #remark[
@@ -357,7 +362,7 @@ Therefore, we can form short exact sequences with chain complexes, and it turns 
   and the other two columns are similar.
   By the Snake Lemma again, we have the connecting map:
   $
-    H_n (A) -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) -> H_(n-1) (B) -> H_(n-1) (C)
+    H_n (A) -> H_n (B) -> H_n (C) rgt(diff_n) H_(n-1) (A) -> H_(n-1) (B) -> H_(n-1) (C).
   $
 
   // #align(center,image("imgs/2023-11-03-11-53-54.png",width:80%))

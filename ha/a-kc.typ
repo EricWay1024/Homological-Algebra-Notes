@@ -142,7 +142,7 @@ cohomology* to be
   $
   and a #sest of cochain complexes
   $
-    ses(homr (K_p (bd(x)), A), homr (K_p (bd(x)), B), homr (K_p (bd(x)), C))
+    ses(homr (K_p (bd(x)), A), homr (K_p (bd(x)), B), homr (K_p (bd(x)), C)).
   $
   By @connecting, applying homology and cohomology to them respectively induces two #less.
   Notice $K_1 (bd(x)) iso R^n$ with generators ${e_(i)}_(1 <= i <= n)$ and $K_0 (bd(x)) = R$. The differential $K_1 (bd(x)) -> K_0 (bd(x))$ sends each $e_(i)$ to $x_i$. The rest should follow easily.
@@ -159,7 +159,7 @@ cohomology* to be
   $C_cx$ is a chain complex of $R$-modules and $x in R$, there
   are exact sequences
   $
-    0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle_R C)) arrow.r H_1 lr((x comma H_(q minus 1) lr((C)))) arrow.r 0
+    0 arrow.r H_0 lr((x comma H_q lr((C)))) arrow.r H_q lr((K lr((x)) times.circle_R C)) arrow.r H_1 lr((x comma H_(q minus 1) lr((C)))) arrow.r 0.
   $
 ]
 <kunneth-koszul>
