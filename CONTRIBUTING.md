@@ -35,12 +35,8 @@ In your issue, please indicate which version of the notes you are viewing by sta
     git commit -m "Fix typo in Section 2.1"
     ```
     Replace the commit message with a brief description of what has been changed.
-
-    Alternatively, if you use VS Code, you can open the Source Control panel on the left, review your changes, type in your commit message (e.g. 'Fix typo in Section 2.1'), and then click the Commit button.
-5. **Push to your fork**: Push your changes to your forked repository:
+6. **Push to your fork**: Push your changes to your forked repository:
     ```bash
     git push
     ```
-
-    Alternatively, if you use VS Code, you can click the 'Sync Changes' button.
-6. **Create a pull request**: Once your changes are pushed, navigate to the original repository and open a pull request (PR) from your fork. Describe the changes you made and why they are important.
+7. **Create a pull request**: Once your changes are pushed, navigate to the original repository and open a pull request (PR). Describe the changes you made and why they are important.
