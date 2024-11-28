@@ -25,20 +25,22 @@ In your issue, please indicate which version of the notes you are viewing by sta
    cd Homological-Algebra-Notes
    ```
     where you need to replace `[YourUserName]` with your GitHub user name.
-3. **Create a branch**: Create a new branch for your changes:
-    ```bash
-    git checkout -b fix-typo
-    ```
-4. **Make your changes**: Edit the Typst files (`main.typ`, etc.). Make sure your changes are clear and well-organised.
-5. **Commit your changes**: After making the changes, commit them to your branch:
+    
+    Alternatively, if you use VS Code, you can open a new window, and then click `Clone Git Repository`. Provide the URL `https://github.com/[YourUserName]/Homological-Algebra-Notes.git`, select a local folder to put this repo, and then open the cloned repository.
+3. **Make your changes**: Edit the Typst files (`main.typ`, etc.). Find the chapters in the `ha` folder.  Make sure your changes are clear and well-organised.
+4. **Commit your changes**: After making the changes, commit them to your branch:
     ```bash
 
     git add .
     git commit -m "Fix typo in Section 2.1"
     ```
     Replace the commit message with a brief description of what has been changed.
-6. **Push to your fork**: Push your changes to your forked repository:
+
+    Alternatively, if you use VS Code, you can open the Source Control panel on the left, review your changes, type in your commit message (e.g. 'Fix typo in Section 2.1'), and then click the Commit button.
+5. **Push to your fork**: Push your changes to your forked repository:
     ```bash
-    git push origin fix-typo
+    git push
     ```
-7. **Create a pull request**: Once your changes are pushed, navigate to the original repository and open a pull request (PR). Describe the changes you made and why they are important.
+
+    Alternatively, if you use VS Code, you can click the 'Sync Changes' button.
+6. **Create a pull request**: Once your changes are pushed, navigate to the original repository and open a pull request (PR) from your fork. Describe the changes you made and why they are important.
