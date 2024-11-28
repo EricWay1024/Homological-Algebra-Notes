@@ -94,7 +94,7 @@
      0 quad& n >= 2\,
     )
   $
-  form a homological $delta$-functor (or a cohomological
+  forms a homological $delta$-functor (or a cohomological
   $delta$-functor with $T^0 eq T_1$ and $T^1 eq T_0$).]
 #proof[Apply the @snake[Snake Lemma] to the commutative diagram
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRGJAF9T1Nd9CKAIzkqtRizYBBLjxAZseAkQBMo6vWatEIAEKzeigUQDM68VrYBhA-L5LByACznNknR26H+ylGSFibtrstgo+jiIBGhLBMl52Rr7IalEW7nqh9sYoZqlB1pmJji55MWyeYjBQAObwRKAAZgBOEAC2SCIgOBBIAGzRljpots1tSGpdPYgA7APpw-Gj7Yhmk0gAHHPBC3JLSGRriEKLLcud3eMnY4gTFytXy6t3Tg9IAKzUd72viP2H0z9Zod1j9NocAJycCicIA
@@ -165,7 +165,7 @@
 == Derived Functors
 
 
-The main object of this section is to show that in an abelian category with enough projectives, left derived functors, defined as follows, are homological $delta$-functors.
+The main objective of this section is to show that in an abelian category with enough projectives, left derived functors, defined as follows, are homological $delta$-functors.
 #definition[
   Let $cA$ and $cB$ be two abelian categories and
   let $F : cA -> cB$ be a right exact functor. Assume that $cA$ has enough projectives. For any $A in cA$, pick a projective resolution $P_(cx) -> A$ by @enough-resolution. Then $L_i F$ given by $ L_i F(A) := H_i (F(P))  $ is called the *$i$-th left derived functor*.
@@ -184,7 +184,7 @@ The main object of this section is to show that in an abelian category with enou
   + Calculate the $i$-th homology $H_i (F (P))$ of this chain complex.
   // Now let $f: A -> B$ be a morphism in $cA$. To find $L_i F (f)$, we can find projective resolutions $P_cx -> A$ and $Q_cx -> B$, and by the @comparison[Comparison Theorem], there exists a chain map $f_cx : P_cx -> Q_cx$ lifting $f$. Then $L_i F (f) := H_i (F(f_cx))$, obtained in a similar fashion as above.
 ]
-In fact, our definition of the "functor" $L_i F$ is still incomplete as we have not defined how it maps the morphisms in $cA$. However, we first need to show that for any object $A in cA$, our definition of $L_i F (A)$ is independent of the choice of projective resolution $P_cx -> A$. The following implies the case when $i = 0$.
+In fact, our definition of the "functor" $L_i F$ is still incomplete as we have not defined how it maps the morphisms in $cA$. However, we first need to show that for any object $A in cA$, our definition of $L_i F (A)$ is independent of the choice of projective resolution $P_cx -> A$. The following shows that this is true for $i = 0$.
 #lemma[
   $L_0 F(A) iso F(A)$.
 ]
@@ -229,7 +229,7 @@ In fact, our definition of the "functor" $L_i F$ is still incomplete as we have 
 Now we complete the definition of $L_i F$ and prove that it is indeed a functor.
 
 #lemma[
-  If $f : A' -> A$ a morphism in $cA$, then there is a natural map $ L_i F(f) : L_i F(A') -> L_i F(A). $
+  If $f : A' -> A$ is a morphism in $cA$, then there is a natural map $ L_i F(f) : L_i F(A') -> L_i F(A). $
 ]
 #proof[
   Let $P'_cx -> A'$ and $P_cx -> A$ be projective resolutions. By the @comparison[Comparison Theorem], $f$ lifts to a chain map $tilde(f) : P'_cx -> P_cx$, which gives a map $tilde(f_ast) : H_i F(P') -> H_i F(P)$. As any other lift is chain homotopic to $tilde(f)$, the map $tilde(f_ast)$ is independent of the lift.

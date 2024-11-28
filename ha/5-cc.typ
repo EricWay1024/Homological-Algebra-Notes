@@ -577,7 +577,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
   $
     d_1(P_1) = M_0 = Ker epsilon_0.
   $
-  Thus the chain is exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain is infinitely long.
+  Thus the chain is exact at $P_0$. The procedure above can be then iterated for any $n >= 1$ and the resultant chain can be made arbitrarily long. 
   // Set $d_0 = epsilon_0$.
   // Suppose we now have monomorphism $i_(n-1) : M_(n-1) -> P_(n-1)$ and $d_(n-1) : P_(n-1) -> P_(n-2)$
   // By induction, givenlet $epsilon_n: P_n -> M_(n-1)$ be an epimorphism, where $P_n$ is projective, and let $M_n = ker epsilon_n$. Thus we have
@@ -653,10 +653,10 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
       arr((0, 1), (1, 1), [$f_n oo d_(n+1)$]),
     ),
   )
-  where since $P_(n+1)$ is an projective object,
+  where since $P_(n+1)$ is a projective object,
   the morphism $f_(n+1) : P_(n+1) -> Q_(n+1)$ exists such that the diagram commutes, i.e. $d'_(n+1) oo f_(n+1) = f_n oo d_(n+1)$.
 
-  For the uniqueness, let $h: P_cx -> Q_cx$ be another chain map lifting $f'$. We want to construct homotopy $s$ with terms $s_n: P_n -> Q_(n+1)$ such that
+  For uniqueness, let $h: P_cx -> Q_cx$ be another chain map lifting $f'$. We want to construct homotopy $s$ with terms $s_n: P_n -> Q_(n+1)$ such that
   $ h_n - f_n = d'_(n+1) s_n + s_(n-1) d_n $
   for all $n >= -1$.
 
@@ -723,7 +723,7 @@ By finding a resolution of a potentially "complicated" object $M$, we can work w
     ),
   )
 
-  where $P_(n+1)$ is projective and $d'_(n+2) : Q_(n+2) -> Z_(n+1) (Q)$ is an epimorphism.
+  because $P_(n+1)$ is projective and $d'_(n+2) : Q_(n+2) -> Z_(n+1) (Q)$ is an epimorphism.
 
   Now $
   d'_(n+1) (h_(n+1) - f_(n+1) - s_n d_(n+1)) &= d'_(n+1) (h_(n+1) - f_(n+1)) - d'_(n+1) s_n d_(n+1) \
@@ -801,7 +801,7 @@ $
   $tilde(epsilon^(prime prime)) : P_0^(prime prime) arrow.r A$. The direct sum of $tilde(epsilon^(prime prime))$ and
   $i_A epsilon^prime colon P_0^prime arrow.r A$ gives a map
   $epsilon colon P_0 arrow.r A$. Then the diagram below
-  commutes：
+  commutes:
   // #align(center,image("../imgs/2023-11-04-13-59-23.png",width:80%))
   // https://t.yw.je/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAGkYAnAChjWwMCAcgCUIAL6l0mXPkIoyAJiq1GLNp179BBcVJnY8BImQDMq+s1aIO3PgKxCwwsZOkgMR+USXlL6jYgAArCAPoADO6GciYofirUVhq2wZHRnrLGCsh+FkmBbKHhUQaZ3nHIZv4F1mwAgsIZXrE51Ylqdbb1zVk+KNX5nSkgjU1lLdlEETXDQaUek-3IACyzyfO9FTkzHRtsCzFTKGt7hbaH5a3TpEP7F1vXJ7cBXSCXS5VkEa8jH31fUgrX6bCYAnJ+H61P6PY65IEgg6w5bVKFzJFg7ZEarA6Gg1QwKAAc3gRFAADMuBAALZIACc1BwECQETKlJpLMZzMQZjZVNpPK5SAAbHi2DonCIMuyBaKQEykMRWR4ZYqyPLucQ+RzEOqFYgVtqBWsNUgAOxi2wS5zS-nmoW6pRGxXVU2IJ0qu3uh0AVmdiB9DoAHJaQNaRONPTqQ27iIaowLiIG3cqKV6ZrH-XruR60zq-LHhVmLW7eQmkK79fG88bff7k-riEH-SX9c3y4g5fqzVmGW6ix2Y-qlKyKBIgA
   #align(
