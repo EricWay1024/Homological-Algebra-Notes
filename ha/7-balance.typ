@@ -564,7 +564,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
   // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
   (We drop the dots for chain complexes in this proof.)
   Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a projective resolution $Q_cx rgt(eta) B$ in $RMod$.
-  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi): 
+  We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$, and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi): 
   $ epsilon tp id_Q: P tpr Q -> A tpr Q, \ id_P tp eta: P tpr Q -> P tpr B, $ 
   which induce chain maps on the total complexes:
   $
