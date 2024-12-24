@@ -13,7 +13,7 @@ jobs:
 
       # Step 1: Download the typst archive
       - name: Download Typst
-        run: wget https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz
+        run: wget https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz
 
       # Step 2: Extract the typst archive
       - name: Extract Typst

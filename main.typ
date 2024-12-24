@@ -1,5 +1,4 @@
 #import "libs/template.typ": *
-#import "@preview/ctheorems:1.1.2": *
 #show: thmrules
 
 #show: project.with(

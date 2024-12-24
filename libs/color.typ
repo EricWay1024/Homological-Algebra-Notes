@@ -1,4 +1,4 @@
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 
 #let theorem = thmbox(
   "theorem",
