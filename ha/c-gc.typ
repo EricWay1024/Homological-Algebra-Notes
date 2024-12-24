@@ -140,7 +140,7 @@ $G$ with coefficients in $A$* as the right derived functors of $(-_G)$:
   and the *abelianisation* of $G$ is $G over [G, G]$.
 ]
 
-The aim is of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for any group $G$.
+The aim of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for any group $G$.
 
 #definition[
   The *augmentation ideal* $frak(J)$ of $ZZ G$ is defined as the kernel of the ring map
@@ -247,7 +247,7 @@ The aim is of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for a
 ]
 #lemma[$N$ is a central element of $ZZ G$ and $N in lr((bb(Z) G))^G$.]
 #proof[
-  For every $h in G$, we have $h N = sum_g h g$, but left multiplication by $h$ is an automorphism of $G$ (by Cayley's theorem), so $h N = sum_(g') g' = N$ by reindexing. Similarly, $N h = N$.
+  For every $h in G$, we have $h N = sum_g h g$, but left multiplication by $h$ is an automorphism of $G$ (whose inverse is left multiplication by $h^(-1)$), so $h N = sum_(g') g' = N$ by reindexing. Similarly, $N h = N$.
 ]
 
 #lemma[
@@ -274,7 +274,7 @@ The aim is of this section is to show that $H_1 (G, ZZ) iso G over [G, G]$ for a
   $
     N a = (sum_(h in G) h) (sum_(g in G) n_g g) = sum_(h in G) sum_(g in G) n_g (h g) = sum_(g' in G) sum_(g in G) n_g g' \ = sum_(g' in G) (sum_(g in G) n_g) g' = (sum_(g in G) n_g) (sum_(g' in G) g') = (sum_(g in G) n_g) N.
   $
-  Therefore $N a = 0$ if and only if $sum_(g in G) n_g = 0$, #iff $a in fJ$.
+  Therefore, $N a = 0$ if and only if $sum_(g in G) n_g = 0$, #iff $a in fJ$.
   The image of $ZZ G ->^N ZZ G$ is also clear from above, since $(sum_(g in G) n_g)$ can take all values in $ZZ$.
 ]
 
