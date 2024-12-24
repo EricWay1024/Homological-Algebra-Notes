@@ -18,9 +18,9 @@ This project relies on the support and collaboration of the following individual
 
 - Prof Kobi Kremnitzer for delivering the lectures and adopting these notes as a course material;
 -  Sebastian Monnet for creating the previous version of these notes;
-- Qixuan Fang for reading the first drafts of the notes and offering feedback;
--  [Quanwen Chen](https://github.com/Steven1677) for contributing to the GitHub workflows; and
 - [Yutong Dai](https://github.com/ascchrvalstr) for fixing a large amount of typos and grammar mistakes;
+-  [Quanwen Chen](https://github.com/Steven1677) for contributing to the GitHub workflows; and
+- Qixuan Fang for reading the first drafts of the notes and offering feedback;
 -  [@hbghlyj](https://github.com/hbghlyj), [Julia Irvine](https://github.com/JuliaScythe), and [Richard Wang](https://github.com/rclw)  for pointing out various typos.
 
 ## How to Compile the Notes
