@@ -26,7 +26,7 @@
   $
     sum_(g in G) f_g g,
   $
-  where $f_g in ZZ$ is non-zero for only fintely many $g in G$. $ZZ G$ is a ring because the product of two elements of $ZZ G$ is well-defined.
+  where $f_g in ZZ$ is non-zero for only finitely many $g in G$. $ZZ G$ is a ring because the product of two elements of $ZZ G$ is well-defined.
 ]
 #lemma[
   There is an equivalence of categories $GMod iso ZGMod$.
