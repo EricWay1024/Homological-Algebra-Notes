@@ -20,7 +20,8 @@ This project relies on the support and collaboration of the following individual
 -  Sebastian Monnet for creating the previous version of these notes;
 - Qixuan Fang for reading the first drafts of the notes and offering feedback;
 -  [Quanwen Chen](https://github.com/Steven1677) for contributing to the GitHub workflows; and
--  [@hbghlyj](https://github.com/hbghlyj), [Julia Irvine](https://github.com/JuliaScythe), [Yutong Dai](https://github.com/ascchrvalstr) for pointing out various typos.
+- [Yutong Dai](https://github.com/ascchrvalstr) for fixing a large amount of typos and grammar mistakes;
+-  [@hbghlyj](https://github.com/hbghlyj), [Julia Irvine](https://github.com/JuliaScythe), and [Richard Wang](https://github.com/rclw)  for pointing out various typos.
 
 ## How to Compile the Notes
 
