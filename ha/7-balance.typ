@@ -100,7 +100,7 @@ This isomorphism is called the *balancing of $Ext$*. Before proving the balancin
   $ Tor_i^R (A, B) = Tor_i^R (-, B)(A) := L_i (- tpr B) (A). $
 ]
 
-Similarly, let $A$ be a right $R$-module, and $(A tpr - ): RMod -> Ab$ is right exact by @tensor-right-exact-2. We can thus define the left derived functor $Tor_i^R (A, -)$:
+Similarly, let $A$ be a right $R$-module, so that $(A tpr - ): RMod -> Ab$ is right exact by @tensor-right-exact-2. We can thus define the left derived functor $Tor_i^R (A, -)$:
 $
   Tor_i^R (A, -)(B) := L_i (A tpr -) (B).
 $
@@ -168,8 +168,8 @@ In order to prove the balancing of $Ext$ and $Tor$, we need two new tools: mappi
   //   ... -> H^(n-1) (cone(f)) ->  H^n (B) ->^diff H^n (C) -> H^n (cone(f)) -> ...
   // $
   // with $diff = g^ast$.
-
 ]
+<cone-les>
 #proof[
   There is a #sest of chain complexes:
   $ ses(C, cone(f), B[-1], f: i, g: pi), $
@@ -185,7 +185,7 @@ The following is the main function of the mapping cone.
 ]
 <cone-qi>
 #proof[
-  "$=>$". If $f$ is a quasi-isomorphism, then $f_ast : H_n (B) -> H_n (C)$ is an isomorphism for all $n$. Then we have an exact
+  "$=>$". If $f$ is a quasi-isomorphism, then $f_ast : H_n (B) -> H_n (C)$ is an isomorphism for all $n$. By @cone-les, we have an exact
   sequence
   $
     H_n (B) arrow.r^(f_ast) H_n (C) arrow.r^(i_ast) H_n ("cone"(f)) arrow.r^(pi_ast) H_(n - 1) (B) arrow.r^(f_ast) H_(n - 1) (C).
@@ -563,9 +563,9 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
 #proof[ @weibel[Theorem 2.7.2].
   // #align(center,image("../imgs/2023-11-23-03-00-04.png",width:80%))
   (We drop the dots for chain complexes in this proof.)
-  Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a project resolution $Q_cx rgt(eta) B$ in $RMod$.
+  Choose a projective resolution $P_cx rgt(epsilon) A$ in $ModR$ and a projective resolution $Q_cx rgt(eta) B$ in $RMod$.
   We can view $A, B$ as chain complexes concentrated in degree $0$. Now consider the double complexes $P tpr Q$, $A tpr Q$ and $P tpr B$, and we have _bicomplex morphisms_ (where it might be helpful to recall the diagram in @resolution-qi): 
-  $ epsilon tp id_Q: P tpr Q -> A tpr Q, \ id_Q tp eta: P tpr Q -> P tpr B, $ 
+  $ epsilon tp id_Q: P tpr Q -> A tpr Q, \ id_P tp eta: P tpr Q -> P tpr B, $ 
   which induce chain maps on the total complexes:
   $
     f : Tot^xor (P tpr Q) -> Tot^xor (A tpr Q) = A tpr Q, \
@@ -643,7 +643,7 @@ A variant of the above lemma is the following, whose proof is similar @notes[Lem
   $
   for $f in hom ( P_p , I^q )$.
 
-  Then we define the *Hom cochain complex*#footnote[@weibel[p. 62] writes this as $Tor^Pi (hom (P, I))$, but as we will see in this case any diagonal slice has only finite terms, so their product and direct sum are the same.] as
+  Then we define the *Hom cochain complex*#footnote[@weibel[p. 62] writes this as $Tor^Pi (hom (P, I))$, but as we will see in this case any diagonal slice has only finitely many terms, so their product and direct sum are the same.] as
 
   $ Tot^xor (hom(P, I)). $
 ]

@@ -73,7 +73,7 @@
   $
   which shows that $(- tpr B)$ is exact.
 
-  Note that #rrm case relies on the balancing of $Tor$, but the proof is very similar.
+  Note that the #rrm case uses the balancing of $Tor$, but the proof is very similar.
 ]
 
 #corollary[Every projective module is flat. In particular, every free module is flat. #footnote[We have already proven this claim in @projective-flat-1, because we needed it for the balancing of $Tor$ (@balance-tor). This second proof actually relies on the balancing of $Tor$ so we could not use it previously, but it is presented here regardless.]]
@@ -170,7 +170,7 @@
 #proof[
   @weibel[Theorem 3.2.2, p.69].
 ]
-We now take a look at the case in $Ab$ and we shall show that a module in $Ab$ is flat if and only if it is torsion-free.
+We now take a look at the case $Ab$ and we shall show that a module in $Ab$ is flat if and only if it is torsion-free.
 #lemma[
   Let $B in Ab$ and $p in ZZ$. Then
   $Tor_0^ZZ (ZZ over p ZZ, B) = B over p B$ and $Tor_1 ^ZZ (ZZ over p ZZ, B) = {b in B : p b = 0}.$
@@ -278,7 +278,7 @@ We now take a look at the case in $Ab$ and we shall show that a module in $Ab$ i
 ]
 
 #remark[
-  Why have we not defined $Tor$ with flat resolutions in the first place? The problem is that we have to show it is well defined regardless of the choice of flat resolutions. This may not be as convenient as using projective resolutions. Nevertheless, now we are free to use flat resolutions, a larger class than projective resolutions, for calculations.
+  Why have we not defined $Tor$ with flat resolutions in the first place? The problem is that we have to show it is well defined, independent of the choice of flat resolutions. This may not be as convenient as using projective resolutions. Nevertheless, now we are free to use flat resolutions, a larger class than projective resolutions, for calculations.
 ]
 
 A generalisation to flat modules is the following.
