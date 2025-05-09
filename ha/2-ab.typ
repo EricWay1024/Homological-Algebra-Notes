@@ -573,9 +573,9 @@ The key element that we seek from an abelian category is the notion of exactness
   $ 0 -> Hom(A)(M, A) ->^(f oo -) Hom(A)(M, B) ->^(g oo -) Hom(A)(M, C) $
   is exact in $Ab$.
 
-  Exactness at $Hom(A) (M, A)$ is equivalent to $(f oo -) $ being monic, so let us calculate $Ker(f oo -)$. Let $u in Hom(A)(M, A)$ such that $(f oo  -) (u) = 0$, i.e., $f oo u  = 0$. But $f$ is monic, so $u = 0$, and thus $Ker(f oo -) = 0$ and $(f oo -)$ is monic.
+  Exactness at $Hom(A) (M, A)$ is equivalent to $(f oo -) $ being monic, so let us calculate $Ker(f oo -)$. Let $u in Hom(A)(M, A)$ satisfy $(f oo  -) (u) = 0$, i.e., $f oo u  = 0$. But $f$ is monic, so $u = 0$, and thus $Ker(f oo -) = 0$ and $(f oo -)$ is monic.
 
-  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. To show that $Ker(g oo -) subset.eq IM(f oo -)$, let $ v in Ker(g oo -)$. Then $v : M -> B$ such that $g oo v = 0$. Note that $A = Ker(g)$ and $f = ker(g)$, so by the universal property of the kernel, there exists $h : M -> A$ such that $v = f oo h$, hence $v in IM(f oo -)$. On the other hand, to show that $IM(f oo -) subset.eq Ker(g oo -)$, notice that if $v in  IM (f oo -)$, then $v = f oo h$ for some $h$ and then $g oo v = g oo f oo h = 0$ since $g oo f = 0$.
+  Exactness at $Hom(A) (M, B)$ is equivalent to $Ker(g oo -) = IM(f oo -)$. To show that $Ker(g oo -) subset.eq IM(f oo -)$, let $ v in Ker(g oo -)$. Then $v : M -> B$ satisfies $g oo v = 0$. Note that $A = Ker(g)$ and $f = ker(g)$, so by the universal property of the kernel, there exists $h : M -> A$ such that $v = f oo h$, hence $v in IM(f oo -)$. On the other hand, to show that $IM(f oo -) subset.eq Ker(g oo -)$, notice that if $v in  IM (f oo -)$, then $v = f oo h$ for some $h$ and then $g oo v = g oo f oo h = 0$ since $g oo f = 0$.
 ]
 
 

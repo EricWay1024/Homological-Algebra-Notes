@@ -358,7 +358,7 @@ We say that "monic" and "epic" are *dual* concepts. Similarly, "initial objects"
     center,
     commutative-diagram(
       node-padding: (40pt, 40pt),
-      node((0, 0), [$Hom(B) (L(A'), B))$]),
+      node((0, 0), [$Hom(B) (L(A'), B)$]),
       node((0, 1), [$Hom(B) (L(A), B)$]),
       node((0, 2), [$Hom(B) (L(A), B')$]),
       node((1, 0), [$Hom(A) (A', R(B))$]),
