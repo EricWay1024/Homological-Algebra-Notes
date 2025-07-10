@@ -199,7 +199,7 @@ cohomology* to be
 
 Now recall that if $A$ is an $R$-module and $r in R$, then $r$ is a *zero-divisor* on $A$ if there exists non-zero $a in A$ such that $r a  = 0$. Therefore, $r$ is a *non-zero-divisor* on $A$ #iff the multiplication $A ->^r A$ is injective.
 #definition[
-  If $A$ is an $R$-module, a *regular sequence* on $A$ is a sequence of elements $(x_1, ..., x_n)$ where each $x_i in R$ such that $x_1$ is a non-zero-divisor on $A$ and each $x_i$ is a non-zero-divisor on $A over (x_1, ..., x_(i-1)) A$.
+  If $A$ is an $R$-module, a *regular sequence* on $A$ is a sequence of elements $(x_1, ..., x_n)$ where each $x_i in R$, $x_1$ is a non-zero-divisor on $A$, and for $i >=2$, each $x_i$ is a non-zero-divisor on $A over (x_1, ..., x_(i-1)) A$ .
 ]
 
 #lemma[

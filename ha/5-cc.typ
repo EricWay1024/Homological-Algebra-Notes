@@ -12,13 +12,13 @@ Let $cA$ be an abelian category.
   The *$n$-cycles* of $Ccx$ are defined as $  Z_n (C) := Ker d_n $ and
   the *$n$-boundaries* are defined as $ B_n (C) := IM d_(n+1). $
 
-  Since $d_n oo d_(n-1) = 0$, we have $ B_n (C) arrow.hook Z_n (C) arrow.hook C_n $ (as subobjects) for all $n$.
+  Since $d_(n-1) oo d_(n) = 0$, we have $ B_n (C) arrow.hook Z_n (C) arrow.hook C_n $ (as subobjects) for all $n$.
 
   The *$n$-th homology* is defined as $ H_n (C) := Coker(B_n (C) arrow.hook Z_n (C)). $
 ]
 
 #notation[
-  We often omit the subscript in $d_n$ and simply write $d$, so $d_n oo d_(n-1) = 0$ becomes $d^2 = 0$. To emphasise that $d$ belongs to the chain complex $C_cx$, we would write either $d_C$, or $d^((C))_n$ if we also need to explicitly specify the index. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
+  We often omit the subscript in $d_n$ and simply write $d$, so $d_(n-1) oo d_(n) = 0$ becomes $d^2 = 0$. To emphasise that $d$ belongs to the chain complex $C_cx$, we would write either $d_C$, or $d^((C))_n$ if we also need to explicitly specify the index. We sometimes also omit the dot in $Ccx$ and simply write $C$. We might write $Z_n = Z_n (C)$ and $B_n = B_n (C)$.
 ]
 
 
@@ -112,7 +112,7 @@ Let $cA$ be an abelian category.
 // ]
 
 #definition[
-  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^n oo d^(n+1) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n-1). $
+  A *cochain complex* $Ccx$ in $cA$ is a family ${C^n}_(n in ZZ)$ of objects in $cA$ with morphisms $d^n : C^n -> C^(n+1)$ such that $d^(n+1) oo d^(n) = 0$, where $d^n$ are called *differentials*. The *$n$-cocycles* of $C^cx$ are $ Z^n (C) := Ker d^n $ and the *$n$-coboundaries* are $ B^n (C) := IM d^(n-1). $
 
   We have $ B^n ( C) arrow.hook Z^n (C) arrow.hook C^n $ (as subobjects) for all $n$.
 
