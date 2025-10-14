@@ -58,7 +58,7 @@ An $Ab$-enriched category needs not have a zero object. Nevertheless, once it ha
 #proof[
   (3) $=>$ (1) and (3) $=>$ (2) are obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
 
-  Suppose $*$ is a terminal object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$.
+  Suppose $*$ is a final object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$.
   For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A). $
   So there is a unique morphism from $*$ to $A$ and therefore $*$ is also initial.
 ]

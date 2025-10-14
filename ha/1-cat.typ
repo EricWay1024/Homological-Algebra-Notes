@@ -83,7 +83,7 @@ In general, a category is a "generalised" monoid because in a category you can o
 #definition[
   An *initial object* $I$ of category $cC$ is an object such that for any $A in ob cC$, there exists a unique morphism $I -> A$.
 
-  A *final object* $T$ is an object such that for any $A in ob cC$ there exists a unique morphism $A -> T$.
+  A *final object* (or *terminal object*) $T$ is an object such that for any $A in ob cC$ there exists a unique morphism $A -> T$.
 ]
 
 #example[
