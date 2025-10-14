@@ -1,4 +1,4 @@
-#import "@preview/commute:0.2.0": node, arr, commutative-diagram
+#import "@preview/commute:0.3.0": node, arr, commutative-diagram
 
 #let color_style = "./color.typ"
 #let link_color = rgb(0, 0, 255)
