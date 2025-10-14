@@ -198,7 +198,7 @@ For most of our homological algebra to work, an abelian category needs to have e
   suppose that $a plus b r eq a^prime plus b r^prime$
   where $a, a' in A'$ and $r, r' in R$.
   Then
-  $ a minus a^prime eq b lr((r^prime minus r)) in A^prime sect b R dot.basic $
+  $ a minus a^prime eq b lr((r^prime minus r)) in A^prime inter b R dot.basic $
 
   From this we see $r - r' in I$, and then we have
   $
