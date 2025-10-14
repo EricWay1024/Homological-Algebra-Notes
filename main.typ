@@ -14,7 +14,7 @@
 
 
 
-#outline(indent: true)
+#outline(indent: auto)
 
 #heading(numbering: none)[License]
 
