@@ -58,7 +58,7 @@ An $Ab$-enriched category needs not have a zero object. Nevertheless, once it ha
 #proof[
   (3) $=>$ (1) and (3) $=>$ (2) are obvious. We only prove (1) $=>$ (3), and (2) $=>$ (3) follows from duality.
 
-  Suppose $*$ is a terminal object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$.
+  Suppose $*$ is a final object and let $id_* : * -> *$ be the unique morphism in the abelian group of $Hom(C)(*, *)$, and so $id_* = 0$.
   For any object $A$ and $f : * -> A$ (because $Hom(C)(*, A) $ contains at least the zero morphism), we have $ f = f compose id_* = f compose 0 = 0 in Hom(C)(*, A). $
   So there is a unique morphism from $*$ to $A$ and therefore $*$ is also initial.
 ]
@@ -532,9 +532,9 @@ The key element that we seek from an abelian category is the notion of exactness
 
   (2) $=>$ (1). We first claim that $B = IM f + Ker r$. Take any $b in B$, then plainly $b = f r(b) + (b - f r(b)) $. Since $r (b - f r(b)) = r (b) - r f r (b) = 0$, we have $b - f r(b) in Ker r$. Also obviously $f r (b) in IM f$.
 
-  We further claim that $B = IM f ds Ker r$. Suppose $b in IM f sect Ker r$, then there exists $a in A$ such that $b =  f(a)$; also $r (b) = 0$. Then $0 = r f (a) =a$, so $b = f(a) = 0$.
+  We further claim that $B = IM f ds Ker r$. Suppose $b in IM f inter Ker r$, then there exists $a in A$ such that $b =  f(a)$; also $r (b) = 0$. Then $0 = r f (a) =a$, so $b = f(a) = 0$.
 
-  Now we claim that $Ker r iso C$; in particular, the restriction $g|_(Ker r) : Ker r -> C$ is an isomorphism. Take any $c in C$, then since $g$ is a surjection, there exists some $f(a) + k in B$, where $a in A$ and $k in Ker r$, such that $g (f(a) + k) = c$. Note that $g f(a) = 0$, because $f(a) in IM f = Ker g$ by exactness at $B$, so for any $c in C$, there exists $k in Ker r$ such that $g(k) = c$. Thus $g|_(Ker r)$ is surjective. On the other hand, if $g(k) = 0$ for $k in Ker r$, then $k in Ker g = IM f$, but $IM f sect Ker r = {0}$, so $k = 0$. Thus $g|_(Ker r)$ is injective.
+  Now we claim that $Ker r iso C$; in particular, the restriction $g|_(Ker r) : Ker r -> C$ is an isomorphism. Take any $c in C$, then since $g$ is a surjection, there exists some $f(a) + k in B$, where $a in A$ and $k in Ker r$, such that $g (f(a) + k) = c$. Note that $g f(a) = 0$, because $f(a) in IM f = Ker g$ by exactness at $B$, so for any $c in C$, there exists $k in Ker r$ such that $g(k) = c$. Thus $g|_(Ker r)$ is surjective. On the other hand, if $g(k) = 0$ for $k in Ker r$, then $k in Ker g = IM f$, but $IM f inter Ker r = {0}$, so $k = 0$. Thus $g|_(Ker r)$ is injective.
 
   Finally, observe that $f$ is an injection, so $IM(f) iso A$.
 
@@ -543,7 +543,7 @@ The key element that we seek from an abelian category is the notion of exactness
 
 
 #corollary[Let $M, S, T$ be $R$-modules.
-  - If $M = S ds T$ and $S subset.eq N subset.eq M$, then $N = S ds (N sect T)$.
+  - If $M = S ds T$ and $S subset.eq N subset.eq M$, then $N = S ds (N inter T)$.
   - If $M = S ds T$ and $S' subset.eq S$, then $M over S' = S over S' ds (T + S') over S'$.
 ]
 <split-sub>
