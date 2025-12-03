@@ -415,7 +415,7 @@ $
 
 Then this makes $hom_S (B, -)$ a functor from $ModS$ to $ModR$.
 
-#theorem[
+#theorem("Tensor-hom Adjunction")[
   Let $R$, $S$ be rings. Let $A$ be a #rrm, $B$ be an $R$-$S$-bimodule, and $C$ be a right $S$-module. Then we have a canonical isomorphism
   $ tau: hom_S (A tpr B, C) bij hom_R (A, hom_S (B, C)), $
   where for $f : A tpr B -> C$, $a in A$, and $b in B$,

@@ -117,6 +117,17 @@
   breakable: true,
 )[_#title._ #term #h(1fr) $qed$]
 
+// Helper to reference theorems/props with their optional name.
+#let thmref(id) = {
+  context {
+    if query(id).at(0).caption != none {
+      [#ref(id) (#query(id).at(0).caption.body)]
+    } else {
+      [#ref(id)]
+    }
+  }
+}
+
 #let project(title: "", authors: (), date: none, body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
